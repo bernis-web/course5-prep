@@ -17,6 +17,8 @@ Set-Location course5-prep
 
 三人建议先按“数据与生物学、环境与算力、评测与报告”三条可轮换主线认领一个小交付物，再互相复核；不绑定姓名，也不设硬边界。打开仓库后的认领表、第一步和交付位置见 `docs/team-task-division.md`。向老师确认信息时使用 `docs/course-admin-reply-template.md`；镜像实际版本核验边界见 `docs/dcs-image-probe-plan.md`；最终容器化冻结规则见 `docs/containerization-plan.md`。
 
+第一次协作时，组员 A 先整理课程数据确认项，组员 B 先做本地环境/预算/只读探针，组员 C 先跑测试并搭评测记录表；三项都可以轮换，认领表和交付边界见 `docs/team-task-division.md`。
+
 ## 当前证据
 
 - 课程网页要求比较：标签转移 macro-F1、批次混合与生物保守性（kBET/iLISI/silhouette）、时间/内存、文档易用性和 Agent 友好度。
@@ -33,6 +35,9 @@ python -m unittest discover -s tests -v
 python scripts/smoke_test.py --outdir smoke-output
 python scripts/environment_check.py --output smoke-output/environment-report.json
 python scripts/dcs_readonly_probe.py --output smoke-output/dcs-readonly-probe.json
+python scripts/local_readiness.py `
+  --environment-report smoke-output/dcs-readonly-probe.json `
+  --output smoke-output/local-readiness-with-runtime-probe.json
 python scripts/source_manifest_check.py <course-material-directory> --output smoke-output/source-material-check.json
 python scripts/input_contract.py tests/fixtures/metadata.tsv --output smoke-output/metadata-manifest.json
 python scripts/ortholog_contract.py tests/fixtures/orthologs.tsv --output smoke-output/ortholog_manifest.json
@@ -58,6 +63,7 @@ smoke test 只验证指标和审计输出，不执行 SATURN、SAMap 或 scVI。
 `startup_preflight.py` 检查课程管理员确认是否已补齐数据路径、字段、镜像版本、正式 kBET 规则和只读示例命令；默认配置会阻止启动，且脚本不会检查远端路径或调用 DCS。
 `environment_contract.py` 只读取 `environment_check.py` 生成的 JSON，按候选镜像检查必需包、版本记录和 GPU 可见性；报告中的 `scope: local_runtime` 只代表当前本机解释器，不能替代 DCS 实例证据。页面声明的版本与实例内实际版本分开记录，不能互相替代。
 `dcs_readonly_probe.py` 只读取当前运行时的包元数据、`--version` 输出和 `nvidia-smi` 查询，并写出 `scope: runtime_probe` 报告；它不安装包、不联网、不读取表达矩阵、不上传数据，也不会启动或提交 DCS 任务。探针报告的包键与 `environment_contract.py` 对齐，可直接做候选环境预检；进入候选镜像后应使用同一命令保存实例内证据，不能把本机报告当成镜像证据。
+`local_readiness.py --environment-report <probe.json>` 可以直接消费只读探针报告，把实例内包/GPU 证据纳入同一份 readiness 输出；它仍然不会启动 DCS，探针或课程确认缺失时保持阻塞状态。
 `source_manifest_check.py` 只读取课程材料目录中的文件大小和 SHA-256，并与 `docs/source-file-manifest.tsv` 比对；报告不包含原文内容，缺失或哈希不一致时退出码为 2。它只能证明文件版本一致，不能证明课程已授权提供真实数据集。
 `result_contract.py` 校验最终指标和资源字段；所有结果都必须声明 `leave_one_species_out` 和折数，最终阶段还拒绝 `chi2_neighborhood_proxy`，必须记录正式 kBET 的实现名称和版本。`tests/fixtures/final-metrics.json` 中的 `example-*` 仅是契约占位，不能当作真实版本。smoke 阶段可使用代理，但不能把该结果当作最终结论。
 `plan_contract.py` 校验方法集合、留一物种策略、指标、停止线和禁止的云端动作；它通过前，不能把计划状态改为可执行。

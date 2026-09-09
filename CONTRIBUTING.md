@@ -17,6 +17,9 @@ python -m unittest discover -s tests -v
 python scripts/smoke_test.py --outdir smoke-output
 python scripts/environment_check.py --output smoke-output/environment-report.json
 python scripts/dcs_readonly_probe.py --output smoke-output/dcs-readonly-probe.json
+python scripts/local_readiness.py `
+  --environment-report smoke-output/dcs-readonly-probe.json `
+  --output smoke-output/local-readiness-with-runtime-probe.json
 python scripts/source_manifest_check.py <course-material-directory> --output smoke-output/source-material-check.json
 python scripts/input_contract.py tests/fixtures/metadata.tsv --output smoke-output/metadata-manifest.json
 python scripts/ortholog_contract.py tests/fixtures/orthologs.tsv --output smoke-output/ortholog_manifest.json
@@ -29,3 +32,5 @@ python scripts/local_readiness.py --source-root <course-material-directory> --ou
 ```
 
 预算检查命令以退出码表示是否能在单次上限内运行：例如 4090×2 的预留成本超出 ¥10 时会返回退出码 2，即使它仍打印了 JSON 估算。`local_readiness.py` 在当前待确认状态下也会返回退出码 2；这是预检结果，不是启动许可。只有 `startup_preflight.py` 返回 `ready_for_execution: true` 且组内明确批准后，才进入真实运行。真实运行结束后，将运行目录交给 `python scripts/run_artifacts.py <run-dir> --status success`（失败时使用 `--status failed`）检查，再用 `python scripts/result_contract.py <run-dir>/metrics.json <run-dir>/resource_usage.json --stage final` 检查字段和 kBET 规则。运行输出在 `smoke-output/` 下，已被 `.gitignore` 排除。每次使用 Agent 时，将摘要和验证方式追加到 `docs/ai-use-log.tsv`，不要记录凭据或原始数据内容。
+
+如果已经生成 `dcs_readonly_probe.py` 的报告，用 `--environment-report smoke-output/dcs-readonly-probe.json` 接入 readiness；报告范围会保留为 `runtime_probe`，不会把本机环境误报成 DCS 镜像证据。
