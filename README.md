@@ -22,6 +22,7 @@ Set-Location course5-prep
 - 课程网页要求比较：标签转移 macro-F1、批次混合与生物保守性（kBET/iLISI/silhouette）、时间/内存、文档易用性和 Agent 友好度。
 - HEART 论文用 SATURN 整合 16 个物种的 479,483 个细胞，并用 SAMap 做跨物种细胞类型关系分析；SATURN 设置包含 ESM2B 蛋白嵌入、2000 个 macrogenes 和 8000 个 HVGs。
 - LBSPA 论文提供七鳃鳗脑 465,778 个空间细胞和 41,678 个高质量单核转录组，并在七鳃鳗-小鼠比较中使用 6,930 个一对一同源基因、scVI（200 epochs）和 Harmony。
+- 本次核对所用课程网页与两篇论文的文件版本见 `docs/source-file-manifest.tsv`；仓库不包含原始论文文件。
 - 本机检查结果：约 31.3 GB RAM、16 个逻辑 CPU、RTX 4060 Laptop 8 GB；`torch` 和 `scikit-learn` 可用，但 `anndata`、`scanpy`、`scvi`、`harmonypy`、`saturn`、`samap` 当前均未安装。
 
 ## 先跑什么
