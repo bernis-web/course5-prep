@@ -15,6 +15,7 @@ from input_contract import InputContractError, validate_metadata, write_metadata
 from ortholog_contract import OrthologContractError, read_orthologs, validate_orthologs, write_ortholog_manifest  # noqa: E402
 from budget_check import BudgetPlanError, evaluate_trial, load_plan  # noqa: E402
 from run_artifacts import ArtifactContractError, REQUIRED_ARTIFACTS, validate_run_artifacts  # noqa: E402
+from result_contract import ResultContractError, validate_result  # noqa: E402
 from agent_evaluation import AgentMatrixError, load_agent_matrix, validate_agent_matrix  # noqa: E402
 from startup_preflight import PreflightError, load_preflight, validate_preflight  # noqa: E402
 from smoke_test import evaluate_embedding, evaluate_labels, run_smoke_test  # noqa: E402
@@ -288,6 +289,52 @@ class SmokeEvaluatorTests(unittest.TestCase):
     def test_run_artifact_contract_names_ortholog_manifest_as_json(self):
         self.assertIn("ortholog_manifest.json", REQUIRED_ARTIFACTS)
         self.assertNotIn("ortholog_manifest.tsv", REQUIRED_ARTIFACTS)
+
+    def test_result_contract_accepts_complete_final_record(self):
+        metrics = {
+            "label_transfer": {"macro_f1": 0.82},
+            "embedding": {
+                "silhouette": 0.31,
+                "ilisi": 1.8,
+                "kbet_rejection_rate": 0.12,
+                "kbet_method": "official-package",
+            },
+        }
+        resources = {
+            "wall_time_seconds": 412.5,
+            "peak_memory_gb": 42.0,
+            "gpu_count": 1,
+            "gpu_name": "RTX 4090",
+            "cost_cny": 2.1,
+            "cost_source": "DCS billing record",
+        }
+
+        result = validate_result(metrics, resources, stage="final")
+
+        self.assertTrue(result["valid"])
+        self.assertEqual(result["kbet_method"], "official-package")
+
+    def test_result_contract_rejects_proxy_kbet_in_final_record(self):
+        metrics = {
+            "label_transfer": {"macro_f1": 0.82},
+            "embedding": {
+                "silhouette": 0.31,
+                "ilisi": 1.8,
+                "kbet_rejection_rate": 0.12,
+                "kbet_method": "chi2_neighborhood_proxy",
+            },
+        }
+        resources = {
+            "wall_time_seconds": 10,
+            "peak_memory_gb": 1,
+            "gpu_count": 0,
+            "gpu_name": "none",
+            "cost_cny": 0,
+            "cost_source": "local smoke test",
+        }
+
+        with self.assertRaises(ResultContractError):
+            validate_result(metrics, resources, stage="final")
 
 
 if __name__ == "__main__":

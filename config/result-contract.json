@@ -1,0 +1,18 @@
+{
+  "metrics": {
+    "label_transfer.macro_f1": "number in [0, 1]",
+    "embedding.silhouette": "number in [-1, 1]",
+    "embedding.ilisi": "number >= 1",
+    "embedding.kbet_rejection_rate": "number in [0, 1]",
+    "embedding.kbet_method": "string; final stage cannot use chi2_neighborhood_proxy"
+  },
+  "resource_usage": {
+    "wall_time_seconds": "number >= 0",
+    "peak_memory_gb": "number >= 0",
+    "gpu_count": "integer >= 0",
+    "gpu_name": "non-empty string; use none for CPU",
+    "cost_cny": "number >= 0",
+    "cost_source": "non-empty string"
+  },
+  "stages": ["smoke", "final"]
+}

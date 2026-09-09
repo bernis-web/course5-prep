@@ -1,0 +1,9 @@
+{
+  "label_transfer": {"macro_f1": 0.82},
+  "embedding": {
+    "silhouette": 0.31,
+    "ilisi": 1.8,
+    "kbet_rejection_rate": 0.12,
+    "kbet_method": "official-package"
+  }
+}
