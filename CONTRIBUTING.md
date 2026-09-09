@@ -8,8 +8,11 @@
 
 ## 提交前
 
+测试依赖固定在 `requirements.txt`；新环境先执行 `python -m pip install -r requirements.txt`，不要把 SATURN、SAMap 或 scVI 装进这个本地 smoke-test 环境。
+
 ```powershell
 Set-Location D:\projects\course5-prep
+python -m pip install -r requirements.txt
 python -m unittest discover -s tests -v
 python scripts/smoke_test.py --outdir smoke-output
 python scripts/environment_check.py --output smoke-output/environment-report.json
