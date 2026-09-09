@@ -4,6 +4,17 @@
 
 这个目录目前只包含评测设计和合成数据 smoke test，不包含真实论文数据，也不会自动启动云实例或安装软件。
 
+## GitHub 协作
+
+仓库地址：<https://github.com/bernis-web/course5-prep>（私有仓库）。组员先由仓库所有者在 GitHub 的 Settings → Collaborators 中邀请，再执行：
+
+```powershell
+git clone https://github.com/bernis-web/course5-prep.git
+Set-Location course5-prep
+```
+
+日常修改请从 `main` 创建短分支，提交后发 Pull Request；不要直接提交真实数据、凭据或 DCS 运行输出。完整约定见 `CONTRIBUTING.md`。
+
 ## 当前证据
 
 - 课程网页要求比较：标签转移 macro-F1、批次混合与生物保守性（kBET/iLISI/silhouette）、时间/内存、文档易用性和 Agent 友好度。
