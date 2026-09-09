@@ -17,6 +17,7 @@ python -m unittest discover -s tests -v
 python scripts/smoke_test.py --outdir smoke-output
 python scripts/environment_check.py --output smoke-output/environment-report.json
 python scripts/dcs_readonly_probe.py --output smoke-output/dcs-readonly-probe.json
+python scripts/source_manifest_check.py <course-material-directory> --output smoke-output/source-material-check.json
 python scripts/input_contract.py tests/fixtures/metadata.tsv --output smoke-output/metadata-manifest.json
 python scripts/ortholog_contract.py tests/fixtures/orthologs.tsv --output smoke-output/ortholog_manifest.json
 python scripts/startup_preflight.py

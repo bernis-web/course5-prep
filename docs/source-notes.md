@@ -4,6 +4,8 @@
 
 原文件的文件名、大小和 SHA-256 见 `docs/source-file-manifest.tsv`；清单不包含原始文档内容，也不替代组员取得课程资料的权限。
 
+拿到同一批课程文件后，可运行 `python scripts/source_manifest_check.py <course-material-directory>` 复核版本；脚本只比对文件大小和 SHA-256，不读取或输出正文。当前清单核验通过只说明这三份材料版本一致，不代表 DCS 已挂载 HEART/LBSPA 实验数据。
+
 ## 课程网页
 
 课题5标题为“跨物种细胞类型整合工具评测：SATURN vs SAMap vs scVI 系”。硬性评测维度是：

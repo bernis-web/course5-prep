@@ -1,4 +1,5 @@
 import json
+import hashlib
 import subprocess
 import sys
 import tempfile
@@ -22,6 +23,7 @@ from local_readiness import build_readiness_report  # noqa: E402
 from agent_evaluation import AgentMatrixError, load_agent_matrix, validate_agent_matrix  # noqa: E402
 from startup_preflight import PreflightError, load_preflight, validate_preflight  # noqa: E402
 from dcs_readonly_probe import probe_runtime, write_probe  # noqa: E402
+from source_manifest_check import verify_manifest, write_report  # noqa: E402
 from smoke_test import (  # noqa: E402
     evaluate_embedding,
     evaluate_labels,
@@ -31,6 +33,35 @@ from smoke_test import (  # noqa: E402
 
 
 class SmokeEvaluatorTests(unittest.TestCase):
+    def test_source_manifest_check_verifies_files_without_exposing_content(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "materials"
+            root.mkdir()
+            source = root / "course.html"
+            source.write_bytes(b"course material bytes")
+            digest = hashlib.sha256(source.read_bytes()).hexdigest()
+            manifest = Path(tmp) / "manifest.tsv"
+            manifest.write_text(
+                "filename\tformat\tbytes\tsha256\tchecked_at\n"
+                f"course.html\thtml\t{source.stat().st_size}\t{digest}\t2026-09-10\n",
+                encoding="utf-8",
+            )
+
+            result = verify_manifest(root, manifest)
+
+            self.assertTrue(result["valid"])
+            self.assertEqual(result["scope"], "source_files")
+            self.assertEqual(result["files"][0]["status"], "ok")
+            self.assertNotIn("content", result["files"][0])
+
+            source.write_bytes(b"changed")
+            changed = verify_manifest(root, manifest)
+            self.assertFalse(changed["valid"])
+            self.assertEqual(changed["files"][0]["status"], "mismatch")
+
+            output = write_report(changed, Path(tmp) / "report.json")
+            self.assertTrue(Path(output).exists())
+
     def test_dcs_readonly_probe_is_metadata_only_and_structured(self):
         report = probe_runtime()
 
