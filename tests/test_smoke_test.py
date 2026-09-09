@@ -12,6 +12,7 @@ sys.path.insert(0, str(SCRIPT_DIR))
 from environment_check import collect_environment, write_environment_report  # noqa: E402
 from input_contract import InputContractError, validate_metadata, write_metadata_manifest  # noqa: E402
 from budget_check import BudgetPlanError, evaluate_trial, load_plan  # noqa: E402
+from run_artifacts import ArtifactContractError, REQUIRED_ARTIFACTS, validate_run_artifacts  # noqa: E402
 from smoke_test import evaluate_embedding, evaluate_labels, run_smoke_test  # noqa: E402
 
 
@@ -130,6 +131,34 @@ class SmokeEvaluatorTests(unittest.TestCase):
 
         self.assertFalse(result["within_cost_cap"])
         self.assertGreater(result["reserved_cost_cny"], plan["trial_policy"]["max_trial_cost_cny"])
+
+    def test_run_artifact_contract_accepts_successful_run(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            for name in REQUIRED_ARTIFACTS:
+                (root / name).write_text("placeholder\n", encoding="utf-8")
+
+            result = validate_run_artifacts(root, run_status="success")
+
+            self.assertEqual(result["missing"], [])
+            self.assertEqual(result["empty"], [])
+            self.assertFalse(result["failure_reason_required"])
+
+    def test_run_artifact_contract_requires_reason_for_failed_run(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            for name in REQUIRED_ARTIFACTS:
+                if name != "failure_reason.txt":
+                    (root / name).write_text("placeholder\n", encoding="utf-8")
+
+            with self.assertRaises(ArtifactContractError):
+                validate_run_artifacts(root, run_status="failed")
+
+            (root / "failure_reason.txt").write_text("OOM during latent integration\n", encoding="utf-8")
+            result = validate_run_artifacts(root, run_status="failed")
+
+            self.assertEqual(result["missing"], [])
+            self.assertTrue(result["failure_reason_required"])
 
 
 if __name__ == "__main__":

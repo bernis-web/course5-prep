@@ -19,4 +19,4 @@ python scripts/environment_check.py --output smoke-output/environment-report.jso
 python scripts/input_contract.py tests/fixtures/metadata.tsv --output smoke-output/metadata-manifest.json
 ```
 
-运行输出在 `smoke-output/` 下，已被 `.gitignore` 排除。每次使用 Agent 时，将摘要和验证方式追加到 `docs/ai-use-log.tsv`，不要记录凭据或原始数据内容。
+真实运行结束后，将运行目录交给 `python scripts/run_artifacts.py <run-dir> --status success`（失败时使用 `--status failed`）检查。运行输出在 `smoke-output/` 下，已被 `.gitignore` 排除。每次使用 Agent 时，将摘要和验证方式追加到 `docs/ai-use-log.tsv`，不要记录凭据或原始数据内容。
