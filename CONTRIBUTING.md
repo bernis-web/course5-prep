@@ -21,6 +21,7 @@ python scripts/ortholog_contract.py tests/fixtures/orthologs.tsv --output smoke-
 python scripts/startup_preflight.py
 python scripts/environment_contract.py smoke-output/environment-report.json --profile SATURN--22
 python scripts/result_contract.py tests/fixtures/final-metrics.json tests/fixtures/final-resources.json --stage final
+python scripts/plan_contract.py
 ```
 
 只有 `startup_preflight.py` 返回 `ready_for_execution: true` 且组内明确批准后，才进入真实运行。真实运行结束后，将运行目录交给 `python scripts/run_artifacts.py <run-dir> --status success`（失败时使用 `--status failed`）检查，再用 `python scripts/result_contract.py <run-dir>/metrics.json <run-dir>/resource_usage.json --stage final` 检查字段和 kBET 规则。运行输出在 `smoke-output/` 下，已被 `.gitignore` 排除。每次使用 Agent 时，将摘要和验证方式追加到 `docs/ai-use-log.tsv`，不要记录凭据或原始数据内容。

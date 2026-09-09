@@ -38,6 +38,7 @@ python scripts/agent_evaluation.py
 python scripts/startup_preflight.py
 python scripts/environment_contract.py smoke-output/environment-report.json --profile SATURN--22
 python scripts/result_contract.py tests/fixtures/final-metrics.json tests/fixtures/final-resources.json --stage final
+python scripts/plan_contract.py
 # 真实运行目录准备好后，再检查一次交付物契约
 python scripts/run_artifacts.py runtime-output/example-run --status success
 ```
@@ -51,6 +52,7 @@ smoke test 只验证指标和审计输出。`kbet_rejection_rate` 当前是卡�
 `startup_preflight.py` 检查课程管理员确认是否已补齐数据路径、字段、镜像版本、正式 kBET 规则和只读示例命令；默认配置会阻止启动，且脚本不会检查远端路径或调用 DCS。
 `environment_contract.py` 只读取 `environment_check.py` 生成的 JSON，按候选镜像检查必需包、版本记录和 GPU 可见性；页面声明的版本与实例内实际版本分开记录，不能互相替代。
 `result_contract.py` 校验最终指标和资源字段；最终阶段拒绝 `chi2_neighborhood_proxy`，必须记录正式 kBET 实现。smoke 阶段可使用代理，但不能把该结果当作最终结论。
+`plan_contract.py` 校验方法集合、留一物种策略、指标、停止线和禁止的云端动作；它通过前，不能把计划状态改为可执行。
 
 ## 接入真实数据的最小顺序
 

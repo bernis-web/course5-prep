@@ -16,6 +16,7 @@ from ortholog_contract import OrthologContractError, read_orthologs, validate_or
 from budget_check import BudgetPlanError, evaluate_trial, load_plan  # noqa: E402
 from run_artifacts import ArtifactContractError, REQUIRED_ARTIFACTS, validate_run_artifacts  # noqa: E402
 from result_contract import ResultContractError, validate_result  # noqa: E402
+from plan_contract import PlanContractError, load_benchmark_plan, validate_benchmark_plan  # noqa: E402
 from agent_evaluation import AgentMatrixError, load_agent_matrix, validate_agent_matrix  # noqa: E402
 from startup_preflight import PreflightError, load_preflight, validate_preflight  # noqa: E402
 from smoke_test import evaluate_embedding, evaluate_labels, run_smoke_test  # noqa: E402
@@ -335,6 +336,28 @@ class SmokeEvaluatorTests(unittest.TestCase):
 
         with self.assertRaises(ResultContractError):
             validate_result(metrics, resources, stage="final")
+
+    def test_benchmark_plan_preserves_safe_experiment_boundaries(self):
+        plan = load_benchmark_plan()
+
+        result = validate_benchmark_plan(plan)
+
+        self.assertTrue(result["valid"])
+        self.assertEqual(result["methods"], ["SATURN", "SAMap", "scVI"])
+        self.assertEqual(result["status"], "preflight_only")
+
+    def test_benchmark_plan_rejects_boundary_relaxation(self):
+        plan = load_benchmark_plan()
+        plan["status"] = "ready"
+
+        with self.assertRaises(PlanContractError):
+            validate_benchmark_plan(plan)
+
+        plan = load_benchmark_plan()
+        plan["stopping_rules"]["max_trial_cost_cny"] = 100
+
+        with self.assertRaises(PlanContractError):
+            validate_benchmark_plan(plan)
 
 
 if __name__ == "__main__":
