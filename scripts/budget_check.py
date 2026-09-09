@@ -98,6 +98,8 @@ def main() -> None:
         reserved_minutes=float(args.reserved_minutes or policy["reserved_minutes"]),
     )
     print(json.dumps(result, ensure_ascii=True, indent=2))
+    if not result["within_cost_cap"]:
+        raise SystemExit(2)
 
 
 if __name__ == "__main__":

@@ -1,4 +1,5 @@
 import json
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -137,6 +138,21 @@ class SmokeEvaluatorTests(unittest.TestCase):
 
         self.assertFalse(result["within_cost_cap"])
         self.assertGreater(result["reserved_cost_cny"], plan["trial_policy"]["max_trial_cost_cny"])
+
+    def test_budget_cli_rejects_profile_over_cost_cap(self):
+        script = SCRIPT_DIR / "budget_check.py"
+
+        result = subprocess.run(
+            [sys.executable, str(script), "--profile", "4090x2"],
+            check=False,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+        )
+
+        self.assertEqual(result.returncode, 2)
+        self.assertIn('"within_cost_cap": false', result.stdout)
 
     def test_run_artifact_contract_accepts_successful_run(self):
         with tempfile.TemporaryDirectory() as tmp:

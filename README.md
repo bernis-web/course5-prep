@@ -46,7 +46,7 @@ python scripts/run_artifacts.py runtime-output/example-run --status success
 smoke test 只验证指标和审计输出。`kbet_rejection_rate` 当前是卡方邻域代理，不是正式 kBET；接入真实数据前必须换成正式实现并在报告中标注版本。
 `input_contract.py` 只读取元数据并生成带 SHA-256 的 manifest；它不会修改输入表，也不会连接或提交 DCS 任务。
 `ortholog_contract.py` 要求共享的 `species_a/gene_a/species_b/gene_b` 四列，规范化物种对顺序并拒绝一对多映射；它生成 SHA-256 manifest，供 SATURN、SAMap 和 scVI 使用同一基因空间。
-`budget_check.py` 从 `config/dcs-budget-plan.json` 读取已核验价格，只计算成本，不创建实例；默认单卡 25 分钟硬停止、30 分钟预算预留。双卡方案若超出单次 ¥10 上限，必须先复核再运行。
+`budget_check.py` 从 `config/dcs-budget-plan.json` 读取已核验价格，只计算成本，不创建实例；默认单卡 25 分钟硬停止、30 分钟预算预留。双卡方案若超出单次 ¥10 上限，命令会保留 JSON 结果但以退出码 2 结束，必须先复核再运行。
 `run_artifacts.py` 只检查单次运行目录中的 `input_manifest.tsv`、`ortholog_manifest.json`、`parameters.json`、`package_versions.txt`、`stdout_stderr.log`、`metrics.json` 和 `resource_usage.json` 是否齐全且非空；失败运行还必须有非空 `failure_reason.txt`。它不会上传、下载、启动任务或修改这些文件。
 `agent_evaluation.py` 检查文档清晰度、CLI/API、参数透明度、机器可读输出、失败诊断和环境复现性六个维度。评分范围为 0–3，但没有本地证据路径和验证说明的条目必须保持 `pending`，不能把 pending 当作 0 分。
 `startup_preflight.py` 检查课程管理员确认是否已补齐数据路径、字段、镜像版本、正式 kBET 规则和只读示例命令；默认配置会阻止启动，且脚本不会检查远端路径或调用 DCS。
