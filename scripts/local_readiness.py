@@ -29,6 +29,7 @@ def build_readiness_report(
     benchmark_plan_path: Path | None = None,
     budget_plan_path: Path | None = None,
     environment_plan_path: Path | None = None,
+    environment_report_path: Path | None = None,
     preflight_path: Path | None = None,
     source_root: Path | None = None,
     source_manifest_path: Path | None = None,
@@ -48,7 +49,15 @@ def build_readiness_report(
 
     preflight_result = validate_preflight(load_preflight(preflight_path))
 
-    environment_report = collect_environment()
+    if environment_report_path is None:
+        environment_report = collect_environment()
+    else:
+        try:
+            environment_report = json.loads(environment_report_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            raise EnvironmentContractError(
+                f"cannot read environment report {environment_report_path}: {exc}"
+            ) from exc
     environment_result = evaluate_environment(
         environment_report,
         profile_name=environment_profile,
@@ -111,6 +120,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--budget-profile", default="4090x1")
     parser.add_argument("--environment-profile", default="SATURN--22")
+    parser.add_argument("--environment-report", type=Path)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--source-root", type=Path)
     parser.add_argument("--source-manifest", type=Path)
@@ -120,6 +130,7 @@ def main() -> None:
         report = build_readiness_report(
             budget_profile=args.budget_profile,
             environment_profile=args.environment_profile,
+            environment_report_path=args.environment_report,
             source_root=args.source_root,
             source_manifest_path=args.source_manifest,
         )

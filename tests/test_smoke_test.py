@@ -556,6 +556,18 @@ class SmokeEvaluatorTests(unittest.TestCase):
             self.assertTrue(report["checks"]["source_materials"]["valid"])
             self.assertNotIn("source_materials", report["blocking_items"])
 
+    def test_local_readiness_can_consume_runtime_probe_report(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            environment_path = Path(tmp) / "runtime-probe.json"
+            environment_path.write_text(
+                json.dumps(probe_runtime(), ensure_ascii=True), encoding="utf-8"
+            )
+
+            report = build_readiness_report(environment_report_path=environment_path)
+
+            self.assertEqual(report["checks"]["environment"]["report_scope"], "runtime_probe")
+            self.assertIn("environment:package:saturn:unavailable", report["blocking_items"])
+
     def test_local_readiness_report_blocks_over_budget_profile(self):
         report = build_readiness_report(budget_profile="4090x2")
 
