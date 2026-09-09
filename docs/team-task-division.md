@@ -12,6 +12,7 @@
 
 - 填写 `config/startup-preflight.json` 中的数据字段和子集信息；
 - 为每个数据子集准备不含原始表达矩阵的 `input_manifest.tsv` 和 `ortholog_manifest.tsv`；
+- 用 `python scripts/ortholog_contract.py <ortholog-table.tsv> --output <manifest.json>` 检查一对一同源基因表，并把 SHA-256 和物种对写入运行记录；
 - 在 `docs/source-notes.md` 或新的数据说明中记录标签来源、排除规则和 modality 边界。
 
 **需要协作：** 请环境与算力主线复核路径是否可读、文件是否适合候选镜像；请评测与报告主线复核留一物种标签转移设计。

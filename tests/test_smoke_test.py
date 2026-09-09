@@ -12,6 +12,7 @@ sys.path.insert(0, str(SCRIPT_DIR))
 from environment_check import collect_environment, write_environment_report  # noqa: E402
 from environment_contract import EnvironmentContractError, evaluate_environment, load_environment_plan  # noqa: E402
 from input_contract import InputContractError, validate_metadata, write_metadata_manifest  # noqa: E402
+from ortholog_contract import OrthologContractError, read_orthologs, validate_orthologs, write_ortholog_manifest  # noqa: E402
 from budget_check import BudgetPlanError, evaluate_trial, load_plan  # noqa: E402
 from run_artifacts import ArtifactContractError, REQUIRED_ARTIFACTS, validate_run_artifacts  # noqa: E402
 from agent_evaluation import AgentMatrixError, load_agent_matrix, validate_agent_matrix  # noqa: E402
@@ -248,6 +249,41 @@ class SmokeEvaluatorTests(unittest.TestCase):
 
         self.assertTrue(result["ready_for_execution"])
         self.assertEqual(result["blocking_items"], [])
+
+    def test_ortholog_contract_accepts_one_to_one_pairs(self):
+        rows = [
+            {"species_a": "lamprey", "gene_a": "g1", "species_b": "mouse", "gene_b": "m1"},
+            {"species_a": "lamprey", "gene_a": "g2", "species_b": "mouse", "gene_b": "m2"},
+            {"species_a": "lamprey", "gene_a": "g1", "species_b": "zebrafish", "gene_b": "z1"},
+        ]
+
+        result = validate_orthologs(rows)
+
+        self.assertEqual(result["n_pairs"], 3)
+        self.assertEqual(result["species_pairs"], ["lamprey--mouse", "lamprey--zebrafish"])
+
+    def test_ortholog_contract_rejects_duplicate_gene_mapping(self):
+        rows = [
+            {"species_a": "lamprey", "gene_a": "g1", "species_b": "mouse", "gene_b": "m1"},
+            {"species_a": "mouse", "gene_a": "m2", "species_b": "lamprey", "gene_b": "g1"},
+        ]
+
+        with self.assertRaises(OrthologContractError):
+            validate_orthologs(rows)
+
+    def test_ortholog_manifest_is_reproducible(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            source = Path(tmp) / "orthologs.tsv"
+            source.write_text(
+                "species_a\tgene_a\tspecies_b\tgene_b\n"
+                "lamprey\tg1\tmouse\tm1\n",
+                encoding="utf-8",
+            )
+            output = write_ortholog_manifest(source, Path(tmp) / "manifest.json")
+            payload = json.loads(Path(output).read_text(encoding="utf-8"))
+
+            self.assertEqual(payload["n_pairs"], 1)
+            self.assertEqual(len(payload["sha256"]), 64)
 
 
 if __name__ == "__main__":
