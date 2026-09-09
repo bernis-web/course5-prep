@@ -18,6 +18,7 @@ from budget_check import BudgetPlanError, evaluate_trial, load_plan  # noqa: E40
 from run_artifacts import ArtifactContractError, REQUIRED_ARTIFACTS, validate_run_artifacts  # noqa: E402
 from result_contract import ResultContractError, validate_result  # noqa: E402
 from plan_contract import PlanContractError, load_benchmark_plan, validate_benchmark_plan  # noqa: E402
+from local_readiness import build_readiness_report  # noqa: E402
 from agent_evaluation import AgentMatrixError, load_agent_matrix, validate_agent_matrix  # noqa: E402
 from startup_preflight import PreflightError, load_preflight, validate_preflight  # noqa: E402
 from smoke_test import evaluate_embedding, evaluate_labels, run_smoke_test  # noqa: E402
@@ -374,6 +375,38 @@ class SmokeEvaluatorTests(unittest.TestCase):
 
         with self.assertRaises(PlanContractError):
             validate_benchmark_plan(plan)
+
+    def test_local_readiness_report_stays_blocked_until_course_confirmation(self):
+        report = build_readiness_report()
+
+        self.assertTrue(report["valid"])
+        self.assertFalse(report["ready_for_execution"])
+        self.assertIn("startup:approval_status", report["blocking_items"])
+        self.assertEqual(report["scope"], "local_only")
+        self.assertEqual(report["side_effects"], [])
+
+    def test_local_readiness_report_blocks_over_budget_profile(self):
+        report = build_readiness_report(budget_profile="4090x2")
+
+        self.assertFalse(report["ready_for_execution"])
+        self.assertIn("budget:trial_cost_cap", report["blocking_items"])
+
+    def test_local_readiness_cli_writes_blocked_report(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp) / "readiness.json"
+            result = subprocess.run(
+                [sys.executable, str(SCRIPT_DIR / "local_readiness.py"), "--output", str(output)],
+                check=False,
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                errors="replace",
+            )
+
+            self.assertEqual(result.returncode, 2)
+            self.assertTrue(output.is_file())
+            payload = json.loads(output.read_text(encoding="utf-8"))
+            self.assertFalse(payload["ready_for_execution"])
 
 
 if __name__ == "__main__":

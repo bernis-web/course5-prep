@@ -39,6 +39,7 @@ python scripts/startup_preflight.py
 python scripts/environment_contract.py smoke-output/environment-report.json --profile SATURN--22
 python scripts/result_contract.py tests/fixtures/final-metrics.json tests/fixtures/final-resources.json --stage final
 python scripts/plan_contract.py
+python scripts/local_readiness.py --output smoke-output/local-readiness.json
 # 真实运行目录准备好后，再检查一次交付物契约
 python scripts/run_artifacts.py runtime-output/example-run --status success
 ```
@@ -53,6 +54,7 @@ smoke test 只验证指标和审计输出。`kbet_rejection_rate` 当前是卡�
 `environment_contract.py` 只读取 `environment_check.py` 生成的 JSON，按候选镜像检查必需包、版本记录和 GPU 可见性；页面声明的版本与实例内实际版本分开记录，不能互相替代。
 `result_contract.py` 校验最终指标和资源字段；最终阶段拒绝 `chi2_neighborhood_proxy`，必须记录正式 kBET 实现。smoke 阶段可使用代理，但不能把该结果当作最终结论。
 `plan_contract.py` 校验方法集合、留一物种策略、指标、停止线和禁止的云端动作；它通过前，不能把计划状态改为可执行。
+`local_readiness.py` 汇总计划、预算、课程确认和本机候选环境四项检查，只读本地配置与运行时信息并写出一份 JSON；在课程数据和镜像版本尚未确认时，预期返回退出码 2，不能把它当作失败修复或启动许可。
 
 ## 接入真实数据的最小顺序
 

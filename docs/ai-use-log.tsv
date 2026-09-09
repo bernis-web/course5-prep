@@ -1,3 +1,4 @@
 timestamp	task_id	agent_or_tool	prompt_summary	output_artifact	verification	accepted_by_human
 YYYY-MM-DDThh:mm:ss+08:00	setup-001	Codex	Describe the task and constraints	path/to/artifact	Command/test or manual check	TODO
 2026-09-10T02:05:53+08:00	prep-002	Codex	Clarify flexible three-person task division and enforce DCS budget exit-code guard	docs/team-task-division.md; scripts/budget_check.py; tests/test_smoke_test.py	27 unittest tests pass; 4090x1 exits 0; 4090x2 exits 2; plan and smoke checks pass	TODO
+2026-09-10T02:14:10+08:00	prep-003	Codex	Add a local-only readiness report for the reproducible preflight flow	scripts/local_readiness.py; README.md; CONTRIBUTING.md	30 unittest tests pass; local report exits 2 while course confirmation is pending; no remote actions	TODO
