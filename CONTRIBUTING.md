@@ -17,6 +17,7 @@ python -m unittest discover -s tests -v
 python scripts/smoke_test.py --outdir smoke-output
 python scripts/environment_check.py --output smoke-output/environment-report.json
 python scripts/input_contract.py tests/fixtures/metadata.tsv --output smoke-output/metadata-manifest.json
+python scripts/startup_preflight.py
 ```
 
-真实运行结束后，将运行目录交给 `python scripts/run_artifacts.py <run-dir> --status success`（失败时使用 `--status failed`）检查。运行输出在 `smoke-output/` 下，已被 `.gitignore` 排除。每次使用 Agent 时，将摘要和验证方式追加到 `docs/ai-use-log.tsv`，不要记录凭据或原始数据内容。
+只有 `startup_preflight.py` 返回 `ready_for_execution: true` 且组内明确批准后，才进入真实运行。真实运行结束后，将运行目录交给 `python scripts/run_artifacts.py <run-dir> --status success`（失败时使用 `--status failed`）检查。运行输出在 `smoke-output/` 下，已被 `.gitignore` 排除。每次使用 Agent 时，将摘要和验证方式追加到 `docs/ai-use-log.tsv`，不要记录凭据或原始数据内容。

@@ -1,0 +1,27 @@
+{
+  "approval_status": "pending",
+  "heart_data_path": null,
+  "heart_file_format": null,
+  "heart_metadata_fields": {
+    "species": null,
+    "cell_type": null,
+    "batch": null,
+    "gold_label": null
+  },
+  "heart_allowed_subsets": null,
+  "lbspa_snRNA_path": null,
+  "lbspa_spatial_policy": null,
+  "image_recommendation": null,
+  "image_versions": {
+    "SATURN": null,
+    "SAMap": null,
+    "scVI": null
+  },
+  "kbet_implementation": null,
+  "kbet_version": null,
+  "readonly_sample_command": null,
+  "evidence": {
+    "course_admin_reply": null,
+    "recorded_at": null
+  }
+}

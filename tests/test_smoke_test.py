@@ -14,6 +14,7 @@ from input_contract import InputContractError, validate_metadata, write_metadata
 from budget_check import BudgetPlanError, evaluate_trial, load_plan  # noqa: E402
 from run_artifacts import ArtifactContractError, REQUIRED_ARTIFACTS, validate_run_artifacts  # noqa: E402
 from agent_evaluation import AgentMatrixError, load_agent_matrix, validate_agent_matrix  # noqa: E402
+from startup_preflight import PreflightError, load_preflight, validate_preflight  # noqa: E402
 from smoke_test import evaluate_embedding, evaluate_labels, run_smoke_test  # noqa: E402
 
 
@@ -176,6 +177,44 @@ class SmokeEvaluatorTests(unittest.TestCase):
 
         with self.assertRaises(AgentMatrixError):
             validate_agent_matrix(matrix)
+
+    def test_startup_preflight_is_blocked_until_course_confirmation(self):
+        preflight = load_preflight()
+
+        result = validate_preflight(preflight)
+
+        self.assertFalse(result["ready_for_execution"])
+        self.assertIn("approval_status", result["blocking_items"])
+        self.assertIn("heart_data_path", result["blocking_items"])
+
+    def test_startup_preflight_accepts_complete_confirmed_record(self):
+        preflight = load_preflight()
+        preflight["approval_status"] = "confirmed"
+        preflight["heart_data_path"] = "/dcs/course/heart"
+        preflight["heart_file_format"] = "h5ad"
+        preflight["heart_metadata_fields"] = {
+            "species": "species",
+            "cell_type": "cell_type",
+            "batch": "batch",
+            "gold_label": "paper_label",
+        }
+        preflight["heart_allowed_subsets"] = ["3_species", "8_species", "16_species"]
+        preflight["lbspa_snRNA_path"] = "/dcs/course/lbspa_snRNA"
+        preflight["lbspa_spatial_policy"] = "second_phase_only"
+        preflight["image_recommendation"] = "SATURN--22"
+        preflight["image_versions"] = {"SATURN": "locked", "SAMap": "locked", "scVI": "locked"}
+        preflight["kbet_implementation"] = "official-package"
+        preflight["kbet_version"] = "1.0.0"
+        preflight["readonly_sample_command"] = "inspect-object --path <mounted-path>"
+        preflight["evidence"] = {
+            "course_admin_reply": "docs/course-admin-confirmation.txt",
+            "recorded_at": "2026-09-10T10:00:00+08:00",
+        }
+
+        result = validate_preflight(preflight)
+
+        self.assertTrue(result["ready_for_execution"])
+        self.assertEqual(result["blocking_items"], [])
 
 
 if __name__ == "__main__":
