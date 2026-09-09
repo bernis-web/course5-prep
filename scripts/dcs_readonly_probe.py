@@ -17,7 +17,7 @@ from typing import Any
 PACKAGE_SPECS = {
     "saturn": ("saturn", "saturn"),
     "samap": ("samap", "samap"),
-    "scvi-tools": ("scvi", "scvi-tools"),
+    "scvi": ("scvi", "scvi-tools"),
     "anndata": ("anndata", "anndata"),
     "scanpy": ("scanpy", "scanpy"),
     "torch": ("torch", "torch"),

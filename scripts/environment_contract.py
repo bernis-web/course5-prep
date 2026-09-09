@@ -40,6 +40,10 @@ def evaluate_environment(
         raise EnvironmentContractError(f"unknown environment profile: {profile_name}")
     packages = report.get("packages")
     hardware = report.get("hardware")
+    if hardware is None and isinstance(report.get("gpu"), dict):
+        # The DCS read-only probe keeps GPU data at the report root so the
+        # same JSON can be retained as an image evidence record.
+        hardware = {"gpu": report["gpu"]}
     if not isinstance(packages, dict) or not isinstance(hardware, dict):
         raise EnvironmentContractError("environment report requires packages and hardware")
 

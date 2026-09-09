@@ -37,9 +37,14 @@ class SmokeEvaluatorTests(unittest.TestCase):
         self.assertEqual(report["scope"], "runtime_probe")
         self.assertIn("saturn", report["packages"])
         self.assertIn("samap", report["packages"])
+        self.assertIn("scvi", report["packages"])
+        self.assertNotIn("scvi-tools", report["packages"])
         self.assertIn("nvidia-smi", report["commands"])
         self.assertIn("gpu", report)
         self.assertEqual(report["side_effects"], [])
+        compatible = evaluate_environment(report, profile_name="SATURN--22")
+        self.assertEqual(compatible["report_scope"], "runtime_probe")
+        self.assertIn("package:saturn:unavailable", compatible["blocking_items"])
 
         with tempfile.TemporaryDirectory() as tmp:
             output = write_probe(Path(tmp) / "probe.json")

@@ -25,7 +25,7 @@
 python scripts/dcs_readonly_probe.py --output runtime-output/dcs-readonly-probe.json
 ```
 
-探针会记录 `runtime_probe` 范围内的 Python、包导入/版本、`saturn`/`samap`/`python`/`nvidia-smi` 的命令级信息，以及 GPU 查询结果。它不会安装、联网、复制或读取课程数据；报告只能作为当前运行时证据，不能用页面声明或本机报告替代实例内证据。
+探针会记录 `runtime_probe` 范围内的 Python、包导入/版本、`saturn`/`samap`/`python`/`nvidia-smi` 的命令级信息，以及 GPU 查询结果。报告中的包键与 `environment_contract.py` 对齐，可以直接作为候选环境预检输入。它不会安装、联网、复制或读取课程数据；报告只能作为当前运行时证据，不能用页面声明或本机报告替代实例内证据。
 
 | 检查项 | 必须留下的证据 |
 |---|---|
