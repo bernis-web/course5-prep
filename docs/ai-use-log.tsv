@@ -1,0 +1,2 @@
+timestamp	task_id	agent_or_tool	prompt_summary	output_artifact	verification	accepted_by_human
+YYYY-MM-DDThh:mm:ss+08:00	setup-001	Codex	Describe the task and constraints	path/to/artifact	Command/test or manual check	TODO

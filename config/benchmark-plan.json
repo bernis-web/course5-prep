@@ -1,0 +1,82 @@
+{
+  "project": "course5_cross_species_integration",
+  "status": "preflight_only",
+  "prohibited_until_explicit_approval": [
+    "create_cloud_instance",
+    "start_cloud_task",
+    "upload_user_data",
+    "download_large_dataset",
+    "install_packages_on_dcs"
+  ],
+  "datasets": {
+    "heart_near": {
+      "source": "HEART",
+      "species_count": 3,
+      "cell_types": ["CM", "FB"],
+      "labels": "paper_annotations",
+      "role": "local_smoke_and_contract"
+    },
+    "heart_mid": {
+      "source": "HEART",
+      "species_count": 8,
+      "cell_types": ["CM", "FB"],
+      "labels": "paper_annotations",
+      "role": "single_gpu_trial"
+    },
+    "heart_full": {
+      "source": "HEART",
+      "species_count": 16,
+      "cell_types": ["CM", "FB"],
+      "labels": "paper_annotations",
+      "role": "full_benchmark_after_trial"
+    },
+    "lbspa_cross_phylum": {
+      "source": "LBSPA",
+      "species": ["lamprey", "mouse"],
+      "modality": "snRNA_only_first",
+      "ortholog_policy": "one_to_one_only",
+      "role": "cross_phylum_stress_test"
+    }
+  },
+  "methods": [
+    {
+      "name": "SATURN",
+      "kind": "protein_embedding_plus_latent_integration",
+      "required_checks": ["protein_embedding_model", "macrogenes", "hvg_count", "gpu_visibility"]
+    },
+    {
+      "name": "SAMap",
+      "kind": "cross_species_mapping",
+      "required_checks": ["ortholog_table", "mapping_parameters", "species_pair_order"]
+    },
+    {
+      "name": "scVI",
+      "kind": "latent_variable_integration",
+      "required_checks": ["scvi_tools_version", "latent_dim", "epochs", "early_stopping", "gpu_visibility"]
+    }
+  ],
+  "fixed_controls": {
+    "random_seeds": [7, 17, 27],
+    "hvg_policy": "fit_each_training_split_only",
+    "label_transfer": "leave_one_species_out",
+    "neighbor_count": 15,
+    "metrics": ["macro_f1", "kbet", "ilisi", "silhouette", "wall_time_seconds", "peak_memory_gb"],
+    "kbet_note": "Use the official implementation for final results; the local smoke test only uses a chi-square proxy."
+  },
+  "stopping_rules": {
+    "max_trial_minutes": 25,
+    "max_peak_memory_gb": 75,
+    "max_trial_cost_cny": 10,
+    "stop_instance_after_run": true
+  },
+  "required_artifacts_per_run": [
+    "input_manifest.tsv",
+    "ortholog_manifest.tsv",
+    "parameters.json",
+    "package_versions.txt",
+    "stdout_stderr.log",
+    "metrics.json",
+    "resource_usage.json",
+    "failure_reason.txt"
+  ]
+}

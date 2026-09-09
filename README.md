@@ -1,0 +1,72 @@
+# 课题5准备包
+
+课题：跨物种细胞类型整合工具评测（SATURN vs SAMap vs scVI 系）。
+
+这个目录目前只包含评测设计和合成数据 smoke test，不包含真实论文数据，也不会自动启动云实例或安装软件。
+
+## 当前证据
+
+- 课程网页要求比较：标签转移 macro-F1、批次混合与生物保守性（kBET/iLISI/silhouette）、时间/内存、文档易用性和 Agent 友好度。
+- HEART 论文用 SATURN 整合 16 个物种的 479,483 个细胞，并用 SAMap 做跨物种细胞类型关系分析；SATURN 设置包含 ESM2B 蛋白嵌入、2000 个 macrogenes 和 8000 个 HVGs。
+- LBSPA 论文提供七鳃鳗脑 465,778 个空间细胞和 41,678 个高质量单核转录组，并在七鳃鳗-小鼠比较中使用 6,930 个一对一同源基因、scVI（200 epochs）和 Harmony。
+- 本机检查结果：约 31.3 GB RAM、16 个逻辑 CPU、RTX 4060 Laptop 8 GB；`torch` 和 `scikit-learn` 可用，但 `anndata`、`scanpy`、`scvi`、`harmonypy`、`saturn`、`samap` 当前均未安装。
+
+## 先跑什么
+
+```powershell
+Set-Location D:\projects\course5-prep
+python -m unittest discover -s tests -v
+python scripts/smoke_test.py --outdir smoke-output
+python scripts/environment_check.py --output smoke-output/environment-report.json
+python scripts/input_contract.py tests/fixtures/metadata.tsv --output smoke-output/metadata-manifest.json
+```
+
+smoke test 只验证指标和审计输出。`kbet_rejection_rate` 当前是卡方邻域代理，不是正式 kBET；接入真实数据前必须换成正式实现并在报告中标注版本。
+`input_contract.py` 只读取元数据并生成带 SHA-256 的 manifest；它不会修改输入表，也不会连接或提交 DCS 任务。
+
+## 接入真实数据的最小顺序
+
+1. 先用 HEART 的 3 个物种、CM/FB 两类或三类细胞，使用论文发布标签作为金标准。
+2. 再扩大到 HEART 的 8 个物种，最后才跑 16 个物种。
+3. LBSPA 先只用 lamprey 与 mouse 的 snRNA 子集；空间数据作为第二阶段验证，避免把 modality 差异误算成物种差异。
+4. 每个工具固定输入细胞、基因/同源基因表、HVG 规则、邻居数、随机种子和 CPU/GPU 配置；每次运行保存参数、版本、日志、峰值内存和耗时。
+
+## 推荐比较矩阵
+
+| 场景 | 输入 | 主比较 | 主要结果 |
+|---|---|---|---|
+| 近缘 | HEART 3-8 物种 CM/FB | SATURN、SAMap、scVI + kNN | macro-F1、silhouette、iLISI、时间/内存 |
+| 远缘 | HEART 16 物种 CM/FB | SATURN、SAMap、scVI + kNN | macro-F1、物种混合、保守细胞类型是否被过度合并 |
+| 跨门 | lamprey vs mouse snRNA | SATURN、SAMap、scVI + kNN | 同源基因敏感性、标签转移、失败案例 |
+| 模态压力 | lamprey snRNA + 空间子集 | 仅在方法支持时比较 | 记录 modality 偏差，不与 snRNA 主结果混合 |
+
+标签转移建议采用留一物种（或留一批次）评估：整合训练物种后向被留出的物种转移标签，避免直接在同一批数据上“整合后再评分”。scANVI 可作为单独的有监督变体报告，不与无监督 scVI 混为一个分数。
+
+## DCS Cloud 镜像核验
+
+已登录 DCS 公共镜像中可搜索到：
+
+- `SATURN--22`：33.6 GB；Python3 清单含 `anndata==0.10.8`、`scanpy==1.10.3`、`scvi-tools==1.1.6.post2`、`fair-esm==2.0.0`、`faiss-gpu==1.7.2`、`torch==2.6.0`，并列出 CUDA 12.4 组件。页面没有明确列出名为 `saturn` 的 Python 包或命令，仍需进入实例后做只读 `import/which` 验证。
+- `samap_all`：6.8 GB；语言标为 R、python，描述页未给出完整 Python 版本清单，不能仅凭镜像名认定依赖已固定。
+- `scvi_zt`：公共镜像；页面 Bash 指令包含安装 `scanpy`、`scvi-tools`，但同时指定 CPU 版 PyTorch，不适合作为默认 GPU 基准环境。
+
+公平性建议：优先以 `SATURN--22` 为候选基础环境，在同一容器中补齐 SAMap 并锁定版本；若必须分别使用 `samap_all` 和 `scvi_zt`，则把“镜像/依赖差异”作为实验因素，并在报告中分别记录版本、CUDA 可见性和安装命令。
+
+## DCS Cloud 使用边界
+
+已知账户体验金余额为 ¥99，区域为 DCS-华北2。推荐只在真实数据和容器/依赖检查完成后使用：
+
+- 首次：4090×1、22 核、90 GB，约 ¥17.40/小时；先跑 0.5 小时试运行，预算约 ¥8.70。
+- 只有确认单卡和内存不足时才考虑双卡；4090×2 约 ¥44.30/小时，不作为默认配置。
+- 运行前设置硬停止：单次测试达到 25 分钟、内存超过 75 GB、或余额消耗超过 ¥10 就停止并检查日志。
+- 任务结束立即停止实例；存储和下载费用另计，下载约 ¥0.50/GB。
+- 默认使用课程挂载数据，避免重复上传和下载；严禁把密码、cookie、token 写入日志或代码。
+
+## 目前待确认
+
+- 课程数据在 DCS 中的准确目录、文件格式（`.h5ad`/`.rds`/矩阵包）和标签字段名。
+- HEART 16 物种中课程允许使用的最小子集，以及 LBSPA 对照小鼠数据是否已挂载。
+- DCS 预置镜像是否包含 SATURN、SAMap、scVI；若不包含，只先生成安装计划，不自动安装。
+- 老师是否要求正式 kBET，还是接受在报告中把正式 kBET 作为附加实验。
+
+课程交付要求和 AI 使用日志另见 `docs/course-requirements-audit.md` 与 `docs/ai-use-log.tsv`。组员协作约定见 `CONTRIBUTING.md`。
