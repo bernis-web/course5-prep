@@ -1,0 +1,29 @@
+{
+  "currency": "CNY",
+  "source": "DCS Cloud read-only audit 2026-09-09",
+  "account_balance_cny": 99.0,
+  "trial_policy": {
+    "max_trial_minutes": 25,
+    "reserved_minutes": 30,
+    "max_trial_cost_cny": 10.0,
+    "stop_instance_after_run": true
+  },
+  "profiles": {
+    "4090x1": {
+      "gpu": "RTX 4090",
+      "gpu_count": 1,
+      "vcpus": 22,
+      "ram_gb": 90,
+      "hourly_rate_cny": 17.4,
+      "role": "default_first_trial"
+    },
+    "4090x2": {
+      "gpu": "RTX 4090",
+      "gpu_count": 2,
+      "vcpus": 22,
+      "ram_gb": 90,
+      "hourly_rate_cny": 44.3,
+      "role": "only_if_single_gpu_is_insufficient"
+    }
+  }
+}

@@ -11,6 +11,7 @@ sys.path.insert(0, str(SCRIPT_DIR))
 
 from environment_check import collect_environment, write_environment_report  # noqa: E402
 from input_contract import InputContractError, validate_metadata, write_metadata_manifest  # noqa: E402
+from budget_check import BudgetPlanError, evaluate_trial, load_plan  # noqa: E402
 from smoke_test import evaluate_embedding, evaluate_labels, run_smoke_test  # noqa: E402
 
 
@@ -108,6 +109,27 @@ class SmokeEvaluatorTests(unittest.TestCase):
             self.assertEqual(payload["n_cells"], 2)
             self.assertEqual(payload["source_format"], "tsv")
             self.assertEqual(len(payload["sha256"]), 64)
+
+    def test_budget_plan_estimates_single_gpu_trial_under_cap(self):
+        plan = load_plan()
+
+        result = evaluate_trial(plan, profile_name="4090x1", hard_stop_minutes=25, reserved_minutes=30)
+
+        self.assertAlmostEqual(result["hard_stop_cost_cny"], 7.25, places=2)
+        self.assertAlmostEqual(result["reserved_cost_cny"], 8.70, places=2)
+        self.assertTrue(result["within_cost_cap"])
+        self.assertEqual(result["profile"]["gpu_count"], 1)
+
+    def test_budget_plan_rejects_unknown_profile_and_over_cap(self):
+        plan = load_plan()
+
+        with self.assertRaises(BudgetPlanError):
+            evaluate_trial(plan, profile_name="unknown", hard_stop_minutes=25, reserved_minutes=30)
+
+        result = evaluate_trial(plan, profile_name="4090x2", hard_stop_minutes=25, reserved_minutes=30)
+
+        self.assertFalse(result["within_cost_cap"])
+        self.assertGreater(result["reserved_cost_cny"], plan["trial_policy"]["max_trial_cost_cny"])
 
 
 if __name__ == "__main__":

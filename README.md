@@ -30,10 +30,12 @@ python -m unittest discover -s tests -v
 python scripts/smoke_test.py --outdir smoke-output
 python scripts/environment_check.py --output smoke-output/environment-report.json
 python scripts/input_contract.py tests/fixtures/metadata.tsv --output smoke-output/metadata-manifest.json
+python scripts/budget_check.py --profile 4090x1
 ```
 
 smoke test 只验证指标和审计输出。`kbet_rejection_rate` 当前是卡方邻域代理，不是正式 kBET；接入真实数据前必须换成正式实现并在报告中标注版本。
 `input_contract.py` 只读取元数据并生成带 SHA-256 的 manifest；它不会修改输入表，也不会连接或提交 DCS 任务。
+`budget_check.py` 从 `config/dcs-budget-plan.json` 读取已核验价格，只计算成本，不创建实例；默认单卡 25 分钟硬停止、30 分钟预算预留。双卡方案若超出单次 ¥10 上限，必须先复核再运行。
 
 ## 接入真实数据的最小顺序
 
