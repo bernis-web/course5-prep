@@ -13,6 +13,8 @@
 
 页面清单中的版本只能作为候选证据，不能替代实例内的实际版本。特别是 `SATURN--22` 页面没有明确列出 SATURN 包或命令，必须单独记录“可导入名/入口/版本”三项。
 
+仓库本机运行 `environment_check.py` 产生的报告会标记 `scope: local_runtime`；它只能说明本机解释器和本机 GPU，不是 DCS 实例证据。只有在候选镜像实例内重复探针并保存实际输出后，才可把对应条目标为 `observed`。
+
 ## 只读探针边界
 
 探针只能检查运行时和包元数据，不得执行 `pip install`、`conda install`、网络下载、数据复制、数据上传或真实表达矩阵读取。建议把标准输出和错误输出保存为 `stdout_stderr.log`，把版本结果保存为 `package_versions.txt`；不把凭据写进任何文件。

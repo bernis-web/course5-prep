@@ -80,6 +80,7 @@ def collect_environment() -> dict[str, Any]:
     except ImportError:
         pass
     return {
+        "scope": "local_runtime",
         "python": {
             "version": platform.python_version(),
             "executable": sys.executable,

@@ -98,6 +98,7 @@ class SmokeEvaluatorTests(unittest.TestCase):
     def test_environment_report_is_read_only_and_structured(self):
         report = collect_environment()
 
+        self.assertEqual(report["scope"], "local_runtime")
         self.assertIn("python", report)
         self.assertIn("packages", report)
         self.assertIn("executables", report)
@@ -111,6 +112,7 @@ class SmokeEvaluatorTests(unittest.TestCase):
 
             self.assertTrue(Path(path).exists())
             payload = json.loads(Path(path).read_text(encoding="utf-8"))
+            self.assertEqual(payload["scope"], "local_runtime")
             self.assertIn("packages", payload)
             self.assertEqual(payload["side_effects"], [])
 
@@ -274,6 +276,7 @@ class SmokeEvaluatorTests(unittest.TestCase):
     def test_environment_contract_blocks_unavailable_or_unversioned_requirements(self):
         plan = load_environment_plan()
         report = {
+            "scope": "synthetic_fixture",
             "packages": {
                 "saturn": {"available": False, "version": None},
                 "anndata": {"available": True, "version": "0.10.8"},
@@ -289,6 +292,7 @@ class SmokeEvaluatorTests(unittest.TestCase):
         self.assertFalse(result["ready_for_execution"])
         self.assertIn("package:saturn:unavailable", result["blocking_items"])
         self.assertIn("gpu:unavailable", result["blocking_items"])
+        self.assertEqual(result["report_scope"], "synthetic_fixture")
 
     def test_environment_contract_accepts_complete_profile(self):
         plan = load_environment_plan()
@@ -417,6 +421,7 @@ class SmokeEvaluatorTests(unittest.TestCase):
         self.assertFalse(report["ready_for_execution"])
         self.assertIn("startup:approval_status", report["blocking_items"])
         self.assertEqual(report["scope"], "local_only")
+        self.assertEqual(report["checks"]["environment"]["report_scope"], "local_runtime")
         self.assertEqual(report["side_effects"], [])
 
     def test_local_readiness_report_blocks_over_budget_profile(self):

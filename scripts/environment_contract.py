@@ -61,6 +61,7 @@ def evaluate_environment(
 
     return {
         "profile_name": profile_name,
+        "report_scope": report.get("scope", "unspecified"),
         "role": profile.get("role"),
         "ready_for_execution": not blockers,
         "blocking_items": list(dict.fromkeys(blockers)),

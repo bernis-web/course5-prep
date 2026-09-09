@@ -51,7 +51,7 @@ smoke test 只验证指标和审计输出，不执行 SATURN、SAMap 或 scVI。
 `run_artifacts.py` 只检查单次运行目录中的 `input_manifest.tsv`、`ortholog_manifest.json`、`parameters.json`、`package_versions.txt`、`stdout_stderr.log`、`metrics.json` 和 `resource_usage.json` 是否齐全且非空；失败运行还必须有非空 `failure_reason.txt`。它不会上传、下载、启动任务或修改这些文件。
 `agent_evaluation.py` 检查文档清晰度、CLI/API、参数透明度、机器可读输出、失败诊断和环境复现性六个维度。评分范围为 0–3，但没有本地证据路径和验证说明的条目必须保持 `pending`，不能把 pending 当作 0 分。
 `startup_preflight.py` 检查课程管理员确认是否已补齐数据路径、字段、镜像版本、正式 kBET 规则和只读示例命令；默认配置会阻止启动，且脚本不会检查远端路径或调用 DCS。
-`environment_contract.py` 只读取 `environment_check.py` 生成的 JSON，按候选镜像检查必需包、版本记录和 GPU 可见性；页面声明的版本与实例内实际版本分开记录，不能互相替代。
+`environment_contract.py` 只读取 `environment_check.py` 生成的 JSON，按候选镜像检查必需包、版本记录和 GPU 可见性；报告中的 `scope: local_runtime` 只代表当前本机解释器，不能替代 DCS 实例证据。页面声明的版本与实例内实际版本分开记录，不能互相替代。
 `result_contract.py` 校验最终指标和资源字段；最终阶段拒绝 `chi2_neighborhood_proxy`，必须记录正式 kBET 实现。smoke 阶段可使用代理，但不能把该结果当作最终结论。
 `plan_contract.py` 校验方法集合、留一物种策略、指标、停止线和禁止的云端动作；它通过前，不能把计划状态改为可执行。
 `local_readiness.py` 汇总计划、预算、课程确认和本机候选环境四项检查，只读本地配置与运行时信息并写出一份 JSON；在课程数据和镜像版本尚未确认时，预期返回退出码 2，不能把它当作失败修复或启动许可。
