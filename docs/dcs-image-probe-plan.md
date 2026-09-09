@@ -19,6 +19,14 @@
 
 探针只能检查运行时和包元数据，不得执行 `pip install`、`conda install`、网络下载、数据复制、数据上传或真实表达矩阵读取。建议把标准输出和错误输出保存为 `stdout_stderr.log`，把版本结果保存为 `package_versions.txt`；不把凭据写进任何文件。
 
+仓库提供统一的只读探针：
+
+```powershell
+python scripts/dcs_readonly_probe.py --output runtime-output/dcs-readonly-probe.json
+```
+
+探针会记录 `runtime_probe` 范围内的 Python、包导入/版本、`saturn`/`samap`/`python`/`nvidia-smi` 的命令级信息，以及 GPU 查询结果。它不会安装、联网、复制或读取课程数据；报告只能作为当前运行时证据，不能用页面声明或本机报告替代实例内证据。
+
 | 检查项 | 必须留下的证据 |
 |---|---|
 | Python 与包版本 | `package_versions.txt`，包含发行版版本和导入成功/失败 |

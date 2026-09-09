@@ -21,6 +21,7 @@ from plan_contract import PlanContractError, load_benchmark_plan, validate_bench
 from local_readiness import build_readiness_report  # noqa: E402
 from agent_evaluation import AgentMatrixError, load_agent_matrix, validate_agent_matrix  # noqa: E402
 from startup_preflight import PreflightError, load_preflight, validate_preflight  # noqa: E402
+from dcs_readonly_probe import probe_runtime, write_probe  # noqa: E402
 from smoke_test import (  # noqa: E402
     evaluate_embedding,
     evaluate_labels,
@@ -30,6 +31,22 @@ from smoke_test import (  # noqa: E402
 
 
 class SmokeEvaluatorTests(unittest.TestCase):
+    def test_dcs_readonly_probe_is_metadata_only_and_structured(self):
+        report = probe_runtime()
+
+        self.assertEqual(report["scope"], "runtime_probe")
+        self.assertIn("saturn", report["packages"])
+        self.assertIn("samap", report["packages"])
+        self.assertIn("nvidia-smi", report["commands"])
+        self.assertIn("gpu", report)
+        self.assertEqual(report["side_effects"], [])
+
+        with tempfile.TemporaryDirectory() as tmp:
+            output = write_probe(Path(tmp) / "probe.json")
+            payload = json.loads(Path(output).read_text(encoding="utf-8"))
+            self.assertEqual(payload["scope"], "runtime_probe")
+            self.assertEqual(payload["side_effects"], [])
+
     def test_macro_f1_is_computed_per_class(self):
         y_true = np.array(["A", "A", "B", "B", "C", "C"])
         y_pred = np.array(["A", "B", "B", "B", "C", "A"])
