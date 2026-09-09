@@ -1,0 +1,33 @@
+{
+  "source": "DCS Cloud read-only audit 2026-09-09",
+  "profiles": {
+    "SATURN--22": {
+      "role": "default_gpu_candidate",
+      "required_packages": ["saturn", "anndata", "scanpy", "scvi", "torch"],
+      "gpu_required": true,
+      "page_reported_versions": {
+        "anndata": "0.10.8",
+        "scanpy": "1.10.3",
+        "scvi": "1.1.6.post2",
+        "torch": "2.6.0",
+        "fair-esm": "2.0.0",
+        "faiss-gpu": "1.7.2"
+      },
+      "unresolved": ["saturn command or Python package was not visible on the image page"]
+    },
+    "samap_all": {
+      "role": "SAMap_candidate",
+      "required_packages": ["samap"],
+      "gpu_required": false,
+      "page_reported_versions": {},
+      "unresolved": ["complete package versions and exact import/entrypoint were not visible on the image page"]
+    },
+    "scvi_zt": {
+      "role": "CPU_compatibility_reference",
+      "required_packages": ["scvi", "scanpy", "torch"],
+      "gpu_required": false,
+      "page_reported_versions": {},
+      "unresolved": ["image page specifies a CPU PyTorch source; do not use as the default GPU benchmark"]
+    }
+  }
+}

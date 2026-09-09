@@ -10,6 +10,7 @@ SCRIPT_DIR = Path(__file__).resolve().parents[1] / "scripts"
 sys.path.insert(0, str(SCRIPT_DIR))
 
 from environment_check import collect_environment, write_environment_report  # noqa: E402
+from environment_contract import EnvironmentContractError, evaluate_environment, load_environment_plan  # noqa: E402
 from input_contract import InputContractError, validate_metadata, write_metadata_manifest  # noqa: E402
 from budget_check import BudgetPlanError, evaluate_trial, load_plan  # noqa: E402
 from run_artifacts import ArtifactContractError, REQUIRED_ARTIFACTS, validate_run_artifacts  # noqa: E402
@@ -212,6 +213,38 @@ class SmokeEvaluatorTests(unittest.TestCase):
         }
 
         result = validate_preflight(preflight)
+
+        self.assertTrue(result["ready_for_execution"])
+        self.assertEqual(result["blocking_items"], [])
+
+    def test_environment_contract_blocks_unavailable_or_unversioned_requirements(self):
+        plan = load_environment_plan()
+        report = {
+            "packages": {
+                "saturn": {"available": False, "version": None},
+                "anndata": {"available": True, "version": "0.10.8"},
+                "scanpy": {"available": True, "version": "1.10.3"},
+                "scvi": {"available": True, "version": "1.1.6.post2"},
+                "torch": {"available": True, "version": "2.6.0"},
+            },
+            "hardware": {"gpu": {"available": False, "devices": []}},
+        }
+
+        result = evaluate_environment(report, profile_name="SATURN--22", plan=plan)
+
+        self.assertFalse(result["ready_for_execution"])
+        self.assertIn("package:saturn:unavailable", result["blocking_items"])
+        self.assertIn("gpu:unavailable", result["blocking_items"])
+
+    def test_environment_contract_accepts_complete_profile(self):
+        plan = load_environment_plan()
+        required = plan["profiles"]["SATURN--22"]["required_packages"]
+        report = {
+            "packages": {name: {"available": True, "version": "1.0.0"} for name in required},
+            "hardware": {"gpu": {"available": True, "devices": ["RTX 4090, 24 GB, 550.0"]}},
+        }
+
+        result = evaluate_environment(report, profile_name="SATURN--22", plan=plan)
 
         self.assertTrue(result["ready_for_execution"])
         self.assertEqual(result["blocking_items"], [])

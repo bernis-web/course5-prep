@@ -33,6 +33,7 @@ python scripts/input_contract.py tests/fixtures/metadata.tsv --output smoke-outp
 python scripts/budget_check.py --profile 4090x1
 python scripts/agent_evaluation.py
 python scripts/startup_preflight.py
+python scripts/environment_contract.py smoke-output/environment-report.json --profile SATURN--22
 # 真实运行目录准备好后，再检查一次交付物契约
 python scripts/run_artifacts.py runtime-output/example-run --status success
 ```
@@ -43,6 +44,7 @@ smoke test 只验证指标和审计输出。`kbet_rejection_rate` 当前是卡�
 `run_artifacts.py` 只检查单次运行目录中的 `input_manifest.tsv`、`ortholog_manifest.tsv`、`parameters.json`、`package_versions.txt`、`stdout_stderr.log`、`metrics.json` 和 `resource_usage.json` 是否齐全且非空；失败运行还必须有非空 `failure_reason.txt`。它不会上传、下载、启动任务或修改这些文件。
 `agent_evaluation.py` 检查文档清晰度、CLI/API、参数透明度、机器可读输出、失败诊断和环境复现性六个维度。评分范围为 0–3，但没有本地证据路径和验证说明的条目必须保持 `pending`，不能把 pending 当作 0 分。
 `startup_preflight.py` 检查课程管理员确认是否已补齐数据路径、字段、镜像版本、正式 kBET 规则和只读示例命令；默认配置会阻止启动，且脚本不会检查远端路径或调用 DCS。
+`environment_contract.py` 只读取 `environment_check.py` 生成的 JSON，按候选镜像检查必需包、版本记录和 GPU 可见性；页面声明的版本与实例内实际版本分开记录，不能互相替代。
 
 ## 接入真实数据的最小顺序
 
