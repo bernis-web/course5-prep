@@ -1,0 +1,56 @@
+{
+  "scale": {
+    "min": 0,
+    "max": 3,
+    "labels": {
+      "0": "unavailable",
+      "1": "manual_or_undocumented",
+      "2": "documented_but_partial",
+      "3": "deterministic_and_machine_readable"
+    }
+  },
+  "dimensions": [
+    "documentation_clarity",
+    "cli_or_api_entrypoint",
+    "parameter_transparency",
+    "machine_readable_outputs",
+    "failure_diagnostics",
+    "environment_reproducibility"
+  ],
+  "evidence_rule": "A score requires at least one local artifact path and one verification note; pending entries must not be interpreted as zero.",
+  "methods": {
+    "SATURN": {
+      "status": "pending",
+      "dimensions": {
+        "documentation_clarity": {"score": null, "evidence": [], "verification": ""},
+        "cli_or_api_entrypoint": {"score": null, "evidence": [], "verification": ""},
+        "parameter_transparency": {"score": null, "evidence": [], "verification": ""},
+        "machine_readable_outputs": {"score": null, "evidence": [], "verification": ""},
+        "failure_diagnostics": {"score": null, "evidence": [], "verification": ""},
+        "environment_reproducibility": {"score": null, "evidence": [], "verification": ""}
+      }
+    },
+    "SAMap": {
+      "status": "pending",
+      "dimensions": {
+        "documentation_clarity": {"score": null, "evidence": [], "verification": ""},
+        "cli_or_api_entrypoint": {"score": null, "evidence": [], "verification": ""},
+        "parameter_transparency": {"score": null, "evidence": [], "verification": ""},
+        "machine_readable_outputs": {"score": null, "evidence": [], "verification": ""},
+        "failure_diagnostics": {"score": null, "evidence": [], "verification": ""},
+        "environment_reproducibility": {"score": null, "evidence": [], "verification": ""}
+      }
+    },
+    "scVI": {
+      "status": "pending",
+      "dimensions": {
+        "documentation_clarity": {"score": null, "evidence": [], "verification": ""},
+        "cli_or_api_entrypoint": {"score": null, "evidence": [], "verification": ""},
+        "parameter_transparency": {"score": null, "evidence": [], "verification": ""},
+        "machine_readable_outputs": {"score": null, "evidence": [], "verification": ""},
+        "failure_diagnostics": {"score": null, "evidence": [], "verification": ""},
+        "environment_reproducibility": {"score": null, "evidence": [], "verification": ""}
+      }
+    }
+  }
+}

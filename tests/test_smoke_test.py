@@ -13,6 +13,7 @@ from environment_check import collect_environment, write_environment_report  # n
 from input_contract import InputContractError, validate_metadata, write_metadata_manifest  # noqa: E402
 from budget_check import BudgetPlanError, evaluate_trial, load_plan  # noqa: E402
 from run_artifacts import ArtifactContractError, REQUIRED_ARTIFACTS, validate_run_artifacts  # noqa: E402
+from agent_evaluation import AgentMatrixError, load_agent_matrix, validate_agent_matrix  # noqa: E402
 from smoke_test import evaluate_embedding, evaluate_labels, run_smoke_test  # noqa: E402
 
 
@@ -159,6 +160,22 @@ class SmokeEvaluatorTests(unittest.TestCase):
 
             self.assertEqual(result["missing"], [])
             self.assertTrue(result["failure_reason_required"])
+
+    def test_agent_matrix_stays_pending_until_evidence_is_recorded(self):
+        matrix = load_agent_matrix()
+
+        result = validate_agent_matrix(matrix)
+
+        self.assertEqual(result["methods"], ["SATURN", "SAMap", "scVI"])
+        self.assertEqual(result["pending_methods"], ["SATURN", "SAMap", "scVI"])
+        self.assertFalse(result["ready_for_comparison"])
+
+    def test_agent_matrix_rejects_score_without_evidence(self):
+        matrix = load_agent_matrix()
+        matrix["methods"]["SATURN"]["dimensions"]["documentation_clarity"]["score"] = 3
+
+        with self.assertRaises(AgentMatrixError):
+            validate_agent_matrix(matrix)
 
 
 if __name__ == "__main__":
