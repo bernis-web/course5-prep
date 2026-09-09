@@ -10,7 +10,7 @@ from typing import Any
 
 REQUIRED_ARTIFACTS = (
     "input_manifest.tsv",
-    "ortholog_manifest.tsv",
+    "ortholog_manifest.json",
     "parameters.json",
     "package_versions.txt",
     "stdout_stderr.log",

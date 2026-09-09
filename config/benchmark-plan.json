@@ -71,7 +71,7 @@
   },
   "required_artifacts_per_run": [
     "input_manifest.tsv",
-    "ortholog_manifest.tsv",
+    "ortholog_manifest.json",
     "parameters.json",
     "package_versions.txt",
     "stdout_stderr.log",

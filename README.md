@@ -32,7 +32,7 @@ python -m unittest discover -s tests -v
 python scripts/smoke_test.py --outdir smoke-output
 python scripts/environment_check.py --output smoke-output/environment-report.json
 python scripts/input_contract.py tests/fixtures/metadata.tsv --output smoke-output/metadata-manifest.json
-python scripts/ortholog_contract.py tests/fixtures/orthologs.tsv --output smoke-output/ortholog-manifest.json
+python scripts/ortholog_contract.py tests/fixtures/orthologs.tsv --output smoke-output/ortholog_manifest.json
 python scripts/budget_check.py --profile 4090x1
 python scripts/agent_evaluation.py
 python scripts/startup_preflight.py
@@ -45,7 +45,7 @@ smoke test 只验证指标和审计输出。`kbet_rejection_rate` 当前是卡�
 `input_contract.py` 只读取元数据并生成带 SHA-256 的 manifest；它不会修改输入表，也不会连接或提交 DCS 任务。
 `ortholog_contract.py` 要求共享的 `species_a/gene_a/species_b/gene_b` 四列，规范化物种对顺序并拒绝一对多映射；它生成 SHA-256 manifest，供 SATURN、SAMap 和 scVI 使用同一基因空间。
 `budget_check.py` 从 `config/dcs-budget-plan.json` 读取已核验价格，只计算成本，不创建实例；默认单卡 25 分钟硬停止、30 分钟预算预留。双卡方案若超出单次 ¥10 上限，必须先复核再运行。
-`run_artifacts.py` 只检查单次运行目录中的 `input_manifest.tsv`、`ortholog_manifest.tsv`、`parameters.json`、`package_versions.txt`、`stdout_stderr.log`、`metrics.json` 和 `resource_usage.json` 是否齐全且非空；失败运行还必须有非空 `failure_reason.txt`。它不会上传、下载、启动任务或修改这些文件。
+`run_artifacts.py` 只检查单次运行目录中的 `input_manifest.tsv`、`ortholog_manifest.json`、`parameters.json`、`package_versions.txt`、`stdout_stderr.log`、`metrics.json` 和 `resource_usage.json` 是否齐全且非空；失败运行还必须有非空 `failure_reason.txt`。它不会上传、下载、启动任务或修改这些文件。
 `agent_evaluation.py` 检查文档清晰度、CLI/API、参数透明度、机器可读输出、失败诊断和环境复现性六个维度。评分范围为 0–3，但没有本地证据路径和验证说明的条目必须保持 `pending`，不能把 pending 当作 0 分。
 `startup_preflight.py` 检查课程管理员确认是否已补齐数据路径、字段、镜像版本、正式 kBET 规则和只读示例命令；默认配置会阻止启动，且脚本不会检查远端路径或调用 DCS。
 `environment_contract.py` 只读取 `environment_check.py` 生成的 JSON，按候选镜像检查必需包、版本记录和 GPU 可见性；页面声明的版本与实例内实际版本分开记录，不能互相替代。

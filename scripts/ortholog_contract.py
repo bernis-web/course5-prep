@@ -124,7 +124,7 @@ def write_ortholog_manifest(source: Path, output: Path) -> str:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("orthologs", type=Path)
-    parser.add_argument("--output", type=Path, default=Path("ortholog-manifest.json"))
+    parser.add_argument("--output", type=Path, default=Path("ortholog_manifest.json"))
     args = parser.parse_args()
     print(json.dumps({"manifest_path": write_ortholog_manifest(args.orthologs, args.output)}))
 

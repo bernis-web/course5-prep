@@ -285,6 +285,10 @@ class SmokeEvaluatorTests(unittest.TestCase):
             self.assertEqual(payload["n_pairs"], 1)
             self.assertEqual(len(payload["sha256"]), 64)
 
+    def test_run_artifact_contract_names_ortholog_manifest_as_json(self):
+        self.assertIn("ortholog_manifest.json", REQUIRED_ARTIFACTS)
+        self.assertNotIn("ortholog_manifest.tsv", REQUIRED_ARTIFACTS)
+
 
 if __name__ == "__main__":
     unittest.main()
