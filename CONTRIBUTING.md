@@ -3,6 +3,7 @@
 ## 开始前
 
 - 先阅读 `README.md`、`config/benchmark-plan.json` 和 `docs/teacher-data-request.md`。
+- 本地验证按 `docs/minimal-verification-runbook.md` 执行，保持命令、输出目录和退出码语义一致。
 - 不把 HEART/LBSPA 原始数据、DCS 凭据、cookie、token 或本地绝对路径提交到仓库。
 - 所有真实运行前先确认数据授权、镜像版本和预算；默认不启动云实例。
 

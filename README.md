@@ -19,6 +19,8 @@ Set-Location course5-prep
 
 第一次协作时，组员 A 先整理课程数据确认项，组员 B 先做本地环境/预算/只读探针，组员 C 先跑测试并搭评测记录表；三项都可以轮换，认领表和交付边界见 `docs/team-task-division.md`。
 
+三人按同一顺序复现本地检查时，直接使用 `docs/minimal-verification-runbook.md`；其中的退出码 2 表示预检阻塞，不表示脚本崩溃，也不构成 DCS 启动许可。
+
 ## 当前证据
 
 - 课程网页要求比较：标签转移 macro-F1、批次混合与生物保守性（kBET/iLISI/silhouette）、时间/内存、文档易用性和 Agent 友好度。

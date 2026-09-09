@@ -4,7 +4,7 @@
 
 ## 打开仓库后的 5 分钟
 
-1. 依次阅读 README.md、CONTRIBUTING.md、本文件、config/benchmark-plan.json 和 docs/teacher-data-request.md。
+1. 依次阅读 README.md、CONTRIBUTING.md、本文件、docs/minimal-verification-runbook.md、config/benchmark-plan.json 和 docs/teacher-data-request.md。
 2. 在下面的认领表填入姓名、当前小交付和复核人；只认领一项近期可完成的交付，不需要一次包办整条主线。
 3. 先完成本地或文档工作，再讨论 DCS。任何真实运行都要等三人共同确认启动门、数据授权、版本和预算。
 
