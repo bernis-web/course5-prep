@@ -16,7 +16,7 @@ from typing import Any
 import numpy as np
 from scipy.stats import chisquare
 from sklearn.metrics import silhouette_score
-from sklearn.neighbors import NearestNeighbors
+from sklearn.neighbors import KNeighborsClassifier, NearestNeighbors
 
 
 def _as_strings(values: np.ndarray) -> np.ndarray:
@@ -48,6 +48,55 @@ def evaluate_labels(y_true: np.ndarray, y_pred: np.ndarray) -> dict[str, Any]:
         "macro_f1": float(np.mean(f1_values)),
         "n_labels": int(len(classes)),
         "per_class_f1": per_class,
+    }
+
+
+def evaluate_leave_one_species_out(
+    embedding: np.ndarray,
+    labels: np.ndarray,
+    species: np.ndarray,
+    neighbors: int = 15,
+) -> dict[str, Any]:
+    """Evaluate label transfer while holding out each species in turn."""
+    x = np.asarray(embedding, dtype=float)
+    label_values = _as_strings(labels)
+    species_values = _as_strings(species)
+    if x.ndim != 2 or len(x) == 0:
+        raise ValueError("embedding must be a non-empty two-dimensional array")
+    if len(label_values) != len(x) or len(species_values) != len(x):
+        raise ValueError("embedding, labels, and species must have the same number of rows")
+
+    unique_species = np.unique(species_values)
+    if len(unique_species) < 2:
+        raise ValueError("leave-one-species-out requires at least two species")
+
+    folds: list[dict[str, Any]] = []
+    for held_out in unique_species:
+        test_mask = species_values == held_out
+        train_mask = ~test_mask
+        train_count = int(np.sum(train_mask))
+        if train_count == 0 or not np.any(test_mask):
+            raise ValueError(f"species fold has no train or test cells: {held_out}")
+        k = min(max(1, int(neighbors)), train_count)
+        classifier = KNeighborsClassifier(n_neighbors=k, weights="distance")
+        classifier.fit(x[train_mask], label_values[train_mask])
+        prediction = classifier.predict(x[test_mask])
+        fold = evaluate_labels(label_values[test_mask], prediction)
+        fold.update(
+            {
+                "held_out_species": str(held_out),
+                "n_test_cells": int(np.sum(test_mask)),
+                "neighbors": k,
+            }
+        )
+        folds.append(fold)
+
+    return {
+        "macro_f1": float(np.mean([fold["macro_f1"] for fold in folds])),
+        "n_labels": int(len(np.unique(label_values))),
+        "evaluation_protocol": "leave_one_species_out",
+        "n_folds": len(folds),
+        "folds": folds,
     }
 
 
@@ -103,8 +152,10 @@ def _synthetic_case(seed: int, n_cells: int, n_features: int) -> tuple[np.ndarra
         raise ValueError("n_cells must be >= 12 and n_features must be >= 2")
     rng = np.random.default_rng(seed)
     class_names = np.array(["CM", "FB", "EDC"])
-    labels = np.resize(class_names, n_cells)
-    batches = np.resize(np.array(["species_1", "species_2", "species_3"]), n_cells)
+    species_names = np.array(["species_1", "species_2", "species_3"])
+    indices = np.arange(n_cells)
+    batches = species_names[indices % len(species_names)]
+    labels = class_names[(indices // len(species_names)) % len(class_names)]
     prototypes = np.zeros((3, n_features))
     prototypes[0, 0] = 3.5
     prototypes[1, 1] = 3.5
@@ -125,8 +176,10 @@ def run_smoke_test(outdir: Path, seed: int = 7, n_cells: int = 120, n_features: 
     outdir.mkdir(parents=True, exist_ok=True)
     started = time.perf_counter()
     embedding, labels, batches, prediction = _synthetic_case(seed, n_cells, n_features)
+    leave_one_out = evaluate_leave_one_species_out(embedding, labels, batches)
+    leave_one_out["in_sample_macro_f1"] = evaluate_labels(labels, prediction)["macro_f1"]
     metrics = {
-        "label_transfer": evaluate_labels(labels, prediction),
+        "label_transfer": leave_one_out,
         "embedding": evaluate_embedding(embedding, labels, batches),
     }
     metrics["runtime_seconds"] = round(time.perf_counter() - started, 6)
@@ -139,7 +192,9 @@ def run_smoke_test(outdir: Path, seed: int = 7, n_cells: int = 120, n_features: 
         "n_cells": n_cells,
         "n_features": n_features,
         "python": platform.python_version(),
-        "metric_caveat": "kBET is a chi-square neighborhood proxy until the official implementation is installed.",
+        "metric_caveat": "kBET is a chi-square neighborhood proxy until the official implementation is installed; label transfer uses synthetic kNN leave-one-species-out folds.",
+        "label_transfer_protocol": "leave_one_species_out",
+        "label_transfer_estimator": "synthetic_knn",
         "real_tools_executed": [],
     }
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=True, indent=2), encoding="utf-8")

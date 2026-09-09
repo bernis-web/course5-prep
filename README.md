@@ -44,7 +44,7 @@ python scripts/local_readiness.py --output smoke-output/local-readiness.json
 python scripts/run_artifacts.py runtime-output/example-run --status success
 ```
 
-smoke test 只验证指标和审计输出。`kbet_rejection_rate` 当前是卡方邻域代理，不是正式 kBET；接入真实数据前必须换成正式实现并在报告中标注版本。
+smoke test 只验证指标和审计输出，不执行 SATURN、SAMap 或 scVI。其标签转移使用合成数据上的 kNN 留一物种折叠，`kbet_rejection_rate` 当前是卡方邻域代理，不是正式 kBET；接入真实数据前必须换成真实工具流程和正式 kBET 实现，并在报告中标注版本。
 `input_contract.py` 只读取元数据并生成带 SHA-256 的 manifest；它不会修改输入表，也不会连接或提交 DCS 任务。
 `ortholog_contract.py` 要求共享的 `species_a/gene_a/species_b/gene_b` 四列，规范化物种对顺序并拒绝一对多映射；它生成 SHA-256 manifest，供 SATURN、SAMap 和 scVI 使用同一基因空间。
 `budget_check.py` 从 `config/dcs-budget-plan.json` 读取已核验价格，只计算成本，不创建实例；默认单卡 25 分钟硬停止、30 分钟预算预留。双卡方案若超出单次 ¥10 上限，命令会保留 JSON 结果但以退出码 2 结束，必须先复核再运行。

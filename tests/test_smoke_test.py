@@ -21,7 +21,12 @@ from plan_contract import PlanContractError, load_benchmark_plan, validate_bench
 from local_readiness import build_readiness_report  # noqa: E402
 from agent_evaluation import AgentMatrixError, load_agent_matrix, validate_agent_matrix  # noqa: E402
 from startup_preflight import PreflightError, load_preflight, validate_preflight  # noqa: E402
-from smoke_test import evaluate_embedding, evaluate_labels, run_smoke_test  # noqa: E402
+from smoke_test import (  # noqa: E402
+    evaluate_embedding,
+    evaluate_labels,
+    evaluate_leave_one_species_out,
+    run_smoke_test,
+)
 
 
 class SmokeEvaluatorTests(unittest.TestCase):
@@ -60,6 +65,35 @@ class SmokeEvaluatorTests(unittest.TestCase):
             manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
             self.assertEqual(manifest["mode"], "synthetic_evaluator")
             self.assertEqual(manifest["n_cells"], 120)
+            self.assertEqual(manifest["label_transfer_protocol"], "leave_one_species_out")
+            self.assertEqual(manifest["label_transfer_estimator"], "synthetic_knn")
+            metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
+            self.assertEqual(metrics["label_transfer"]["evaluation_protocol"], "leave_one_species_out")
+            self.assertEqual(metrics["label_transfer"]["n_folds"], 3)
+
+    def test_leave_one_species_out_label_transfer_reports_each_fold(self):
+        embedding = np.array(
+            [
+                [0.0, 0.0],
+                [5.0, 5.0],
+                [10.0, 0.0],
+                [0.1, 0.0],
+                [5.1, 5.0],
+                [10.1, 0.0],
+                [0.2, 0.0],
+                [5.2, 5.0],
+                [10.2, 0.0],
+            ]
+        )
+        labels = np.array(["A", "B", "C"] * 3)
+        species = np.array(["s1"] * 3 + ["s2"] * 3 + ["s3"] * 3)
+
+        result = evaluate_leave_one_species_out(embedding, labels, species, neighbors=1)
+
+        self.assertEqual(result["evaluation_protocol"], "leave_one_species_out")
+        self.assertEqual(result["n_folds"], 3)
+        self.assertEqual([fold["held_out_species"] for fold in result["folds"]], ["s1", "s2", "s3"])
+        self.assertGreaterEqual(result["macro_f1"], 0.99)
 
     def test_environment_report_is_read_only_and_structured(self):
         report = collect_environment()
