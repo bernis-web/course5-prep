@@ -15,6 +15,7 @@ from budget_check import BudgetPlanError, evaluate_trial, load_plan
 from environment_check import collect_environment
 from environment_contract import EnvironmentContractError, evaluate_environment, load_environment_plan
 from plan_contract import PlanContractError, load_benchmark_plan, validate_benchmark_plan
+from source_manifest_check import DEFAULT_MANIFEST, SourceManifestError, verify_manifest
 from startup_preflight import PreflightError, load_preflight, validate_preflight
 
 
@@ -29,6 +30,8 @@ def build_readiness_report(
     budget_plan_path: Path | None = None,
     environment_plan_path: Path | None = None,
     preflight_path: Path | None = None,
+    source_root: Path | None = None,
+    source_manifest_path: Path | None = None,
 ) -> dict[str, Any]:
     """Return a deterministic readiness summary without remote side effects."""
     benchmark_plan = load_benchmark_plan(benchmark_plan_path)
@@ -52,9 +55,30 @@ def build_readiness_report(
         plan=load_environment_plan(environment_plan_path),
     )
 
+    if source_root is None:
+        source_result: dict[str, Any] = {
+            "valid": None,
+            "scope": "source_files",
+            "status": "not_checked",
+            "side_effects": [],
+        }
+    else:
+        try:
+            source_result = verify_manifest(source_root, source_manifest_path or DEFAULT_MANIFEST)
+        except (OSError, SourceManifestError) as exc:
+            source_result = {
+                "valid": False,
+                "scope": "source_files",
+                "status": "error",
+                "error": str(exc),
+                "side_effects": [],
+            }
+
     blocking_items: list[str] = []
     if not budget_result["within_cost_cap"]:
         blocking_items.append("budget:trial_cost_cap")
+    if source_result.get("valid") is False:
+        blocking_items.append("source_materials")
     blocking_items.extend(f"startup:{item}" for item in preflight_result["blocking_items"])
     blocking_items.extend(f"environment:{item}" for item in environment_result["blocking_items"])
 
@@ -71,6 +95,7 @@ def build_readiness_report(
             "budget": budget_result,
             "startup_preflight": preflight_result,
             "environment": environment_result,
+            "source_materials": source_result,
         },
         "remote_actions": [],
         "side_effects": [],
@@ -87,12 +112,16 @@ def main() -> None:
     parser.add_argument("--budget-profile", default="4090x1")
     parser.add_argument("--environment-profile", default="SATURN--22")
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--source-root", type=Path)
+    parser.add_argument("--source-manifest", type=Path)
     args = parser.parse_args()
 
     try:
         report = build_readiness_report(
             budget_profile=args.budget_profile,
             environment_profile=args.environment_profile,
+            source_root=args.source_root,
+            source_manifest_path=args.source_manifest,
         )
     except (BudgetPlanError, EnvironmentContractError, PlanContractError, PreflightError, FileNotFoundError) as exc:
         print(json.dumps({"valid": False, "error": str(exc)}, ensure_ascii=True, indent=2))

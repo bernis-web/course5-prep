@@ -537,6 +537,25 @@ class SmokeEvaluatorTests(unittest.TestCase):
         self.assertEqual(report["checks"]["environment"]["report_scope"], "local_runtime")
         self.assertEqual(report["side_effects"], [])
 
+    def test_local_readiness_can_include_source_material_check(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "materials"
+            root.mkdir()
+            source = root / "course.html"
+            source.write_bytes(b"course material bytes")
+            digest = hashlib.sha256(source.read_bytes()).hexdigest()
+            manifest = Path(tmp) / "manifest.tsv"
+            manifest.write_text(
+                "filename\tformat\tbytes\tsha256\tchecked_at\n"
+                f"course.html\thtml\t{source.stat().st_size}\t{digest}\t2026-09-10\n",
+                encoding="utf-8",
+            )
+
+            report = build_readiness_report(source_root=root, source_manifest_path=manifest)
+
+            self.assertTrue(report["checks"]["source_materials"]["valid"])
+            self.assertNotIn("source_materials", report["blocking_items"])
+
     def test_local_readiness_report_blocks_over_budget_profile(self):
         report = build_readiness_report(budget_profile="4090x2")
 

@@ -43,6 +43,8 @@ python scripts/environment_contract.py smoke-output/environment-report.json --pr
 python scripts/result_contract.py tests/fixtures/final-metrics.json tests/fixtures/final-resources.json --stage final
 python scripts/plan_contract.py
 python scripts/local_readiness.py --output smoke-output/local-readiness.json
+# 有课程材料目录时，把版本核验纳入同一份 readiness 报告
+python scripts/local_readiness.py --source-root <course-material-directory> --output smoke-output/local-readiness-with-materials.json
 # 真实运行目录准备好后，再检查一次交付物契约
 python scripts/run_artifacts.py runtime-output/example-run --status success
 ```
@@ -59,7 +61,7 @@ smoke test 只验证指标和审计输出，不执行 SATURN、SAMap 或 scVI。
 `source_manifest_check.py` 只读取课程材料目录中的文件大小和 SHA-256，并与 `docs/source-file-manifest.tsv` 比对；报告不包含原文内容，缺失或哈希不一致时退出码为 2。它只能证明文件版本一致，不能证明课程已授权提供真实数据集。
 `result_contract.py` 校验最终指标和资源字段；所有结果都必须声明 `leave_one_species_out` 和折数，最终阶段还拒绝 `chi2_neighborhood_proxy`，必须记录正式 kBET 的实现名称和版本。`tests/fixtures/final-metrics.json` 中的 `example-*` 仅是契约占位，不能当作真实版本。smoke 阶段可使用代理，但不能把该结果当作最终结论。
 `plan_contract.py` 校验方法集合、留一物种策略、指标、停止线和禁止的云端动作；它通过前，不能把计划状态改为可执行。
-`local_readiness.py` 汇总计划、预算、课程确认和本机候选环境四项检查，只读本地配置与运行时信息并写出一份 JSON；在课程数据和镜像版本尚未确认时，预期返回退出码 2，不能把它当作失败修复或启动许可。
+`local_readiness.py` 汇总计划、预算、课程确认和本机候选环境四项检查；传入 `--source-root` 后还会把课程材料大小/哈希核验纳入报告。它只读本地配置与运行时信息并写出一份 JSON；在课程数据和镜像版本尚未确认时，预期返回退出码 2，不能把它当作失败修复或启动许可。
 
 ## 接入真实数据的最小顺序
 
