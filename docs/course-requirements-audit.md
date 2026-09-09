@@ -18,7 +18,7 @@
 | HEART / LBSPA 场景 | `config/benchmark-plan.json` | 已定义，待课程数据路径 |
 | 五类评测维度 | `docs/source-notes.md`、`scripts/smoke_test.py` | 指标契约已定义；正式 kBET 待确认 |
 | 近缘/跨门/无 GPU 指南 | `README.md` 比较矩阵和 DCS 审计 | 方案已定义，需真实运行结果 |
-| 容器化与版本 | `docs/dcs-readonly-audit.md` | 镜像候选已核验，命令级版本待实例内只读检查 |
+| 容器化与版本 | `docs/dcs-readonly-audit.md`、`docs/containerization-plan.md` | 镜像候选已核验，命令级版本待实例内只读检查；当前只冻结方案，不构建环境 |
 
 ## 课程过程性交付
 

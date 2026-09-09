@@ -33,7 +33,7 @@
 
 **建议主责：** 愿意核对 DCS 页面、镜像和资源成本的同学。
 
-**第一步：** 在获得课程管理员确认后，按 `docs/dcs-image-probe-plan.md` 做只读核验，再用 `environment_check.py` 和 `environment_contract.py` 检查 `SATURN--22`、`samap_all` 或课程指定镜像；不安装包、不启动实例，除非组内明确批准。
+**第一步：** 在获得课程管理员确认后，按 `docs/dcs-image-probe-plan.md` 和 `docs/containerization-plan.md` 做只读核验，再用 `environment_check.py` 和 `environment_contract.py` 检查 `SATURN--22`、`samap_all` 或课程指定镜像；不安装包、不启动实例，除非组内明确批准。
 
 **交付物：**
 
