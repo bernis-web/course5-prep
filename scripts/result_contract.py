@@ -9,6 +9,7 @@ from typing import Any
 
 
 PROXY_KBET = "chi2_neighborhood_proxy"
+REQUIRED_LABEL_TRANSFER_PROTOCOL = "leave_one_species_out"
 
 
 class ResultContractError(ValueError):
@@ -43,6 +44,14 @@ def validate_result(metrics: dict[str, Any], resources: dict[str, Any], stage: s
     labels = _required_object(metrics, "label_transfer")
     embedding = _required_object(metrics, "embedding")
     macro_f1 = _number(labels.get("macro_f1"), "label_transfer.macro_f1", 0.0, 1.0)
+    evaluation_protocol = labels.get("evaluation_protocol")
+    if evaluation_protocol != REQUIRED_LABEL_TRANSFER_PROTOCOL:
+        raise ResultContractError(
+            "label_transfer.evaluation_protocol must be leave_one_species_out"
+        )
+    n_folds = labels.get("n_folds")
+    if isinstance(n_folds, bool) or not isinstance(n_folds, int) or n_folds < 2:
+        raise ResultContractError("label_transfer.n_folds must be an integer >= 2")
     silhouette = _number(embedding.get("silhouette"), "embedding.silhouette", -1.0, 1.0)
     ilisi = _number(embedding.get("ilisi"), "embedding.ilisi", 1.0)
     kbet_rate = _number(embedding.get("kbet_rejection_rate"), "embedding.kbet_rejection_rate", 0.0, 1.0)
@@ -69,6 +78,8 @@ def validate_result(metrics: dict[str, Any], resources: dict[str, Any], stage: s
         "valid": True,
         "stage": stage,
         "macro_f1": macro_f1,
+        "evaluation_protocol": evaluation_protocol,
+        "n_folds": n_folds,
         "silhouette": silhouette,
         "ilisi": ilisi,
         "kbet_rejection_rate": kbet_rate,

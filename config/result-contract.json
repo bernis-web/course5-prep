@@ -1,6 +1,8 @@
 {
   "metrics": {
     "label_transfer.macro_f1": "number in [0, 1]",
+    "label_transfer.evaluation_protocol": "must be leave_one_species_out",
+    "label_transfer.n_folds": "integer >= 2",
     "embedding.silhouette": "number in [-1, 1]",
     "embedding.ilisi": "number >= 1",
     "embedding.kbet_rejection_rate": "number in [0, 1]",

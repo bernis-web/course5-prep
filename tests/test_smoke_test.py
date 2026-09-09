@@ -348,7 +348,11 @@ class SmokeEvaluatorTests(unittest.TestCase):
 
     def test_result_contract_accepts_complete_final_record(self):
         metrics = {
-            "label_transfer": {"macro_f1": 0.82},
+            "label_transfer": {
+                "macro_f1": 0.82,
+                "evaluation_protocol": "leave_one_species_out",
+                "n_folds": 3,
+            },
             "embedding": {
                 "silhouette": 0.31,
                 "ilisi": 1.8,
@@ -370,9 +374,35 @@ class SmokeEvaluatorTests(unittest.TestCase):
         self.assertTrue(result["valid"])
         self.assertEqual(result["kbet_method"], "official-package")
 
+    def test_result_contract_requires_leave_one_species_out_protocol(self):
+        metrics = {
+            "label_transfer": {"macro_f1": 0.82, "n_folds": 3},
+            "embedding": {
+                "silhouette": 0.31,
+                "ilisi": 1.8,
+                "kbet_rejection_rate": 0.12,
+                "kbet_method": "official-package",
+            },
+        }
+        resources = {
+            "wall_time_seconds": 412.5,
+            "peak_memory_gb": 42.0,
+            "gpu_count": 1,
+            "gpu_name": "RTX 4090",
+            "cost_cny": 2.1,
+            "cost_source": "DCS billing record",
+        }
+
+        with self.assertRaises(ResultContractError):
+            validate_result(metrics, resources, stage="final")
+
     def test_result_contract_rejects_proxy_kbet_in_final_record(self):
         metrics = {
-            "label_transfer": {"macro_f1": 0.82},
+            "label_transfer": {
+                "macro_f1": 0.82,
+                "evaluation_protocol": "leave_one_species_out",
+                "n_folds": 3,
+            },
             "embedding": {
                 "silhouette": 0.31,
                 "ilisi": 1.8,

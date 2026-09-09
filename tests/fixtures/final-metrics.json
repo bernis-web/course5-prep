@@ -1,5 +1,9 @@
 {
-  "label_transfer": {"macro_f1": 0.82},
+  "label_transfer": {
+    "macro_f1": 0.82,
+    "evaluation_protocol": "leave_one_species_out",
+    "n_folds": 3
+  },
   "embedding": {
     "silhouette": 0.31,
     "ilisi": 1.8,
