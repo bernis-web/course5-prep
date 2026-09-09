@@ -6,7 +6,7 @@
 
 **建议主责：** 熟悉论文、数据结构和细胞类型定义的同学。
 
-**第一步：** 根据 `docs/teacher-data-request.md` 向课程管理员确认 HEART/LBSPA 路径、文件格式、物种/细胞类型/批次/金标准字段，以及一对一同源基因表的来源。
+**第一步：** 根据 `docs/teacher-data-request.md` 和 `docs/course-admin-reply-template.md` 向课程管理员确认 HEART/LBSPA 路径、文件格式、物种/细胞类型/批次/金标准字段，以及一对一同源基因表的来源。
 
 **交付物：**
 
@@ -21,7 +21,7 @@
 
 **建议主责：** 愿意核对 DCS 页面、镜像和资源成本的同学。
 
-**第一步：** 在获得课程管理员确认后，只读运行 `environment_check.py`，再用 `environment_contract.py` 检查 `SATURN--22`、`samap_all` 或课程指定镜像；不安装包、不启动实例，除非组内明确批准。
+**第一步：** 在获得课程管理员确认后，按 `docs/dcs-image-probe-plan.md` 做只读核验，再用 `environment_check.py` 和 `environment_contract.py` 检查 `SATURN--22`、`samap_all` 或课程指定镜像；不安装包、不启动实例，除非组内明确批准。
 
 **交付物：**
 

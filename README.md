@@ -15,7 +15,7 @@ Set-Location course5-prep
 
 日常修改请从 `main` 创建短分支，提交后发 Pull Request；不要直接提交真实数据、凭据或 DCS 运行输出。完整约定见 `CONTRIBUTING.md`。
 
-三人可以按“数据与生物学、环境与算力、评测与报告”三条可轮换主线协作，第一步和交付物见 `docs/team-task-division.md`。
+三人可以按“数据与生物学、环境与算力、评测与报告”三条可轮换主线协作，第一步和交付物见 `docs/team-task-division.md`。向老师确认信息时使用 `docs/course-admin-reply-template.md`；镜像实际版本核验边界见 `docs/dcs-image-probe-plan.md`。
 
 ## 当前证据
 
