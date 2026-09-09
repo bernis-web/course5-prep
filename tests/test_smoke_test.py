@@ -358,6 +358,8 @@ class SmokeEvaluatorTests(unittest.TestCase):
                 "ilisi": 1.8,
                 "kbet_rejection_rate": 0.12,
                 "kbet_method": "official-package",
+                "kbet_implementation": "example-kbet-package",
+                "kbet_version": "example-version",
             },
         }
         resources = {
@@ -373,6 +375,34 @@ class SmokeEvaluatorTests(unittest.TestCase):
 
         self.assertTrue(result["valid"])
         self.assertEqual(result["kbet_method"], "official-package")
+        self.assertEqual(result["kbet_implementation"], "example-kbet-package")
+        self.assertEqual(result["kbet_version"], "example-version")
+
+    def test_result_contract_requires_kbet_implementation_and_version_for_final_record(self):
+        metrics = {
+            "label_transfer": {
+                "macro_f1": 0.82,
+                "evaluation_protocol": "leave_one_species_out",
+                "n_folds": 3,
+            },
+            "embedding": {
+                "silhouette": 0.31,
+                "ilisi": 1.8,
+                "kbet_rejection_rate": 0.12,
+                "kbet_method": "official-package",
+            },
+        }
+        resources = {
+            "wall_time_seconds": 412.5,
+            "peak_memory_gb": 42.0,
+            "gpu_count": 1,
+            "gpu_name": "RTX 4090",
+            "cost_cny": 2.1,
+            "cost_source": "DCS billing record",
+        }
+
+        with self.assertRaisesRegex(ResultContractError, "kbet_implementation"):
+            validate_result(metrics, resources, stage="final")
 
     def test_result_contract_requires_leave_one_species_out_protocol(self):
         metrics = {

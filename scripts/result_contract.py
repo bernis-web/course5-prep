@@ -60,6 +60,13 @@ def validate_result(metrics: dict[str, Any], resources: dict[str, Any], stage: s
         raise ResultContractError("embedding.kbet_method must be a non-empty string")
     if stage == "final" and kbet_method == PROXY_KBET:
         raise ResultContractError("final results cannot use the chi-square kBET proxy")
+    kbet_implementation = embedding.get("kbet_implementation")
+    kbet_version = embedding.get("kbet_version")
+    if stage == "final":
+        if not isinstance(kbet_implementation, str) or not kbet_implementation.strip():
+            raise ResultContractError("embedding.kbet_implementation must be a non-empty string for final results")
+        if not isinstance(kbet_version, str) or not kbet_version.strip():
+            raise ResultContractError("embedding.kbet_version must be a non-empty string for final results")
 
     wall_time = _number(resources.get("wall_time_seconds"), "wall_time_seconds", 0.0)
     peak_memory = _number(resources.get("peak_memory_gb"), "peak_memory_gb", 0.0)
@@ -84,6 +91,8 @@ def validate_result(metrics: dict[str, Any], resources: dict[str, Any], stage: s
         "ilisi": ilisi,
         "kbet_rejection_rate": kbet_rate,
         "kbet_method": kbet_method,
+        "kbet_implementation": kbet_implementation,
+        "kbet_version": kbet_version,
         "wall_time_seconds": wall_time,
         "peak_memory_gb": peak_memory,
         "gpu_count": gpu_count,

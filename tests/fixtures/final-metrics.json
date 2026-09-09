@@ -8,6 +8,8 @@
     "silhouette": 0.31,
     "ilisi": 1.8,
     "kbet_rejection_rate": 0.12,
-    "kbet_method": "official-package"
+    "kbet_method": "official-package",
+    "kbet_implementation": "example-kbet-package",
+    "kbet_version": "example-version"
   }
 }

@@ -6,7 +6,9 @@
     "embedding.silhouette": "number in [-1, 1]",
     "embedding.ilisi": "number >= 1",
     "embedding.kbet_rejection_rate": "number in [0, 1]",
-    "embedding.kbet_method": "string; final stage cannot use chi2_neighborhood_proxy"
+    "embedding.kbet_method": "string; final stage cannot use chi2_neighborhood_proxy",
+    "embedding.kbet_implementation": "non-empty string required at final stage",
+    "embedding.kbet_version": "non-empty string required at final stage"
   },
   "resource_usage": {
     "wall_time_seconds": "number >= 0",
