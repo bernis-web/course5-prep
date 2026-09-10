@@ -8,34 +8,58 @@
     "download_large_dataset",
     "install_packages_on_dcs"
   ],
+  "phase_policy": {
+    "source": "teacher reply recorded 2026-09-10",
+    "pilot_species_count_range": [2, 3],
+    "pilot_goal": "prove_the_integration_pipeline_runs_end_to_end",
+    "later_relationship_coverage": ["near", "far", "mixed_categories"],
+    "species_selection_status": "pending_readonly_dcs_inventory",
+    "primary_modality": "scRNA",
+    "spatial_policy": "out_of_primary_scope",
+    "snRNA_policy": "small_followup_after_scRNA_conclusion"
+  },
   "datasets": {
     "heart_near": {
       "source": "HEART",
       "species_count": 3,
       "cell_types": ["CM", "FB"],
       "labels": "paper_annotations",
-      "role": "local_smoke_and_contract"
+      "role": "pilot_default_within_two_to_three_species",
+      "species_selection": "pending_readonly_dcs_inventory"
     },
     "heart_mid": {
       "source": "HEART",
       "species_count": 8,
       "cell_types": ["CM", "FB"],
       "labels": "paper_annotations",
-      "role": "single_gpu_trial"
+      "role": "optional_eight_species_scaling_tier",
+      "species_selection": "pending_readonly_dcs_inventory"
+    },
+    "heart_relationship_matrix": {
+      "source": "HEART",
+      "species_count_policy": "selected_per_combination",
+      "relationship_coverage": ["near", "far", "mixed_categories"],
+      "cell_types": ["CM", "FB"],
+      "labels": "paper_annotations",
+      "role": "integration_effectiveness_after_pilot",
+      "species_selection": "pending_readonly_dcs_inventory"
     },
     "heart_full": {
       "source": "HEART",
       "species_count": 16,
       "cell_types": ["CM", "FB"],
       "labels": "paper_annotations",
-      "role": "full_benchmark_after_trial"
+      "role": "optional_full_scale_after_relationship_matrix",
+      "species_selection": "pending_readonly_dcs_inventory"
     },
     "lbspa_cross_phylum": {
       "source": "LBSPA",
       "species": ["lamprey", "mouse"],
-      "modality": "snRNA_only_first",
+      "modality": "snRNA_followup_after_scRNA",
+      "activation_gate": "scRNA_benchmark_conclusion_recorded",
+      "spatial_policy": "excluded_from_primary_benchmark",
       "ortholog_policy": "one_to_one_only",
-      "role": "cross_phylum_stress_test"
+      "role": "small_cross_phylum_followup"
     }
   },
   "methods": [

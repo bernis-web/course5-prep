@@ -67,6 +67,24 @@ def validate_benchmark_plan(plan: dict[str, Any]) -> dict[str, Any]:
     if plan.get("status") != "preflight_only":
         raise PlanContractError("plan status must remain preflight_only")
 
+    phase_policy = plan.get("phase_policy")
+    if not isinstance(phase_policy, dict):
+        raise PlanContractError("phase_policy must be an object")
+    if phase_policy.get("pilot_species_count_range") != [2, 3]:
+        raise PlanContractError("pilot must use a two-to-three-species range")
+    if phase_policy.get("pilot_goal") != "prove_the_integration_pipeline_runs_end_to_end":
+        raise PlanContractError("pilot goal must remain an end-to-end integration check")
+    if phase_policy.get("later_relationship_coverage") != ["near", "far", "mixed_categories"]:
+        raise PlanContractError("later stages must cover near, far, and mixed-category species")
+    if phase_policy.get("species_selection_status") != "pending_readonly_dcs_inventory":
+        raise PlanContractError("species selection must remain pending until the DCS inventory is checked")
+    if phase_policy.get("primary_modality") != "scRNA":
+        raise PlanContractError("the primary benchmark modality must remain scRNA")
+    if phase_policy.get("spatial_policy") != "out_of_primary_scope":
+        raise PlanContractError("spatial data must remain outside the primary benchmark")
+    if phase_policy.get("snRNA_policy") != "small_followup_after_scRNA_conclusion":
+        raise PlanContractError("snRNA must remain a small follow-up after the scRNA conclusion")
+
     prohibited = plan.get("prohibited_until_explicit_approval")
     if not isinstance(prohibited, list) or not set(REQUIRED_PROHIBITIONS).issubset(prohibited):
         raise PlanContractError("required cloud prohibitions are missing")
@@ -115,9 +133,26 @@ def validate_benchmark_plan(plan: dict[str, Any]) -> dict[str, Any]:
     for name, count in expected_species.items():
         if not isinstance(datasets.get(name), dict) or datasets[name].get("species_count") != count:
             raise PlanContractError(f"{name} must contain species_count={count}")
+    if datasets["heart_mid"].get("role") != "optional_eight_species_scaling_tier":
+        raise PlanContractError("the eight-species HEART tier must remain optional scaling")
+    relationship_matrix = datasets.get("heart_relationship_matrix")
+    if (
+        not isinstance(relationship_matrix, dict)
+        or relationship_matrix.get("species_count_policy") != "selected_per_combination"
+        or relationship_matrix.get("relationship_coverage") != ["near", "far", "mixed_categories"]
+        or relationship_matrix.get("role") != "integration_effectiveness_after_pilot"
+        or relationship_matrix.get("species_selection") != "pending_readonly_dcs_inventory"
+    ):
+        raise PlanContractError("HEART relationship combinations must be separate from fixed scaling tiers")
     lbspa = datasets.get("lbspa_cross_phylum")
-    if not isinstance(lbspa, dict) or lbspa.get("modality") != "snRNA_only_first" or lbspa.get("ortholog_policy") != "one_to_one_only":
-        raise PlanContractError("LBSPA must start with snRNA and one-to-one orthologs")
+    if (
+        not isinstance(lbspa, dict)
+        or lbspa.get("modality") != "snRNA_followup_after_scRNA"
+        or lbspa.get("activation_gate") != "scRNA_benchmark_conclusion_recorded"
+        or lbspa.get("spatial_policy") != "excluded_from_primary_benchmark"
+        or lbspa.get("ortholog_policy") != "one_to_one_only"
+    ):
+        raise PlanContractError("LBSPA must remain a post-scRNA snRNA follow-up with spatial data excluded")
 
     artifacts = plan.get("required_artifacts_per_run")
     if not isinstance(artifacts, list) or not set(REQUIRED_ARTIFACTS).issubset(artifacts):
@@ -127,6 +162,7 @@ def validate_benchmark_plan(plan: dict[str, Any]) -> dict[str, Any]:
         "project": plan["project"],
         "status": plan["status"],
         "methods": method_names,
+        "phase_policy": phase_policy,
         "prohibitions": list(REQUIRED_PROHIBITIONS),
         "side_effects": [],
     }

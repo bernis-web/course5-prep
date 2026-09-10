@@ -1,0 +1,5 @@
+account_slot	run_id	date	profile	reserved_minutes	estimated_cost_cny	actual_cost_cny	balance_before_cny	balance_after_cny	stop_reason	approved_by	artifact_path
+A	run-001	YYYY-MM-DD	4090x1	60	17.40	pending	pending	pending	pending	pending	pending
+B	run-002	YYYY-MM-DD	4090x1	60	17.40	pending	pending	pending	pending	pending	pending
+C	run-003	YYYY-MM-DD	4090x1	60	17.40	pending	pending	pending	pending	pending	pending
+D	run-004	YYYY-MM-DD	4090x1	60	17.40	pending	pending	pending	pending	pending	pending

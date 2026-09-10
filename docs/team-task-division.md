@@ -24,7 +24,7 @@
 
 | 建议认领 | 主要关注 | 第一件事（不需要云资源） | 主要交付位置 | 建议复核 |
 | --- | --- | --- | --- | --- |
-| 组员 A | 数据与生物学 | 逐项整理 `docs/teacher-data-request.md` 的 6 个待确认问题，收到老师回复前保持 `pending`，不要猜路径或字段 | `config/startup-preflight.json`、`input_manifest.tsv`、`ortholog_manifest.json` | 组员 C 复核标签转移和金标准定义 |
+| 组员 A | 数据与生物学 | 根据老师回复先在 DCS 逐项只读查询 `docs/teacher-data-request.md` 的剩余证据，不要猜路径、字段或物种名 | `config/startup-preflight.json`、`input_manifest.tsv`、`ortholog_manifest.json` | 组员 C 复核标签转移和金标准定义 |
 | 组员 B | 环境与算力 | 运行本地预算/环境预检，读懂 `docs/dcs-image-probe-plan.md` 的证据边界，先不启动实例 | `config/environment-compatibility-plan.json`、`config/dcs-budget-plan.json`、资源记录 | 组员 A 复核数据挂载与内存假设 |
 | 组员 C | 评测与报告 | 运行测试与合成 smoke test，按 `config/benchmark-plan.json` 建立真实数据的指标表骨架 | `tests/`、`config/benchmark-plan.json`、运行报告 | 组员 B 复核版本、时间、内存和公平性记录 |
 
@@ -34,7 +34,7 @@
 
 **建议主责：** 熟悉论文、数据结构和细胞类型定义的同学。
 
-**第一步：** 根据 `docs/teacher-data-request.md` 和 `docs/course-admin-reply-template.md` 向课程管理员确认 HEART/LBSPA 路径、文件格式、物种/细胞类型/批次/金标准字段，以及一对一同源基因表的来源。
+**第一步：** 根据 `docs/teacher-data-request.md` 在 DCS 学术搜索、数据和镜像页面只读查询 HEART/LBSPA 路径、文件格式、物种/细胞类型/批次/金标准字段，以及一对一同源基因表的来源。实在找不到的项目再汇总到 `docs/course-admin-reply-template.md`。
 
 **交付物：**
 
@@ -83,7 +83,7 @@
 
 ### 第一轮建议动作
 
-- **组员 A：** 用 docs/teacher-data-request.md 和 docs/course-admin-reply-template.md 整理待确认问题；收到回复前只记录 pending，不填写猜测的路径、字段或物种子集。
+- **组员 A：** 用 docs/teacher-data-request.md 整理 DCS 只读查询结果；老师已确认数据在平台上，但具体路径、字段和可用物种仍要用页面证据落库，找不到时再提问。
 - **组员 B：** 运行本地预算、环境和只读探针，重点看 smoke-output/dcs-readonly-probe.json 与 config/dcs-budget-plan.json；不要安装包、启动实例或把凭据写进日志。
 - **组员 C：** 运行单元测试和合成 smoke test，阅读 config/benchmark-plan.json，先搭出真实运行的指标/资源记录表，不把合成代理指标写成最终结果。
 
@@ -95,6 +95,6 @@ Pull Request 或工作记录尽量写清楚：改了什么、使用了哪份输�
 
 ## 推荐的第一周顺序
 
-1. A 收集课程管理员的六项确认；B 复核仓库中的预算/镜像约束；C 运行本地测试套件并熟悉运行产物（测试数量以当前仓库输出为准）。
+1. A 在 DCS 核实数据、字段和候选物种；B 复核仓库中的预算/镜像约束；C 运行本地测试套件并熟悉运行产物（测试数量以当前仓库输出为准）。
 2. A 拿到字段后更新启动门；B 根据只读环境报告更新镜像证据；C 准备真实运行的指标表和报告骨架。
 3. 三人共同审查启动门和预算，确认后再决定是否申请第一次单卡试运行。

@@ -1,0 +1,47 @@
+{
+  "currency": "CNY",
+  "source": "user-reported planning assumption on 2026-09-10; reserve is a provisional planning choice",
+  "account_count": 4,
+  "per_account_credit_cny": 100.0,
+  "total_nominal_budget_cny": 400.0,
+  "reserve_cny": 80.0,
+  "operational_spend_cap_cny": 320.0,
+  "reserve_basis": "Keep ¥20 per account for storage, retries, or price drift; replace after the team verifies actual account rules.",
+  "account_merge_status": "not_verified",
+  "allocation_policy": "Book each run to one account; do not assume credits can be pooled or transfer between accounts.",
+  "expanded_trial_policy": {
+    "default_profile": "4090x1",
+    "default_reserved_minutes": 60,
+    "hard_stop_minutes": 60,
+    "max_peak_memory_gb": 75,
+    "requires_group_approval": true,
+    "dual_gpu_requires_single_gpu_evidence": true
+  },
+  "planned_scenarios": [
+    {
+      "name": "pilot_4090x1_30m",
+      "profile": "4090x1",
+      "reserved_minutes": 30,
+      "purpose": "Confirm data visibility, tool entrypoints, and artifact writing."
+    },
+    {
+      "name": "method_trial_4090x1_60m",
+      "profile": "4090x1",
+      "reserved_minutes": 60,
+      "purpose": "Run one controlled method trial after the pilot."
+    },
+    {
+      "name": "extended_4090x1_120m",
+      "profile": "4090x1",
+      "reserved_minutes": 120,
+      "purpose": "Only after the 60-minute trial shows the workload needs more time."
+    },
+    {
+      "name": "dual_gpu_exception_4090x2_30m",
+      "profile": "4090x2",
+      "reserved_minutes": 30,
+      "purpose": "Exception path only after single-GPU memory evidence.",
+      "approval_status": "pending"
+    }
+  ]
+}

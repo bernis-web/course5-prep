@@ -4,6 +4,8 @@ import subprocess
 import sys
 import tempfile
 import unittest
+import zipfile
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 import numpy as np
@@ -16,6 +18,7 @@ from environment_contract import EnvironmentContractError, evaluate_environment,
 from input_contract import InputContractError, validate_metadata, write_metadata_manifest  # noqa: E402
 from ortholog_contract import OrthologContractError, read_orthologs, validate_orthologs, write_ortholog_manifest  # noqa: E402
 from budget_check import BudgetPlanError, evaluate_trial, load_plan  # noqa: E402
+from team_budget_check import TeamBudgetPlanError, evaluate_team_budget, load_team_plan  # noqa: E402
 from run_artifacts import ArtifactContractError, REQUIRED_ARTIFACTS, validate_run_artifacts  # noqa: E402
 from result_contract import ResultContractError, validate_result  # noqa: E402
 from plan_contract import PlanContractError, load_benchmark_plan, validate_benchmark_plan  # noqa: E402
@@ -33,6 +36,189 @@ from smoke_test import (  # noqa: E402
 
 
 class SmokeEvaluatorTests(unittest.TestCase):
+    def test_report_word_template_is_readable_and_placeholder_only(self):
+        root = Path(__file__).resolve().parents[1]
+        template_path = root / "templates" / "course5-final-report-template.docx"
+
+        self.assertTrue(template_path.is_file())
+        with zipfile.ZipFile(template_path) as archive:
+            document_xml = archive.read("word/document.xml").decode("utf-8")
+            styles_xml = archive.read("word/styles.xml")
+            core_xml = archive.read("docProps/core.xml").decode("utf-8")
+
+        self.assertIn("跨物种细胞类型整合工具评测", document_xml)
+        self.assertIn("2至3物种流程试跑", document_xml)
+        self.assertIn("场景化选型指南", document_xml)
+        self.assertIn("待填写", document_xml)
+        self.assertNotIn("479,483", document_xml)
+        self.assertNotIn("示例结果", document_xml)
+        self.assertNotIn("<w:pageBreakBefore", document_xml)
+        self.assertIn("<dc:creator>课题5小组</dc:creator>", core_xml)
+        self.assertNotIn("<dc:creator>python-docx</dc:creator>", core_xml)
+
+        word_ns = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
+        ns = {"w": word_ns}
+        styles_root = ET.fromstring(styles_xml)
+        title_style = next(
+            style
+            for style in styles_root.findall("w:style", ns)
+            if style.get(f"{{{word_ns}}}styleId") == "Title"
+        )
+        self.assertIsNone(title_style.find("w:pPr/w:pBdr", ns))
+        document_root = ET.fromstring(document_xml)
+        page_size = document_root.find(".//w:sectPr/w:pgSz", ns)
+        self.assertIsNotNone(page_size)
+        self.assertEqual(page_size.get(f"{{{word_ns}}}w"), "11906")
+        self.assertEqual(page_size.get(f"{{{word_ns}}}h"), "16838")
+
+    def test_report_delivery_contract(self):
+        root = Path(__file__).resolve().parents[1]
+        delivery_path = root / "docs" / "report-delivery.md"
+        template_path = root / "docs" / "report-template.md"
+
+        self.assertTrue(delivery_path.is_file())
+        self.assertTrue(template_path.is_file())
+        delivery = delivery_path.read_text(encoding="utf-8")
+        template = template_path.read_text(encoding="utf-8")
+
+        self.assertIn("最终交付：`.docx`", delivery)
+        self.assertIn("Markdown", delivery)
+        self.assertIn("JSON", delivery)
+        self.assertIn("不得编造真实实验结果", delivery)
+        self.assertIn("python scripts/build_report_template.py", delivery)
+        for heading in (
+            "## 摘要",
+            "## 数据与实验范围",
+            "## 方法与公平性控制",
+            "## 结果",
+            "## 算力与成本",
+            "## 局限性",
+            "## 场景化选型指南",
+            "## 附录",
+        ):
+            self.assertIn(heading, template)
+        self.assertIn("smoke test 不能作为最终结果", template)
+
+    def test_teacher_reply_phase_gates(self):
+        plan = load_benchmark_plan()
+
+        result = validate_benchmark_plan(plan)
+        phase_policy = plan["phase_policy"]
+
+        self.assertEqual(phase_policy["pilot_species_count_range"], [2, 3])
+        self.assertEqual(
+            phase_policy["later_relationship_coverage"],
+            ["near", "far", "mixed_categories"],
+        )
+        self.assertEqual(phase_policy["primary_modality"], "scRNA")
+        self.assertEqual(phase_policy["spatial_policy"], "out_of_primary_scope")
+        self.assertEqual(
+            phase_policy["snRNA_policy"],
+            "small_followup_after_scRNA_conclusion",
+        )
+        relationship_matrix = plan["datasets"]["heart_relationship_matrix"]
+        self.assertEqual(
+            relationship_matrix["relationship_coverage"],
+            ["near", "far", "mixed_categories"],
+        )
+        self.assertEqual(relationship_matrix["species_count_policy"], "selected_per_combination")
+        self.assertEqual(plan["datasets"]["heart_mid"]["role"], "optional_eight_species_scaling_tier")
+        self.assertEqual(result["phase_policy"], phase_policy)
+
+    def test_plan_contract_rejects_spatial_data_in_primary_scope(self):
+        plan = load_benchmark_plan()
+        plan["phase_policy"]["spatial_policy"] = "primary_benchmark"
+
+        with self.assertRaises(PlanContractError):
+            validate_benchmark_plan(plan)
+
+    def test_team_budget_plan_models_separate_credits_and_reserve(self):
+        team_plan = load_team_plan()
+        budget_plan = load_plan()
+
+        result = evaluate_team_budget(
+            team_plan,
+            budget_plan,
+            profile_name="4090x1",
+            reserved_minutes=60,
+            runs=1,
+        )
+
+        self.assertEqual(result["account_count"], 4)
+        self.assertEqual(result["total_nominal_budget_cny"], 400.0)
+        self.assertEqual(result["operational_spend_cap_cny"], 320.0)
+        self.assertAlmostEqual(result["estimated_cost_cny"], 17.4, places=2)
+        self.assertTrue(result["within_single_account_credit"])
+        self.assertTrue(result["within_team_spend_cap"])
+        self.assertEqual(result["account_merge_status"], "not_verified")
+
+    def test_team_budget_rejects_invalid_run_count(self):
+        team_plan = load_team_plan()
+        budget_plan = load_plan()
+
+        with self.assertRaises(TeamBudgetPlanError):
+            evaluate_team_budget(
+                team_plan,
+                budget_plan,
+                profile_name="4090x1",
+                reserved_minutes=60,
+                runs=0,
+            )
+
+    def test_team_budget_can_distribute_runs_across_separate_accounts(self):
+        team_plan = load_team_plan()
+        budget_plan = load_plan()
+
+        result = evaluate_team_budget(
+            team_plan,
+            budget_plan,
+            profile_name="4090x1",
+            reserved_minutes=60,
+            runs=16,
+        )
+
+        self.assertAlmostEqual(result["estimated_cost_cny"], 278.4, places=2)
+        self.assertAlmostEqual(result["estimated_cost_per_account_cny"], 69.6, places=2)
+        self.assertTrue(result["within_account_capacity"])
+        self.assertTrue(result["within_team_spend_cap"])
+
+    def test_team_budget_rejects_runs_that_exceed_per_account_reserve(self):
+        team_plan = load_team_plan()
+        budget_plan = load_plan()
+
+        result = evaluate_team_budget(
+            team_plan,
+            budget_plan,
+            profile_name="4090x1",
+            reserved_minutes=60,
+            runs=17,
+        )
+
+        self.assertFalse(result["within_account_capacity"])
+        self.assertTrue(result["within_team_spend_cap"])
+
+    def test_team_budget_reports_max_distributable_runs(self):
+        team_plan = load_team_plan()
+        budget_plan = load_plan()
+
+        one_gpu = evaluate_team_budget(
+            team_plan,
+            budget_plan,
+            profile_name="4090x1",
+            reserved_minutes=60,
+            runs=1,
+        )
+        two_gpu = evaluate_team_budget(
+            team_plan,
+            budget_plan,
+            profile_name="4090x2",
+            reserved_minutes=30,
+            runs=1,
+        )
+
+        self.assertEqual(one_gpu["max_distributable_runs"], 16)
+        self.assertEqual(two_gpu["max_distributable_runs"], 12)
+
     def test_source_manifest_check_verifies_files_without_exposing_content(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp) / "materials"
@@ -296,6 +482,19 @@ class SmokeEvaluatorTests(unittest.TestCase):
         self.assertFalse(result["ready_for_execution"])
         self.assertIn("approval_status", result["blocking_items"])
         self.assertIn("heart_data_path", result["blocking_items"])
+
+    def test_public_accessions_are_recorded_without_unblocking_dcs_paths(self):
+        preflight = load_preflight()
+
+        references = preflight["public_data_references"]
+
+        self.assertEqual(references["HEART"]["doi"], "10.1126/science.adw0855")
+        self.assertEqual(references["HEART"]["cngb_accession"], "CNP0006537")
+        self.assertEqual(references["LBSPA"]["doi"], "10.1126/science.aea2535")
+        self.assertEqual(references["LBSPA"]["cngb_accession"], "CNP0007565")
+        self.assertIsNone(preflight["heart_data_path"])
+        self.assertIsNone(preflight["lbspa_snRNA_path"])
+        self.assertFalse(validate_preflight(preflight)["ready_for_execution"])
 
     def test_startup_preflight_accepts_complete_confirmed_record(self):
         preflight = load_preflight()
