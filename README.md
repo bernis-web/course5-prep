@@ -17,9 +17,9 @@ Set-Location course5-prep
 
 三人建议先按“数据与生物学、环境与算力、评测与报告”三条可轮换主线认领一个小交付物，再互相复核；不绑定姓名，也不设硬边界。打开仓库后的认领表、第一步和交付位置见 `docs/team-task-division.md`。向老师确认信息时使用 `docs/course-admin-reply-template.md`；镜像实际版本核验边界见 `docs/dcs-image-probe-plan.md`；最终容器化冻结规则见 `docs/containerization-plan.md`。
 
-给 Luna 执行下一轮时，直接使用 `docs/superpowers/plans/2026-09-11-luna-execution-plan.md` 中的首条提示词和阶段门。它把本地预检、DCS 只读核验、HEART pilot、正式评测、LBSPA 单核补充、预算硬停止和 Word 交付串成一条可恢复流程；启动门未通过时不会触碰云资源。
+给 GLM-5.3-Flash 执行下一轮时，直接使用 `docs/superpowers/plans/2026-09-11-glm-5.3-flash-execution-plan.md` 中的首条提示词和阶段门。它把本地预检、DCS 只读核验、HEART pilot、正式评测、LBSPA 单核补充、预算硬停止和 Word 交付串成一条可恢复流程；启动门未通过时不会触碰云资源。
 
-需要把当前进度交给 Luna 时，直接发送 `docs/handoff-to-luna.md` 中的消息模板。该文档包含当前提交、阶段门状态、DCS 登录和只读边界、第一轮命令、暂停条件、三人协作方式以及 checkpoint 模板。
+需要把当前进度交给 GLM-5.3-Flash 时，直接发送 `docs/handoff-to-glm-5.3-flash.md` 中的消息模板。该文档包含当前提交、阶段门状态、DCS 登录和只读边界、第一轮命令、暂停条件、三人协作方式以及 checkpoint 模板。
 
 第一次协作时，组员 A 先整理课程数据确认项，组员 B 先做本地环境/预算/只读探针，组员 C 先跑测试并搭评测记录表；三项都可以轮换，认领表和交付边界见 `docs/team-task-division.md`。
 

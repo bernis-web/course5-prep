@@ -1,13 +1,13 @@
-# 课题5交接文档：给 Luna
+# 课题5交接文档：给 GLM-5.3-Flash
 
 更新时间：2026-09-11
 仓库：https://github.com/bernis-web/course5-prep
 分支：codex/teacher-reply-report-prep
-当前交接提交：367de1c docs: add Luna execution plan
+当前交接提交：以该分支最新提交为准；接手前运行 git log -1
 
 这不是一份“从头猜实验”的任务。仓库已经完成了课题范围梳理、预算约束、三人协作约定、运行产物契约和 Word 报告骨架；你要从现有证据继续推进，先完成只读核验，再按阶段解锁真实实验。
 
-## 直接发给 Luna 的消息
+## 直接发给 GLM-5.3-Flash 的消息
 
 ~~~text
 请接手 GitHub 仓库 https://github.com/bernis-web/course5-prep 的课题5任务，分支为 codex/teacher-reply-report-prep，当前提交为 367de1c。
@@ -15,8 +15,8 @@
 请先阅读：
 1. README.md
 2. CONTRIBUTING.md
-3. docs/handoff-to-luna.md
-4. docs/superpowers/plans/2026-09-11-luna-execution-plan.md
+3. docs/handoff-to-glm-5.3-flash.md
+4. docs/superpowers/plans/2026-09-11-glm-5.3-flash-execution-plan.md
 5. docs/handoff-to-teammates.md
 6. docs/minimal-verification-runbook.md
 7. config/benchmark-plan.json
@@ -172,7 +172,7 @@ DCS 当前需要登录时，由用户在页面完成登录；不要索要、记�
 ## 每轮 checkpoint 模板
 
 ~~~text
-课题5 Luna checkpoint
+课题5 GLM-5.3-Flash checkpoint
 日期：
 当前提交：
 当前门：G0 / G1 / G2 / G3 / G4 / G5
@@ -212,6 +212,6 @@ DCS 当前需要登录时，由用户在页面完成登录；不要索要、记�
 
 ## 交接完成标准
 
-Luna 接手后，至少应先留下一个 G0/G1/G2 状态 checkpoint。真正完成课题5还必须满足：真实数据入口和授权有证据；三种方法有可追溯 pilot/正式结果；正式 kBET 与版本已记录；近缘/远缘/混合场景按留一物种和三个种子报告；snRNA 与 scRNA 分开；时间、内存、成本和失败原因齐全；Word 报告与机器可读结果一致。
+GLM-5.3-Flash 接手后，至少应先留下一个 G0/G1/G2 状态 checkpoint。真正完成课题5还必须满足：真实数据入口和授权有证据；三种方法有可追溯 pilot/正式结果；正式 kBET 与版本已记录；近缘/远缘/混合场景按留一物种和三个种子报告；snRNA 与 scRNA 分开；时间、内存、成本和失败原因齐全；Word 报告与机器可读结果一致。
 
 仅复制仓库、跑通 smoke test 或写完计划，不等于课题完成。
