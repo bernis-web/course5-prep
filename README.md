@@ -19,6 +19,8 @@ Set-Location course5-prep
 
 给 Luna 执行下一轮时，直接使用 `docs/superpowers/plans/2026-09-11-luna-execution-plan.md` 中的首条提示词和阶段门。它把本地预检、DCS 只读核验、HEART pilot、正式评测、LBSPA 单核补充、预算硬停止和 Word 交付串成一条可恢复流程；启动门未通过时不会触碰云资源。
 
+需要把当前进度交给 Luna 时，直接发送 `docs/handoff-to-luna.md` 中的消息模板。该文档包含当前提交、阶段门状态、DCS 登录和只读边界、第一轮命令、暂停条件、三人协作方式以及 checkpoint 模板。
+
 第一次协作时，组员 A 先整理课程数据确认项，组员 B 先做本地环境/预算/只读探针，组员 C 先跑测试并搭评测记录表；三项都可以轮换，认领表和交付边界见 `docs/team-task-division.md`。
 
 三人按同一顺序复现本地检查时，直接使用 `docs/minimal-verification-runbook.md`；其中的退出码 2 表示预检阻塞，不表示脚本崩溃，也不构成 DCS 启动许可。
