@@ -27,6 +27,8 @@ Set-Location course5-prep
 
 要把项目交给组员，直接发送 `docs/handoff-to-teammates.md` 中的消息模板；它同时列出了三人的首轮认领、目前可以开始的工作和真实实验前的启动清单。
 
+下节课前的文献精读、可执行初步方案和分工汇报见 `docs/monday-presentation-brief.md`。运行 `python scripts/build_monday_presentation.py` 可重建 `deliverables/course5-monday-presentation.pptx`。
+
 如果四个账号各有 ¥100 体验金，使用 `config/team-budget-plan.json` 和 `python scripts/team_budget_check.py` 做团队层面的规划；它不会连接 DCS，也不会把账号余额默认为可合并。
 实际运行的账号分配和成本记录使用 `docs/team-budget-ledger-template.tsv` 的副本，放在组内受控位置，不要把真实账号信息提交到仓库。
 
