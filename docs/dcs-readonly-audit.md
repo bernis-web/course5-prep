@@ -59,6 +59,31 @@
 
 2026-09-10 已复核公共库目录、默认项目的公共库数据页、镜像详情和 Genpilot 文献元数据。论文题名、DOI 和 CNGB accession 已定位；`HEART`、`LBSPA` 及两个 accession 仍未在当前可见 DCS 文件目录中定位。下一步由组员继续查课程共享项目/目录入口，或请课程方指出入口。未知路径、字段和物种清单继续保持 `pending`。
 
+## 2026-09-12 只读核验（GLM-5.3-Flash 接手首轮）
+
+核验日期：2026-09-12。已登录页面的只读浏览：项目列表、默认项目数据管理、公共库（公共数据 / 公共项目 / 公共镜像）。没有创建实例、复制数据、上传文件、提交任务或支付；页面账号标识与项目编号不写入仓库。
+
+### 项目与共享入口（G1）
+
+- 项目页"所有项目"仅 1 个默认项目；"我负责的 / 我管理的 / 我参与的"中"我参与的"为空（页面提示"您目前没有项目"）。
+- 默认项目数据管理 > 项目数据：仅 RawData、ResultData、ManualData 三个系统默认文件夹；进入 RawData 内部无任何文件。
+- 结论：当前账号（DCS-华北2）可见范围内不存在课程共享项目，项目内也没有挂载课程数据。课程数据"存在性已知、路径未证实"。
+
+### 公共库数据与公共项目（G1）
+
+- 公共数据栏目共 60 条。搜索 `HEART`、`heart`、`LBSPA`、`lamprey`、`heart atlas`、`cross-species`、`CNP0006537`、`CNP0007565` 均为 0 条。
+- 公共项目栏目共 7 条，仍全部为通用 demo 项目（Stereo-seq_FFPE_demo、single_cell_RNA-seq_demo、Bulk_RNA-seq _demo、WGS_VariantCalling_demo、Stereo_seq_H&E_Demo、Single_Cell_ATAC-seq_Demo、Stereo-seq_ssDNA_Demo），没有课程项目。
+- 与 2026-09-09/10 结论一致：公共目录不暴露课程挂载位置。老师所说"可在 DCS 查询"更可能指向尚未加入的课程共享项目，或需授权后才可见的私有挂载。
+
+### 公共镜像（G2 页面级）
+
+- 镜像库共 990 个。
+- `SATURN` 命中 2 个：`SATURN--22`（已知默认候选）与 `SATURN--21`（33.6 G，更新 2026-07-27，本轮新记录）。`SATURN--21` 页面 Python3 清单与 `SATURN--22` 页面版本一致：`anndata==0.10.8`、`scanpy==1.10.3`、`scvi-tools==1.1.6.post2`、`torch==2.6.0`、`fair-esm==2.0.0`、`faiss-gpu==1.7.2`、`scikit-learn==1.6.1`；两个镜像页面均未列出名为 `saturn` 的包或命令。
+- `SAMap` 命中 3 个：`samap_all`、`BENGAL--SAMap--17`（页面双版本冲突维持原判）、`samap_zhangzijian4`（2025-09-05，新候选，页面未展开核验）。
+- `scVI` 命中 6 个：`scvi_zt`（CPU 参考）、`integration_scvi_07`、`integration_scvi_06`、`scvi`（python3.9+scvi）、`docker-scvi`、`BENGAL--integration--noscvi--01`；后 5 个仅记录名称，未展开核验。
+- `kBET` 命中 0 个：平台无预置 kBET 专用镜像。正式 kBET 只能在候选镜像实例内确认实现与版本，G2 该项继续阻塞。
+- 页面声明仍不能替代实例内 import / `--version` / GPU 证据；`config/startup-preflight.json` 全部字段维持 pending。
+
 ## 结论
 
-平台有可复用的 SATURN、SAMap、scVI 镜像候选，老师也确认数据可查；当前缺口是找到课程数据的正确入口，并在候选实例内确认真实导入名和版本。首轮实验范围已收窄为 HEART 2–3 个物种的单细胞流程试跑，只有路径、字段、物种选择、运行时入口和正式 kBET 都核实后，才讨论 4090×1 的受控试运行。
+平台有可复用的 SATURN、SAMap、scVI 镜像候选，老师也确认数据可查；当前缺口收敛为一个具体问题：课程共享项目的入口（把当前账号加入课程项目），或课程方给出数据所在的项目/目录名称；之后才能在候选实例内确认真实导入名和版本。首轮实验范围已收窄为 HEART 2–3 个物种的单细胞流程试跑，只有路径、字段、物种选择、运行时入口和正式 kBET 都核实后，才讨论 4090×1 的受控试运行。
