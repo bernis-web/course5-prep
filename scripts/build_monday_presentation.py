@@ -43,7 +43,7 @@ SLIDES: tuple[SlideSpec, ...] = (
         bullets=(
             "组员：____、____、____",
             "课程阶段：下节课前方案汇报",
-            "当前状态：G0 本地基线通过；G1/G2 只读证据待补齐",
+            "当前状态：G0 本地基线通过；G1/G2 只读排查完成，等待课程数据入口",
         ),
         note="开场说明：本次汇报的是可执行初步方案，不是工具结果排名。",
     ),
@@ -53,8 +53,9 @@ SLIDES: tuple[SlideSpec, ...] = (
             "目标：做可审计的跨物种单细胞整合基准评测",
             "路径：HEART 2-3 物种先打通流程，再扩展近缘/远缘/混合场景",
             "后置：LBSPA 七鳃鳗-小鼠 snRNA 只做单细胞主结论后的补充",
-            "已完成：47 个单元测试、合成 smoke test、预算与契约检查通过",
-            "阻塞项：DCS 数据路径、字段、实例内版本、正式 kBET 仍待只读核验",
+            "已完成：本地基线全绿；DCS 两区域只读排查完成（课程数据 0 命中）",
+            "阻塞项：课程数据入口待老师回复；实例内版本与正式 kBET 待开实例核验",
+            "镜像候选：SATURN--22/--21 页面同栈；平台无预置 kBET 镜像",
             "纪律：启动门未通过前，不创建实例、不上传数据、不安装包、不提交任务",
         ),
         note="强调当前是准备完成，不是实验完成；pending 是安全状态。",
@@ -174,7 +175,7 @@ SLIDES: tuple[SlideSpec, ...] = (
         title="风险与应对",
         table=(
             ("风险", "应对"),
-            ("DCS 数据入口缺失", "记录搜索范围，查课程共享项目，再集中提问"),
+            ("DCS 数据入口缺失", "两区域排查已留证据；已向老师提交精确问题，等待回复"),
             ("镜像版本冲突", "实例内只读 import/which/version，不按页面猜"),
             ("OOM 或超时", "保存失败 artifact，缩小物种/细胞/时间"),
             ("指标不可比", "统一输入、拆分、种子、版本和资源记录"),
@@ -186,7 +187,7 @@ SLIDES: tuple[SlideSpec, ...] = (
         title="结论与下一步",
         bullets=(
             "方案已达到可交接标准：数据、方法、指标、预算、分工和停止线明确",
-            "下一步先完成 G1/G2：DCS 数据字段与候选镜像实例证据",
+            "下一步：老师回复入口后补 G1（路径/字段/物种），再开实例补 G2",
             "G1/G2 通过后提交启动门审查，申请 4090x1 最小 pilot",
             "pilot 只验证流程；正式排名留给近缘/远缘/混合场景",
             "最终交付基准报告、场景化选型指南和 Word 结题报告",
@@ -387,7 +388,7 @@ def build() -> Path:
                 add_process(slide, spec.process)
             if spec.table:
                 add_table(slide, spec.table)
-            bullets_top = 4.9 if spec.process else 1.48
+            bullets_top = 2.35 if spec.process else 1.48
             if not spec.table:
                 add_bullets(slide, spec.bullets, top=bullets_top)
             elif spec.bullets:

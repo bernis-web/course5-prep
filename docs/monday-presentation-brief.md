@@ -11,9 +11,11 @@
 1. 课程网页、HEART 论文、LBSPA 论文的版本核验；
 2. 本地 47 个单元测试与合成 smoke test 通过；
 3. 输入、同源基因、预算、环境、结果 artifact 和启动门脚本已经落地；
-4. 候选镜像与数据查询边界已经整理，当前不消耗 DCS 资源。
+4. 候选镜像与数据查询边界已经整理，当前不消耗 DCS 资源；
+5. （2026-09-12）DCS 华北2/华南1 两区域只读排查完成：项目、共享项目、公共数据、公共项目全部检索词 0 条，镜像名单已刷新（SATURN--21 与 SATURN--22 页面同栈；平台无预置 kBET 镜像）；
+6. （2026-09-13）给老师的提问消息已定稿发出，等待课程数据入口回复；正式实验在回复前不启动。
 
-当前仍未通过启动门：HEART/LBSPA 在 DCS 中的具体路径、字段、物种清单、镜像实例内入口和版本、正式 kBET 实现均待只读核验。因此方案可执行，但真实运行必须等证据补齐并经三人批准。
+当前仍未通过启动门：课程数据入口待老师回复；HEART/LBSPA 的具体路径、字段、物种清单、镜像实例内入口和版本、正式 kBET 实现均待只读核验。因此方案可执行，但真实运行必须等证据补齐并经三人批准。
 
 ## 2. 课题理解
 
@@ -182,6 +184,7 @@ python scripts/result_contract.py <run-directory>/metrics.json <run-directory>/r
 | 课程要求核对 | `docs/course-requirements-audit.md` |
 | 论文来源笔记 | `docs/source-notes.md` |
 | 数据只读清单 | `docs/teacher-data-request.md` |
+| DCS 只读核验记录 | `docs/dcs-readonly-audit.md` |
 | 本地验证流程 | `docs/minimal-verification-runbook.md` |
 | 实验计划真源 | `config/benchmark-plan.json` |
 | 分工与轮次 | `docs/team-task-division.md` |
