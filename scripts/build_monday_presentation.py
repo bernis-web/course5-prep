@@ -33,166 +33,161 @@ class SlideSpec:
     bullets: tuple[str, ...] = ()
     table: tuple[tuple[str, ...], ...] | None = None
     process: tuple[str, ...] | None = None
+    takeaway: str | None = None
     note: str | None = None
 
 
 SLIDES: tuple[SlideSpec, ...] = (
     SlideSpec(
         title="跨物种细胞类型整合工具评测",
-        subtitle="SATURN vs SAMap vs scVI 系 | 课题5初步方案",
+        subtitle="SATURN vs SAMap vs scVI ｜ 课题5 初步方案汇报",
         bullets=(
             "组员：____、____、____",
-            "课程阶段：下节课前方案汇报",
-            "当前状态：G0 本地基线通过；G1/G2 只读排查完成，等待课程数据入口",
+            "本次汇报：我们打算怎么做这件事",
+            "当前状态：方案已就绪，等课程数据入口",
         ),
-        note="开场说明：本次汇报的是可执行初步方案，不是工具结果排名。",
+        note="开场说明：今天讲的是“怎么做”的方案，还没有实验结果；以后所有结论都会来自我们自己跑出的数据。",
     ),
     SlideSpec(
-        title="一页结论",
+        title="我们要回答的问题",
         bullets=(
-            "目标：做可审计的跨物种单细胞整合基准评测",
-            "路径：HEART 2-3 物种先打通流程，再扩展近缘/远缘/混合场景",
-            "后置：LBSPA 七鳃鳗-小鼠 snRNA 只做单细胞主结论后的补充",
-            "已完成：本地基线全绿；DCS 两区域只读排查完成（课程数据 0 命中）",
-            "阻塞项：课程数据入口待老师回复；实例内版本与正式 kBET 待开实例核验",
-            "镜像候选：SATURN--22/--21 页面同栈；平台无预置 kBET 镜像",
-            "纪律：启动门未通过前，不创建实例、不上传数据、不安装包、不提交任务",
+            "背景：三个工具都能把不同物种的细胞“对齐”后比较，但各论文各用各的，没有公平对比",
+            "我们的课题：同一批数据、同一套规则，让 SATURN、SAMap、scVI 各跑一遍，按统一标准打分",
+            "产出：一张公平的对比表，告诉后来者“什么场景该用哪个工具”",
+            "原则：只认我们自己跑出来的数，论文数值和示例数据只能当参考",
         ),
-        note="强调当前是准备完成，不是实验完成；pending 是安全状态。",
+        takeaway="要点：公平比较是课题的核心——同样的数据、同样的规则，只比工具本身。",
+        note="这一页回答“进一步理解课题”：核心不是复现论文，而是做一次公平的工具比较。",
     ),
     SlideSpec(
-        title="课题理解：四层拆解",
+        title="课题的四个关键点",
         table=(
-            ("层次", "核心问题", "当前设计"),
-            ("数据", "用哪些物种、细胞和标签", "HEART pilot；后续覆盖近缘、远缘、混合"),
-            ("方法", "如何公平比较", "相同输入、拆分、同源规则、随机种子"),
-            ("评价", "什么算好", "macro-F1、kBET、iLISI、silhouette、资源"),
-            ("复现", "别人能否接手", "manifest、参数、版本、日志、指标、资源文件"),
+            ("要回答的问题", "关键点", "我们的做法"),
+            ("用什么数据", "跨物种单细胞数据，带细胞类型标签", "用课程提供的 HEART 心脏图谱，先拿 2-3 个物种"),
+            ("怎么算公平", "三个工具吃同样的输入、同样的规则", "统一细胞、基因、拆分方式和随机种子"),
+            ("怎么算好", "既要把物种混匀，也要保住细胞类型差异", "三个工具用同一组指标打分"),
+            ("别人能否照做", "换个人也能跑出同样的结果", "每步的输入、参数、结果都存档在仓库里"),
         ),
-        note="说明为什么不能直接复用论文结果：我们的任务是评测工具，不是复现一张论文图。",
+        note="核心难点是“公平”和“可复现”，这决定了后面所有设计。",
     ),
     SlideSpec(
-        title="文献精读：HEART",
+        title="文献精读 ①：HEART 心脏跨物种图谱",
         bullets=(
-            "论文：Science，DOI 10.1126/science.adw0855",
-            "27 个物种多组学；scRNA-seq 14 物种、399,483 细胞",
-            "保守性分析：SATURN 整合 16 物种、479,483 细胞；SAMap 做映射",
-            "关键设置：ESM2B 蛋白嵌入、2,000 macrogenes、8,000 HVGs",
-            "数据线索：CNGB CNP0006537；accession 不是 DCS 挂载路径",
-            "对本课题：提供标签和物种范围，但不能替代小组统一评测",
+            "发表在 Science：构建了动物心脏的跨物种单细胞图谱",
+            "规模：27 个物种；其中 16 个物种、约 48 万个细胞做了整合分析",
+            "论文做法：用 SATURN 整合物种，用 SAMap 找跨物种对应的细胞类型",
+            "关键设置：蛋白质序列嵌入（ESM2B）+ 2000 个宏基因 + 8000 个高变基因",
+            "对我们的用处：提供数据来源和标签金标准；但论文结果不能当成我们的结论",
         ),
-        note="讲述时突出 HEART 为什么适合作为主数据，以及 accession 与平台路径的区别。",
+        takeaway="要点：HEART 提供数据和“标准答案”；论文数字是作者的结果，不是我们的。",
+        note="口播稿见讲稿文档第 3 节，60-90 秒版本。",
     ),
     SlideSpec(
-        title="文献精读：LBSPA",
+        title="文献精读 ②：LBSPA 七鳃鳗脑图谱",
         bullets=(
-            "论文：Science，DOI 10.1126/science.aea2535",
-            "七鳃鳗全脑 Stereo-seq：465,778 空间细胞、约 200 万估计细胞",
-            "单核数据：41,678 个高质量 snRNA、209 个细胞簇",
-            "七鳃鳗-小鼠比较：6,930 个一对一同源基因；scVI + Harmony",
-            "对本课题：snRNA 作为跨门类后置补充；空间数据暂不进入主实验",
-            "理由：避免同时混淆物种距离、模态差异和标签体系差异",
+            "发表在 Science：七鳃鳗全脑图谱，同时有空间数据和单核数据",
+            "我们只用单核部分：约 4.2 万个高质量细胞核、209 种细胞簇",
+            "论文做过七鳃鳗-小鼠比较：约 6900 个一对一同源基因 + scVI",
+            "对我们的用处：单细胞实验做完后，用它做“换个物种跨度再试一次”的补充验证",
+            "空间数据暂不进主实验：数据模态不同，混在一起说不清是谁的影响",
         ),
-        note="老师已明确空间数据暂不做；LBSPA 不是被放弃，而是后置。",
+        takeaway="要点：LBSPA 用在最后——单细胞结论出来后，换个物种跨度再验证一次。",
+        note="回应老师要求：空间数据是暂缓不是放弃，排在单细胞结论之后。",
     ),
     SlideSpec(
-        title="数据与场景设计",
+        title="实验总体思路",
+        process=("选数据", "小试跑", "统一打分", "扩场景", "写报告"),
+        bullets=(
+            "选数据：从课程数据里选 2-3 个物种的心脏细胞（心肌细胞、成纤维细胞两类）",
+            "小试跑：三个工具各跑通一次，只验证“能不能跑完”，不比名次",
+            "统一打分：同一套指标给三个工具打分，重复 3 次取平均",
+            "扩场景：加入近缘、远缘、不同类别物种组合，看工具表现怎么变",
+            "写报告：结果、耗时、花费、失败原因全部写进报告",
+        ),
+        note="每一步都有检查点，上一步没通过就不进入下一步。",
+    ),
+    SlideSpec(
+        title="怎么保证比较是公平的",
+        bullets=(
+            "同一批细胞：三个工具用完全相同的输入，谁也不多给数据",
+            "同一张基因对照表：需要基因对应关系的工具，用同一份同源基因表",
+            "考试分开出题：轮流留出一个物种当“考题”，用其余物种训练后去猜它的细胞类型（留一物种法）",
+            "重复实验：同一实验用 3 个随机种子各跑一遍，报告平均和波动",
+            "全程留痕：每次运行的输入、参数、日志、结果都存档，事后可查",
+        ),
+        takeaway="要点：公平 = 同输入、同规则、考题分开、重复三次、全程留痕。",
+        note="“留一物种”是评测设计的核心：避免“用同一批数据既当教练又当考题”。",
+    ),
+    SlideSpec(
+        title="评分指标（每个都配了一句解释）",
         table=(
-            ("场景", "数据", "目的"),
-            ("流程试跑", "HEART 2-3 物种 CM/FB", "验证端到端闭环"),
-            ("近缘组合", "待 DCS 核实物种", "检验保守细胞类型标签转移"),
-            ("远缘组合", "待 DCS 核实物种", "检验跨大距离整合能力"),
-            ("混合类别", "待 DCS 核实物种", "检验类型结构差异"),
-            ("LBSPA 补充", "七鳃鳗-小鼠 snRNA 小子集", "主结论后做稳健性补充"),
+            ("看什么", "指标", "一句话解释"),
+            ("标签猜得准不准", "macro-F1", "被留出物种的细胞类型被猜对的程度"),
+            ("物种混得匀不匀", "kBET、iLISI", "整合之后不同物种的细胞是否混在一起"),
+            ("类型结构保得好不好", "silhouette", "整合时细胞类型之间的界限有没有被抹掉"),
+            ("跑得快不快、贵不贵", "时间、内存、费用", "每次运行的时间和花费都记账"),
         ),
-        note="物种名保持 pending，等页面证据；首轮 pilot 不做工具排名。",
+        note="前三类由同一个脚本统一计算，不允许各工具用各自的算法。",
     ),
     SlideSpec(
-        title="统一评测协议",
+        title="下一步计划（按检查点推进，不卡死时间）",
         bullets=(
-            "相同输入：同一批细胞、QC 规则、标签字段和同源基因规则",
-            "评估方式：留一物种标签转移，报告每折与聚合 macro-F1",
-            "随机种子：7、17、27；报告均值、标准差和失败折",
-            "指标：macro-F1、正式 kBET、iLISI、silhouette、时间和峰值内存",
-            "诊断：同时看批次混合、生物保守性和物种过度混合",
-            "Agent 友好度：文档、CLI/API、参数、输出、失败诊断、复现六项",
+            "第一步（现在）：等老师提供课程数据入口，然后核对数据能读、字段齐全，核对软件环境——这些都不花钱",
+            "第二步（全组同意后）：小规模试跑一次，设好保险丝——单卡、限时到点即停、单次花费 10 元封顶",
+            "第三步（试跑顺利后）：正式实验、统一评分、写 Word 报告",
+            "每一步完成都全组过目；任何一步不通过，就不进入下一步",
         ),
-        note="正式结果禁止使用本地 smoke test 的 kBET 代理。",
+        takeaway="要点：三步走，每步全组过目；上一步不通过，就不进入下一步。",
+        note="回应“时间不用太精确”：以检查点推进，不承诺具体小时数。具体限额数字记录在讲稿文档里。",
     ),
     SlideSpec(
-        title="执行路线：R0-R6",
-        process=("R0 认领", "R1 本地基线", "R2 只读证据", "R3 交叉复核", "R4 启动门", "R5 pilot", "R6 正式报告"),
+        title="外组同学怎么接手（四步就能开始）",
         bullets=(
-            "R0：2-4 小时，完成认领和证据清单",
-            "R1：24 小时，每人提交 draft PR",
-            "R2：24-36 小时，补 G1/G2 只读证据",
-            "R3/R4：互审、补齐启动门并取得三人批准",
-            "R5：单次 25 分钟硬停止；R6：正式场景与 Word 报告",
+            "1. 克隆仓库并装依赖：git clone + pip install -r requirements.txt",
+            "2. 跑测试确认环境正常：python -m unittest discover -s tests -v",
+            "3. 跑一遍示例流程，熟悉输出长什么样：python scripts/smoke_test.py --outdir smoke-output",
+            "4. 按仓库里的检查清单（docs/minimal-verification-runbook.md）逐条做核对",
+            "每条命令的作用都写在文档里，不需要追问任何“隐藏背景”就能开始",
         ),
-        note="R0-R4 均不消耗云资源；R5 前必须通过 startup_preflight。",
+        takeaway="要点：四条命令就能开始；命令逐条有解释，无需任何背景知识。",
+        note="完整命令清单在讲稿文档第 4 节；现场可以直接演示。",
     ),
     SlideSpec(
-        title="接手操作卡",
-        bullets=(
-            "1. clone 仓库，从 main 创建短分支",
-            "2. pip install -r requirements.txt",
-            "3. unittest discover -s tests -v",
-            "4. smoke_test.py --outdir smoke-output",
-            "5. plan_contract.py / budget_check.py --profile 4090x1",
-            "6. startup_preflight.py：证据未齐时退出码 2 是安全阻塞",
-            "7. A 查数据字段；B 查镜像版本；C 维护指标和 artifact 契约",
-        ),
-        note="这一页回应老师要求：非本课题同学拿到方案也能直接开始操作。",
-    ),
-    SlideSpec(
-        title="启动门与预算",
+        title="分工与互相检查",
         table=(
-            ("控制项", "规则", "证据"),
-            ("云动作", "G3 前禁止创建/上传/安装/提交", "startup-preflight.json"),
-            ("硬件", "默认 4090x1", "dcs-budget-plan.json"),
-            ("时间", "pilot 25 分钟硬停止", "resource_usage.json"),
-            ("内存", "75 GB 峰值停止", "resource_usage.json"),
-            ("成本", "单次 ¥10 上限", "budget_check.py 输出"),
-            ("实例", "任务结束立即停止", "运行台账"),
-        ),
-        note="4090x2 只作为单卡内存不足后的例外，需要新证据和组内批准。",
-    ),
-    SlideSpec(
-        title="分工与交叉复核",
-        table=(
-            ("成员", "主线", "当前小交付", "复核人"),
-            ("____", "A 数据与生物学", "路径、字段、物种、标签、同源基因", "C"),
-            ("____", "B 环境与算力", "镜像、版本、GPU、预算、停止规则", "A"),
-            ("____", "C 评测与报告", "指标、留一物种、artifact、报告", "B"),
+            ("成员", "主线", "具体负责", "交叉检查"),
+            ("____", "找数据", "确认数据路径、物种、标签字段能读、含义清楚", "C"),
+            ("____", "管软件和算力", "核对软件版本，控制时长和费用，记录每次运行环境", "A"),
+            ("____", "管评分和报告", "统一评分脚本，整理结果表，写报告", "B"),
         ),
         bullets=(
-            "主线可轮换；主责是推进人，不是审批人",
-            "每次 PR 写清：改了什么、输入、验证方式、是否触碰 DCS",
+            "主线可以轮换；每个人都要复核别人的一块交付",
+            "一条硬规矩：开机花钱的操作，必须全组同意后才执行",
         ),
         note="展示前把成员姓名补齐。",
     ),
     SlideSpec(
-        title="风险与应对",
+        title="可能遇到的问题与对策",
         table=(
-            ("风险", "应对"),
-            ("DCS 数据入口缺失", "两区域排查已留证据；已向老师提交精确问题，等待回复"),
-            ("镜像版本冲突", "实例内只读 import/which/version，不按页面猜"),
-            ("OOM 或超时", "保存失败 artifact，缩小物种/细胞/时间"),
-            ("指标不可比", "统一输入、拆分、种子、版本和资源记录"),
-            ("把论文结果当结论", "结论只引用本组运行 artifact"),
+            ("可能的问题", "我们的对策"),
+            ("课程数据还没拿到", "已在平台全面排查并精确提问老师；回复前不花一分钱"),
+            ("软件环境对不上", "进容器核对版本；缺工具只写安装方案，不偷偷装"),
+            ("试跑爆内存或超时", "保存现场和日志，缩小数据规模再试，不加钱加卡"),
+            ("结果不可比", "输入、种子、版本全部提前写死并存档"),
         ),
-        note="风险应对的核心是留证据，而不是临时改参数。",
+        note="每条风险都已经留了证据或写好预案。",
     ),
     SlideSpec(
-        title="结论与下一步",
+        title="总结",
         bullets=(
-            "方案已达到可交接标准：数据、方法、指标、预算、分工和停止线明确",
-            "下一步：老师回复入口后补 G1（路径/字段/物种），再开实例补 G2",
-            "G1/G2 通过后提交启动门审查，申请 4090x1 最小 pilot",
-            "pilot 只验证流程；正式排名留给近缘/远缘/混合场景",
-            "最终交付基准报告、场景化选型指南和 Word 结题报告",
+            "方案已完整：数据、方法、评分、分工、费用上限全部明确",
+            "已完成：本地流程全部跑通；数据平台已排查两轮，问题已汇总给老师",
+            "等待中：课程数据入口——老师回复后即可进入试跑准备",
+            "纪律：开机花钱前必须全组同意，跑完立即关机",
+            "谢谢大家，欢迎提问",
         ),
-        note="结尾回到老师要求：理解课题、精读文献、可执行方案和小组分工均已覆盖。",
+        takeaway="要点：方案就绪，等数据入口；花钱之前全组同意。",
+        note="结尾回扣老师四项要求：课题理解、文献精读、可执行方案、小组分工均已覆盖。",
     ),
 )
 
@@ -263,7 +258,7 @@ def add_title(slide, title: str, subtitle: str | None = None) -> None:
 def add_bullets(slide, bullets: tuple[str, ...], top: float = 1.48) -> None:
     if not bullets:
         return
-    height = min(4.9, 0.42 + len(bullets) * 0.58)
+    height = min(4.9, 0.42 + len(bullets) * 0.72)
     shape = slide.shapes.add_textbox(Inches(0.82), Inches(top), Inches(11.15), Inches(height))
     frame = shape.text_frame
     frame.clear()
@@ -275,10 +270,28 @@ def add_bullets(slide, bullets: tuple[str, ...], top: float = 1.48) -> None:
         run = paragraph.add_run()
         run.text = item
         run.font.name = FONT
-        run.font.size = Pt(15 if len(item) < 48 else 14)
+        run.font.size = Pt(17 if len(item) < 44 else 15)
         run.font.color.rgb = DARK_TEXT
-        paragraph.space_after = Pt(9)
-        paragraph.line_spacing = 1.12
+        paragraph.space_after = Pt(15)
+        paragraph.line_spacing = 1.28
+
+
+def add_takeaway(slide, text: str) -> None:
+    band = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0), Inches(5.68), Inches(13.333), Inches(1.0))
+    band.fill.solid()
+    band.fill.fore_color.rgb = LIGHT
+    band.line.fill.background()
+    shape = slide.shapes.add_textbox(Inches(0.82), Inches(5.82), Inches(11.7), Inches(0.72))
+    frame = shape.text_frame
+    frame.clear()
+    frame.word_wrap = True
+    paragraph = frame.paragraphs[0]
+    run = paragraph.add_run()
+    run.text = text
+    run.font.name = FONT
+    run.font.size = Pt(15)
+    run.font.bold = True
+    run.font.color.rgb = NAVY
 
 
 def add_table(slide, rows: tuple[tuple[str, ...], ...]) -> None:
@@ -388,7 +401,9 @@ def build() -> Path:
                 add_process(slide, spec.process)
             if spec.table:
                 add_table(slide, spec.table)
-            bullets_top = 2.35 if spec.process else 1.48
+            if spec.takeaway:
+                add_takeaway(slide, spec.takeaway)
+            bullets_top = 2.35 if spec.process else (1.75 if spec.takeaway else 1.48)
             if not spec.table:
                 add_bullets(slide, spec.bullets, top=bullets_top)
             elif spec.bullets:
