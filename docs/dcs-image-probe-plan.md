@@ -39,10 +39,11 @@ python scripts/dcs_readonly_probe.py --output runtime-output/dcs-readonly-probe.
 
 | 镜像 | 角色 | 页面版本 | 实例实际版本 | 入口/导入 | GPU/CUDA | 状态 |
 |---|---|---|---|---|---|---|
-| `SATURN--22` | 默认 GPU 候选 | 已记录于 `config/environment-compatibility-plan.json` | pending | pending | pending | pending |
-| `samap_all` | SAMap 候选 | 未锁定 | pending | pending | pending | pending |
-| `scvi_zt` | CPU 兼容性参考 | CPU PyTorch | pending | pending | CPU 参考 | pending |
+| `SATURN--22` | 默认 GPU 候选 | `latest`；页面含 `scvi-tools 1.1.6.post2`、`scanpy 1.10.3`、`torch 2.6.0`，未显示 SATURN 包/入口 | pending | pending | 页面列出 CUDA 12.4 组件，实例待核验 | pending |
+| `BENGAL--SAMap--17` | SAMap 版本核验候选 | 页面同时列出 `samap 1.0.1` 与 `1.0.16`，存在歧义 | pending | pending | pending | pending |
+| `samap_all` | SAMap 交互环境候选 | 页面有 Jupyter/holoviews-samap 安装指令，未锁定 SAMap 版本 | pending | pending | pending | pending |
+| `scvi_zt` | CPU 兼容性参考 | 页面安装指令未锁定 scvi-tools 版本，并指定 CPU PyTorch 源 | pending | pending | CPU 参考 | pending |
 
 ## 通过条件
 
-只有在候选镜像的实际包版本、入口命令和 GPU/CUDA 证据齐全，并且 `startup_preflight.py` 返回 `ready_for_execution: true` 后，才可以讨论真实数据的首轮试运行。首轮仍使用 4090×1、25 分钟硬停止、75 GB 内存停止线和 ¥10 单次上限；任务结束立即停止实例。
+只有在候选镜像的实际包版本、入口命令和 GPU/CUDA 证据齐全，并且 `startup_preflight.py` 返回 `ready_for_execution: true` 后，才可以讨论真实数据的首轮试运行。首轮仍使用 4090×1、25 分钟硬停止、75 GB 内存停止线和 ¥10 单次上限；必须指名负责人监控并手动停机，不能把平台预算设置当作自动停机保证；任务结束立即停止实例。

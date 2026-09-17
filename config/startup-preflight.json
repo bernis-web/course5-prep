@@ -8,20 +8,55 @@
     "batch": null,
     "gold_label": null
   },
-  "heart_allowed_subsets": null,
+  "heart_allowed_subsets": [
+    "pilot_2_to_3_species",
+    "later_near_far_and_mixed_categories"
+  ],
   "lbspa_snRNA_path": null,
-  "lbspa_spatial_policy": null,
+  "lbspa_spatial_policy": "out_of_primary_scope",
+  "public_data_references": {
+    "HEART": {
+      "doi": "10.1126/science.adw0855",
+      "cngb_accession": "CNP0006537",
+      "processed_data_portal": "https://db.genomics.cn/stomics/heart/",
+      "dcs_project_file_search_status": "not_found_in_current_visible_public_directory"
+    },
+    "LBSPA": {
+      "doi": "10.1126/science.aea2535",
+      "cngb_accession": "CNP0007565",
+      "dcs_project_file_search_status": "not_found_in_current_visible_public_directory"
+    }
+  },
   "image_recommendation": null,
   "image_versions": {
     "SATURN": null,
     "SAMap": null,
     "scVI": null
   },
+  "page_level_image_candidates": {
+    "SATURN": {
+      "name": "SATURN--22",
+      "page_version": "latest",
+      "runtime_entrypoint_status": "pending"
+    },
+    "SAMap": {
+      "names": ["BENGAL--SAMap--17", "samap_all"],
+      "page_version_status": "ambiguous",
+      "runtime_entrypoint_status": "pending"
+    },
+    "scVI": {
+      "preferred_source": "SATURN--22",
+      "page_package_version": "1.1.6.post2",
+      "runtime_entrypoint_status": "pending"
+    }
+  },
   "kbet_implementation": null,
   "kbet_version": null,
   "readonly_sample_command": null,
   "evidence": {
-    "course_admin_reply": null,
-    "recorded_at": null
+    "course_admin_reply": "docs/source-notes.md#老师回复对实验范围的修正",
+    "dcs_readonly_audit": "docs/dcs-readonly-audit.md",
+    "scrna_conclusion": null,
+    "recorded_at": "2026-09-10T18:03:11+08:00"
   }
 }

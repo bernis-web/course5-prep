@@ -15,17 +15,31 @@ Set-Location course5-prep
 
 日常修改请从 `main` 创建短分支，提交后发 Pull Request；不要直接提交真实数据、凭据或 DCS 运行输出。完整约定见 `CONTRIBUTING.md`。
 
-三人建议先按“数据与生物学、环境与算力、评测与报告”三条可轮换主线认领一个小交付物，再互相复核；不绑定姓名，也不设硬边界。打开仓库后的认领表、第一步和交付位置见 `docs/team-task-division.md`。向老师确认信息时使用 `docs/course-admin-reply-template.md`；镜像实际版本核验边界见 `docs/dcs-image-probe-plan.md`；最终容器化冻结规则见 `docs/containerization-plan.md`。
+四人团队按“数据与生物学、环境与算力、评测与报告”三条可轮换主线推进：三名成员各主责一条线，另一名成员机动复核和协调阻塞；每个人都至少复核另一条线的一项。不绑定姓名，也不设硬边界。打开仓库后的认领表、第一步和交付位置见 `docs/team-task-division.md`。向老师确认信息时使用 `docs/course-admin-reply-template.md`；镜像实际版本核验边界见 `docs/dcs-image-probe-plan.md`；最终容器化冻结规则见 `docs/containerization-plan.md`。
+
+下一轮执行以 `docs/next-round-handoff.md` 为当前入口。2026-09-17 已实测 Claude Code 中显式请求 `glm-5.3` 可用；`--model sonnet` 在当前智谱路由下实际仍返回 `canonicalModel: glm-5.3`，不是真正的 Anthropic Sonnet。旧的 GLM-5.3-Flash 专用计划保留为历史执行模板，但接手者必须先核对当前模型和最新阶段门。
+
+需要把当前进度交给 GLM-5.3-Flash 时，直接发送 `docs/handoff-to-glm-5.3-flash.md` 中的消息模板。该文档包含当前提交、阶段门状态、DCS 登录和只读边界、第一轮命令、暂停条件、协作方式以及 checkpoint 模板。
 
 第一次协作时，组员 A 先整理课程数据确认项，组员 B 先做本地环境/预算/只读探针，组员 C 先跑测试并搭评测记录表；三项都可以轮换，认领表和交付边界见 `docs/team-task-division.md`。
 
-三人按同一顺序复现本地检查时，直接使用 `docs/minimal-verification-runbook.md`；其中的退出码 2 表示预检阻塞，不表示脚本崩溃，也不构成 DCS 启动许可。
+四人按同一顺序复现本地检查时，直接使用 `docs/minimal-verification-runbook.md`；其中的退出码 2 表示预检阻塞，不表示脚本崩溃，也不构成 DCS 启动许可。
+
+要把项目交给组员，直接发送 `docs/handoff-to-teammates.md` 中的消息模板；它同时列出了三条主线的首轮认领、目前可以开始的工作和真实实验前的启动清单。
+
+共享课程数据时四人应加入同一个 DCS 项目，成员、角色与计费组结构见 `docs/dcs-team-collaboration.md`；加入同一项目不会合并四个计费组各自的体验金。下一轮推进由 `docs/next-round-handoff.md` 驱动。
+
+下节课前的文献精读、可执行初步方案和分工汇报见 `docs/monday-presentation-brief.md`。运行 `python scripts/build_monday_presentation.py` 可重建 `deliverables/course5-monday-presentation.pptx`。
+
+如果四个账号各有 ¥100 体验金，使用 `config/team-budget-plan.json` 和 `python scripts/team_budget_check.py` 做团队层面的规划；它不会连接 DCS，也不会把账号余额默认为可合并。
+实际运行的账号分配和成本记录使用 `docs/team-budget-ledger-template.tsv` 的副本，放在组内受控位置，不要把真实账号信息提交到仓库。
 
 ## 当前证据
 
 - 课程网页要求比较：标签转移 macro-F1、批次混合与生物保守性（kBET/iLISI/silhouette）、时间/内存、文档易用性和 Agent 友好度。
 - HEART 论文用 SATURN 整合 16 个物种的 479,483 个细胞，并用 SAMap 做跨物种细胞类型关系分析；SATURN 设置包含 ESM2B 蛋白嵌入、2000 个 macrogenes 和 8000 个 HVGs。
 - LBSPA 论文提供七鳃鳗脑 465,778 个空间细胞和 41,678 个高质量单核转录组，并在七鳃鳗-小鼠比较中使用 6,930 个一对一同源基因、scVI（200 epochs）和 Harmony。
+- Genpilot 精确文献检索和 PDF Data Availability 共同确认：HEART 为 DOI `10.1126/science.adw0855`、CNGB `CNP0006537`；LBSPA 为 DOI `10.1126/science.aea2535`、CNGB `CNP0007565`。当前 DCS 项目公共库按两个 accession 搜索均为 0 条，因此它们只作为公共数据引用，不替代课程挂载路径或授权。
 - 本次核对所用课程网页与两篇论文的文件版本见 `docs/source-file-manifest.tsv`；仓库不包含原始论文文件。
 - 本机检查结果：约 31.3 GB RAM、16 个逻辑 CPU、RTX 4060 Laptop 8 GB；`torch` 和 `scikit-learn` 可用，但 `anndata`、`scanpy`、`scvi`、`harmonypy`、`saturn`、`samap` 当前均未安装。
 
@@ -50,6 +64,8 @@ python scripts/environment_contract.py smoke-output/environment-report.json --pr
 python scripts/result_contract.py tests/fixtures/final-metrics.json tests/fixtures/final-resources.json --stage final
 python scripts/plan_contract.py
 python scripts/local_readiness.py --output smoke-output/local-readiness.json
+# 报告正文修改后重新生成 Word 模板
+python scripts/build_report_template.py
 # 有课程材料目录时，把版本核验纳入同一份 readiness 报告
 python scripts/local_readiness.py --source-root <course-material-directory> --output smoke-output/local-readiness-with-materials.json
 # 真实运行目录准备好后，再检查一次交付物契约
@@ -60,32 +76,35 @@ smoke test 只验证指标和审计输出，不执行 SATURN、SAMap 或 scVI。
 `input_contract.py` 只读取元数据并生成带 SHA-256 的 manifest；它不会修改输入表，也不会连接或提交 DCS 任务。
 `ortholog_contract.py` 要求共享的 `species_a/gene_a/species_b/gene_b` 四列，规范化物种对顺序并拒绝一对多映射；它生成 SHA-256 manifest，供 SATURN、SAMap 和 scVI 使用同一基因空间。
 `budget_check.py` 从 `config/dcs-budget-plan.json` 读取已核验价格，只计算成本，不创建实例；默认单卡 25 分钟硬停止、30 分钟预算预留。双卡方案若超出单次 ¥10 上限，命令会保留 JSON 结果但以退出码 2 结束，必须先复核再运行。
+`team_budget_check.py` 从 `config/team-budget-plan.json` 读取用户提供的多账号规划额度，按实际 GPU 单价估算多次运行；它只做账本计算，不验证账号余额、合并规则或充值状态，也不启动 DCS。
 `run_artifacts.py` 只检查单次运行目录中的 `input_manifest.tsv`、`ortholog_manifest.json`、`parameters.json`、`package_versions.txt`、`stdout_stderr.log`、`metrics.json` 和 `resource_usage.json` 是否齐全且非空；失败运行还必须有非空 `failure_reason.txt`。它不会上传、下载、启动任务或修改这些文件。
 `agent_evaluation.py` 检查文档清晰度、CLI/API、参数透明度、机器可读输出、失败诊断和环境复现性六个维度。评分范围为 0–3，但没有本地证据路径和验证说明的条目必须保持 `pending`，不能把 pending 当作 0 分。
-`startup_preflight.py` 检查课程管理员确认是否已补齐数据路径、字段、镜像版本、正式 kBET 规则和只读示例命令；默认配置会阻止启动，且脚本不会检查远端路径或调用 DCS。
+`startup_preflight.py` 按阶段（`--phase`，默认 `heart_pilot`，可选 `lbspa_followup`，未知阶段报错）检查课程管理员确认是否已补齐数据路径、字段、镜像版本、正式 kBET 规则和只读示例命令；`heart_pilot` 不要求 `lbspa_snRNA_path`，`lbspa_followup` 另要求该路径与 `evidence.scrna_conclusion`。默认配置会阻止启动，且脚本不会检查远端路径或调用 DCS。
 `environment_contract.py` 只读取 `environment_check.py` 生成的 JSON，按候选镜像检查必需包、版本记录和 GPU 可见性；报告中的 `scope: local_runtime` 只代表当前本机解释器，不能替代 DCS 实例证据。页面声明的版本与实例内实际版本分开记录，不能互相替代。
 `dcs_readonly_probe.py` 只读取当前运行时的包元数据、`--version` 输出和 `nvidia-smi` 查询，并写出 `scope: runtime_probe` 报告；它不安装包、不联网、不读取表达矩阵、不上传数据，也不会启动或提交 DCS 任务。探针报告的包键与 `environment_contract.py` 对齐，可直接做候选环境预检；进入候选镜像后应使用同一命令保存实例内证据，不能把本机报告当成镜像证据。
 `local_readiness.py --environment-report <probe.json>` 可以直接消费只读探针报告，把实例内包/GPU 证据纳入同一份 readiness 输出；它仍然不会启动 DCS，探针或课程确认缺失时保持阻塞状态。
 `source_manifest_check.py` 只读取课程材料目录中的文件大小和 SHA-256，并与 `docs/source-file-manifest.tsv` 比对；报告不包含原文内容，缺失或哈希不一致时退出码为 2。它只能证明文件版本一致，不能证明课程已授权提供真实数据集。
 `result_contract.py` 校验最终指标和资源字段；所有结果都必须声明 `leave_one_species_out` 和折数，最终阶段还拒绝 `chi2_neighborhood_proxy`，必须记录正式 kBET 的实现名称和版本。`tests/fixtures/final-metrics.json` 中的 `example-*` 仅是契约占位，不能当作真实版本。smoke 阶段可使用代理，但不能把该结果当作最终结论。
 `plan_contract.py` 校验方法集合、留一物种策略、指标、停止线和禁止的云端动作；它通过前，不能把计划状态改为可执行。
-`local_readiness.py` 汇总计划、预算、课程确认和本机候选环境四项检查；传入 `--source-root` 后还会把课程材料大小/哈希核验纳入报告。它只读本地配置与运行时信息并写出一份 JSON；在课程数据和镜像版本尚未确认时，预期返回退出码 2，不能把它当作失败修复或启动许可。
+`local_readiness.py` 汇总计划、预算、课程确认和本机候选环境四项检查；`--phase` 透传给启动预检（默认 `heart_pilot`），报告中的 `target_phase` 标明目标阶段；传入 `--source-root` 后还会把课程材料大小/哈希核验纳入报告。它只读本地配置与运行时信息并写出一份 JSON；在课程数据和镜像版本尚未确认时，预期返回退出码 2，不能把它当作失败修复或启动许可。
+`build_report_template.py` 从 `docs/report-template.md` 生成 A4 Word 模板 `templates/course5-final-report-template.docx`。模板只含报告结构和待填写表格，不会从 smoke test 或论文中制造真实结果；最终交付前仍要按 `docs/report-delivery.md` 核对运行 artifact 并逐页检查 Word。
 
 ## 接入真实数据的最小顺序
 
-1. 先用 HEART 的 3 个物种、CM/FB 两类或三类细胞，使用论文发布标签作为金标准。
-2. 再扩大到 HEART 的 8 个物种，最后才跑 16 个物种。
-3. LBSPA 先只用 lamprey 与 mouse 的 snRNA 子集；空间数据作为第二阶段验证，避免把 modality 差异误算成物种差异。
-4. 每个工具固定输入细胞、基因/同源基因表、HVG 规则、邻居数、随机种子和 CPU/GPU 配置；每次运行保存参数、版本、日志、峰值内存和耗时。
+1. 先在 DCS 中只读查询 HEART/LBSPA 的数据记录、对象格式、字段、可用物种和候选镜像；不要把老师“平台上有”误写成已经取得具体路径或版本。
+2. 首轮只用 HEART 的 2–3 个物种打通流程，默认可从 3 个物种、CM/FB 两类细胞开始，使用论文发布标签作为金标准。这个阶段只回答“流程能不能完整跑通”，不据此评价远距离整合能力。
+3. 流程通过后，再建立近缘、远缘和不同类别混合的物种组合；可逐步扩大细胞数和物种数，但不要求机械地先跑满 8/16 个物种。
+4. 主实验只比较单细胞数据。LBSPA 的 lamprey–mouse 单核数据等单细胞结果形成基本结论后，再做小规模补充；空间数据暂不纳入主实验。
+5. 每个工具固定输入细胞、基因/同源基因表、HVG 规则、邻居数、随机种子和 CPU/GPU 配置；每次运行保存参数、版本、日志、峰值内存和耗时。
 
 ## 推荐比较矩阵
 
 | 场景 | 输入 | 主比较 | 主要结果 |
 |---|---|---|---|
-| 近缘 | HEART 3-8 物种 CM/FB | SATURN、SAMap、scVI + kNN | macro-F1、silhouette、iLISI、时间/内存 |
-| 远缘 | HEART 16 物种 CM/FB | SATURN、SAMap、scVI + kNN | macro-F1、物种混合、保守细胞类型是否被过度合并 |
-| 跨门 | lamprey vs mouse snRNA | SATURN、SAMap、scVI + kNN | 同源基因敏感性、标签转移、失败案例 |
-| 模态压力 | lamprey snRNA + 空间子集 | 仅在方法支持时比较 | 记录 modality 偏差，不与 snRNA 主结果混合 |
+| 流程试跑 | HEART 2–3 物种 CM/FB | SATURN、SAMap、scVI + kNN | 能否跑通、产物完整性、时间/内存 |
+| 近缘组合 | HEART 中待 DCS 核实的近缘物种 | SATURN、SAMap、scVI + kNN | macro-F1、silhouette、iLISI、时间/内存 |
+| 远缘与混合类别 | HEART 中待 DCS 核实的远缘/不同类别物种 | SATURN、SAMap、scVI + kNN | macro-F1、物种混合、保守类型是否被过度合并 |
+| 单核补充 | lamprey vs mouse snRNA 小子集 | 在单细胞结论后小规模比较 | 同源基因敏感性、标签转移、失败案例 |
 
 标签转移建议采用留一物种（或留一批次）评估：整合训练物种后向被留出的物种转移标签，避免直接在同一批数据上“整合后再评分”。scANVI 可作为单独的有监督变体报告，不与无监督 scVI 混为一个分数。
 
@@ -94,20 +113,24 @@ smoke test 只验证指标和审计输出，不执行 SATURN、SAMap 或 scVI。
 已登录 DCS 公共镜像中可搜索到：
 
 - `SATURN--22`：33.6 GB；Python3 清单含 `anndata==0.10.8`、`scanpy==1.10.3`、`scvi-tools==1.1.6.post2`、`fair-esm==2.0.0`、`faiss-gpu==1.7.2`、`torch==2.6.0`，并列出 CUDA 12.4 组件。页面没有明确列出名为 `saturn` 的 Python 包或命令，仍需进入实例后做只读 `import/which` 验证。
-- `samap_all`：6.8 GB；语言标为 R、python，描述页未给出完整 Python 版本清单，不能仅凭镜像名认定依赖已固定。
+- `samap_all`：6.8 GB；语言标为 R、python，页面给出 Jupyter/holoviews-samap 安装指令，但未锁定 SAMap 版本。
+- `BENGAL--SAMap--17`：2.8 GB；Python3 清单同时出现 `samap==1.0.1` 和 `samap==1.0.16`。这属于页面版本歧义，必须在实际候选环境中确认导入到的版本。
 - `scvi_zt`：公共镜像；页面 Bash 指令包含安装 `scanpy`、`scvi-tools`，但同时指定 CPU 版 PyTorch，不适合作为默认 GPU 基准环境。
 
 公平性建议：优先以 `SATURN--22` 为候选基础环境，在同一容器中补齐 SAMap 并锁定版本；若必须分别使用 `samap_all` 和 `scvi_zt`，则把“镜像/依赖差异”作为实验因素，并在报告中分别记录版本、CUDA 可见性和安装命令。
 
 ## DCS Cloud 使用边界
 
-已知账户体验金余额为 ¥99，区域为 DCS-华北2。推荐只在真实数据和容器/依赖检查完成后使用：
+2026-09-09 页面曾显示单个 DCS 账户可用额度约为 ¥99，区域为 DCS-华北2；四个账号各 ¥100 是另行记录的团队规划假设，不记录真实账号标识。推荐只在真实数据和容器/依赖检查完成后使用：
 
 - 首次：4090×1、22 核、90 GB，约 ¥17.40/小时；先跑 0.5 小时试运行，预算约 ¥8.70。
 - 只有确认单卡和内存不足时才考虑双卡；4090×2 约 ¥44.30/小时，不作为默认配置。
-- 运行前设置硬停止：单次测试达到 25 分钟、内存超过 75 GB、或余额消耗超过 ¥10 就停止并检查日志。
+- 默认保守试运行设置硬停止：25 分钟、峰值内存 75 GB、或 ¥10 任一达到就停止；仓库不把平台预算设置视为自动停机保证，必须由每次运行指名的负责人监控并手动执行停机。采用团队预算扩展时，必须先在 `team_budget_check.py` 中核算并把该次批准的时长/成本写入运行记录。
+- 如果四个账号各有 ¥100，可按 `config/team-budget-plan.json` 做团队规划：暂定保留 ¥80 后，可操作上限为 ¥320；4090×1/60 分钟约 ¥17.40/次，3 个工具 × 3 个种子约 ¥156.60。
 - 任务结束立即停止实例；存储和下载费用另计，下载约 ¥0.50/GB。
 - 默认使用课程挂载数据，避免重复上传和下载；严禁把密码、cookie、token 写入日志或代码。
+
+四人加入同一个 DCS 项目便于共享课程数据，但这不会合并各账号的免费体验金，免费体验金也不能转移；成员、计费组与邀请步骤见 `docs/dcs-team-collaboration.md`，下一轮只读排查与工作包划分见 `docs/next-round-handoff.md`。
 
 ## 目前待确认
 
@@ -117,3 +140,4 @@ smoke test 只验证指标和审计输出，不执行 SATURN、SAMap 或 scVI。
 - 老师是否要求正式 kBET，还是接受在报告中把正式 kBET 作为附加实验。
 
 课程交付要求和 AI 使用日志另见 `docs/course-requirements-audit.md` 与 `docs/ai-use-log.tsv`。组员协作约定见 `CONTRIBUTING.md`。
+最终结题报告交付为 Word 文档；仓库先维护可审计的 Markdown/JSON 源文件，报告结构和导出边界见 `docs/report-delivery.md`。
