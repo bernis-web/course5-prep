@@ -26,7 +26,7 @@
 
 1. **本地 smoke**：只使用仓库 `requirements.txt`，运行合成指标、输入/同源基因契约和结果契约；不安装三种真实工具。
 2. **实例只读核验**：课程管理员确认数据和镜像后，先运行探针，不读取表达矩阵，不安装包，不提交任务。
-3. **单卡试运行**：只有 `startup_preflight.py` 为 `ready_for_execution: true`、三人明确批准且 `budget_check.py --profile 4090x1` 在上限内，才做不超过 25 分钟的最小 smoke run；峰值内存超过 75 GB 或成本达到 ¥10 立即停止。
+3. **单卡试运行**：只有 `startup_preflight.py` 为 `ready_for_execution: true`、四人明确批准且 `budget_check.py --profile 4090x1` 在上限内，才做不超过 25 分钟的最小 smoke run；峰值内存超过 75 GB 或成本达到 ¥10 时，由指名负责人立即手动停止（预算/提醒阈值只提醒，不会自动停机）。
 4. **最终冻结**：2–3 物种首轮通过后才保存容器配方/锁定文件、探针 JSON 和运行 artifact；扩大到近缘/远缘/不同类别组合或后置 LBSPA 单核补充前重新复核预算和内存。空间数据暂不纳入主实验。
 
 ## 不应提交的内容

@@ -15,17 +15,19 @@ Set-Location course5-prep
 
 日常修改请从 `main` 创建短分支，提交后发 Pull Request；不要直接提交真实数据、凭据或 DCS 运行输出。完整约定见 `CONTRIBUTING.md`。
 
-三人建议先按“数据与生物学、环境与算力、评测与报告”三条可轮换主线认领一个小交付物，再互相复核；不绑定姓名，也不设硬边界。打开仓库后的认领表、第一步和交付位置见 `docs/team-task-division.md`。向老师确认信息时使用 `docs/course-admin-reply-template.md`；镜像实际版本核验边界见 `docs/dcs-image-probe-plan.md`；最终容器化冻结规则见 `docs/containerization-plan.md`。
+四人团队按“数据与生物学、环境与算力、评测与报告”三条可轮换主线推进：三名成员各主责一条线，另一名成员机动复核和协调阻塞；每个人都至少复核另一条线的一项。不绑定姓名，也不设硬边界。打开仓库后的认领表、第一步和交付位置见 `docs/team-task-division.md`。向老师确认信息时使用 `docs/course-admin-reply-template.md`；镜像实际版本核验边界见 `docs/dcs-image-probe-plan.md`；最终容器化冻结规则见 `docs/containerization-plan.md`。
 
-给 GLM-5.3-Flash 执行下一轮时，直接使用 `docs/superpowers/plans/2026-09-11-glm-5.3-flash-execution-plan.md` 中的首条提示词和阶段门。它把本地预检、DCS 只读核验、HEART pilot、正式评测、LBSPA 单核补充、预算硬停止和 Word 交付串成一条可恢复流程；启动门未通过时不会触碰云资源。
+下一轮执行以 `docs/next-round-handoff.md` 为当前入口。2026-09-17 已实测 Claude Code 中显式请求 `glm-5.3` 可用；`--model sonnet` 在当前智谱路由下实际仍返回 `canonicalModel: glm-5.3`，不是真正的 Anthropic Sonnet。旧的 GLM-5.3-Flash 专用计划保留为历史执行模板，但接手者必须先核对当前模型和最新阶段门。
 
-需要把当前进度交给 GLM-5.3-Flash 时，直接发送 `docs/handoff-to-glm-5.3-flash.md` 中的消息模板。该文档包含当前提交、阶段门状态、DCS 登录和只读边界、第一轮命令、暂停条件、三人协作方式以及 checkpoint 模板。
+需要把当前进度交给 GLM-5.3-Flash 时，直接发送 `docs/handoff-to-glm-5.3-flash.md` 中的消息模板。该文档包含当前提交、阶段门状态、DCS 登录和只读边界、第一轮命令、暂停条件、协作方式以及 checkpoint 模板。
 
 第一次协作时，组员 A 先整理课程数据确认项，组员 B 先做本地环境/预算/只读探针，组员 C 先跑测试并搭评测记录表；三项都可以轮换，认领表和交付边界见 `docs/team-task-division.md`。
 
-三人按同一顺序复现本地检查时，直接使用 `docs/minimal-verification-runbook.md`；其中的退出码 2 表示预检阻塞，不表示脚本崩溃，也不构成 DCS 启动许可。
+四人按同一顺序复现本地检查时，直接使用 `docs/minimal-verification-runbook.md`；其中的退出码 2 表示预检阻塞，不表示脚本崩溃，也不构成 DCS 启动许可。
 
-要把项目交给组员，直接发送 `docs/handoff-to-teammates.md` 中的消息模板；它同时列出了三人的首轮认领、目前可以开始的工作和真实实验前的启动清单。
+要把项目交给组员，直接发送 `docs/handoff-to-teammates.md` 中的消息模板；它同时列出了三条主线的首轮认领、目前可以开始的工作和真实实验前的启动清单。
+
+共享课程数据时四人应加入同一个 DCS 项目，成员、角色与计费组结构见 `docs/dcs-team-collaboration.md`；加入同一项目不会合并四个计费组各自的体验金。下一轮推进由 `docs/next-round-handoff.md` 驱动。
 
 下节课前的文献精读、可执行初步方案和分工汇报见 `docs/monday-presentation-brief.md`。运行 `python scripts/build_monday_presentation.py` 可重建 `deliverables/course5-monday-presentation.pptx`。
 
@@ -123,10 +125,12 @@ smoke test 只验证指标和审计输出，不执行 SATURN、SAMap 或 scVI。
 
 - 首次：4090×1、22 核、90 GB，约 ¥17.40/小时；先跑 0.5 小时试运行，预算约 ¥8.70。
 - 只有确认单卡和内存不足时才考虑双卡；4090×2 约 ¥44.30/小时，不作为默认配置。
-- 默认保守试运行设置硬停止：25 分钟、峰值内存 75 GB、或 ¥10 任一达到就停止；采用团队预算扩展时，必须先在 `team_budget_check.py` 中核算并把该次批准的时长/成本写入运行记录。
+- 默认保守试运行设置硬停止：25 分钟、峰值内存 75 GB、或 ¥10 任一达到就停止；仓库不把平台预算设置视为自动停机保证，必须由每次运行指名的负责人监控并手动执行停机。采用团队预算扩展时，必须先在 `team_budget_check.py` 中核算并把该次批准的时长/成本写入运行记录。
 - 如果四个账号各有 ¥100，可按 `config/team-budget-plan.json` 做团队规划：暂定保留 ¥80 后，可操作上限为 ¥320；4090×1/60 分钟约 ¥17.40/次，3 个工具 × 3 个种子约 ¥156.60。
 - 任务结束立即停止实例；存储和下载费用另计，下载约 ¥0.50/GB。
 - 默认使用课程挂载数据，避免重复上传和下载；严禁把密码、cookie、token 写入日志或代码。
+
+四人加入同一个 DCS 项目便于共享课程数据，但这不会合并各账号的免费体验金，免费体验金也不能转移；成员、计费组与邀请步骤见 `docs/dcs-team-collaboration.md`，下一轮只读排查与工作包划分见 `docs/next-round-handoff.md`。
 
 ## 目前待确认
 

@@ -46,4 +46,4 @@ python scripts/dcs_readonly_probe.py --output runtime-output/dcs-readonly-probe.
 
 ## 通过条件
 
-只有在候选镜像的实际包版本、入口命令和 GPU/CUDA 证据齐全，并且 `startup_preflight.py` 返回 `ready_for_execution: true` 后，才可以讨论真实数据的首轮试运行。首轮仍使用 4090×1、25 分钟硬停止、75 GB 内存停止线和 ¥10 单次上限；任务结束立即停止实例。
+只有在候选镜像的实际包版本、入口命令和 GPU/CUDA 证据齐全，并且 `startup_preflight.py` 返回 `ready_for_execution: true` 后，才可以讨论真实数据的首轮试运行。首轮仍使用 4090×1、25 分钟硬停止、75 GB 内存停止线和 ¥10 单次上限；必须指名负责人监控并手动停机，不能把平台预算设置当作自动停机保证；任务结束立即停止实例。

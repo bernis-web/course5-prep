@@ -71,12 +71,12 @@ python scripts/startup_preflight.py
 
 ## D. 真实运行前的最小门槛
 
-三人共同确认以下证据后，才讨论第一次单卡试运行：
+四人共同确认以下证据后，才讨论第一次单卡试运行：
 
 1. 已在 DCS 中只读核实 HEART/LBSPA 路径、格式、字段、可用物种和数据授权；首轮 2–3 个物种及后续近缘/远缘/混合类别组合已记录。
 2. 候选镜像内用同一条只读探针确认 Python、CUDA、GPU、SATURN/SAMap/scVI、`anndata`、`scanpy`、`torch` 和正式 kBET 版本。
 3. `startup_preflight.py` 返回 `ready_for_execution: true`，`budget_check.py --profile 4090x1` 通过。
-4. 组内写明单次硬停止：默认预检仍为 25 分钟；若采用团队预算扩展，则由批准的运行单独写明 60/120 分钟上限，但峰值内存 75 GB 或该次分配的预算上限任一达到即停止；任务结束立即关停实例。
+4. 组内写明单次硬停止：默认预检仍为 25 分钟；若采用团队预算扩展，则由批准的运行单独写明 60/120 分钟上限，但峰值内存 75 GB 或该次分配的预算上限任一达到即由指名负责人手动停止；不能把平台预算设置当作自动停机保证；任务结束立即关停实例。
 5. 运行目录必须包含 `input_manifest.tsv`、`ortholog_manifest.json`、`parameters.json`、`package_versions.txt`、`stdout_stderr.log`、`metrics.json`、`resource_usage.json`，失败时另有 `failure_reason.txt`。
 
 真实运行后的检查顺序是：
