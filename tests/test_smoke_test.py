@@ -525,6 +525,50 @@ class SmokeEvaluatorTests(unittest.TestCase):
         self.assertTrue(result["ready_for_execution"])
         self.assertEqual(result["blocking_items"], [])
 
+    def test_heart_pilot_phase_does_not_block_on_empty_lbspa_snrna_path(self):
+        preflight = load_preflight()
+
+        result = validate_preflight(preflight, phase="heart_pilot")
+
+        self.assertNotIn("lbspa_snRNA_path", result["blocking_items"])
+        self.assertIn("heart_data_path", result["blocking_items"])
+        self.assertFalse(result["ready_for_execution"])
+
+    def test_lbspa_followup_phase_requires_snrna_path_and_scrna_conclusion_evidence(self):
+        preflight = load_preflight()
+        preflight["approval_status"] = "confirmed"
+        preflight["heart_data_path"] = "/dcs/course/heart"
+        preflight["heart_file_format"] = "h5ad"
+        preflight["heart_metadata_fields"] = {
+            "species": "species",
+            "cell_type": "cell_type",
+            "batch": "batch",
+            "gold_label": "paper_label",
+        }
+        preflight["heart_allowed_subsets"] = ["3_species", "8_species", "16_species"]
+        preflight["lbspa_spatial_policy"] = "second_phase_only"
+        preflight["image_recommendation"] = "SATURN--22"
+        preflight["image_versions"] = {"SATURN": "locked", "SAMap": "locked", "scVI": "locked"}
+        preflight["kbet_implementation"] = "official-package"
+        preflight["kbet_version"] = "1.0.0"
+        preflight["readonly_sample_command"] = "inspect-object --path <mounted-path>"
+        preflight["evidence"] = {
+            "course_admin_reply": "docs/course-admin-confirmation.txt",
+            "recorded_at": "2026-09-10T10:00:00+08:00",
+        }
+
+        result = validate_preflight(preflight, phase="lbspa_followup")
+
+        self.assertFalse(result["ready_for_execution"])
+        self.assertIn("lbspa_snRNA_path", result["blocking_items"])
+        self.assertIn("evidence.scrna_conclusion", result["blocking_items"])
+
+    def test_unknown_preflight_phase_raises_preflight_error(self):
+        preflight = load_preflight()
+
+        with self.assertRaises(PreflightError):
+            validate_preflight(preflight, phase="unknown_phase")
+
     def test_environment_contract_blocks_unavailable_or_unversioned_requirements(self):
         plan = load_environment_plan()
         report = {

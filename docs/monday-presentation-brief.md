@@ -71,7 +71,7 @@ Set-Location course5-prep
 # 2. 安装依赖
 python -m pip install -r requirements.txt
 
-# 3. 跑自动测试，确认环境正常（应显示 47 个测试全部通过）
+# 3. 跑自动测试，确认环境正常（2026-09-17 阶段化预检更新后应显示 50 个测试全部通过）
 python -m unittest discover -s tests -v
 
 # 4. 跑一遍示例流程，熟悉输出长什么样（用合成数据，不碰真实数据）

@@ -6,10 +6,10 @@
 
 | 阶段门 | 状态 | 缺口 |
 | --- | --- | --- |
-| G0 本地基线 | 核心通过 / 材料待补 | 47 个测试及 smoke、契约、预算脚本通过；但 2026-09-17 在原课程材料目录只找到七鳃鳗论文，`course-web(1).html` 和心脏论文 PDF 缺失，材料哈希核验为 1/3 |
+| G0 本地基线 | 核心通过 / 材料待补 | 2026-09-17 本轮 50 个测试及 smoke、计划契约、结果契约、artifact contract、Word 模板重建通过；但在原课程材料目录只找到七鳃鳗论文，`course-web(1).html` 和心脏论文 PDF 缺失，材料哈希核验仍为 1/3 |
 | G1 DCS 数据路径/字段/物种/授权 | 未通过 | 四账号中只有一个账号做过两轮只读排查（两个区域均 0 命中）；课程共享项目入口未知 |
 | G2 候选镜像 | 部分完成 | `SATURN--22`/`SATURN--21`、`samap_all`、`BENGAL--SAMap--17`、`scvi_zt` 等页面已发现；实例内入口、真实版本、GPU、正式 kBET 全部 `pending` |
-| G3 启动许可 | 未通过 | `config/startup-preflight.json` 的 `approval_status` 仍为 `pending`，数据字段全空；现有脚本还把后置的 `lbspa_snRNA_path` 无条件列为 HEART pilot 阻塞项，需先完成阶段化门审查 |
+| G3 启动许可 | 未通过 | `config/startup-preflight.json` 的 `approval_status` 仍为 `pending`，HEART 数据字段全空；预检已按阶段校验（默认 `heart_pilot` 不要求 `lbspa_snRNA_path`；`lbspa_followup` 另要求该路径与 `evidence.scrna_conclusion`），阶段化门本身不再阻塞 HEART |
 | HEART pilot | 未开始 | 等 G1+G2+G3 |
 | 正式评测 | 未开始 | 等 HEART pilot 闭环 |
 | LBSPA 单核补充 | 未开始 | 等单细胞基本结论（`config/benchmark-plan.json` 的 activation_gate） |
@@ -91,7 +91,7 @@ D 成员首轮不绑主线，至少交叉复核一条线的一项；后续可与
 
 ## 5. HEART pilot 启动门（全部满足才启动）
 
-在填写启动门前先审查一个已确认的设计矛盾：`benchmark-plan.json` 把 LBSPA snRNA 定义为“scRNA 形成结论后的后置小实验”，但 `startup_preflight.py` 当前把 `lbspa_snRNA_path` 作为所有运行阶段的必填项。下一轮只允许提出并测试“按阶段校验”的修改方案；在规则经四人复核前，不得为了让脚本变绿而填写虚假路径，也不得直接删除这项保护。
+阶段化预检已于 2026-09-17 落实：`startup_preflight.py` 与 `local_readiness.py` 均支持 `--phase heart_pilot`（默认）与 `--phase lbspa_followup`，未知阶段以 `PreflightError`/退出码 2 拒绝。`heart_pilot` 不再要求 `lbspa_snRNA_path`，但保留 HEART 的审批、数据、字段、镜像、kBET 与证据检查；`lbspa_followup` 在此之上另要求 `lbspa_snRNA_path` 与 `evidence.scrna_conclusion`（配置中该证据初始为空）。`benchmark-plan.json` 的 LBSPA 激活门（`scRNA_benchmark_conclusion_recorded`）保持不变；在真实结论落库前，不得为了让脚本变绿而填写虚假路径或伪造结论。
 
 - [ ] 物种 2–3 个、scRNA、优先 CM/FB，论文标注为金标准。
 - [ ] 空间数据排除在外；LBSPA 单核后置。
@@ -118,18 +118,19 @@ D 成员首轮不绑主线，至少交叉复核一条线的一项；后续可与
 你是课题5仓库 D:\projects\course5-prep 的下一轮执行 agent。本轮只做只读检查并报告，不启动任何云资源：
 1. 读 README.md、docs/next-round-handoff.md、docs/dcs-readonly-audit.md、config/startup-preflight.json。
 2. 运行 python -m unittest discover -s tests -v 和 python scripts/startup_preflight.py（不带参数即读默认 config/startup-preflight.json；blocked/pending 是预期结果，不是脚本故障）。
-3. 报告五件事：G0–G3 各门当前状态；startup preflight 的 blocking_items 列表；`lbspa_snRNA_path` 是否仍错误阻塞 HEART pilot；docs/dcs-readonly-audit.md 中四个账号各自是否已有检查记录；工作包 A/B/C 各自的下一步。
+3. 报告五件事：G0–G3 各门当前状态；startup preflight 的 blocking_items 列表（默认 `heart_pilot` 阶段下 `lbspa_snRNA_path` 不应出现在其中）；`--phase lbspa_followup` 下额外阻塞项（`lbspa_snRNA_path`、`evidence.scrna_conclusion`）是否保持；docs/dcs-readonly-audit.md 中四个账号各自是否已有检查记录；工作包 A/B/C 各自的下一步。
 4. 边界：不访问凭据或登录态，不创建/启动 DCS 实例或任务，不安装包，不付费，不提交或推送；遇到登录、邀请、权限、付费、或字段/物种选择会改变实验设计的情况，停下来问用户。
 ~~~
 
 ## 8. 已核验的 startup preflight 命令
 
-本文件写入前已对照 `scripts/startup_preflight.py` 的 argparse 源码核验：该脚本只有一个可选参数 `--preflight`，默认读 `config/startup-preflight.json`。
+2026-09-17 已对照 `scripts/startup_preflight.py` 的 argparse 源码核验：该脚本有两个可选参数——`--preflight`（默认读 `config/startup-preflight.json`）和 `--phase`（默认 `heart_pilot`，可选 `lbspa_followup`；未知阶段会被 `PreflightError` 以退出码 2 拒绝）。
 
 ```powershell
 Set-Location D:\projects\course5-prep
-python scripts/startup_preflight.py                                    # 默认配置
+python scripts/startup_preflight.py                                    # 默认配置 + heart_pilot 阶段
 python scripts/startup_preflight.py --preflight config/startup-preflight.json   # 等价显式写法
+python scripts/startup_preflight.py --phase lbspa_followup            # LBSPA 后置阶段：另检查 lbspa_snRNA_path 与 evidence.scrna_conclusion
 ```
 
-当前配置下预期输出 `ready_for_execution: false` 并列出 blocking_items；退出码 0 表示记录格式有效，不构成启动许可。
+当前配置下两个阶段都已于 2026-09-17 实测输出 `ready_for_execution: false`：默认 `heart_pilot` 不含 `lbspa_snRNA_path`，`lbspa_followup` 含 `lbspa_snRNA_path` 与 `evidence.scrna_conclusion`。命令退出码 0 只表示记录格式有效，不构成启动许可；测试状态仍以接手者本次亲自执行为准。

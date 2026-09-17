@@ -56,6 +56,7 @@
   "evidence": {
     "course_admin_reply": "docs/source-notes.md#老师回复对实验范围的修正",
     "dcs_readonly_audit": "docs/dcs-readonly-audit.md",
+    "scrna_conclusion": null,
     "recorded_at": "2026-09-10T18:03:11+08:00"
   }
 }

@@ -16,7 +16,7 @@ from environment_check import collect_environment
 from environment_contract import EnvironmentContractError, evaluate_environment, load_environment_plan
 from plan_contract import PlanContractError, load_benchmark_plan, validate_benchmark_plan
 from source_manifest_check import DEFAULT_MANIFEST, SourceManifestError, verify_manifest
-from startup_preflight import PreflightError, load_preflight, validate_preflight
+from startup_preflight import DEFAULT_PHASE, PreflightError, load_preflight, validate_preflight
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -26,6 +26,7 @@ DEFAULT_OUTPUT = ROOT / "smoke-output" / "local-readiness.json"
 def build_readiness_report(
     budget_profile: str = "4090x1",
     environment_profile: str = "SATURN--22",
+    phase: str = DEFAULT_PHASE,
     benchmark_plan_path: Path | None = None,
     budget_plan_path: Path | None = None,
     environment_plan_path: Path | None = None,
@@ -47,7 +48,7 @@ def build_readiness_report(
         reserved_minutes=float(policy["reserved_minutes"]),
     )
 
-    preflight_result = validate_preflight(load_preflight(preflight_path))
+    preflight_result = validate_preflight(load_preflight(preflight_path), phase=phase)
 
     if environment_report_path is None:
         environment_report = collect_environment()
@@ -97,6 +98,7 @@ def build_readiness_report(
         "scope": "local_only",
         "budget_profile": budget_profile,
         "environment_profile": environment_profile,
+        "target_phase": phase,
         "status": plan_result["status"],
         "blocking_items": list(dict.fromkeys(blocking_items)),
         "checks": {
@@ -120,6 +122,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--budget-profile", default="4090x1")
     parser.add_argument("--environment-profile", default="SATURN--22")
+    parser.add_argument("--phase", default=DEFAULT_PHASE)
     parser.add_argument("--environment-report", type=Path)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--source-root", type=Path)
@@ -130,6 +133,7 @@ def main() -> None:
         report = build_readiness_report(
             budget_profile=args.budget_profile,
             environment_profile=args.environment_profile,
+            phase=args.phase,
             environment_report_path=args.environment_report,
             source_root=args.source_root,
             source_manifest_path=args.source_manifest,

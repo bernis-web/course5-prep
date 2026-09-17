@@ -26,6 +26,9 @@ REQUIRED_TOP_LEVEL = (
 REQUIRED_METADATA_FIELDS = ("species", "cell_type", "batch", "gold_label")
 REQUIRED_METHODS = ("SATURN", "SAMap", "scVI")
 
+PHASES = ("heart_pilot", "lbspa_followup")
+DEFAULT_PHASE = "heart_pilot"
+
 
 class PreflightError(ValueError):
     """Raised when the startup preflight record is malformed."""
@@ -48,14 +51,26 @@ def _missing_value(value: Any) -> bool:
     return value is None or (isinstance(value, str) and not value.strip()) or value == []
 
 
-def validate_preflight(record: dict[str, Any]) -> dict[str, Any]:
+def _required_top_level(phase: str) -> tuple[str, ...]:
+    # heart_pilot keeps every HEART check; the deferred LBSPA snRNA path only
+    # gates the lbspa_followup phase.
+    if phase == "heart_pilot":
+        return tuple(key for key in REQUIRED_TOP_LEVEL if key != "lbspa_snRNA_path")
+    return REQUIRED_TOP_LEVEL
+
+
+def validate_preflight(
+    record: dict[str, Any], phase: str = DEFAULT_PHASE
+) -> dict[str, Any]:
     """Return blockers; this function never checks remote paths or starts work."""
+    if phase not in PHASES:
+        raise PreflightError(f"phase must be one of {PHASES}, got {phase!r}")
     if record.get("approval_status") not in {"pending", "confirmed"}:
         raise PreflightError("approval_status must be 'pending' or 'confirmed'")
     blockers: list[str] = []
     if record.get("approval_status") != "confirmed":
         blockers.append("approval_status")
-    for key in REQUIRED_TOP_LEVEL:
+    for key in _required_top_level(phase):
         if _missing_value(record.get(key)):
             blockers.append(key)
 
@@ -82,12 +97,18 @@ def validate_preflight(record: dict[str, Any]) -> dict[str, Any]:
         blockers.append("evidence.course_admin_reply")
     if not isinstance(evidence, dict) or _missing_value(evidence.get("recorded_at")):
         blockers.append("evidence.recorded_at")
+    if phase == "lbspa_followup":
+        # The scRNA conclusion is the LBSPA activation gate; it stays empty in
+        # the config until a real conclusion is recorded and must not be faked.
+        if not isinstance(evidence, dict) or _missing_value(evidence.get("scrna_conclusion")):
+            blockers.append("evidence.scrna_conclusion")
 
     # Preserve order while removing duplicate blockers from nested checks.
     unique_blockers = list(dict.fromkeys(blockers))
     return {
         "ready_for_execution": not unique_blockers,
         "approval_status": record.get("approval_status"),
+        "target_phase": phase,
         "blocking_items": unique_blockers,
         "required_methods": list(REQUIRED_METHODS),
         "side_effects": [],
@@ -97,9 +118,10 @@ def validate_preflight(record: dict[str, Any]) -> dict[str, Any]:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--preflight", type=Path, default=DEFAULT_PREFLIGHT)
+    parser.add_argument("--phase", default=DEFAULT_PHASE)
     args = parser.parse_args()
     try:
-        result = validate_preflight(load_preflight(args.preflight))
+        result = validate_preflight(load_preflight(args.preflight), phase=args.phase)
     except (PreflightError, FileNotFoundError) as exc:
         print(json.dumps({"valid": False, "error": str(exc)}, ensure_ascii=True, indent=2))
         raise SystemExit(2) from exc

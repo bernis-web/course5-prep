@@ -28,7 +28,7 @@ python scripts/plan_contract.py
 
 预期证据：
 
-- 单元测试退出码为 0；测试数量以本次命令输出为准，2026-09-10 落实老师回复、公共 accession 边界和 Word 报告契约后应有 47 个测试通过。
+- 单元测试退出码为 0；测试数量以本次命令输出为准。2026-09-17 加入阶段化预检回归测试后，本轮应有 50 个测试通过。
 - `smoke-output/synthetic_metrics.json` 和 `smoke-output/run_manifest.json` 存在且可读。
 - `plan_contract.py` 报告 `status: preflight_only`，并列出禁止的云端动作。
 - `dcs-readonly-probe.json` 的 `scope` 是 `runtime_probe`；它不能被当成本机以外的镜像证据。
@@ -67,7 +67,7 @@ python scripts/startup_preflight.py
 - 在团队预算层面，4090×1 的 60 分钟单次估算约 ¥17.40，仍低于单个 ¥100 规划额度；这只是成本估算，不是启动授权。每次运行仍要绑定一个实际账号、记录消耗，并在结束后停止实例。
 - 按每账号预留 ¥20 分摊时，4090×1/60 分钟最多先按每账号 4 次、四账号共 16 次估算（约 ¥278.40）；3 个工具 × 3 个随机种子只需 9 次（约 ¥156.60）。超过这些数字先检查实际余额，再决定是否充值。
 - 4090×2/30 分钟单次约 ¥22.15，虽然团队预算可以覆盖，但它只作为单卡内存不足后的例外路径，不能因余额变多就默认启用。
-- `startup_preflight.py` 当前会报告 `approval_status: pending`。只有数据授权、字段、子集、镜像实际版本、正式 kBET 和只读示例命令全部补齐后，才可能变为 `ready_for_execution: true`。
+- `startup_preflight.py` 按阶段校验：默认 `heart_pilot` 不要求 `lbspa_snRNA_path`；`--phase lbspa_followup` 另要求该路径与 `evidence.scrna_conclusion`（LBSPA 激活门，配置中初始为空）。当前配置会报告 `approval_status: pending`，只有数据授权、字段、子集、镜像实际版本、正式 kBET 和只读示例命令全部补齐后，才可能变为 `ready_for_execution: true`。
 
 ## D. 真实运行前的最小门槛
 

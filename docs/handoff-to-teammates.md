@@ -33,7 +33,7 @@ python scripts/smoke_test.py --outdir smoke-output
 python scripts/plan_contract.py
 ```
 
-测试数量以本次命令输出为准；2026-09-10 落实老师回复、公共 accession 边界和 Word 报告契约后应有 47 个测试通过。smoke test 只输出合成指标，这些结果只说明准备代码可用，不是三种真实工具的比较结果。
+测试数量以本次命令输出为准；2026-09-17 加入阶段化预检回归测试后，本轮应有 50 个测试通过。smoke test 只输出合成指标，这些结果只说明准备代码可用，不是三种真实工具的比较结果。
 
 ## 四人团队第一轮认领（3 条主责线 + 1 名机动复核）
 
