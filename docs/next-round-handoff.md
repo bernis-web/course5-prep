@@ -2,7 +2,7 @@
 
 面向对象：zcode / Claude / GLM 等接手 agent，以及四名团队成员。本文件只写“下一轮怎么干”，背景长文不重复：证据见 `docs/dcs-readonly-audit.md`，分工原则见 `docs/team-task-division.md`，本地命令见 `docs/minimal-verification-runbook.md`，协作与计费规则见 `docs/dcs-team-collaboration.md`。
 
-## 0. 当前 checkpoint（2026-09-17）
+## 0. 当前 checkpoint（2026-09-18）
 
 | 阶段门 | 状态 | 缺口 |
 | --- | --- | --- |
@@ -13,6 +13,14 @@
 | HEART pilot | 未开始 | 等 G1+G2+G3 |
 | 正式评测 | 未开始 | 等 HEART pilot 闭环 |
 | LBSPA 单核补充 | 未开始 | 等单细胞基本结论（`config/benchmark-plan.json` 的 activation_gate） |
+
+### 2026-09-18 本地复核记录
+
+- `python -m unittest discover -s tests -v`：50/50 通过。
+- `python scripts/smoke_test.py --outdir smoke-output`：合成 smoke 产物已生成；仅用于验证产物契约，不代表真实工具结果。
+- `python scripts/plan_contract.py`、`python scripts/team_budget_check.py`：通过；仍保持 preflight-only 和分账号预算假设。
+- `python scripts/startup_preflight.py --phase heart_pilot`：报告 `ready_for_execution: false`，阻塞项仍是课程数据路径/字段、镜像实际版本与入口、正式 kBET、审批等外部证据。
+- 本次没有创建 DCS 实例、启动云任务、上传/下载数据、安装 DCS 包或写入凭据；`smoke-output/` 为本地忽略目录，不纳入 Git。
 
 ## 1. 现在能做 vs 必须等
 
