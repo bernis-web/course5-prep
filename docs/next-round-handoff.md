@@ -6,7 +6,7 @@
 
 | 阶段门 | 状态 | 缺口 |
 | --- | --- | --- |
-| G0 本地基线 | 核心通过 / 材料待补 | 2026-09-17 本轮 50 个测试及 smoke、计划契约、结果契约、artifact contract、Word 模板重建通过；但在原课程材料目录只找到七鳃鳗论文，`course-web(1).html` 和心脏论文 PDF 缺失，材料哈希核验仍为 1/3 |
+| G0 本地基线 | 核心通过 / 材料已补齐 | 2026-09-17 本轮 50 个测试及 smoke、计划契约、结果契约、artifact contract、Word 模板重建通过；2026-09-18 找回缺失的 `course-web(1).html` 与心脏论文 PDF（回收站原件与微信目录均未破坏），`source_manifest_check.py` 三份大小/SHA-256 全部匹配（3/3，退出码 0）；材料存放于仓库外目录，路径不入库，原件不提交 Git |
 | G1 DCS 数据路径/字段/物种/授权 | 未通过 | 四账号中只有一个账号做过两轮只读排查（两个区域均 0 命中）；课程共享项目入口未知 |
 | G2 候选镜像 | 部分完成 | `SATURN--22`/`SATURN--21`、`samap_all`、`BENGAL--SAMap--17`、`scvi_zt` 等页面已发现；实例内入口、真实版本、GPU、正式 kBET 全部 `pending` |
 | G3 启动许可 | 未通过 | `config/startup-preflight.json` 的 `approval_status` 仍为 `pending`，HEART 数据字段全空；预检已按阶段校验（默认 `heart_pilot` 不要求 `lbspa_snRNA_path`；`lbspa_followup` 另要求该路径与 `evidence.scrna_conclusion`），阶段化门本身不再阻塞 HEART |
@@ -16,11 +16,12 @@
 
 ### 2026-09-18 本地复核记录
 
-- `python -m unittest discover -s tests -v`：50/50 通过。
+- `python -m unittest discover -s tests -v`：54/54 通过（2026-09-18 测试加固新增 4 项后接手 agent 当次复跑；同日早间基线为 50/50）。
 - `python scripts/smoke_test.py --outdir smoke-output`：合成 smoke 产物已生成；仅用于验证产物契约，不代表真实工具结果。
 - `python scripts/plan_contract.py`、`python scripts/team_budget_check.py`：通过；仍保持 preflight-only 和分账号预算假设。
 - `python scripts/startup_preflight.py --phase heart_pilot`：报告 `ready_for_execution: false`，阻塞项仍是课程数据路径/字段、镜像实际版本与入口、正式 kBET、审批等外部证据。
 - 本次没有创建 DCS 实例、启动云任务、上传/下载数据、安装 DCS 包或写入凭据；`smoke-output/` 为本地忽略目录，不纳入 Git。
+- 课程材料找回（2026-09-18 接手 agent 复核）：`course-web(1).html` 与心脏论文 PDF 此前被误删入 E 盘回收站（SHA-256 与 `docs/source-file-manifest.tsv` 完全一致后从回收站复制恢复，回收站原件未动）；七鳃鳗论文在微信文件目录原样可用。三份已集中复制到仓库外材料目录并重新核验 3/3 通过。
 
 ## 1. 现在能做 vs 必须等
 

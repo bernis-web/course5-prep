@@ -10,6 +10,7 @@
 | 输入数据与同源基因 | 每次运行的 `input_manifest.tsv`、`ortholog_manifest.json` |
 | 参数与软件版本 | `parameters.json`、`package_versions.txt` |
 | 准确率与整合指标 | `metrics.json` |
+| 跨运行汇总（dataset × method × seed） | `docs/metrics-resources-ledger-template.tsv`（字段名对齐 `config/result-contract.json`，正式 kBET 三字段必填） |
 | 时间 内存 GPU 和成本 | `resource_usage.json`、团队受控预算台账 |
 | 失败原因与复现说明 | `stdout_stderr.log`、`failure_reason.txt`、`docs/ai-use-log.tsv` |
 

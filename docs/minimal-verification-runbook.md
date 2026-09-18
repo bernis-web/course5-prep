@@ -22,13 +22,13 @@ python scripts/environment_check.py --output smoke-output/environment-report.jso
 python scripts/dcs_readonly_probe.py --output smoke-output/dcs-readonly-probe.json
 python scripts/environment_contract.py smoke-output/dcs-readonly-probe.json --profile SATURN--22
 python scripts/input_contract.py tests/fixtures/metadata.tsv --output smoke-output/metadata-manifest.json
-python scripts/ortholog_contract.py tests/fixtures/orthologs.tsv --output smoke-output/ortholog-manifest.json
+python scripts/ortholog_contract.py tests/fixtures/orthologs.tsv --output smoke-output/ortholog_manifest.json
 python scripts/plan_contract.py
 ```
 
 预期证据：
 
-- 单元测试退出码为 0；测试数量以本次命令输出为准。2026-09-17 加入阶段化预检回归测试后，本轮应有 50 个测试通过。
+- 单元测试退出码为 0；测试数量以本次命令输出为准。2026-09-18 加入 PPT 构建与同源基因清单命名回归测试后，本轮应有 54 个测试通过。
 - `smoke-output/synthetic_metrics.json` 和 `smoke-output/run_manifest.json` 存在且可读。
 - `plan_contract.py` 报告 `status: preflight_only`，并列出禁止的云端动作。
 - `dcs-readonly-probe.json` 的 `scope` 是 `runtime_probe`；它不能被当成本机以外的镜像证据。

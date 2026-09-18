@@ -33,6 +33,7 @@ from smoke_test import (  # noqa: E402
     evaluate_leave_one_species_out,
     run_smoke_test,
 )
+import build_monday_presentation  # noqa: E402
 
 
 class SmokeEvaluatorTests(unittest.TestCase):
@@ -98,6 +99,75 @@ class SmokeEvaluatorTests(unittest.TestCase):
         ):
             self.assertIn(heading, template)
         self.assertIn("smoke test 不能作为最终结果", template)
+
+    def test_monday_presentation_builds_pptx_with_expected_slides(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            original_output = build_monday_presentation.OUTPUT
+            self.addCleanup(setattr, build_monday_presentation, "OUTPUT", original_output)
+            build_monday_presentation.OUTPUT = Path(tmp) / "course5-monday-presentation.pptx"
+
+            output = build_monday_presentation.build()
+            slide_count = len(build_monday_presentation.SLIDES)
+
+            self.assertTrue(Path(output).is_file())
+            with zipfile.ZipFile(output) as archive:
+                names = archive.namelist()
+                slides = {
+                    index: archive.read(f"ppt/slides/slide{index}.xml").decode("utf-8")
+                    for index in range(1, slide_count + 1)
+                }
+                notes_count = sum(
+                    1
+                    for name in names
+                    if name.startswith("ppt/notesSlides/notesSlide") and name.endswith(".xml")
+                )
+
+            self.assertEqual(slide_count, 13)
+            self.assertEqual(notes_count, slide_count)
+            for index, spec in enumerate(build_monday_presentation.SLIDES, start=1):
+                self.assertIn(spec.title, slides[index])
+                if spec.takeaway:
+                    self.assertIn("要点：", slides[index])
+            self.assertIn("组员：____、____、____", slides[1])
+            self.assertIn("SATURN vs SAMap vs scVI", slides[1])
+            for slide in slides.values():
+                self.assertNotIn("479,483", slide)
+                self.assertNotIn("465,778", slide)
+
+    def test_monday_presentation_content_is_reproducible(self):
+        original_output = build_monday_presentation.OUTPUT
+        self.addCleanup(setattr, build_monday_presentation, "OUTPUT", original_output)
+        with tempfile.TemporaryDirectory() as tmp:
+            first = Path(tmp) / "first.pptx"
+            second = Path(tmp) / "second.pptx"
+            build_monday_presentation.OUTPUT = first
+            build_monday_presentation.build()
+            build_monday_presentation.OUTPUT = second
+            build_monday_presentation.build()
+
+            with zipfile.ZipFile(first) as left, zipfile.ZipFile(second) as right:
+                self.assertEqual(left.namelist(), right.namelist())
+                for name in left.namelist():
+                    self.assertEqual(left.read(name), right.read(name), name)
+
+    def test_monday_presentation_cli_rebuilds_deliverable(self):
+        deliverable = SCRIPT_DIR.parent / "deliverables" / "course5-monday-presentation.pptx"
+        original_bytes = deliverable.read_bytes()
+        # 每次重建都会重写已提交的二进制；恢复原字节，避免仓库只出现打包时间戳差异。
+        self.addCleanup(deliverable.write_bytes, original_bytes)
+
+        result = subprocess.run(
+            [sys.executable, str(SCRIPT_DIR / "build_monday_presentation.py")],
+            check=False,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+        )
+
+        self.assertEqual(result.returncode, 0)
+        self.assertEqual(result.stdout.strip(), str(deliverable))
+        self.assertTrue(deliverable.is_file())
 
     def test_teacher_reply_phase_gates(self):
         plan = load_benchmark_plan()
@@ -641,6 +711,18 @@ class SmokeEvaluatorTests(unittest.TestCase):
     def test_run_artifact_contract_names_ortholog_manifest_as_json(self):
         self.assertIn("ortholog_manifest.json", REQUIRED_ARTIFACTS)
         self.assertNotIn("ortholog_manifest.tsv", REQUIRED_ARTIFACTS)
+
+    def test_docs_use_canonical_ortholog_manifest_name(self):
+        root = Path(__file__).resolve().parents[1]
+        documents = [root / "README.md", root / "CONTRIBUTING.md"]
+        documents.extend(sorted((root / "docs").glob("*.md")))
+
+        for document in documents:
+            text = document.read_text(encoding="utf-8")
+            self.assertNotIn("ortholog-manifest.json", text, str(document))
+
+        runbook = (root / "docs" / "minimal-verification-runbook.md").read_text(encoding="utf-8")
+        self.assertIn("--output smoke-output/ortholog_manifest.json", runbook)
 
     def test_result_contract_accepts_complete_final_record(self):
         metrics = {
