@@ -23,7 +23,7 @@ Set-Location course5-prep
 
 第一次协作时，组员 A 先整理课程数据确认项，组员 B 先做本地环境/预算/只读探针，组员 C 先跑测试并搭评测记录表；三项都可以轮换，认领表和交付边界见 `docs/team-task-division.md`。
 
-四人按同一顺序复现本地检查时，直接使用 `docs/minimal-verification-runbook.md`；其中的退出码 2 表示预检阻塞，不表示脚本崩溃，也不构成 DCS 启动许可。
+四人按同一顺序复现本地检查时，直接使用 `docs/minimal-verification-runbook.md`；其中的退出码 2 表示预检阻塞，不表示脚本崩溃，也不构成 DCS 启动许可。受控试运行的启动/停止检查清单草稿见 `docs/startup-shutdown-checklist.md`（待四人评审，评审通过前同样不构成启动许可）。
 
 要把项目交给组员，直接发送 `docs/handoff-to-teammates.md` 中的消息模板；它同时列出了三条主线的首轮认领、目前可以开始的工作和真实实验前的启动清单。
 

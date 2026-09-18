@@ -23,6 +23,17 @@
 - 本次没有创建 DCS 实例、启动云任务、上传/下载数据、安装 DCS 包或写入凭据；`smoke-output/` 为本地忽略目录，不纳入 Git。
 - 课程材料找回（2026-09-18 接手 agent 复核）：`course-web(1).html` 与心脏论文 PDF 此前被误删入 E 盘回收站（SHA-256 与 `docs/source-file-manifest.tsv` 完全一致后从回收站复制恢复，回收站原件未动）；七鳃鳗论文在微信文件目录原样可用。三份已集中复制到仓库外材料目录并重新核验 3/3 通过。
 
+### 2026-09-18 晚间复核与清单草稿（18:04 非高峰自主推进）
+
+- 模式说明：用户指示非高峰时段自主继续；Codex 编排当次不可用（CC Switch 本地代理 502，上游 127.0.0.1:15721 连接失败，校园网时段），复审改由 Claude 子代理独立审查 + 本人 diff 复读执行。
+- `python -m unittest discover -s tests -v`：54/54 通过（当次输出为准）。
+- runbook A/B/C 段当次全量重跑：smoke_test、environment_check、dcs_readonly_probe（`scope: runtime_probe`）、environment_contract `--profile SATURN--22`（唯一 unresolved 仍为 SATURN 页面未列入口，属已知 G2 缺口）、input/ortholog 契约、plan_contract、team_budget_check（4090x1/60min/1 run）均通过；budget_check 4090x1 退出码 0、4090x2 按预期以退出码 2 拒绝。
+- `startup_preflight.py` 两阶段均 `ready_for_execution: false`：heart_pilot 阻塞项不含 `lbspa_snRNA_path`；lbspa_followup 含 `lbspa_snRNA_path` 与 `evidence.scrna_conclusion`；阻塞项全部为 G1/G2/G3 外部证据字段，无脚本故障。
+- `source_manifest_check.py`（材料目录路径按规矩不入库）：3/3 大小/SHA-256 匹配，退出码 0。
+- `build_report_template.py` 默认参数重建 Word 模板成功；占位符检查由测试回归覆盖。
+- 新增 `docs/startup-shutdown-checklist.md`（工作包 B"启动/停止检查清单"草稿 v0.1）：无标注条目来自 handoff／镜像计划／runbook 既有规则，（建议）标注条目为新增流程建议。v0.1 已按子代理独立复审意见修订：补 handoff §5 第 1–2 项与 runbook D-1 的物种/范围门、补齐（建议）标注（四角色表、批准记录、运行目录骨架、紧急停止细则等）、明确数据仅经已核实共享路径只读访问且探针不读课程数据、证据清单扩至 Python/CUDA/GPU 与 anndata/scanpy/torch、花费按整会话口径、换卡数按新一轮启动处理、异常上报统一为"停下来问用户"。复审结论：零高危（无事实错误、无边界放宽），可作待评审交付物。待四人评审后转正。
+- 本轮无云端动作、无登录、无付费、无包安装。
+
 ## 1. 现在能做 vs 必须等
 
 现在就能做（不碰云资源、不装包、不付费）：
@@ -30,7 +41,7 @@
 - 工作包 C 全部（本地评测材料，见下）。
 - 找回或重新导出缺失的课程 HTML 与心脏论文 PDF 后，只在本地重跑材料哈希核验；大文件不提交 Git。
 - 工作包 A 的四账号只读排查：各组员用自己的已有登录态检查自己的账号；agent 不得代替登录。
-- 工作包 B 的页面级复核与"启动/停止检查清单"草稿。
+- 工作包 B 的页面级复核与"启动/停止检查清单"草稿（清单草稿 v0.1 已于 2026-09-18 晚落至 `docs/startup-shutdown-checklist.md`，经子代理独立复审修订，待四人评审）。
 - 团队预算账本核对（`python scripts/team_budget_check.py`，只算账不连 DCS）。
 
 必须等 DCS/老师信息才能做：
