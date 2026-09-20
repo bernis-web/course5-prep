@@ -120,6 +120,15 @@
 - **G1 关账**：路径✓（/Files/RawData/）、字段✓（celltype 金标准+value_counts 证据）、物种✓（人+小鼠+斑马鱼，heart_near_selected）、授权✓（BGI-时空课程项目，账号1=分析人员）。`startup_preflight.py --phase heart_pilot` 阻塞项收敛为纯 G2 域（image_recommendation/image_versions.{SATURN,SAMap,scVI}/kbet_implementation/kbet_version/readonly_sample_command）+ G3（approval_status）——数据类阻塞全部消除。
 - 云端动作口径（本轮唯一一次）：用户本人操作镭速客户端向课程项目 RawData 上传三个公开数据文件（用户 2026-09-20 批准，平台要求的正式上传通道）；ZCode 侧全程只读（下载/校验/页面核对），未创建实例、未提交任务、未安装 DCS 包、无消费。
 
+### G2 受控启动实录（2026-09-20 晚，用户批准后）
+
+- 用户批准一次受控启动用于 G2 镜像核验（预算内 4090×1 假设）。平台 GPU 档最低为 3080Ti×1 捆绑 88c320G（¥30.78/h，无 4090 现货），用户追认按此执行。计费口径实测：**从提交时刻计费（含排队）**，本次含 23 分钟调度排队共 1h06s，**¥32.42**（1h 上限自动停止）。
+- K8s 事件证据（运行历史→日志）：Pod `jupyter/task-p20260920085640327-eqwnedcz-7b5f6958f4-5hqbq` 15:28 调度至 `ms-k8s-worker12`，镜像 `st-harbor.dcs.cloud/public-library/zhongliyuan_..._public:latest` 拉取成功（5m54s），15:34 Started——**SATURN--22 镜像真实可运行、GPU 节点存在的平台侧证据**。
+- **阻塞 1（环境侧）**：交互式 JupyterLab 白屏——iframe 指向的 `inner.dcs.cloud` 在本机所有 DNS（校园/公共）均 NXDOMAIN，curl 确认无法解析。关闭代理无改善。需老师/IT 说明校园网访问方式（VPN/hosts/专用 DNS）。
+- **阻塞 2（脚本侧，已有对策）**：交互不通后改走"离线任务→运行脚本"通道（www 侧提交，绕开 inner 域）。v1 证明脚本在镜像沙箱真实执行（工作区出现 probe.py）；v3 实测裸 shell 无 python PATH（PY_FAILED）；v4 已含按路径探测 python 的对策（find / -maxdepth 4），结果文件同步延迟尚未可读。完整通路与脚本见 `docs/g2-probe-offline-channel-20260920.md`，载荷 `docs/probe-payload-20260920.b64.txt`。
+- 工作区文件同步规律（实测）：离线任务产物在容器停止后批量出现于分析工作区树；树内文件可点开预览读取。
+- G2 状态：**部分证据到手（镜像可运行、GPU 节点、镜像指纹、费用口径），包版本/CLI/GPU 型号证据待通路打通后一轮离线脚本补齐**。preflight G2 字段维持 pending。
+
 ## 账号2–4 只读核验槽位（空白待填）
 
 截至 2026-09-17，四名成员中只有账号1 完成上述两轮只读排查；账号2、3、4 尚无任何记录。以下槽位由各组员按工作包 A 的检查路径亲自填写，填写规则：
