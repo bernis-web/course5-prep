@@ -13,7 +13,7 @@
     "pilot_species_count_range": [2, 3],
     "pilot_goal": "prove_the_integration_pipeline_runs_end_to_end",
     "later_relationship_coverage": ["near", "far", "mixed_categories"],
-    "species_selection_status": "pending_readonly_dcs_inventory",
+    "species_selection_status": "heart_near_selected",
     "primary_modality": "scRNA",
     "spatial_policy": "out_of_primary_scope",
     "snRNA_policy": "small_followup_after_scRNA_conclusion"
@@ -25,7 +25,8 @@
       "cell_types": ["CM", "FB"],
       "labels": "paper_annotations",
       "role": "pilot_default_within_two_to_three_species",
-      "species_selection": "pending_readonly_dcs_inventory"
+      "species_selection": ["Homo_sapiens", "Mus_musculus", "Danio_rerio"],
+      "species_selection_note": "decided 2026-09-20 Claude+ZCode; STDS0000406 per-species h5ad verified on portal; third species Danio_rerio (CM/FB annotations + ortholog/protein resources) for pipeline-shakedown attribution; Lethenteron_reissneri reserved for far tier + LBSPA; heart_data_path stays pending until RawData upload verified"
     },
     "heart_mid": {
       "source": "HEART",

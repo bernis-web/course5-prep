@@ -202,6 +202,49 @@ class SmokeEvaluatorTests(unittest.TestCase):
         with self.assertRaises(PlanContractError):
             validate_benchmark_plan(plan)
 
+    def test_plan_contract_species_selection_state_machine(self):
+        # 现行合法状态：heart_near_selected 且恰好三物种 + 非空 note
+        plan = load_benchmark_plan()
+        self.assertEqual(
+            plan["phase_policy"]["species_selection_status"], "heart_near_selected"
+        )
+        result = validate_benchmark_plan(plan)
+        self.assertTrue(result["valid"])
+        self.assertEqual(len(plan["datasets"]["heart_near"]["species_selection"]), 3)
+
+        # 篡改 1：状态已选定但 heart_near 仍是 pending 字符串 → 拒绝
+        plan = load_benchmark_plan()
+        plan["datasets"]["heart_near"]["species_selection"] = (
+            "pending_readonly_dcs_inventory"
+        )
+        with self.assertRaises(PlanContractError):
+            validate_benchmark_plan(plan)
+
+        # 篡改 2：只列两个物种 → 拒绝
+        plan = load_benchmark_plan()
+        plan["datasets"]["heart_near"]["species_selection"] = [
+            "Homo_sapiens",
+            "Mus_musculus",
+        ]
+        with self.assertRaises(PlanContractError):
+            validate_benchmark_plan(plan)
+
+        # 篡改 3：缺 species_selection_note → 拒绝
+        plan = load_benchmark_plan()
+        del plan["datasets"]["heart_near"]["species_selection_note"]
+        with self.assertRaises(PlanContractError):
+            validate_benchmark_plan(plan)
+
+        # 篡改 4：关系矩阵档被提前选定 → 拒绝（matrix 选择必须在 pilot 之后）
+        plan = load_benchmark_plan()
+        plan["datasets"]["heart_relationship_matrix"]["species_selection"] = [
+            "Homo_sapiens",
+            "Mus_musculus",
+            "Danio_rerio",
+        ]
+        with self.assertRaises(PlanContractError):
+            validate_benchmark_plan(plan)
+
     def test_team_budget_plan_models_separate_credits_and_reserve(self):
         team_plan = load_team_plan()
         budget_plan = load_plan()

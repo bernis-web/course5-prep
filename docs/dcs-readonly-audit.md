@@ -105,6 +105,13 @@
 - 项目数据管理（只读）："项目数据" tab 仅 4 个空目录骨架（`RawData`/`ResultData`/`ManualData`/`ReferenceData`，路径前缀 `/Files/`，文件统计 0，共 4 条）；"公共库数据" tab（路径前缀 `/Public/`）共 28 条 / 约 9TB，逐页核对全部为平台通用参考与 demo 数据（hg38/mouse 参考基因组、PanGenie、minimap2-hg38、ST_DEMO 系列、single_cell_DEMO、esmfold_database 等），无 HEART/LBSPA/CNP0006537/CNP0007565 课程数据。
 - 结论：G1 的"授权"半边已核实（课程项目存在 + 账号1 为分析人员）；"数据路径"半边仍缺——项目内尚无任何课程数据文件，老师提供的两个 STOmics 门户是 HEART/LBSPA 的官方公共发布处。课程数据进项目的方式待确认（老师统一上传 vs 组员从门户下载后上传到 RawData；后者涉及上传动作，属停止并询问用户的边界）。`heart_data_path`/`lbspa_snRNA_path` 及相关字段维持 pending，不得以门户 URL 或 accession 填充。
 
+### 数据获取与本地核验（2026-09-20 第二小节：老师确认自行下载后）
+
+- 用户决策链：老师回复"自己下载"（微信）→ 用户批准下载+上传 → 物种组合由 Claude+ZCode 商量定案 **人+小鼠+斑马鱼**（pilot 目标=流程跑通优先，第三物种选 CM/FB 注释无歧义的斑马鱼；七鳃鳗 Lethenteron_reissneri 保留给远缘扩展档与 LBSPA 后置线）；`config/benchmark-plan.json` 已落 `heart_near_selected` 状态+物种清单，`scripts/plan_contract.py` 升级状态机校验（63/63 测试通过）。
+- 下载（STDS0000406 公共 FTP，ZCode 执行）：`Homo_sapiens_sc.h5ad` 223,744,070 B=213.38MB、`Mus_musculus_sc.h5ad` 272,322,064 B=259.71MB、`Danio_rerio_sc.h5ad` 161,403,920 B=153.93MB——三者与门户 Download 页标注**小数点后两位精确一致**；官方无校验和伴生文件，本地 SHA256 自算记档（仓库外 `course5-data/sha256-manifest.txt`）。排除项：`sc_fordatabase.h5ad`（5.95GB 合并库，粒度不符）、其余 12 物种（heart_mid 定档后二次批量）、spatial 数据（越界）、LBSPA（activation gate 未开）。
+- 本地 inspect（`scripts/heart_h5ad_inspect.py`，GLM-5.3-Flash 实现+ZCode 修复 anndata 0.13.4 的 `n_vars`/layers `None` 槽位两处适配；隔离 venv anndata 0.13.4，不动仓库基线环境）：三文件全部可读（上传前坏文件拦截通过）。关键事实：n_obs=30000/60471/50000，n_var=32732/32379/27661，X 均 float32，obsm 含 X_umap（鼠/鱼另有 X_pca/X_harmony），layers 空；**金标准注释列 `celltype` 三文件共有**（CM/FB 正则 `(?i)cardiomyo|fibroblast|myofibroblast` 命中 15955/16100/6474 细胞），人另有 `cell_type`/`region_celltype`，鼠/鱼另有 `hcelltype`/`subtype`；batch 候选按物种区分（人 `donor`，鼠/鱼 `orig.ident`）。证据：`docs/heart-inspect-evidence-20260920.json`（含逐列 value_counts）。
+- 数据存放：`D:\projects\course5-data\`（仓库外，不入 Git）。**待用户手动上传**项目 RawData（内置浏览器不支持 OS 文件选择框），上传后 ZCode 只读核对再更新 `startup-preflight.json` 的 heart 字段（`heart_data_path` 只认项目内实路径）。
+
 ## 账号2–4 只读核验槽位（空白待填）
 
 截至 2026-09-17，四名成员中只有账号1 完成上述两轮只读排查；账号2、3、4 尚无任何记录。以下槽位由各组员按工作包 A 的检查路径亲自填写，填写规则：

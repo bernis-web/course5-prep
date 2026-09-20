@@ -11,6 +11,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_PLAN = ROOT / "config" / "benchmark-plan.json"
 REQUIRED_METHODS = ("SATURN", "SAMap", "scVI")
+SPECIES_SELECTION_STATUSES = ("pending_readonly_dcs_inventory", "heart_near_selected")
 REQUIRED_PROHIBITIONS = (
     "create_cloud_instance",
     "start_cloud_task",
@@ -76,8 +77,10 @@ def validate_benchmark_plan(plan: dict[str, Any]) -> dict[str, Any]:
         raise PlanContractError("pilot goal must remain an end-to-end integration check")
     if phase_policy.get("later_relationship_coverage") != ["near", "far", "mixed_categories"]:
         raise PlanContractError("later stages must cover near, far, and mixed-category species")
-    if phase_policy.get("species_selection_status") != "pending_readonly_dcs_inventory":
-        raise PlanContractError("species selection must remain pending until the DCS inventory is checked")
+    if phase_policy.get("species_selection_status") not in SPECIES_SELECTION_STATUSES:
+        raise PlanContractError(
+            "species selection status must be pending_readonly_dcs_inventory or heart_near_selected"
+        )
     if phase_policy.get("primary_modality") != "scRNA":
         raise PlanContractError("the primary benchmark modality must remain scRNA")
     if phase_policy.get("spatial_policy") != "out_of_primary_scope":
@@ -135,6 +138,18 @@ def validate_benchmark_plan(plan: dict[str, Any]) -> dict[str, Any]:
             raise PlanContractError(f"{name} must contain species_count={count}")
     if datasets["heart_mid"].get("role") != "optional_eight_species_scaling_tier":
         raise PlanContractError("the eight-species HEART tier must remain optional scaling")
+    if phase_policy.get("species_selection_status") == "heart_near_selected":
+        heart_near = datasets["heart_near"]
+        selection = heart_near.get("species_selection")
+        if (
+            not isinstance(selection, list)
+            or len(selection) != 3
+            or not all(isinstance(species, str) and species for species in selection)
+        ):
+            raise PlanContractError("heart_near species_selection must list exactly three non-empty species")
+        note = heart_near.get("species_selection_note")
+        if not isinstance(note, str) or not note:
+            raise PlanContractError("heart_near species_selection_note must be a non-empty string")
     relationship_matrix = datasets.get("heart_relationship_matrix")
     if (
         not isinstance(relationship_matrix, dict)
