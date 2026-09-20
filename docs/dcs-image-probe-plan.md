@@ -39,7 +39,7 @@ python scripts/dcs_readonly_probe.py --output runtime-output/dcs-readonly-probe.
 
 | 镜像 | 角色 | 页面版本 | 实例实际版本 | 入口/导入 | GPU/CUDA | 状态 |
 |---|---|---|---|---|---|---|
-| `SATURN--22` | 默认 GPU 候选 | `latest`；页面含 `scvi-tools 1.1.6.post2`、`scanpy 1.10.3`、`torch 2.6.0`，未显示 SATURN 包/入口 | pending | pending | 页面列出 CUDA 12.4 组件，实例待核验 | pending |
+| `SATURN--22` | 默认 GPU 候选 | `latest`；页面含 `scvi-tools 1.1.6.post2`、`scanpy 1.10.3`、 `torch 2.6.0`，未显示 SATURN 包/入口 | pending | pending | 官方 FAQ：L4×1、88c320G（与购买页 3080Ti 冲突，实例内 nvidia-smi 定夺）；页面列 CUDA 12.4 | pending |
 | `BENGAL--SAMap--17` | SAMap 版本核验候选 | 页面同时列出 `samap 1.0.1` 与 `1.0.16`，存在歧义 | pending | pending | pending | pending |
 | `samap_all` | SAMap 交互环境候选 | 页面有 Jupyter/holoviews-samap 安装指令，未锁定 SAMap 版本 | pending | pending | pending | pending |
 | `scvi_zt` | CPU 兼容性参考 | 页面安装指令未锁定 scvi-tools 版本，并指定 CPU PyTorch 源 | pending | pending | CPU 参考 | pending |

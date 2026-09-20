@@ -127,7 +127,9 @@
 - **阻塞 1（环境侧）**：交互式 JupyterLab 白屏——iframe 指向的 `inner.dcs.cloud` 在本机所有 DNS（校园/公共）均 NXDOMAIN，curl 确认无法解析。关闭代理无改善。需老师/IT 说明校园网访问方式（VPN/hosts/专用 DNS）。
 - **阻塞 2（脚本侧，已有对策）**：交互不通后改走"离线任务→运行脚本"通道（www 侧提交，绕开 inner 域）。v1 证明脚本在镜像沙箱真实执行（工作区出现 probe.py）；v3 实测裸 shell 无 python PATH（PY_FAILED）；v4 已含按路径探测 python 的对策（find / -maxdepth 4），结果文件同步延迟尚未可读。完整通路与脚本见 `docs/g2-probe-offline-channel-20260920.md`，载荷 `docs/probe-payload-20260920.b64.txt`。
 - 工作区文件同步规律（实测）：离线任务产物在容器停止后批量出现于分析工作区树；树内文件可点开预览读取。
-- G2 状态：**部分证据到手（镜像可运行、GPU 节点、镜像指纹、费用口径），包版本/CLI/GPU 型号证据待通路打通后一轮离线脚本补齐**。preflight G2 字段维持 pending。
+- 官方帮助文档证据（2026-09-20 晚补查，`www.dcs.cloud/helpcenter/zh/usermanual/analysis.html`）：FAQ 明确 GPU 档为"**L4 机型一台，88cpu、320mem**"，并指定实例内用 `nvidia-smi` 查 CUDA 版本（与探针计划一致）。注意 **L4（文档）与购买页 3080Ti（页面）不一致**，最终以实例内 `nvidia-smi` 为准。文档另确认：容器停止时 `output/` 自动回传 `/Files/ResultData/Notebook/{user}/output/{project_id}/`——v4 离线任务产物应到数据管理 ResultData 找。全文无任何 VPN/内网/白名单访问要求——notebook 理论上应对公网用户开放，白屏更可能是平台侧 DNS/出口问题而非课程配置。官方支持邮箱：`cloud@stomics.tech`（多组学服务目录页）。
+- ResultData 实测（2026-09-20 晚）：`/Files/ResultData/` 下 `Workflow`、`Notebook` 两目录均空（暂无数据；627.01MB 统计即 RawData 三文件之和）。即 G2 交互实例（从未进入）与 v1–v4 离线任务都**没有**产物回传 ResultData——官方"output/ 自动回传"机制只对真实使用过的 notebook 会话生效，离线通道产物仅在分析工作区树部分延迟同步。结论：**离线通道无法补齐镜像内包版本证据，G2 该项唯一通路仍是交互终端（inner.dcs.cloud）**。
+- G2 状态：**部分证据到手（镜像可运行、GPU 节点、镜像指纹、费用口径、官方文档 GPU 档=L4/88c320G），包版本/CLI/GPU 型号证据待 inner.dcs.cloud 通路打通后在交互终端内一轮探针补齐**。preflight G2 字段维持 pending。
 
 ## 账号2–4 只读核验槽位（空白待填）
 
