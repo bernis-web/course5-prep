@@ -42,6 +42,19 @@ cp output/dcs-readonly-probe.json result_data.py 2>/dev/null || cp pyrun.py resu
 - v3 实测 `python3`/`python` 均失败（PY_FAILED）。镜像的 python 大概率在 conda 环境（如 /opt/conda/bin/python）且未激活。
 - 对策已写入脚本：`find / -maxdepth 4 -name python` 按路径探测后以绝对路径执行。v4 已提交，结果文件同步延迟尚未可读（工作区同步时机不透明：v1-v3 文件在容器停止后批量出现）。
 
+### 追加诊断（2026-09-20 深夜，v4 diag.py 同步后）
+
+- 离线沙箱事实：`/usr/bin/python3` **存在**（which 命中）；`/opt` 下只有 requirements.txt；`/opt/conda` 不存在——**离线沙箱很可能不是完整的 SATURN--22 环境**（33.6GB 镜像不应没有 conda），或镜像环境未挂载进离线任务。
+- 含义：即便 v4 的 python 路径探测成功，从离线沙箱读到的包版本**可能不构成 G2 有效证据**（必须来自 SATURN--22 真实环境）。G2 包版本证据的**唯一可靠来源是交互式实例内探针**，即必须先解决阻塞 1 的网络访问。
+- v4 的 result_data.py 同步批次仍未返回 pyrun 内容（同步批次不透明，diag.py 已到、result_data 未更新）；不再继续等待，避免为同步机制空耗。
+- 用户已切换校园网并关闭代理复测：inner.dcs.cloud 仍不可解析（新 DNS 10.170.10.252 对该记录查询超时；dcs.cloud 权威 NS=hichina.com，直询亦超时/公网递归 NXDOMAIN）——**确认 split-horizon 内网域名，公网无记录**。
+
+## 结论与行动项
+
+1. **关键路径 = 问老师/IT**："DCS 个性分析的 inner.dcs.cloud 校园网解析不了需要什么配置（VPN/hosts/专用 DNS）？"——拿到访问方式后，交互终端 2 分钟跑完探针，G2 即可关账。
+2. 组员侧并行验证：不同网络的组员打开 个性分析 看是否白屏（若可打开，直接跑 `python scripts/dcs_readonly_probe.py --output output/dcs-readonly-probe.json`，或用上文离线脚本）。
+3. 预算口径已实测（提交即计费、含排队），下次启动按 1h 封顶 ¥30.78 预算并确保探针脚本先准备好再点运行。
+
 ## 下一步
 
 1. 任一组员打开 个性分析 确认 inner.dcs.cloud 是否可访问（网络差异验证）；
