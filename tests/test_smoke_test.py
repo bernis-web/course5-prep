@@ -594,7 +594,11 @@ class SmokeEvaluatorTests(unittest.TestCase):
 
         self.assertFalse(result["ready_for_execution"])
         self.assertIn("approval_status", result["blocking_items"])
-        self.assertIn("heart_data_path", result["blocking_items"])
+        # heart_data_path was verified against the landed RawData files on
+        # 2026-09-20, so the data-side blockers are gone; only G2/G3 remain.
+        self.assertNotIn("heart_data_path", result["blocking_items"])
+        self.assertNotIn("heart_file_format", result["blocking_items"])
+        self.assertNotIn("heart_metadata_fields.cell_type", result["blocking_items"])
 
     def test_public_accessions_are_recorded_without_unblocking_dcs_paths(self):
         preflight = load_preflight()
@@ -605,7 +609,12 @@ class SmokeEvaluatorTests(unittest.TestCase):
         self.assertEqual(references["HEART"]["cngb_accession"], "CNP0006537")
         self.assertEqual(references["LBSPA"]["doi"], "10.1126/science.aea2535")
         self.assertEqual(references["LBSPA"]["cngb_accession"], "CNP0007565")
-        self.assertIsNone(preflight["heart_data_path"])
+        # The heart path is a real project-internal directory verified after
+        # the RawData landing, never a portal URL or a public accession.
+        heart_path = preflight["heart_data_path"]
+        self.assertNotIn("http", heart_path)
+        self.assertNotIn("CNP0", heart_path)
+        self.assertTrue(heart_path.startswith("/Files/"))
         self.assertIsNone(preflight["lbspa_snRNA_path"])
         self.assertFalse(validate_preflight(preflight)["ready_for_execution"])
 
@@ -644,7 +653,10 @@ class SmokeEvaluatorTests(unittest.TestCase):
         result = validate_preflight(preflight, phase="heart_pilot")
 
         self.assertNotIn("lbspa_snRNA_path", result["blocking_items"])
-        self.assertIn("heart_data_path", result["blocking_items"])
+        # Data path verified on 2026-09-20; heart_pilot blocks only on
+        # G2 image/kbet items plus the G3 approval, never on lbspa.
+        self.assertNotIn("heart_data_path", result["blocking_items"])
+        self.assertIn("approval_status", result["blocking_items"])
         self.assertFalse(result["ready_for_execution"])
 
     def test_lbspa_followup_phase_requires_snrna_path_and_scrna_conclusion_evidence(self):

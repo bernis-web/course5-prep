@@ -7,7 +7,7 @@
 | 阶段门 | 状态 | 缺口 |
 | --- | --- | --- |
 | G0 本地基线 | 核心通过 / 材料已补齐 | 2026-09-17 本轮 50 个测试及 smoke、计划契约、结果契约、artifact contract、Word 模板重建通过；2026-09-18 找回缺失的 `course-web(1).html` 与心脏论文 PDF（回收站原件与微信目录均未破坏），`source_manifest_check.py` 三份大小/SHA-256 全部匹配（3/3，退出码 0）；材料存放于仓库外目录，路径不入库，原件不提交 Git |
-| G1 DCS 数据路径/字段/物种/授权 | 部分通过 | **2026-09-20 老师回复后突破**：课程共享项目已找到——`BGI-时空` 入口下"康复大学生信实践"（P20260920085640327，09-20 建，57 人，账号1=分析人员），授权半边核实完成；但项目数据区为空（仅 4 目录骨架），公共库数据 28 条均为平台通用资源，**课程数据尚未挂载**；老师另给 HEART/LBSPA 两个 STOmics 门户 URL（官方公共发布处）。数据进项目方式（老师上传 vs 组员从门户下载上传）待确认，`heart_data_path` 等字段维持 pending |
+| G1 DCS 数据路径/字段/物种/授权 | **通过（2026-09-20 关账）** | 课程项目"康复大学生信实践"（BGI-时空，P20260920085640327，57 人，账号1=分析人员）；三物种 h5ad（人+小鼠+斑马鱼，Claude+ZCode 商量定案）已从 STDS0000406 官方 FTP 下载、本地校验（大小精确一致+anndata 可读+金标准列 celltype）并经镭速上传落盘 `/Files/RawData/`（153.93/259.71/213.38MB 逐一核对一致）；preflight heart 字段已填，数据类阻塞全消。剩余=纯 G2/G3 阻塞 |
 | G2 候选镜像 | 部分完成 | `SATURN--22`/`SATURN--21`、`samap_all`、`BENGAL--SAMap--17`、`scvi_zt` 等页面已发现；实例内入口、真实版本、GPU、正式 kBET 全部 `pending` |
 | G3 启动许可 | 未通过 | `config/startup-preflight.json` 的 `approval_status` 仍为 `pending`，HEART 数据字段全空；预检已按阶段校验（默认 `heart_pilot` 不要求 `lbspa_snRNA_path`；`lbspa_followup` 另要求该路径与 `evidence.scrna_conclusion`），阶段化门本身不再阻塞 HEART |
 | HEART pilot | 未开始 | 等 G1+G2+G3 |

@@ -1,12 +1,12 @@
 {
   "approval_status": "pending",
-  "heart_data_path": null,
-  "heart_file_format": null,
+  "heart_data_path": "/Files/RawData/",
+  "heart_file_format": "h5ad",
   "heart_metadata_fields": {
-    "species": null,
-    "cell_type": null,
-    "batch": null,
-    "gold_label": null
+    "species": "per_file_constant",
+    "cell_type": "celltype",
+    "batch": "Homo_sapiens:donor,Mus_musculus:orig.ident,Danio_rerio:orig.ident",
+    "gold_label": "celltype"
   },
   "heart_allowed_subsets": [
     "pilot_2_to_3_species",
@@ -19,7 +19,7 @@
       "doi": "10.1126/science.adw0855",
       "cngb_accession": "CNP0006537",
       "processed_data_portal": "https://db.genomics.cn/stomics/heart/",
-      "dcs_project_file_search_status": "not_found_in_current_visible_public_directory"
+      "dcs_project_file_search_status": "uploaded_to_course_project_rawdata_2026-09-20"
     },
     "LBSPA": {
       "doi": "10.1126/science.aea2535",
@@ -40,7 +40,10 @@
       "runtime_entrypoint_status": "pending"
     },
     "SAMap": {
-      "names": ["BENGAL--SAMap--17", "samap_all"],
+      "names": [
+        "BENGAL--SAMap--17",
+        "samap_all"
+      ],
       "page_version_status": "ambiguous",
       "runtime_entrypoint_status": "pending"
     },
@@ -54,7 +57,7 @@
   "kbet_version": null,
   "readonly_sample_command": null,
   "evidence": {
-    "course_admin_reply": "docs/source-notes.md#老师回复对实验范围的修正",
+    "course_admin_reply": "docs/dcs-readonly-audit.md 账号1第四轮（2026-09-20 老师回复后）与数据获取本地核验小节",
     "dcs_readonly_audit": "docs/dcs-readonly-audit.md",
     "scrna_conclusion": null,
     "recorded_at": "2026-09-10T18:03:11+08:00"

@@ -112,6 +112,14 @@
 - 本地 inspect（`scripts/heart_h5ad_inspect.py`，GLM-5.3-Flash 实现+ZCode 修复 anndata 0.13.4 的 `n_vars`/layers `None` 槽位两处适配；隔离 venv anndata 0.13.4，不动仓库基线环境）：三文件全部可读（上传前坏文件拦截通过）。关键事实：n_obs=30000/60471/50000，n_var=32732/32379/27661，X 均 float32，obsm 含 X_umap（鼠/鱼另有 X_pca/X_harmony），layers 空；**金标准注释列 `celltype` 三文件共有**（CM/FB 正则 `(?i)cardiomyo|fibroblast|myofibroblast` 命中 15955/16100/6474 细胞），人另有 `cell_type`/`region_celltype`，鼠/鱼另有 `hcelltype`/`subtype`；batch 候选按物种区分（人 `donor`，鼠/鱼 `orig.ident`）。证据：`docs/heart-inspect-evidence-20260920.json`（含逐列 value_counts）。
 - 数据存放：`D:\projects\course5-data\`（仓库外，不入 Git）。**待用户手动上传**项目 RawData（内置浏览器不支持 OS 文件选择框），上传后 ZCode 只读核对再更新 `startup-preflight.json` 的 heart 字段（`heart_data_path` 只认项目内实路径）。
 
+### RawData 落盘核对与 G1 关账（2026-09-20 第三小节）
+
+- 上传执行：网页上传因 100MB 单文件限制不可用（三文件 153.93-259.71MB 全超）；采用平台"工具上传"（镭速 Raysync 客户端，用户本机安装并操作，目标目录由平台预填 `/Files/RawData`）。镭速第一阶段 3/3 完成（627.01MB）；第二阶段（中转盘→华大存储）完成后平台落盘。
+- **落盘核对（ZCode 只读，2026-09-20）**：RawData 文件列表共 3 条——`Danio_rerio_sc.h5ad` 153.93MB、`Mus_musculus_sc.h5ad` 259.71MB、`Homo_sapiens_sc.h5ad` 213.38MB，路径 `/Files/RawData/`，文件名与**大小（MB 两位小数）与本地逐一精确一致**，创建人=账号1，实体前缀 VIRP20260920085640327。
+- `config/startup-preflight.json` 已按证据更新：`heart_data_path=/Files/RawData/`、`heart_file_format=h5ad`、`heart_metadata_fields={species: per_file_constant, cell_type: celltype, batch: Homo_sapiens:donor,Mus_musculus:orig.ident,Danio_rerio:orig.ident, gold_label: celltype}`（映射语义：物种由文件承载注入常量列；金标准注释列 `celltype` 三文件共有；batch 按物种取列，见 `docs/heart-inspect-evidence-20260920.json`）、`dcs_project_file_search_status=uploaded_to_course_project_rawdata_2026-09-20`。`approval_status` 维持 pending（G3 四人批准未做，不因数据到位而变）。
+- **G1 关账**：路径✓（/Files/RawData/）、字段✓（celltype 金标准+value_counts 证据）、物种✓（人+小鼠+斑马鱼，heart_near_selected）、授权✓（BGI-时空课程项目，账号1=分析人员）。`startup_preflight.py --phase heart_pilot` 阻塞项收敛为纯 G2 域（image_recommendation/image_versions.{SATURN,SAMap,scVI}/kbet_implementation/kbet_version/readonly_sample_command）+ G3（approval_status）——数据类阻塞全部消除。
+- 云端动作口径（本轮唯一一次）：用户本人操作镭速客户端向课程项目 RawData 上传三个公开数据文件（用户 2026-09-20 批准，平台要求的正式上传通道）；ZCode 侧全程只读（下载/校验/页面核对），未创建实例、未提交任务、未安装 DCS 包、无消费。
+
 ## 账号2–4 只读核验槽位（空白待填）
 
 截至 2026-09-17，四名成员中只有账号1 完成上述两轮只读排查；账号2、3、4 尚无任何记录。以下槽位由各组员按工作包 A 的检查路径亲自填写，填写规则：
