@@ -109,3 +109,9 @@
 - **v15（KeyArray monkeypatch 版，pinned 镜像，21:57 完成）**：`import_scib: OK 0.4.1`、`kbet_fn: True`——**kBET 实现环境验证通过**。运行时需在脚本头部 `jax.random.KeyArray = jax.Array`（jax 0.4.30 兼容垫片，已写入 preflight 说明）。kbet_smoke "X must be a square matrix" 是冒烟调用姿势问题（scib kbet 需方阵距离矩阵），非环境缺陷。
 - jaxpin 镜像（jax 0.4.23 降级）构建失败（status=2）——降级路线放弃，monkeypatch 路线胜出。
 - **preflight 回填 kbet_version=0.4.1（实测）→ `ready_for_execution: true`，阻塞项清零**。测试护栏同步更新（60 tests 绿）。**课题5 全部门通过，HEART pilot 正式放行。**
+
+## SAMap 攻坚（2026-09-21 深夜续）
+
+- **g5-samap-try（samap==1.0.16）构建失败**（status=2）——内部镜像源装不上（依赖解析或源缺包）。
+- **g5-samap-101（samap==1.0.1）构建中**（d79c575f705340e9a4bda3c2278afdd2，22:5x 投）。若再失败：SAMap 版本争议维持例外 1（页面歧义状态串），SAMap 数字改走"BENGAL 镜像入项申请"或平台工单请求开放 BENGAL。
+- 注：平台自建的 BENGAL--SAMap--17 证明平台侧有能力构建 SAMAP 镜像（可能走 GitHub 通道）——若两版 pip 都失败，可在工单 TK20260921002545502 追问能否把 BENGAL 开放给课程项目。
