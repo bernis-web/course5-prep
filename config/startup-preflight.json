@@ -27,11 +27,11 @@
       "dcs_project_file_search_status": "not_found_in_current_visible_public_directory"
     }
   },
-  "image_recommendation": null,
+  "image_recommendation": "SATURN--22 (scvi-tools/scanpy/torch 实测一致；SATURN 包不在镜像内，正式跑需实例内 pip 安装)",
   "image_versions": {
-    "SATURN": null,
+    "SATURN": "absent_from_saturn22_image（ImportError No module named 'saturn'，离线探针实测 2026-09-21，docs/g2-offline-probe-evidence-20260921.md）",
     "SAMap": null,
-    "scVI": null
+    "scVI": "1.1.6.post2（SATURN--22 镜像离线探针实测，import scvi 成功，2026-09-21，docs/g2-offline-probe-evidence-20260921.md）"
   },
   "page_level_image_candidates": {
     "SATURN": {
@@ -55,7 +55,7 @@
   },
   "kbet_implementation": null,
   "kbet_version": null,
-  "readonly_sample_command": null,
+  "readonly_sample_command": "离线任务通道（公网可用）：printf '<python探针>' > p.py && /usr/local/bin/python3 p.py（1c4g/SATURN--22，输出经 /stereonote/api/normal/content 读取；实测 docs/g2-offline-probe-evidence-20260921.md）",
   "evidence": {
     "course_admin_reply": "docs/dcs-readonly-audit.md 账号1第四轮（2026-09-20 老师回复后）与数据获取本地核验小节",
     "dcs_readonly_audit": "docs/dcs-readonly-audit.md",
