@@ -41,3 +41,10 @@
 1. SAMap：选 C——证据型状态串（SATURN 先例）。
 2. kBET：选 B 修正版——scib-metrics，kbet_version 保持 null 待实测钉死。
 3. G2：可有记录例外关账进 G3，但 ready_for_execution 必须等核验回填后才允许变绿。
+
+## 附：G3 批准后首跑实录（2026-09-21 12:0x）
+
+- **G3 批准**：用户代表四人小组批准（"都同意，按你推荐的来"，2026-09-21）；kBET 裁决=方案 B scib-metrics（方法变更显式记录）。`approval_status=confirmed`（31efade），preflight 阻塞仅剩 kbet_version。
+- **v8 冒烟（g3-smoke-install-v8，1c4g/SATURN--22，12:07 完成）结论：离线容器无外网**——`urlopen pypi.org → Errno 101 Network is unreachable`；pip 安装 scib-metrics/saturn 全部失败（无网络+`/home/stereonote/.local` 权限拒绝）；`saturn-scripts` 在索引中不存在。**运行时装包路线不可行**。
+- **修正路线**：SATURN 与 scib-metrics（kBET）须经平台"镜像管理→添加镜像"自建镜像烘焙安装（镜像构建是平台官方装包通道）；scVI 已在镜像内，基线不受影响。例外 2/3 的补证路径更新为"自建镜像后实例内版本取证"。
+- **v9 挂载探测（g3-mount-probe-v9，1c4g，12:09 提交）**：探 /Files/RawData 等路径在离线容器内的可见性——决定 GPU scVI 基线能否直接读课程数据。
