@@ -8,8 +8,8 @@
 | --- | --- | --- |
 | G0 本地基线 | 核心通过 / 材料已补齐 | 2026-09-17 本轮 50 个测试及 smoke、计划契约、结果契约、artifact contract、Word 模板重建通过；2026-09-18 找回缺失的 `course-web(1).html` 与心脏论文 PDF（回收站原件与微信目录均未破坏），`source_manifest_check.py` 三份大小/SHA-256 全部匹配（3/3，退出码 0）；材料存放于仓库外目录，路径不入库，原件不提交 Git |
 | G1 DCS 数据路径/字段/物种/授权 | **通过（2026-09-20 关账）** | 课程项目"康复大学生信实践"（BGI-时空，P20260920085640327，57 人，账号1=分析人员）；三物种 h5ad（人+小鼠+斑马鱼，Claude+ZCode 商量定案）已从 STDS0000406 官方 FTP 下载、本地校验（大小精确一致+anndata 可读+金标准列 celltype）并经镭速上传落盘 `/Files/RawData/`（153.93/259.71/213.38MB 逐一核对一致）；preflight heart 字段已填，数据类阻塞全消。剩余=纯 G2/G3 阻塞 |
-| G2 候选镜像 | 部分完成 | `SATURN--22`/`SATURN--21`、`samap_all`、`BENGAL--SAMap--17`、`scvi_zt` 等页面已发现；实例内入口、真实版本、GPU、正式 kBET 全部 `pending` |
-| G3 启动许可 | 未通过 | `config/startup-preflight.json` 的 `approval_status` 仍为 `pending`，HEART 数据字段全空；预检已按阶段校验（默认 `heart_pilot` 不要求 `lbspa_snRNA_path`；`lbspa_followup` 另要求该路径与 `evidence.scrna_conclusion`），阶段化门本身不再阻塞 HEART |
+| G2 候选镜像 | **通过（2026-09-21 带三项记录例外关账，`docs/g2-closure-exceptions-20260921.md`）** | 白屏根因官方定性=时空片区需华大 VPN（工单 TK20260921002545502，网安要求，老师无渠道）；**离线任务通道公网可用**（1c4g+任选项目镜像+输出公网可读，提交坑已全破解入档）。SATURN--22 镜像内实测（`docs/g2-offline-probe-evidence-20260921.md`）：Python 3.9.12、scvi-tools 1.1.6.post2、scanpy 1.10.3、torch 2.6.0+cu124（三项与页面一致）、anndata 0.10.8、fair-esm 2.0.0、faiss-gpu 1.7.2；**SATURN 包不在镜像内（需实例内 pip 装）**。例外：SAMap 版本（BENGAL 不可选+页面矛盾→证据型状态串）、kBET 实现路线（原版R vs scib-metrics，双评审分歧→G3 裁决）、kbet_version（实测前保持 null 红灯） |
+| G3 启动许可 | 未通过（材料已备：`docs/g3-approval-request-20260921.md`） | preflight 剩余阻塞仅 `approval_status` + `kbet_version`（例外3）；批准材料含 kBET A/B 裁决项与 HEART pilot 离线通道执行方案（无需 VPN） |
 | HEART pilot | 未开始 | 等 G1+G2+G3 |
 | 正式评测 | 未开始 | 等 HEART pilot 闭环 |
 | LBSPA 单核补充 | 未开始 | 等单细胞基本结论（`config/benchmark-plan.json` 的 activation_gate） |
