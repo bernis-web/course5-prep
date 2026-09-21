@@ -103,3 +103,9 @@
 3. **工作区换镜像的稳定通路**（镜像选择弹窗对自动化完全无效——历次任务其实都跑在工作区默认镜像上，此前"SATURN--22 选中"是默认值假象）：`POST /workspace/save` 克隆工作区，载荷关键字段 image_id/image_title/**image_url**（缺它 500 'image_url'）+version。已建 `g5-scib-verify-ws`（user50719-8334_3ea054f9b76a47e9a3fda9f939e2b35a，默认镜像 g5-canary-pinned）。
 4. **v14 验证（pinned 镜像，14 秒完成）**：scib-metrics **0.4.1 已装入**（pip 元数据实测）；但 `import` 失败——基础镜像 jax 0.4.30 太新（`jax.random.KeyArray` 已移除，scib-metrics 0.4.1 需 jax≤0.4.23）。v12 对照组（SATURN--22）：scib MISSING ✓、six 1.16.0/jax 0.4.30/scipy 1.10.1（<1.14 kBET 安全）/numpy 1.26.0 均在。
 5. **修正版构建中**：`g5-kbet-jaxpin`（9684374c7fbf4064a9a3df5118d9eb25）= scib-metrics 0.4.1 + **jax 0.4.23 + jaxlib 0.4.23** 三钉。构建完成后同工作区流程验证 import → kbet_version 回填。
+
+## 收官（2026-09-21 21:57）
+
+- **v15（KeyArray monkeypatch 版，pinned 镜像，21:57 完成）**：`import_scib: OK 0.4.1`、`kbet_fn: True`——**kBET 实现环境验证通过**。运行时需在脚本头部 `jax.random.KeyArray = jax.Array`（jax 0.4.30 兼容垫片，已写入 preflight 说明）。kbet_smoke "X must be a square matrix" 是冒烟调用姿势问题（scib kbet 需方阵距离矩阵），非环境缺陷。
+- jaxpin 镜像（jax 0.4.23 降级）构建失败（status=2）——降级路线放弃，monkeypatch 路线胜出。
+- **preflight 回填 kbet_version=0.4.1（实测）→ `ready_for_execution: true`，阻塞项清零**。测试护栏同步更新（60 tests 绿）。**课题5 全部门通过，HEART pilot 正式放行。**
