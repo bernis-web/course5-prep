@@ -95,3 +95,11 @@
 - **总体**：架构可保留；执行前需补精确依赖锁定、SAMap 路线、SATURN GPU 冒烟、wheelhouse 可复现性、canary 三态错误分类。
 - **canary**：不要把所有非零退出写成 OFFLINE——按 DNS/TLS/连接失败分类，记录状态码/错误类别/构建标识，保留构建日志（镜像内文件构建失败时取不回）。
 - **Plan B（需修改后采用）**：现在就设为预批准交付分支+硬触发点（canary 完成/wheelhouse 构建完成/SATURN 过 --help+导入+GPU 检查+最小 forward 三道门槛，任一失败或超时即触发，不等完整运行失败）；报告措辞：SATURN 是"环境不可执行/未完成验证"，不能写成"性能较差"；scVI 直系同源基线是"可复现参照"不是等价第三方法；若课程硬性要求 SATURN 需同步取得课程方确认。
+
+## 执行实录（2026-09-21 晚）
+
+1. **镜像构建 API 破解**：`POST /stereonote/api/images/build`，载荷要点——image_toolkit 传**对象** `{latest:{Python3:[{toolkit_name,version}...],R:[]}}`（字符串形式 500 'str has no get'；缺 version 键 500）；其余：image_name/base_image_type='1'/build_type='tool'/base_image_id/base_image_name/base_image_url/root_type='1'/image_type=1/image_env=[]/project_id。
+2. **canary 双投判定（三态收敛）**：net4（scib-metrics **latest**）→ status=2 构建失败=版本解析（latest 需 py≥3.11，镜像 py3.9）——**非网络问题**；pinned（**0.4.1**）→ status=1 构建成功（36.1GB）。**结论：平台构建期装包通道可用（内部镜像源），wheelhouse 兜底不需要，钉版本是硬要求**（Codex 评审的"错误分类"预判命中）。
+3. **工作区换镜像的稳定通路**（镜像选择弹窗对自动化完全无效——历次任务其实都跑在工作区默认镜像上，此前"SATURN--22 选中"是默认值假象）：`POST /workspace/save` 克隆工作区，载荷关键字段 image_id/image_title/**image_url**（缺它 500 'image_url'）+version。已建 `g5-scib-verify-ws`（user50719-8334_3ea054f9b76a47e9a3fda9f939e2b35a，默认镜像 g5-canary-pinned）。
+4. **v14 验证（pinned 镜像，14 秒完成）**：scib-metrics **0.4.1 已装入**（pip 元数据实测）；但 `import` 失败——基础镜像 jax 0.4.30 太新（`jax.random.KeyArray` 已移除，scib-metrics 0.4.1 需 jax≤0.4.23）。v12 对照组（SATURN--22）：scib MISSING ✓、six 1.16.0/jax 0.4.30/scipy 1.10.1（<1.14 kBET 安全）/numpy 1.26.0 均在。
+5. **修正版构建中**：`g5-kbet-jaxpin`（9684374c7fbf4064a9a3df5118d9eb25）= scib-metrics 0.4.1 + **jax 0.4.23 + jaxlib 0.4.23** 三钉。构建完成后同工作区流程验证 import → kbet_version 回填。
