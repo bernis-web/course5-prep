@@ -30,7 +30,7 @@
   "image_recommendation": "SATURN--22 (scvi-tools/scanpy/torch 实测一致；SATURN 包不在镜像内，正式跑需实例内 pip 安装)",
   "image_versions": {
     "SATURN": "absent_from_saturn22_image（ImportError No module named 'saturn'，离线探针实测 2026-09-21，docs/g2-offline-probe-evidence-20260921.md）",
-    "SAMap": "page_ambiguous_1.0.1_or_1.0.16_pending_runtime_verification（BENGAL 镜像不在项目可选范围；证据型状态串，先例同 SATURN；例外1 见 docs/g2-closure-exceptions-20260921.md）",
+    "SAMap": "1.0.16（wheelhouse 离线通道实测 import OK，2026-09-22 v29；页面歧义 1.0.1/1.0.16 以实测关闭；证据 docs/samap-wheelhouse-evidence-20260922.md；运行时类需 hnswlib 受阻于镜像 gcc 4.8 无 C++14——跑数出口见证据文档残余限制节）",
     "scVI": "1.1.6.post2（SATURN--22 镜像离线探针实测，import scvi 成功，2026-09-21，docs/g2-offline-probe-evidence-20260921.md）"
   },
   "page_level_image_candidates": {
