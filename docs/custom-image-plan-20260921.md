@@ -89,3 +89,9 @@
 - [scib-metrics docs · kbet](https://scib-metrics.readthedocs.io/en/stable/generated/scib_metrics.kbet.html) — 实现声明与偏差自述
 - [scib-metrics · PyPI](https://pypi.org/project/scib-metrics/) 及版本历史 — requires_python 阶梯（3.8→3.11→3.12）
 - [maarten-devries/scib-benchmark](https://github.com/maarten-devries/scib-benchmark) — 双实现等价性先例
+
+## 附：Codex 独立评审意见（2026-09-21 晚，exec 只读）
+
+- **总体**：架构可保留；执行前需补精确依赖锁定、SAMap 路线、SATURN GPU 冒烟、wheelhouse 可复现性、canary 三态错误分类。
+- **canary**：不要把所有非零退出写成 OFFLINE——按 DNS/TLS/连接失败分类，记录状态码/错误类别/构建标识，保留构建日志（镜像内文件构建失败时取不回）。
+- **Plan B（需修改后采用）**：现在就设为预批准交付分支+硬触发点（canary 完成/wheelhouse 构建完成/SATURN 过 --help+导入+GPU 检查+最小 forward 三道门槛，任一失败或超时即触发，不等完整运行失败）；报告措辞：SATURN 是"环境不可执行/未完成验证"，不能写成"性能较差"；scVI 直系同源基线是"可复现参照"不是等价第三方法；若课程硬性要求 SATURN 需同步取得课程方确认。
