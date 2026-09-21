@@ -48,3 +48,9 @@
 - **v8 冒烟（g3-smoke-install-v8，1c4g/SATURN--22，12:07 完成）结论：离线容器无外网**——`urlopen pypi.org → Errno 101 Network is unreachable`；pip 安装 scib-metrics/saturn 全部失败（无网络+`/home/stereonote/.local` 权限拒绝）；`saturn-scripts` 在索引中不存在。**运行时装包路线不可行**。
 - **修正路线**：SATURN 与 scib-metrics（kBET）须经平台"镜像管理→添加镜像"自建镜像烘焙安装（镜像构建是平台官方装包通道）；scVI 已在镜像内，基线不受影响。例外 2/3 的补证路径更新为"自建镜像后实例内版本取证"。
 - **v9 挂载探测（g3-mount-probe-v9，1c4g，12:09 提交）**：探 /Files/RawData 等路径在离线容器内的可见性——决定 GPU scVI 基线能否直接读课程数据。
+
+## 附2：v9 挂载实证 + v10 GPU 基线提交（2026-09-21 12:25/13:15）
+
+- **v9（g3-mount-probe-v9，1c4g，12:25 完成）关键结论**：离线任务容器内 `/Files/RawData/` **直接可见三物种 h5ad**（Danio_rerio_sc.h5ad / Mus_musculus_sc.h5ad / Homo_sapiens_sc.h5ad），课程项目数据无需复制即可只读挂载使用；工作区目录在容器内挂载为 `/data/work`（即 /jdfsms1/.../online 的容器内视角）。scVI 基线的数据链路打通。
+- **v10（g3-scvi-baseline-v10，3080Ti×1 88c320g，13:15:50 提交）**：GPU 档离线任务——nvidia-smi 取证 GPU 型号 → 人心脏 30k 细胞 HVG2000 → scVI(5 epoch, n_latent=10, donor batch, celltype labels) → KNN15 金标准准确率 + 耗时。结果文件 scvi_v10_out.txt / gpu_v10.txt 落工作区后经公网 API 读取。后台监控中。
+- 运维注：GPU 档任务从提交起计费（课程方账户）；脚本无死循环、数据量小（213MB），总时长受控。
