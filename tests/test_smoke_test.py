@@ -592,10 +592,19 @@ class SmokeEvaluatorTests(unittest.TestCase):
 
         result = validate_preflight(preflight)
 
+        # G3 was approved on 2026-09-21 (team approval relayed by the user),
+        # so approval no longer blocks; the honest remaining red light is
+        # kbet_version, empty until the first run measures it (exception 3
+        # in docs/g2-closure-exceptions-20260921.md).
         self.assertFalse(result["ready_for_execution"])
-        self.assertIn("approval_status", result["blocking_items"])
+        self.assertNotIn("approval_status", result["blocking_items"])
+        self.assertIn("kbet_version", result["blocking_items"])
+        # Guardrail: flipping approval back to pending must re-block.
+        preflight["approval_status"] = "pending"
+        self.assertIn("approval_status", validate_preflight(preflight)["blocking_items"])
         # heart_data_path was verified against the landed RawData files on
-        # 2026-09-20, so the data-side blockers are gone; only G2/G3 remain.
+        # 2026-09-20, so the data-side blockers are gone; only the kbet
+        # measurement and the (now-granted) approval ever remained.
         self.assertNotIn("heart_data_path", result["blocking_items"])
         self.assertNotIn("heart_file_format", result["blocking_items"])
         self.assertNotIn("heart_metadata_fields.cell_type", result["blocking_items"])
@@ -653,10 +662,12 @@ class SmokeEvaluatorTests(unittest.TestCase):
         result = validate_preflight(preflight, phase="heart_pilot")
 
         self.assertNotIn("lbspa_snRNA_path", result["blocking_items"])
-        # Data path verified on 2026-09-20; heart_pilot blocks only on
-        # G2 image/kbet items plus the G3 approval, never on lbspa.
+        # Data path verified on 2026-09-20; heart_pilot blocks only on the
+        # kbet_version measurement (G3 approval granted 2026-09-21), never
+        # on lbspa.
         self.assertNotIn("heart_data_path", result["blocking_items"])
-        self.assertIn("approval_status", result["blocking_items"])
+        self.assertNotIn("approval_status", result["blocking_items"])
+        self.assertIn("kbet_version", result["blocking_items"])
         self.assertFalse(result["ready_for_execution"])
 
     def test_lbspa_followup_phase_requires_snrna_path_and_scrna_conclusion_evidence(self):
@@ -912,7 +923,11 @@ class SmokeEvaluatorTests(unittest.TestCase):
 
         self.assertTrue(report["valid"])
         self.assertFalse(report["ready_for_execution"])
-        self.assertIn("startup:approval_status", report["blocking_items"])
+        # G3 approval landed 2026-09-21; the local readiness report stays red
+        # on the kbet_version measurement instead (it can only be filled from
+        # an actual instance run, never from the local machine).
+        self.assertIn("startup:kbet_version", report["blocking_items"])
+        self.assertNotIn("startup:approval_status", report["blocking_items"])
         self.assertEqual(report["scope"], "local_only")
         self.assertEqual(report["checks"]["environment"]["report_scope"], "local_runtime")
         self.assertEqual(report["side_effects"], [])
