@@ -121,3 +121,10 @@
 - **g5-samap-101（samap==1.0.1）亦快速失败**（status=2，~2 分钟=解析/缺包级失败）——**内部镜像源不含 samap**（两版本皆试）。自建 SAMap 镜像路线关闭。
 - **处置**：例外 1 维持（image_versions.SAMap 页面歧义状态串）；SAMap 数字依赖 **BENGAL--SAMap--17 开放**——已列入工单 TK20260921002545502 追问清单（请求把该镜像开放给课程项目，或提供平台侧 SAMAP 镜像的构建方式）。
 - 今日 scVI 三物种 + kBET 环境两大战果不受影响。
+
+## SATURN 环境全通（2026-09-22，v38–v41）
+
+- **v40/v41 关键修正**：printf 写多行 Python 会吃缩进（v39 IndentationError）→ 改 **base64 管道写脚本**（echo <b64> | base64 -d），无转义问题；tar 解压顶层目录是 `saturn-src/`（本地 git clone 目录名），解压后实际根 = `/data/work/saturn-src/saturn-src`——用 os.walk 递归找 `model+train-saturn.py` 组合，不再猜路径。
+- **v41 终态**：`root=/data/work/saturn-src/saturn-src`、`from model import saturn_model → OK`、`train-saturn.py --help → rc=0`（帮助文本正常）。**SATURN 训练入口在镜像内可用**。
+- 三方法环境状态：scVI（镜像原生）✓、SAMap 1.0.16（wheelhouse）✓、SATURN（源码+依赖+入口）✓。残余：SAMAP 运行类 hnswlib 垫片化（sklearn 精确近邻，v34 smoke 通过）；SATURN 正式训练需 GPU 档任务+预训练蛋白嵌入（protein_embeddings 目录已在源码内，536K）。
+- 流程教训（已吸收）：长链路任务先合并步骤、输出单 JSON、读结果 ≤2 次；printf 多行 Python 必坏，一律 base64。
