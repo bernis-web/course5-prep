@@ -8,8 +8,15 @@ import os, re, sys
 from pptx import Presentation
 
 BASE = r"D:\projects\course5-prep\results\stage-reports-20261102"
-SRC = os.path.join(BASE, "课题5第03次汇报_三场景结论与可复现闭环.pptx")
-DST = os.path.join(BASE, "课题5-三场景结论与可复现闭环.pptx")
+# 用法：python strip_report_ordinal.py [源.pptx] [目标.pptx]
+# 不给参数就用默认的一对
+def _pick():
+    if len(sys.argv) >= 3:
+        return sys.argv[1], sys.argv[2]
+    return (os.path.join(BASE, "课题5第03次汇报_三场景结论与可复现闭环.pptx"),
+            os.path.join(BASE, "课题5-三场景结论与可复现闭环.pptx"))
+
+SRC, DST = _pick()
 
 # 按顺序替换：先换长的，避免残留
 RULES = [
