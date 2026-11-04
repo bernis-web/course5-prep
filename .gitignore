@@ -2,8 +2,17 @@
 __pycache__/
 *.py[cod]
 .venv/
+.venv*/
 venv/
 env/
+node_modules/
+
+# 临时草稿与一次性产物（不进仓库）
+.tmp-*
+_hbcheck/
+*.bak-*
+*.bak2-*
+*~
 
 # Local benchmark outputs and logs
 smoke-output/
@@ -22,3 +31,19 @@ runtime-output/
 .idea/
 .DS_Store
 Thumbs.db
+
+# ── 本地临时与大数据（不入库，2026-11-04 交接整理）──
+.tmp-*/
+.tmp-*
+.tmp-segs/
+.venv39/
+node_modules/
+wheelhouse/
+ortholog/
+tmp/
+*.h5ad
+local_samap3_*.json
+local_samap3_emb.h5ad
+v98_*.txt
+extract_all.txt
+INDEX.md.txt
