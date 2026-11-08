@@ -1,0 +1,17 @@
+path	size_bytes	sha256	role
+results/pilot-v1/ortholog-pca-v98/manifest.json	6212	546772c5f05ad9326a8f27aa4c5a72f094e7d7c4ddacec30c8098dbc44525608	opca-manifest
+results/pilot-v1/ortholog-pca-v98/metrics.json	34929	b2b3ac6bc37c410841bdcbbd968159246e1990db47d02b8fa11844527d66c725	opca-metrics
+results/pilot-v1/ortholog-pca-v98/confusion/coarse_human_to_mouse.json	809	167da767a21c8688b77dfdd210f17d3bdddec2077182c11648b5ed0e3533580d	opca-confusion-smoke
+results/pilot-v1/ortholog-pca-v98/predictions/coarse_human_to_mouse.json	1283386	dc729820b3a442d676cc17913f2e79e852ce795d4517730eb10807d145f10847	opca-predictions-smoke
+results/pilot-v1/samap-v98/wdl-run/extracted/manifest.json	871	dc9679f549f573a70c884eecc54b2c15b32532215d1950b96ef35391400864e4	samap-manifest
+results/pilot-v1/samap-v98/wdl-run/extracted/metrics.json	6611331	3c7193999f489017e4227bff2dc83667b63a564a97a373373f6239328ae4954f	samap-metrics
+results/pilot-v1/saturn-v99/raw/recovered-20261001/manifest.json	4761	84267bd78bfe59ac60a22d1727a1f5398561e3e3d7bc53a50e43785fbeff8407	saturn-v99-manifest
+results/pilot-v1/saturn-v99/raw/recovered-20261001/metrics.json	43486	d1081cfd2489bf2afd30af7706fadf2d08b90390c26d38a766ea97b54b3dc261	saturn-v99-metrics
+results/pilot-v1/saturn-v99/raw/recovered-20261001/metrics.content.json	38930	084a64d799a0a93a700f99c50a77a01749e011c4ad1e2b003fb36587fc37cbf7	saturn-v99-recovered-content
+results/pilot-v1/saturn-v99/raw/recovered-20261001/sha256.tsv	4581	26fc554a94becbda8ca82c1e4c2555565a329e58b82975bb9c8fe37616816ad9	saturn-v99-inner-hash-list
+config/heart-celltype-map-v1.tsv	5127	be9857354778535b76d1884d004c54691dc5ff2daa7b098d71dc719daf583165	mapping-v1
+
+# Directory inventory (not a substitute for per-file hashes)
+# results/pilot-v1/ortholog-pca-v98: 40 files, 18098994 bytes
+# results/pilot-v1/samap-v98/wdl-run/extracted: 21 files, 12730056 bytes
+# results/pilot-v1/saturn-v99/raw/recovered-20261001: 34 files, 350869 bytes

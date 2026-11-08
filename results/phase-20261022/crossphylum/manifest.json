@@ -1,0 +1,19 @@
+{
+  "protocol_label": "crossphylum_lamprey_mouse",
+  "variant": "oPCA(joint PCA50 randomized) + scVI(n_latent=10, batch_key=species, max_epochs=50, early_stopping) + KNN15 cosine + macro_F1_union + shuffle200 + union labels",
+  "seed": 0,
+  "k": 15,
+  "nperm": 200,
+  "distance": "cosine",
+  "n_latent": 10,
+  "max_epochs": 50,
+  "n_genes": 6222,
+  "n_cells": 55694,
+  "species_counts": {
+    "Lamprey": 41678,
+    "Mouse": 14016
+  },
+  "data_dir": "/Files/ResultData/Notebook/crossphylum",
+  "output_dir": "./result",
+  "script_sha256": "1d379525f1f806da07b6eca02b83eb2a47e598d0470195f4340e660e7e1b4c5d"
+}

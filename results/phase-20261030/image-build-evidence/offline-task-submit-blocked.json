@@ -1,0 +1,42 @@
+{
+  "captured_at": "2026-10-30T11:25:00Z",
+  "goal_step": "② 在 g5-opca-container 镜像内跑一次离线任务复现 6 个冻结 coarse accuracy",
+  "status": "blocked_by_frontend_bug",
+  "new_finding_this_round": "刷新后该页只发出 3 个接口请求，其中没有任何资源目录/算力查询接口；也就是说「计算资源」两个下拉从未去后端取过数据，不是「后端返回空」，而是「请求根本没发」。",
+  "network_evidence": {
+    "method": "performance.getEntriesByType('resource') filtered by /stereonote\\/api/",
+    "requests_observed": [
+      "https://www.dcs.cloud/stereonote/api/user/info",
+      "https://www.dcs.cloud/stereonote/api/ipynb/getProjectInfoById?project_id=P20260920085640327",
+      "https://www.dcs.cloud/stereonote/api/workspace/getlast?project_id=P20260920085640327"
+    ],
+    "resource_catalog_requests": 0,
+    "conclusion": "页面渲染出「计算资源」两个下拉并显示「无数据」，但从未请求资源目录接口 → 前端缺陷，非账号/额度问题"
+  },
+  "dom_evidence": {
+    "selector": ".el-select-dropdown",
+    "count": 2,
+    "textContent": ["无数据", "无数据"],
+    "display": "block",
+    "visible": false
+  },
+  "why_cannot_bypass_here": {
+    "api_401": "直接 fetch /stereonote/api/... 各候选资源端点在浏览器上下文里全部返回 {\"code\":401}：该命名空间要求 X-Access-Token 头，而按项目纪律不读取、不复用凭据。",
+    "no_pod": "Genpilot 建议的 `dcs task run` 需要先进一个 Running 的在线 Pod；其「打开云端 Bash 终端」停在『加载终端…』超过 2 分钟未连上。"
+  },
+  "retries_this_round": [
+    "重新打开提交页（任务名 20261030184829）：仍为无数据",
+    "整页 location.reload()：仍为无数据，且确认未发出资源目录请求",
+    "上一轮已试过：切回 Notebook 再切回运行脚本 / 先选镜像后选资源 / iframe 内 reload"
+  ],
+  "already_proven_working": {
+    "image_selectable": "在「镜像资源 → 选择镜像」里搜索 g5 即列出 g5-opca-container，选中后回填成功（截图 04）",
+    "run_script_mode": "任务类型可切到「运行脚本」，CodeMirror shell 编辑器出现且可写入",
+    "inputs_present": "/Files 下三个 local_*_s.h5ad；/Files/wheelhouse/ 下 orth-MGI-HOM.rpt、orth-human-orthos.txt、orth-mouse-orthos.txt、heart-celltype-map-v1.tsv；/Files/ResultData/Notebook/ortholog_pca_dcs_v3_fixkey.txt"
+  },
+  "what_unblocks_it": [
+    "人工在提交页手动选一次计算资源（如果他那侧能出数据，说明是会话/缓存态差异）",
+    "或人工从「个性分析 → 在线任务」启动一个容器到 Running，之后用 dcs task run 投递",
+    "或平台侧修复该页的资源目录请求"
+  ]
+}

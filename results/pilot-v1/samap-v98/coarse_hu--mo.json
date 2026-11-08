@@ -1,0 +1,11 @@
+{
+ "acc": 0.0,
+ "majority": 0.0,
+ "shuffle_p": 1.0,
+ "n_ref": 1528,
+ "n_q": 0,
+ "n_excluded_q": 0,
+ "n_excluded_ref": 0,
+ "per_cell": [],
+ "confusion": {}
+}

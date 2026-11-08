@@ -1,0 +1,416 @@
+#!/usr/bin/env python3
+"""Ortholog-PCA v2 (DCS container draft): transductive same-batch protocol, isolated output.
+
+Spec alignment:
+  1) Protocol constants (fixed): PROTOCOL, SEED=0, K=15, NPERM=200, NPCS=50, MIN_SHARED=100,
+     PREFIX = {human:hu, mouse:mo, zebrafish:zf}
+  2) Inputs via env-overridable dirs (defaults /Files, /Files/wheelhouse):
+     OPCA_H5AD_DIR  -> local_{species}_s.h5ad
+     OPCA_ORTH_DIR  -> orth-MGI-HOM.rpt / orth-human-orthos.txt / orth-mouse-orthos.txt
+     OPCA_MAPPING   -> v99_mapping_embedded.json
+  3) Output: OPCA_OUT_ROOT (default /work/<user>); --out default <OUT_ROOT>/opca-full-<UTC%Y%m%dT%H%M%SZ>
+  4) Isolation guards (order fixed): _preflight_inputs() (7 inputs missing -> SystemExit(2))
+     -> target dir exists -> SystemExit(3) -> output must resolve inside OPCA_OUT_ROOT else SystemExit(3)
+     -> mkdir(parents=True, exist_ok=False)
+  5) Artifacts: command.txt, environment.txt (script_sha256 + 7 input SHAs), metrics.json
+     (6 directions x exact/coarse/fine), predictions/<tag>.json, confusion/<tag>.json,
+     manifest.json, sha256.tsv (recursive full tree)
+  6) Scoring: per-direction independent PCA(50, random_state=0) fit_transform(concatenated matrix)
+     -> KNN15 cosine inverse-distance weighting -> exact/coarse/fine levels
+     (coarse/fine: frozen mapping, bidirectional exclusion of status!=active)
+     -> 200 permutations with RandomState(0)
+  7) Pure numpy+anndata+scanpy+sklearn (no torch), single process, single thread (BLAS=1)
+"""
+from __future__ import annotations
+import argparse
+import hashlib
+import json
+import os
+import sys
+from pathlib import Path
+
+import numpy as np
+
+# ---------------------------------------------------------------------------
+# 1) Protocol constants (do not modify)
+# ---------------------------------------------------------------------------
+PROTOCOL = "transductive_formal_reassessment"
+SEED = 0
+K = 15
+NPERM = 200
+NPCS = 50
+MIN_SHARED = 100
+PREFIX = {"human": "hu", "mouse": "mo", "zebrafish": "zf"}
+SPECIES_ORDER = ["human", "mouse", "zebrafish"]
+
+# ---------------------------------------------------------------------------
+# 2) Input paths (env-overridable)
+# ---------------------------------------------------------------------------
+H5AD_DIR = Path(os.environ.get("OPCA_H5AD_DIR", "/Files"))
+ORTH_DIR = Path(os.environ.get("OPCA_ORTH_DIR", "/Files/wheelhouse"))
+MAPPING_JSON = Path(os.environ.get("OPCA_MAPPING", "/Files/wheelhouse/v99_mapping_embedded.json"))
+OUT_ROOT = Path(os.environ.get("OPCA_OUT_ROOT", "/work/user50719-8334"))
+
+H5AD_FILES = {sp: H5AD_DIR / f"local_{sp}_s.h5ad" for sp in SPECIES_ORDER}
+ORTH_FILES = {
+    "orth-MGI-HOM.rpt": ORTH_DIR / "orth-MGI-HOM.rpt",
+    "orth-human-orthos.txt": ORTH_DIR / "orth-human-orthos.txt",
+    "orth-mouse-orthos.txt": ORTH_DIR / "orth-mouse-orthos.txt",
+}
+INPUTS = list(H5AD_FILES.values()) + list(ORTH_FILES.values()) + [MAPPING_JSON]
+INPUT_NAMES = (
+    [f"local_{sp}_s.h5ad" for sp in SPECIES_ORDER]
+    + list(ORTH_FILES.keys())
+    + [MAPPING_JSON.name]
+)
+
+
+def sha256_file(p: Path) -> str:
+    h = hashlib.sha256()
+    with open(p, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+# ---------------------------------------------------------------------------
+# 4) Isolation guards (order fixed, do not reorder)
+# ---------------------------------------------------------------------------
+def _preflight_inputs() -> None:
+    """All 7 inputs must exist and be readable; else SystemExit(2)."""
+    missing = [name for name, p in zip(INPUT_NAMES, INPUTS) if not p.is_file()]
+    if missing:
+        print(f"PREFLIGHT_FAIL missing={missing}", flush=True)
+        raise SystemExit(2)
+    # readable + non-empty
+    for name, p in zip(INPUT_NAMES, INPUTS):
+        try:
+            if p.stat().st_size == 0:
+                print(f"PREFLIGHT_FAIL empty={name}", flush=True)
+                raise SystemExit(2)
+        except OSError as exc:
+            print(f"PREFLIGHT_FAIL unreadable={name} err={exc}", flush=True)
+            raise SystemExit(2)
+
+
+def _resolve_out(out: Path | None) -> Path:
+    import datetime as _dt
+    if out is None:
+        ts = _dt.datetime.now(_dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+        out = OUT_ROOT / f"opca-full-{ts}"
+    out = Path(out).resolve()
+    root = OUT_ROOT.resolve()
+    try:
+        out.relative_to(root)
+    except ValueError:
+        print(f"GUARD_OUT_NOT_IN_ROOT out={out} root={root}", flush=True)
+        raise SystemExit(3)
+    if out.exists():
+        print(f"GUARD_OUT_EXISTS out={out}", flush=True)
+        raise SystemExit(3)
+    return out
+
+
+# ---------------------------------------------------------------------------
+# Ortholog parsing + frozen mapping (same semantics as platform v98)
+# ---------------------------------------------------------------------------
+def parse_orthologs():
+    groups: dict[str, dict[str, set]] = {}
+    for line in open(ORTH_FILES["orth-MGI-HOM.rpt"], encoding="utf-8", errors="replace"):
+        f = line.rstrip("\n").split("\t")
+        if len(f) < 5 or not f[0].isdigit():
+            continue
+        tax = None
+        sym = None
+        for i in range(len(f) - 1):
+            if f[i] in ("9606", "10090"):
+                tax = "hu" if f[i] == "9606" else "ms"
+                sym = f[i + 1].strip().upper()
+                break
+        if tax and sym:
+            groups.setdefault(f[0], {}).setdefault(tax, set()).add(sym)
+    hm = {}
+    for g, d in groups.items():
+        if set(d) == {"hu", "ms"} and len(d["hu"]) == 1 and len(d["ms"]) == 1:
+            hm[next(iter(d["hu"]))] = next(iter(d["ms"]))
+
+    def zfin(path):
+        d = {}
+        for line in open(path, encoding="utf-8", errors="replace"):
+            f = line.rstrip("\n").split("\t")
+            if len(f) < 5:
+                continue
+            d.setdefault(f[1].strip().upper(), set()).add(f[3].strip().upper())
+        return d
+
+    fh_raw = zfin(ORTH_FILES["orth-human-orthos.txt"])
+    f2h, h2f = {}, {}
+    for fish, hs in fh_raw.items():
+        if len(hs) == 1:
+            hh = next(iter(hs))
+            h2f.setdefault(hh, []).append(fish)
+            f2h[fish] = hh
+    fh = {h: fl[0] for h, fl in h2f.items() if len(fl) == 1}
+
+    fm_raw = zfin(ORTH_FILES["orth-mouse-orthos.txt"])
+    f2m, m2f = {}, {}
+    for fish, ms in fm_raw.items():
+        if len(ms) == 1:
+            mm = next(iter(ms))
+            m2f.setdefault(mm, []).append(fish)
+            f2m[fish] = mm
+    fmm = {m: fl[0] for m, fl in m2f.items() if len(fl) == 1}
+    return hm, fh, fmm
+
+
+def freeze_mapping(json_path: Path) -> dict[str, tuple[str, str, str]]:
+    rows_raw = json.loads(Path(json_path).read_text(encoding="utf-8"))
+    rows = {}
+    for key, vals in rows_raw.items():
+        rows[key] = (str(vals[0]).strip(), str(vals[1]).strip(), str(vals[2]).strip())
+    return rows
+
+
+# ---------------------------------------------------------------------------
+# 6) Scoring: cosine KNN inverse-distance weighting (same as platform eval3)
+# ---------------------------------------------------------------------------
+def knn_cosine_vote(ref, qry, ytr, k=K):
+    """k-NN cosine, inverse-distance weighted vote; returns predictions."""
+    rn = np.linalg.norm(ref, axis=1)
+    qn = np.linalg.norm(qry, axis=1)
+    D = np.clip(1.0 - (qry / qn[:, None]) @ (ref / rn[:, None]).T, 0.0, 2.0)
+    nk = min(k, len(ytr))
+    preds = []
+    for row in range(D.shape[0]):
+        order = np.lexsort((np.arange(len(ytr)), D[row]))[:nk]
+        sc = {}
+        for i in order:
+            sc[ytr[i]] = sc.get(ytr[i], 0.0) + 1.0 / (D[row][i] + 1e-12)
+        preds.append(max(sc, key=lambda lab: (sc[lab], lab)))
+    return np.array(preds)
+
+
+def main() -> None:
+    # ---- isolation guards, fixed order ----
+    _preflight_inputs()
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--out", default=None, help="output dir (default <OPCA_OUT_ROOT>/opca-full-<UTC>)")
+    args = ap.parse_args()
+    out = _resolve_out(Path(args.out) if args.out else None)
+
+    import anndata as ad
+    import scanpy as sc
+    import scipy.sparse as spmod
+    from sklearn.decomposition import PCA
+
+    # single-thread BLAS
+    os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
+    os.environ.setdefault("OMP_NUM_THREADS", "1")
+    os.environ.setdefault("MKL_NUM_THREADS", "1")
+    os.environ.setdefault("NUMEXPR_NUM_THREADS", "1")
+
+    header = {
+        "protocol": PROTOCOL,
+        "seed": SEED,
+        "k": K,
+        "nperm": NPERM,
+        "npcs": NPCS,
+        "min_shared": MIN_SHARED,
+        "script_sha256": sha256_file(Path(__file__).resolve()),
+        "mapping_sha256": sha256_file(MAPPING_JSON),
+    }
+    input_sha = {name: sha256_file(p) for name, p in zip(INPUT_NAMES, INPUTS)}
+    print("header=" + json.dumps(header), flush=True)
+
+    hm, fh, fmm = parse_orthologs()
+    mapping = freeze_mapping(MAPPING_JSON)
+    print(f"ortholog pairs: hm={len(hm)} fh={len(fh)} fmm={len(fmm)}", flush=True)
+
+    data = {}
+    for sp in SPECIES_ORDER:
+        path = H5AD_FILES[sp]
+        a = ad.read_h5ad(str(path))
+        if "cell_type" not in a.obs.columns:
+            print(f"PREFLIGHT_FAIL no_cell_type_column={sp}", flush=True)
+            raise SystemExit(2)
+        sc.pp.normalize_total(a, target_sum=1e4)
+        sc.pp.log1p(a)
+        X = a.X
+        X = X.toarray() if spmod.issparse(X) else np.asarray(X, dtype=np.float64)
+        var_up = [str(v).upper() for v in a.var_names]
+        bc = [f"{PREFIX[sp]}|{o}" for o in a.obs_names]
+        ct = a.obs["cell_type"].astype(str).values
+        data[sp] = {
+            "X": X, "var_up": var_up, "var_set": set(var_up),
+            "var_idx": {g: i for i, g in enumerate(var_up)},
+            "bc": bc, "ct": ct,
+        }
+        print(f"{sp}: {X.shape[0]} cells x {len(var_up)} genes", flush=True)
+
+    MAPS = {
+        ("human", "mouse"): hm,
+        ("mouse", "human"): {v: k for k, v in hm.items()},
+        ("human", "zebrafish"): fh,
+        ("zebrafish", "human"): {v: k for k, v in fh.items()},
+        ("mouse", "zebrafish"): fmm,
+        ("zebrafish", "mouse"): {v: k for k, v in fmm.items()},
+    }
+
+    results = {}
+    all_predictions = {}
+    all_confusions = {}
+    directions_shared = {}
+    for (src, tgt), smap in sorted(MAPS.items()):
+        d_s = data[src]
+        d_t = data[tgt]
+        shared = []
+        used_s, used_t = set(), set()
+        for su, tu in smap.items():
+            if su in d_s["var_set"] and tu in d_t["var_set"] and su not in used_s and tu not in used_t:
+                shared.append((su, tu))
+                used_s.add(su)
+                used_t.add(tu)
+        if len(shared) < MIN_SHARED:
+            print(f"GUARD_MIN_SHARED_FAIL src={src} tgt={tgt} n={len(shared)}", flush=True)
+            raise SystemExit(4)
+        directions_shared[f"{src}->{tgt}"] = len(shared)
+        idx_s = [d_s["var_idx"][g] for g, _ in shared]
+        idx_t = [d_t["var_idx"][t] for _, t in shared]
+        Xs = d_s["X"][:, idx_s]
+        Xt = d_t["X"][:, idx_t]
+        X = np.vstack([Xs, Xt]).astype(np.float64)
+        spv = np.array([src] * Xs.shape[0] + [tgt] * Xt.shape[0])
+        tr = np.array(list(d_s["ct"]) + list(d_t["ct"]))
+        bc = np.array(list(d_s["bc"]) + list(d_t["bc"]))
+        Z = PCA(n_components=NPCS, random_state=SEED).fit_transform(X)
+
+        dir_res = {}
+        dir_preds = {}
+        dir_conf = {}
+        for space in ("exact", "coarse", "fine"):
+            if space == "exact":
+                labels = tr
+            elif space == "coarse":
+                labels = np.array([
+                    mapping.get(f"{s}|{l}", ("unmapped",))[0]
+                    for s, l in zip(spv, tr)
+                ])
+            else:
+                labels = np.array([
+                    mapping.get(f"{s}|{l}", ("unmapped", "unmapped"))[1]
+                    for s, l in zip(spv, tr)
+                ])
+            if space != "exact":
+                active = np.array([
+                    mapping.get(f"{s}|{l}", (None, None, "inactive"))[2] == "active"
+                    for s, l in zip(spv, tr)
+                ])
+            else:
+                active = np.ones(len(spv), dtype=bool)
+            m_s = spv == src
+            m_t = spv == tgt
+            ytr = labels[m_s]
+            yte = labels[m_t]
+            keep_r = (ytr != "unmapped") & active[m_s]
+            ok = (yte != "unmapped") & active[m_t]
+            n_excluded_q = int((~ok).sum())
+            n_excluded_ref = int((~keep_r).sum())
+            if ok.sum() == 0 or keep_r.sum() == 0:
+                acc = 0.0
+                maj = 0.0
+                pval = 1.0
+                pred_all = np.full(len(yte), None, dtype=object)
+                pred_ok = np.array([], dtype=object)
+            else:
+                pred_all = knn_cosine_vote(Z[m_s][keep_r], Z[m_t], ytr[keep_r], k=K)
+                pred_ok = pred_all[ok]
+                acc = float((pred_ok == yte[ok]).mean())
+                vals, cnts = np.unique(yte[ok], return_counts=True)
+                maj = float(cnts.max() / cnts.sum())
+                rng = np.random.RandomState(SEED)
+                nulls = []
+                for _ in range(NPERM):
+                    pp = pred_ok.copy()
+                    rng.shuffle(pp)
+                    nulls.append(float((pp == yte[ok]).mean()))
+                pval = float((np.array(nulls) >= acc).mean())
+            conf = {}
+            for t, p in zip(yte[ok], pred_ok):
+                k3 = f"{t}=>{p}"
+                conf[k3] = conf.get(k3, 0) + 1
+            dir_res[space] = {
+                "acc": round(acc, 4), "majority": round(maj, 4), "shuffle_p": round(pval, 4),
+                "n_ref": int(keep_r.sum()), "n_q": int(ok.sum()),
+                "n_excluded_q": n_excluded_q, "n_excluded_ref": n_excluded_ref,
+                "shared_genes": len(shared),
+                "coverage_q": round(float(ok.mean()), 4), "confusion": conf,
+            }
+            # per-cell records (pred_all is aligned with Z[m_t] i.e. m_t order)
+            qidx = np.where(m_t)[0]
+            records = []
+            for j, i in enumerate(qidx):
+                predj = pred_all[j]
+                records.append({
+                    "prefixed_barcode": str(bc[i]),
+                    "direction": f"{PREFIX[src]}->{PREFIX[tgt]}",
+                    "level": space,
+                    "truth": str(labels[i]),
+                    "prediction": None if predj is None else str(predj),
+                    "included": bool(ok[j]),
+                    "exclusion_reason": "" if ok[j] else (
+                        "unmapped" if labels[i] == "unmapped" else "inactive"
+                    ),
+                })
+            dir_preds[space] = records
+            dir_conf[space] = conf
+        results[f"{src}->{tgt}"] = dir_res
+        all_predictions[f"{PREFIX[src]}->{PREFIX[tgt]}"] = dir_preds
+        all_confusions[f"{PREFIX[src]}->{PREFIX[tgt]}"] = dir_conf
+        print(f"{src}->{tgt} done", flush=True)
+
+    # ------------------------------------------------------------------
+    # 5) Artifacts
+    # ------------------------------------------------------------------
+    out.mkdir(parents=True, exist_ok=False)  # guard: dir must NOT pre-exist
+    (out / "command.txt").write_text(" ".join(sys.argv) + "\n", encoding="utf-8")
+    import datetime as _dt
+    env = dict(header)
+    env["input_sha256"] = input_sha
+    env["min_shared_used"] = min(directions_shared.values())
+    env["utc"] = _dt.datetime.now(_dt.timezone.utc).isoformat()
+    (out / "environment.txt").write_text(json.dumps(env, ensure_ascii=False, indent=1), encoding="utf-8")
+    (out / "metrics.json").write_text(json.dumps(results, ensure_ascii=False, indent=1), encoding="utf-8")
+    pred_dir = out / "predictions"
+    conf_dir = out / "confusion"
+    pred_dir.mkdir(parents=True, exist_ok=False)
+    conf_dir.mkdir(parents=True, exist_ok=False)
+    for tag, pdir in all_predictions.items():
+        (pred_dir / f"{tag}.json").write_text(
+            json.dumps(pdir, ensure_ascii=False, indent=1), encoding="utf-8")
+    for tag, cdir in all_confusions.items():
+        (conf_dir / f"{tag}.json").write_text(
+            json.dumps(cdir, ensure_ascii=False, indent=1), encoding="utf-8")
+    manifest = {
+        "protocol_label": PROTOCOL,
+        "seed": SEED,
+        "k": K,
+        "nperm": NPERM,
+        "npcs": NPCS,
+        "min_shared": MIN_SHARED,
+        "distance": "cosine",
+        "script_sha256": header["script_sha256"],
+        "mapping_sha256": header["mapping_sha256"],
+        "input_sha256": input_sha,
+        "species_counts": {sp: int(data[sp]["X"].shape[0]) for sp in SPECIES_ORDER},
+        "shared_genes": directions_shared,
+        "n_directions": len(results),
+    }
+    (out / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=1), encoding="utf-8")
+    tree = sorted(p for p in out.rglob("*") if p.is_file())
+    (out / "sha256.tsv").write_text(
+        "\n".join(f"{sha256_file(p)}  {p.relative_to(out)}" for p in tree), encoding="utf-8")
+    print("DONE", flush=True)
+
+
+if __name__ == "__main__":
+    main()

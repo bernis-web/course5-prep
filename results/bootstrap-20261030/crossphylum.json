@@ -1,0 +1,75 @@
+{
+ "protocol": "bootstrap over query cells, 1000 resamples, RandomState(20261030)",
+ "source": "results/phase-20261022/crossphylum/metrics.json",
+ "scene": "cross-phylum: Lamprey vs Mouse, 13-class intersection, 6222 shared genes",
+ "methods": {
+  "oPCA": {
+   "Lamprey->Mouse": {
+    "n_q": 14016,
+    "acc": 0.0575,
+    "mf1": 0.0235,
+    "acc_se": 0.002,
+    "acc_ci95": [
+     0.0536,
+     0.0615
+    ],
+    "mf1_se": 0.0009,
+    "mf1_ci95": [
+     0.0219,
+     0.0253
+    ],
+    "majority": 0.2168
+   },
+   "Mouse->Lamprey": {
+    "n_q": 41678,
+    "acc": 0.0516,
+    "mf1": 0.0257,
+    "acc_se": 0.0011,
+    "acc_ci95": [
+     0.0496,
+     0.0537
+    ],
+    "mf1_se": 0.0008,
+    "mf1_ci95": [
+     0.0243,
+     0.028
+    ],
+    "majority": 0.3059
+   }
+  },
+  "scVI": {
+   "Lamprey->Mouse": {
+    "n_q": 14016,
+    "acc": 0.0582,
+    "mf1": 0.0241,
+    "acc_se": 0.002,
+    "acc_ci95": [
+     0.0544,
+     0.0623
+    ],
+    "mf1_se": 0.0009,
+    "mf1_ci95": [
+     0.0224,
+     0.0261
+    ],
+    "majority": 0.2168
+   },
+   "Mouse->Lamprey": {
+    "n_q": 41678,
+    "acc": 0.0457,
+    "mf1": 0.0267,
+    "acc_se": 0.0011,
+    "acc_ci95": [
+     0.0438,
+     0.0477
+    ],
+    "mf1_se": 0.0009,
+    "mf1_ci95": [
+     0.0252,
+     0.0291
+    ],
+    "majority": 0.3059
+   }
+  }
+ }
+}

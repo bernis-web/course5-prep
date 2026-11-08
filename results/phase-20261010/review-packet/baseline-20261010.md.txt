@@ -1,0 +1,64 @@
+# Phase 0 基线冻结（2026-10-10）
+
+## 目的与边界
+
+本记录是本轮课题 5 长任务的只读基线。Phase 0 不运行模型、不提交 DCS、不启动 GPU、不充值，也不覆盖 `results/pilot-v1` 中已有结果。后续所有新增产物放在 `results/phase-20261010/`，并以本记录和同目录 `run_scope.json` 为起点。
+
+## 工作树快照
+
+- 观察时间：2026-10-10 11:04:48 +08:00
+- 分支：`codex/teacher-reply-report-prep`
+- HEAD：`8b597d788352009609688e28c7f2ed23a0358f17`
+- `git status --porcelain=v1`：228 条
+- staged：0 条
+- tracked unstaged：29 条
+- untracked：199 条
+- 以上计数为 2026-10-10 11:04:48 的时点快照；其后 Phase 0 自身新增的 `docs/execution/` 与 `results/phase-20261010/` 会使 untracked 计数自增（复核时为 201 条，合计 230 条），属预期漂移，不代表既有改动被动过。
+- 既有工作树改动保留原样；本轮不 reset、checkout、clean、删除或覆盖。
+
+## 输入核对
+
+已找到并记录 SHA 的基线输入：
+
+1. oPCA v98：40 个文件，18,098,994 bytes；含 `manifest.json`、`metrics.json`、18 份逐细胞 predictions 和 18 份 confusion。
+2. SAMap v98 提取目录：21 个文件，12,730,056 bytes；含 18 份方向/层级结果、`manifest.json`、`metrics.json` 和 `environment.txt`。
+3. SATURN v99 recovered：34 个文件，350,869 bytes；含 `manifest.json`、`metrics.json`、`metrics.content.json`、confusion、部分 payload、命令/环境和哈希清单。它仍是既有候选/复评证据，不在本阶段升级为新训练结果。
+   - 哈希清单的适用范围（外部审阅 C4，已独立复核）：`sha256.tsv` 是容器清单的本地重发版，其自条目写 `c84dd378…`，磁盘实际为 `26fc554a…`；`_extraction-report.json` 记录的 `best_local_sha256=06be567b…` 也已陈旧。本地可比的 24 条中 **23 条吻合**（18 份 confusion + `manifest.json`/`command.txt`/`environment.txt`/`metrics.json`/`v99_mapping_embedded.json`），1 条不符即该自条目；另有 16 条本地缺失、6 个 coarse payload 仅有 `.gz` 形态。因此该清单**不能**用于字节级验证，实质 provenance 由那 23 条支撑。
+4. `config/heart-celltype-map-v1.tsv`：SHA 已写入 `results/phase-20261010/baseline/input-sha256.tsv`。
+
+## 口径冻结
+
+- 当前所有既有跨物种评估均按 transductive/in-sample 解释，不写成泛化。
+- oPCA 为 label-free 参考，但该表述只适用于**表示层**：PCA 载荷不使用标签，标签只在评估阶段的 KNN 分类头出现。`scripts/ortholog_pca_local_v1.py:254,258` 的 PCA 在 src+tgt 联合矩阵 `X_joint` 上拟合，`:265-266` 的 KNN 使用 reference 标签。因此 v98 是 transductive 投影，不得写成 inductive。SATURN 在**默认配置**下训练标签通道是 `labels`（`wheelhouse/saturn-src/train-saturn.py:100-103`）；`ref_labels` 用于输出列与评估真值（`scripts/dcs_provenance_v99.py:362`）。源码另有 `--use_ref_labels` 开关（`:70`、`:100-101`，默认 `False`，`:1025`）可把 `ref_labels` 送入 miner，本阶段未启用，原始训练命令仍待核实；SAMap 当前按 `keys=cell_type` 的 label-aware 口径记录。
+- v97g 只有日志级数字，不能伪造逐细胞 predictions/confusion。
+- SAMap 没有原生冻结图投影，后续只能使用 `SAMap-approx`/近似 inductive 命名。
+- SATURN inductive 仍需单独重训方案，Phase 0 不改变其 blocked 状态。
+
+## 判定矩阵
+
+| 项目 | 结果 | 依据/处理 |
+|---|---|---|
+| 工作树基线 | 通过（只读） | HEAD、分支、228 条状态已记录 |
+| oPCA 输入 | 通过（可进入 A 档预检） | v98 目录完整，40 个文件，含逐细胞结果 |
+| SAMap 输入 | 通过（仅作既有候选证据） | extracted 目录存在，21 个文件；不得据此启动新 DCS |
+| SATURN v99 输入 | 需谨慎 | recovered 目录存在，但只作为既有 provenance/复评证据 |
+| 映射表 | 通过（待人工签认仍保留） | `heart-celltype-map-v1.tsv` SHA 已冻结 |
+| DCS/GPU | 本阶段不启动 | `no_platform_submission=true` |
+
+## 覆盖风险（会写入 `results/pilot-v1` 的既有脚本路径）
+
+以下路径均为既有脚本，本阶段**未执行**；在任何全量复算或重跑之前必须先隔离输出，否则一次误跑就会覆盖整条证据链所依赖的冻结基线。
+
+1. `scripts/ortholog_pca_local_v1.py:158`：全量模式 `out = results/pilot-v1/ortholog-pca-v98`，**只有 `--smoke` 分支带存在性守卫（`:159-160`）**。不带参数直接运行会覆盖冻结的 `manifest.json`、`metrics.json`、18 份 predictions 和 18 份 confusion，且没有任何提示。
+2. `scripts/run_samap_compliant_v98.py:249-250`：`output_dir = results/pilot-v1/samap-v98` 且 `mkdir(parents=True, exist_ok=True)`，无守卫。
+3. `scripts/extract_v99_from_logs_v1.py:17`、`scripts/parse_v99_rec_log_v1.py:21`：`RAW = results/pilot-v1/saturn-v99/raw`，重跑会重写 recovered 目录。
+
+处理要求：
+
+- Task 1 使用隔离 wrapper 或等价副本，只写 `results/phase-20261010/A-smoke/`（方案见 `20261010-task1-preflight.md:16-25`）。
+- Task 2 之前必须先提供 `--out` 参数或等价副本，并要求目标目录已存在时硬停止；在此之前不得运行上述脚本的全量模式。
+- `results/pilot-v1` 保持冻结：只读复核确认该目录下没有任何文件的 mtime 晚于 11:04:48（见 `20261010-phase0-review-result.md`）。
+
+## 停止点
+
+Phase 0 到此停止。只有在本报告和 `run_scope.json` 经 Claude/Flash 反方审阅通过后，才进入 Task 1 的 human→mouse coarse 单方向零成本 smoke；若 smoke 与冻结 metrics、标签空间、分母或 coverage 不一致，立即停止，不修改旧结果。

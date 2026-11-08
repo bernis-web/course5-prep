@@ -1,0 +1,499 @@
+=== PRESENTATION ===
+slide size: 13.333 x 7.5 in
+num slides: 9
+num masters: 1
+
+=== MASTER 0 name='' ===
+layouts: [('DEFAULT', 0)]
+  text_styles err 'SlideMaster' object has no attribute 'text_styles'
+  master shapes:
+
+=== LAYOUT[0] name='DEFAULT' ===
+
+=== SLIDE 1 layout='DEFAULT' ===
+  [2] AUTO_SHAPE (1) name='Shape 0' L=0.0 T=2.14 W=13.333 H=1.99
+  [3] PICTURE (13) name='Image 0' L=0.84 T=0.69 W=4.14 H=1.28
+  [4] AUTO_SHAPE (1) name='Text 1' L=0.9 T=2.31 W=11.46 H=0.75
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('课题5 第 2 次汇报：数字来源链', '微软雅黑', 32.0, True, 'FFFFFF')
+  [5] AUTO_SHAPE (1) name='Text 2' L=0.92 T=3.12 W=10.9 H=0.44
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('一个百分比是怎么来的 —— 从原始细胞到表格单元格的可复核路径', '微软雅黑', 17.0, None, 'D7E8F8')
+  [6] AUTO_SHAPE (1) name='Text 3' L=0.92 T=3.62 W=11.5 H=0.31
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('2026-10-19 ｜ 7 次汇报中的第 2 次 ｜ 口径：transduct', '微软雅黑', 11.5, None, 'DDEBFA')
+
+=== SLIDE 2 layout='DEFAULT' ===
+  [2] AUTO_SHAPE (1) name='bar-blue' L=0.0 T=0.723 W=9.556 H=0.191
+  [3] AUTO_SHAPE (1) name='bar-gold' L=10.19 T=0.723 W=3.144 H=0.191
+  [4] PICTURE (13) name='Image 0' L=10.63 T=0.09 W=1.92 H=0.59
+  [5] AUTO_SHAPE (1) name='Text 2' L=0.67 T=1.05 W=11.25 H=0.62
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('任务定位：本次讲的是哪一块', '微软雅黑', 24.0, True, '12365A')
+  [6] AUTO_SHAPE (1) name='Text 3' L=0.67 T=7.06 W=4.0 H=0.23
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('课题5  阶段汇报', '微软雅黑', 8.5, None, '60758F')
+  [7] AUTO_SHAPE (1) name='Text 4' L=11.6 T=7.06 W=1.06 H=0.23
+      p0 align=RIGHT (3) lvl=0 space_b=None space_a=None ls=None
+         run=('02', '微软雅黑', 8.5, None, '60758F')
+  [8] AUTO_SHAPE (1) name='Text 5' L=0.67 T=1.7 W=2.0 H=0.26
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('课程原题', '微软雅黑', 10.5, True, '60758F')
+  [9] AUTO_SHAPE (1) name='Text 6' L=0.67 T=1.94 W=11.98 H=0.4
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('跨物种单细胞整合：SATURN vs SAMap vs scVI 系的基准测试与', '微软雅黑', 16.0, True, '12365A')
+  [3] TABLE (19) name='Table 0' L=0.67 T=2.52 W=7.5 H=1.0
+      TABLE rows=8 cols=2 colw=[5.3, 2.2]
+        row0 h=0.415
+          c0 sz=11.5 txt='课程要求'
+          c1 sz=11.5 txt='状态'
+        row1 h=0.415
+          c0 sz=11.5 txt='四方法对比（含自建 oPCA 基线）'
+          c1 sz=11.5 txt='已完成'
+        row2 h=0.415
+          c0 sz=11.5 txt='主指标 macro-F1（统一口径）'
+          c1 sz=11.5 txt='已完成'
+        row3 h=0.415
+          c0 sz=11.5 txt='场景：近缘 + 无 GPU'
+          c1 sz=11.5 txt='已完成'
+        row4 h=0.415
+          c0 sz=11.5 txt='批次混合与生物保守性'
+          c1 sz=11.5 txt='进行中（scVI 已测）'
+        row5 h=0.415
+          c0 sz=11.5 txt='时间与内存'
+          c1 sz=11.5 txt='进行中（scVI 已测）'
+        row6 h=0.415
+          c0 sz=11.5 txt='场景：跨门（七鳃鳗 ↔ 鼠）'
+          c1 sz=11.5 txt='未开始（数据已定位）'
+        row7 h=0.415
+          c0 sz=11.5 txt='文档 / Agent 友好度 + 容器化'
+          c1 sz=11.5 txt='未开始'
+  [11] AUTO_SHAPE (1) name='Shape 7' L=8.58 T=2.52 W=0.519 H=0.3
+  [12] AUTO_SHAPE (1) name='Shape 8' L=9.159 T=2.52 W=0.519 H=0.3
+  [13] AUTO_SHAPE (1) name='Shape 9' L=9.737 T=2.52 W=0.519 H=0.3
+  [14] AUTO_SHAPE (1) name='Shape 10' L=10.316 T=2.52 W=0.519 H=0.3
+  [15] AUTO_SHAPE (1) name='Shape 11' L=10.894 T=2.52 W=0.519 H=0.3
+  [16] AUTO_SHAPE (1) name='Shape 12' L=11.473 T=2.52 W=0.519 H=0.3
+  [17] AUTO_SHAPE (1) name='Shape 13' L=12.051 T=2.52 W=0.519 H=0.3
+  [18] AUTO_SHAPE (1) name='Text 14' L=8.55 T=2.94 W=4.05 H=0.34
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('3 / 7 完成', '微软雅黑', 18.0, True, '1F7A4D')
+  [19] AUTO_SHAPE (1) name='Text 15' L=8.55 T=3.32 W=4.05 H=0.28
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('2 项进行中 · 2 项未开始', '微软雅黑', 10.5, None, '60758F')
+  [20] AUTO_SHAPE (1) name='Shape 16' L=8.55 T=4.05 W=4.05 H=1.5
+  [21] AUTO_SHAPE (1) name='Text 17' L=8.72 T=4.17 W=3.7 H=0.28
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('本次覆盖', '微软雅黑', 11.0, True, '005BAC')
+  [22] AUTO_SHAPE (1) name='Text 18' L=8.72 T=4.47 W=3.7 H=1.0
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('第 2 项「主指标」的底层：一个百分比是怎么算出来的', '微软雅黑', 12.5, True, '12365A')
+  [23] AUTO_SHAPE (1) name='Text 19' L=0.67 T=6.03 W=11.98 H=0.3
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('下次覆盖第 1 项与第 6 项的边界问题：为什么不能排冠军。', '微软雅黑', 11.0, None, '60758F')
+  [24] AUTO_SHAPE (1) name='Shape 20' L=0.0 T=6.45 W=13.333 H=0.44
+  [25] AUTO_SHAPE (1) name='Text 21' L=0.75 T=6.49 W=11.9 H=0.36
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('先说清“讲的是哪一块、做到哪一步”，再进内容——避免每页都在解释上下文', '微软雅黑', 13.0, True, '8A4B00')
+
+=== SLIDE 3 layout='DEFAULT' ===
+  [2] AUTO_SHAPE (1) name='bar-blue' L=0.0 T=0.723 W=9.556 H=0.191
+  [3] AUTO_SHAPE (1) name='bar-gold' L=10.19 T=0.723 W=3.144 H=0.191
+  [4] PICTURE (13) name='Image 0' L=10.63 T=0.09 W=1.92 H=0.59
+  [5] AUTO_SHAPE (1) name='Text 2' L=0.67 T=1.05 W=11.25 H=0.62
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('老师反馈之后：先改交付物类型', '微软雅黑', 24.0, True, '12365A')
+  [6] AUTO_SHAPE (1) name='Text 3' L=0.67 T=7.06 W=4.0 H=0.23
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('课题5  阶段汇报', '微软雅黑', 8.5, None, '60758F')
+  [7] AUTO_SHAPE (1) name='Text 4' L=11.6 T=7.06 W=1.06 H=0.23
+      p0 align=RIGHT (3) lvl=0 space_b=None space_a=None ls=None
+         run=('03', '微软雅黑', 8.5, None, '60758F')
+  [8] AUTO_SHAPE (1) name='Shape 5' L=0.67 T=1.85 W=12.0 H=1.18
+  [9] AUTO_SHAPE (1) name='Text 6' L=0.9 T=2.27 W=2.1 H=0.34
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('老师说的「偏」', '微软雅黑', 15.0, True, 'C00000')
+  [10] AUTO_SHAPE (1) name='Text 7' L=3.0 T=1.97 W=9.4 H=0.94
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('不是数字不准，而是整份材料回答错了问题——在讲“证据可不可信”，没讲“哪个方法该', '微软雅黑', 12.5, None, '1F2D3D')
+  [11] AUTO_SHAPE (1) name='Shape 8' L=0.67 T=3.17 W=12.0 H=1.18
+  [12] AUTO_SHAPE (1) name='Text 9' L=0.9 T=3.59 W=2.1 H=0.34
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('根因', '微软雅黑', 15.0, True, '8A4B00')
+  [13] AUTO_SHAPE (1) name='Text 10' L=3.0 T=3.29 W=9.4 H=0.94
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('交付物类型错了：课程要的是「场景 → 方法 → 指标 → 选型」的基准报告，我们', '微软雅黑', 12.5, None, '1F2D3D')
+  [14] AUTO_SHAPE (1) name='Shape 11' L=0.67 T=4.49 W=12.0 H=1.18
+  [15] AUTO_SHAPE (1) name='Text 12' L=0.9 T=4.91 W=2.1 H=0.34
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('本次怎么改', '微软雅黑', 15.0, True, '1F6B3A')
+  [16] AUTO_SHAPE (1) name='Text 13' L=3.0 T=4.61 W=9.4 H=0.94
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('保留证据链（它是对的），但把它从“全部篇幅”降为“支撑材料”；主线回到方法与场景', '微软雅黑', 12.5, None, '1F2D3D')
+  [17] AUTO_SHAPE (1) name='Text 14' L=0.67 T=5.9 W=12.0 H=0.5
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('本次先补上“数字怎么来的”这一层，把可信度做成可复核的底子；下一次再讲“为什么不', '微软雅黑', 13.0, True, '12365A')
+  [18] AUTO_SHAPE (1) name='Shape 15' L=0.0 T=6.45 W=13.333 H=0.44
+  [19] AUTO_SHAPE (1) name='Text 16' L=0.75 T=6.49 W=11.9 H=0.36
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('口径不变：所有数字都是 transductive / in-sample，不是留', '微软雅黑', 13.0, True, '8A4B00')
+
+=== SLIDE 4 layout='DEFAULT' ===
+  [2] AUTO_SHAPE (1) name='bar-blue' L=0.0 T=0.723 W=9.556 H=0.191
+  [3] AUTO_SHAPE (1) name='bar-gold' L=10.19 T=0.723 W=3.144 H=0.191
+  [4] PICTURE (13) name='Image 0' L=10.63 T=0.09 W=1.92 H=0.59
+  [5] AUTO_SHAPE (1) name='Text 2' L=0.67 T=1.05 W=11.25 H=0.62
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('从原始细胞到表格单元格：八个环节', '微软雅黑', 24.0, True, '12365A')
+  [6] AUTO_SHAPE (1) name='Text 3' L=0.67 T=7.06 W=4.0 H=0.23
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('课题5  阶段汇报', '微软雅黑', 8.5, None, '60758F')
+  [7] AUTO_SHAPE (1) name='Text 4' L=11.6 T=7.06 W=1.06 H=0.23
+      p0 align=RIGHT (3) lvl=0 space_b=None space_a=None ls=None
+         run=('04', '微软雅黑', 8.5, None, '60758F')
+  [8] AUTO_SHAPE (1) name='Shape 5' L=0.67 T=1.75 W=0.42 H=0.42
+  [9] AUTO_SHAPE (1) name='Text 6' L=0.67 T=1.8 W=0.42 H=0.32
+      p0 align=CENTER (2) lvl=0 space_b=None space_a=None ls=None
+         run=('1', '微软雅黑', 12.0, True, '005BAC')
+  [10] AUTO_SHAPE (1) name='Text 7' L=1.21 T=1.73 W=2.3 H=0.32
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('原始 h5ad', '微软雅黑', 15.0, True, '12365A')
+  [11] AUTO_SHAPE (1) name='Text 8' L=1.21 T=2.05 W=2.3 H=0.6
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('三物种心脏单细胞', '微软雅黑', 10.5, None, '60758F')
+  [12] AUTO_SHAPE (1) name='Shape 9' L=3.25 T=1.88 W=0.26 H=0.16
+  [13] AUTO_SHAPE (1) name='Shape 10' L=3.67 T=1.75 W=0.42 H=0.42
+  [14] AUTO_SHAPE (1) name='Text 11' L=3.67 T=1.8 W=0.42 H=0.32
+      p0 align=CENTER (2) lvl=0 space_b=None space_a=None ls=None
+         run=('2', '微软雅黑', 12.0, True, '005BAC')
+  [15] AUTO_SHAPE (1) name='Text 12' L=4.21 T=1.73 W=2.3 H=0.32
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('归一化', '微软雅黑', 15.0, True, '12365A')
+  [16] AUTO_SHAPE (1) name='Text 13' L=4.21 T=2.05 W=2.3 H=0.6
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('normalize_total(1e4)+log1p', '微软雅黑', 10.5, None, '60758F')
+  [17] AUTO_SHAPE (1) name='Shape 14' L=6.25 T=1.88 W=0.26 H=0.16
+  [18] AUTO_SHAPE (1) name='Shape 15' L=6.67 T=1.75 W=0.42 H=0.42
+  [19] AUTO_SHAPE (1) name='Text 16' L=6.67 T=1.8 W=0.42 H=0.32
+      p0 align=CENTER (2) lvl=0 space_b=None space_a=None ls=None
+         run=('3', '微软雅黑', 12.0, True, '005BAC')
+  [20] AUTO_SHAPE (1) name='Text 17' L=7.21 T=1.73 W=2.3 H=0.32
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('表示层', '微软雅黑', 15.0, True, '12365A')
+  [21] AUTO_SHAPE (1) name='Text 18' L=7.21 T=2.05 W=2.3 H=0.6
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('同源交集 + PCA-50', '微软雅黑', 10.5, None, '60758F')
+  [22] AUTO_SHAPE (1) name='Shape 19' L=9.25 T=1.88 W=0.26 H=0.16
+  [23] AUTO_SHAPE (1) name='Shape 20' L=9.67 T=1.75 W=0.42 H=0.42
+  [24] AUTO_SHAPE (1) name='Text 21' L=9.67 T=1.8 W=0.42 H=0.32
+      p0 align=CENTER (2) lvl=0 space_b=None space_a=None ls=None
+         run=('4', '微软雅黑', 12.0, True, '005BAC')
+  [25] AUTO_SHAPE (1) name='Text 22' L=10.21 T=1.73 W=2.3 H=0.32
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('角色划分', '微软雅黑', 15.0, True, '12365A')
+  [26] AUTO_SHAPE (1) name='Text 23' L=10.21 T=2.05 W=2.3 H=0.6
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('src=reference，tgt=query', '微软雅黑', 10.5, None, '60758F')
+  [27] AUTO_SHAPE (1) name='Shape 24' L=0.67 T=3.3 W=0.42 H=0.42
+  [28] AUTO_SHAPE (1) name='Text 25' L=0.67 T=3.35 W=0.42 H=0.32
+      p0 align=CENTER (2) lvl=0 space_b=None space_a=None ls=None
+         run=('5', '微软雅黑', 12.0, True, '005BAC')
+  [29] AUTO_SHAPE (1) name='Text 26' L=1.21 T=3.28 W=2.3 H=0.32
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('KNN15', '微软雅黑', 15.0, True, '12365A')
+  [30] AUTO_SHAPE (1) name='Text 27' L=1.21 T=3.6 W=2.3 H=0.6
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('cosine，倒距离加权', '微软雅黑', 10.5, None, '60758F')
+  [31] AUTO_SHAPE (1) name='Shape 28' L=3.25 T=3.43 W=0.26 H=0.16
+  [32] AUTO_SHAPE (1) name='Shape 29' L=3.67 T=3.3 W=0.42 H=0.42
+  [33] AUTO_SHAPE (1) name='Text 30' L=3.67 T=3.35 W=0.42 H=0.32
+      p0 align=CENTER (2) lvl=0 space_b=None space_a=None ls=None
+         run=('6', '微软雅黑', 12.0, True, '005BAC')
+  [34] AUTO_SHAPE (1) name='Text 31' L=4.21 T=3.28 W=2.3 H=0.32
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('逐细胞预测', '微软雅黑', 15.0, True, '12365A')
+  [35] AUTO_SHAPE (1) name='Text 32' L=4.21 T=3.6 W=2.3 H=0.6
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('含 confidence 与排除原因', '微软雅黑', 10.5, None, '60758F')
+  [36] AUTO_SHAPE (1) name='Shape 33' L=6.25 T=3.43 W=0.26 H=0.16
+  [37] AUTO_SHAPE (1) name='Shape 34' L=6.67 T=3.3 W=0.42 H=0.42
+  [38] AUTO_SHAPE (1) name='Text 35' L=6.67 T=3.35 W=0.42 H=0.32
+      p0 align=CENTER (2) lvl=0 space_b=None space_a=None ls=None
+         run=('7', '微软雅黑', 12.0, True, '005BAC')
+  [39] AUTO_SHAPE (1) name='Text 36' L=7.21 T=3.28 W=2.3 H=0.32
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('排除与计数', '微软雅黑', 15.0, True, '12365A')
+  [40] AUTO_SHAPE (1) name='Text 37' L=7.21 T=3.6 W=2.3 H=0.6
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('correct / eligible = n_q', '微软雅黑', 10.5, None, '60758F')
+  [41] AUTO_SHAPE (1) name='Shape 38' L=9.25 T=3.43 W=0.26 H=0.16
+  [42] AUTO_SHAPE (1) name='Shape 39' L=9.67 T=3.3 W=0.42 H=0.42
+  [43] AUTO_SHAPE (1) name='Text 40' L=9.67 T=3.35 W=0.42 H=0.32
+      p0 align=CENTER (2) lvl=0 space_b=None space_a=None ls=None
+         run=('8', '微软雅黑', 12.0, True, '005BAC')
+  [44] AUTO_SHAPE (1) name='Text 41' L=10.21 T=3.28 W=2.3 H=0.32
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('metrics.json', '微软雅黑', 15.0, True, '12365A')
+  [45] AUTO_SHAPE (1) name='Text 42' L=10.21 T=3.6 W=2.3 H=0.6
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('SHA-256 锚定', '微软雅黑', 10.5, None, '60758F')
+  [46] AUTO_SHAPE (1) name='Text 43' L=0.67 T=4.95 W=12.0 H=0.4
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('换掉任何一环的定义，最终百分比就会变——所以复核必须沿这条链走，而不是从表里抄数', '微软雅黑', 13.5, True, '12365A')
+  [47] AUTO_SHAPE (1) name='Text 44' L=0.67 T=5.42 W=12.0 H=0.7
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('每一环都有落盘物：输入 h5ad、映射表、脚本 SHA、逐细胞预测、metric', '微软雅黑', 11.5, None, '1F2D3D')
+  [48] AUTO_SHAPE (1) name='Shape 45' L=0.0 T=6.45 W=13.333 H=0.44
+  [49] AUTO_SHAPE (1) name='Text 46' L=0.75 T=6.49 W=11.9 H=0.36
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('对应脚本 ortholog_pca_dcs_v3_fixkey.py ｜ 产物 ', '微软雅黑', 13.0, True, '8A4B00')
+
+=== SLIDE 5 layout='DEFAULT' ===
+  [2] AUTO_SHAPE (1) name='bar-blue' L=0.0 T=0.723 W=9.556 H=0.191
+  [3] AUTO_SHAPE (1) name='bar-gold' L=10.19 T=0.723 W=3.144 H=0.191
+  [4] PICTURE (13) name='Image 0' L=10.63 T=0.09 W=1.92 H=0.59
+  [5] AUTO_SHAPE (1) name='Text 2' L=0.67 T=1.05 W=11.25 H=0.62
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('实例拆解：86.18% = 1,297 ÷ 1,505', '微软雅黑', 24.0, True, '12365A')
+  [6] AUTO_SHAPE (1) name='Text 3' L=0.67 T=7.06 W=4.0 H=0.23
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('课题5  阶段汇报', '微软雅黑', 8.5, None, '60758F')
+  [7] AUTO_SHAPE (1) name='Text 4' L=11.6 T=7.06 W=1.06 H=0.23
+      p0 align=RIGHT (3) lvl=0 space_b=None space_a=None ls=None
+         run=('05', '微软雅黑', 8.5, None, '60758F')
+  [6] TABLE (19) name='Table 0' L=0.67 T=1.75 W=8.4 H=1.0
+      TABLE rows=8 cols=3 colw=[1.7, 4.5, 2.2]
+        row0 h=0.44
+          c0 sz=11.5 txt='环节'
+          c1 sz=11.5 txt='内容'
+          c2 sz=11.5 txt='取值'
+        row1 h=0.44
+          c0 sz=11.5 txt='输入'
+          c1 sz=11.5 txt='reference = 人 ｜ query = 鼠'
+          c2 sz=11.5 txt='1,528 / 1,535'
+        row2 h=0.44
+          c0 sz=11.5 txt='同源基因'
+          c1 sz=11.5 txt='人鼠 1:1 直系同源交集'
+          c2 sz=11.5 txt='15,869'
+        row3 h=0.44
+          c0 sz=11.5 txt='表示层'
+          c1 sz=11.5 txt='人+鼠联合 PCA-50（seed 0）'
+          c2 sz=11.5 txt='3,063 × 50'
+        row4 h=0.44
+          c0 sz=11.5 txt='评分'
+          c1 sz=11.5 txt='KNN15，cosine，倒距离加权'
+          c2 sz=11.5 txt='k = 15'
+        row5 h=0.44
+          c0 sz=11.5 txt='排除'
+          c1 sz=11.5 txt='鼠侧 status ≠ active'
+          c2 sz=11.5 txt='剔 30'
+        row6 h=0.44
+          c0 sz=11.5 txt='eligible query'
+          c1 sz=11.5 txt='1,535 − 30'
+          c2 sz=11.5 txt='n_q = 1,505'
+        row7 h=0.44
+          c0 sz=11.5 txt='正确数'
+          c1 sz=11.5 txt='逐细胞预测 == 真值'
+          c2 sz=11.5 txt='1,297'
+  [9] AUTO_SHAPE (1) name='Text 5' L=9.35 T=1.9 W=3.3 H=0.3
+      p0 align=CENTER (2) lvl=0 space_b=None space_a=None ls=None
+         run=('accuracy', '微软雅黑', 11.5, True, '60758F')
+  [10] AUTO_SHAPE (1) name='Text 6' L=9.35 T=2.2 W=3.3 H=1.0
+      p0 align=CENTER (2) lvl=0 space_b=None space_a=None ls=None
+         run=('0.8618', '微软雅黑', 48.0, True, 'C00000')
+  [11] AUTO_SHAPE (1) name='Text 7' L=9.35 T=3.25 W=3.3 H=0.7
+      p0 align=CENTER (2) lvl=0 space_b=None space_a=None ls=None
+         run=('正确预测数 ÷ 排除后仍有资格的 query 细胞', '微软雅黑', 10.5, None, '60758F')
+  [12] AUTO_SHAPE (1) name='Text 8' L=9.35 T=4.05 W=3.3 H=0.3
+      p0 align=CENTER (2) lvl=0 space_b=None space_a=None ls=None
+         run=('不是从表里抄出来的', '微软雅黑', 10.5, True, '60758F')
+  [13] AUTO_SHAPE (1) name='Text 9' L=0.67 T=5.5 W=12.0 H=0.8
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('逐类分解（confusion 摘录）：内皮 720/725、成纤维 255/36', '微软雅黑', 11.0, None, '1F2D3D')
+  [14] AUTO_SHAPE (1) name='Shape 10' L=0.0 T=6.45 W=13.333 H=0.44
+  [15] AUTO_SHAPE (1) name='Text 11' L=0.75 T=6.49 W=11.9 H=0.36
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('主源 results/pilot-v1/ortholog-pca-v98/met', '微软雅黑', 13.0, True, '8A4B00')
+
+=== SLIDE 6 layout='DEFAULT' ===
+  [2] AUTO_SHAPE (1) name='bar-blue' L=0.0 T=0.723 W=9.556 H=0.191
+  [3] AUTO_SHAPE (1) name='bar-gold' L=10.19 T=0.723 W=3.144 H=0.191
+  [4] PICTURE (13) name='Image 0' L=10.63 T=0.09 W=1.92 H=0.59
+  [5] AUTO_SHAPE (1) name='Text 2' L=0.67 T=1.05 W=11.25 H=0.62
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('分母会变，所以必须一起报', '微软雅黑', 24.0, True, '12365A')
+  [6] AUTO_SHAPE (1) name='Text 3' L=0.67 T=7.06 W=4.0 H=0.23
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('课题5  阶段汇报', '微软雅黑', 8.5, None, '60758F')
+  [7] AUTO_SHAPE (1) name='Text 4' L=11.6 T=7.06 W=1.06 H=0.23
+      p0 align=RIGHT (3) lvl=0 space_b=None space_a=None ls=None
+         run=('06', '微软雅黑', 8.5, None, '60758F')
+  [8] AUTO_SHAPE (1) name='Text 5' L=0.67 T=1.6 W=12.0 H=0.35
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('同一个 coarse 层，query 细胞 1,535 个，排除 30 个后不再', '微软雅黑', 12.5, None, '1F2D3D')
+  [9] AUTO_SHAPE (1) name='Shape 6' L=0.67 T=2.06 W=11.98 H=0.36
+  [10] AUTO_SHAPE (1) name='Shape 7' L=12.416 T=2.06 W=0.284 H=0.36
+  [11] AUTO_SHAPE (1) name='Text 8' L=0.67 T=2.5 W=5.4 H=0.3
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('eligible 1,505（coverage 98.05%）', '微软雅黑', 11.0, True, '005BAC')
+  [12] AUTO_SHAPE (1) name='Text 9' L=11.15 T=2.5 W=1.5 H=0.3
+      p0 align=RIGHT (3) lvl=0 space_b=None space_a=None ls=None
+         run=('排除 30', '微软雅黑', 11.0, True, 'C00000')
+  [7] TABLE (19) name='Table 0' L=0.67 T=3.15 W=11.98 H=1.0
+      TABLE rows=5 cols=3 colw=[3.0, 3.3, 5.68]
+        row0 h=0.5
+          c0 sz=11.5 txt='必须并列报的量'
+          c1 sz=11.5 txt='定义'
+          c2 sz=11.5 txt='为什么必须报'
+        row1 h=0.5
+          c0 sz=11.5 txt='accuracy'
+          c1 sz=11.5 txt='correct ÷ n_q'
+          c2 sz=11.5 txt='主指标'
+        row2 h=0.5
+          c0 sz=11.5 txt='n_q / coverage'
+          c1 sz=11.5 txt='进入分母的细胞数'
+          c2 sz=11.5 txt='排除规则一改，分母就变'
+        row3 h=0.5
+          c0 sz=11.5 txt='majority'
+          c1 sz=11.5 txt='最大真值类占比'
+          c2 sz=11.5 txt='无信息基线：准确率 0.4817，macro-F1 仅 0.0813'
+        row4 h=0.5
+          c0 sz=11.5 txt='shuffle_p'
+          c1 sz=11.5 txt='预测向量置换检验'
+          c2 sz=11.5 txt='只回答“是否优于随机”，不是多数类检验'
+  [14] AUTO_SHAPE (1) name='Shape 10' L=0.0 T=6.45 W=13.333 H=0.44
+  [15] AUTO_SHAPE (1) name='Text 11' L=0.75 T=6.49 W=11.9 H=0.36
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('只报 accuracy，等于把分母的变化藏起来', '微软雅黑', 13.0, True, '8A4B00')
+
+=== SLIDE 7 layout='DEFAULT' ===
+  [2] AUTO_SHAPE (1) name='bar-blue' L=0.0 T=0.723 W=9.556 H=0.191
+  [3] AUTO_SHAPE (1) name='bar-gold' L=10.19 T=0.723 W=3.144 H=0.191
+  [4] PICTURE (13) name='Image 0' L=10.63 T=0.09 W=1.92 H=0.59
+  [5] AUTO_SHAPE (1) name='Text 2' L=0.67 T=1.05 W=11.25 H=0.62
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('同一份预测，两个 macro-F1', '微软雅黑', 24.0, True, '12365A')
+  [6] AUTO_SHAPE (1) name='Text 3' L=0.67 T=7.06 W=4.0 H=0.23
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('课题5  阶段汇报', '微软雅黑', 8.5, None, '60758F')
+  [7] AUTO_SHAPE (1) name='Text 4' L=11.6 T=7.06 W=1.06 H=0.23
+      p0 align=RIGHT (3) lvl=0 space_b=None space_a=None ls=None
+         run=('07', '微软雅黑', 8.5, None, '60758F')
+  [8] AUTO_SHAPE (1) name='Text 5' L=0.67 T=1.6 W=12.0 H=0.35
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('差别只在“预测里出现、真实标签里不存在”的类算不算进平均。', '微软雅黑', 12.5, None, '1F2D3D')
+  [9] AUTO_SHAPE (1) name='Text 6' L=0.9 T=2.2 W=5.6 H=0.3
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('truth-only（平台 scVI 脚本默认）', '微软雅黑', 11.5, True, '60758F')
+  [10] AUTO_SHAPE (1) name='Text 7' L=0.9 T=2.5 W=5.6 H=1.0
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('0.4516', '微软雅黑', 44.0, True, '8FA3AE')
+  [11] AUTO_SHAPE (1) name='Text 8' L=0.9 T=3.5 W=5.6 H=0.6
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('只按真实标签集取平均；预测多出来的类被忽略。', '微软雅黑', 11.0, None, '60758F')
+  [12] AUTO_SHAPE (1) name='Text 9' L=6.9 T=2.2 W=5.6 H=0.3
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('union（本项目跨方法统一口径）', '微软雅黑', 11.5, True, '60758F')
+  [13] AUTO_SHAPE (1) name='Text 10' L=6.9 T=2.5 W=5.6 H=1.0
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('0.4014', '微软雅黑', 44.0, True, 'C00000')
+  [14] AUTO_SHAPE (1) name='Text 11' L=6.9 T=3.5 W=5.6 H=0.6
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('真实 ∪ 预测 一起取平均；预测多出来的类记 F1 = 0。', '微软雅黑', 11.0, None, '60758F')
+  [15] AUTO_SHAPE (1) name='Text 12' L=0.67 T=4.5 W=12.0 H=0.6
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('差值从哪来：被预测出来、但真值里根本不存在的类。这类越多，两个口径差得越大；人→', '微软雅黑', 11.5, None, '60758F')
+  [16] AUTO_SHAPE (1) name='Text 13' L=0.67 T=5.25 W=12.0 H=0.9
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('结论：单独看 truth-only 没问题，但它不能和别的方法并列；跨方法对比一', '微软雅黑', 12.5, True, '12365A')
+  [17] AUTO_SHAPE (1) name='Shape 14' L=0.0 T=6.45 W=13.333 H=0.44
+  [18] AUTO_SHAPE (1) name='Text 15' L=0.75 T=6.49 W=11.9 H=0.36
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('例：人→斑马鱼 coarse，两个口径差 0.05 —— 足以改变“是否高于基线', '微软雅黑', 13.0, True, '8A4B00')
+
+=== SLIDE 8 layout='DEFAULT' ===
+  [2] AUTO_SHAPE (1) name='bar-blue' L=0.0 T=0.723 W=9.556 H=0.191
+  [3] AUTO_SHAPE (1) name='bar-gold' L=10.19 T=0.723 W=3.144 H=0.191
+  [4] PICTURE (13) name='Image 0' L=10.63 T=0.09 W=1.92 H=0.59
+  [5] AUTO_SHAPE (1) name='Text 2' L=0.67 T=1.05 W=11.25 H=0.62
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('统一口径后的六方向结果', '微软雅黑', 24.0, True, '12365A')
+  [6] AUTO_SHAPE (1) name='Text 3' L=0.67 T=7.06 W=4.0 H=0.23
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('课题5  阶段汇报', '微软雅黑', 8.5, None, '60758F')
+  [7] AUTO_SHAPE (1) name='Text 4' L=11.6 T=7.06 W=1.06 H=0.23
+      p0 align=RIGHT (3) lvl=0 space_b=None space_a=None ls=None
+         run=('08', '微软雅黑', 8.5, None, '60758F')
+  [8] CHART (3) name='Chart 0' L=0.67 T=1.62 W=12.0 H=4.35
+  [9] AUTO_SHAPE (1) name='Text 5' L=0.67 T=6.0 W=12.0 H=0.35
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('读数：scVI 四个方向最高，但鼠→人输给 oPCA、鼠→鱼输给 SATURN—', '微软雅黑', 12.0, True, '12365A')
+  [10] AUTO_SHAPE (1) name='Shape 6' L=0.0 T=6.45 W=13.333 H=0.44
+  [11] AUTO_SHAPE (1) name='Text 7' L=0.75 T=6.49 W=11.9 H=0.36
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('SAMap 未画出：三方向 n=0，其余 0.0401–0.1127 ｜ 分母：', '微软雅黑', 13.0, True, '8A4B00')
+
+=== SLIDE 9 layout='DEFAULT' ===
+  [2] AUTO_SHAPE (1) name='bar-blue' L=0.0 T=0.723 W=9.556 H=0.191
+  [3] AUTO_SHAPE (1) name='bar-gold' L=10.19 T=0.723 W=3.144 H=0.191
+  [4] PICTURE (13) name='Image 0' L=10.63 T=0.09 W=1.92 H=0.59
+  [5] AUTO_SHAPE (1) name='Text 2' L=0.67 T=1.05 W=11.25 H=0.62
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('场景化选型指南 v0', '微软雅黑', 24.0, True, '12365A')
+  [6] AUTO_SHAPE (1) name='Text 3' L=0.67 T=7.06 W=4.0 H=0.23
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('课题5  阶段汇报', '微软雅黑', 8.5, None, '60758F')
+  [7] AUTO_SHAPE (1) name='Text 4' L=11.6 T=7.06 W=1.06 H=0.23
+      p0 align=RIGHT (3) lvl=0 space_b=None space_a=None ls=None
+         run=('09', '微软雅黑', 8.5, None, '60758F')
+  [10] TABLE (19) name='Table 0' L=0.67 T=1.7 W=11.98 H=1.0
+      TABLE rows=6 cols=5 colw=[3.4, 2.6, 2.6, 1.78, 1.6]
+        row0 h=0.455
+          c0 sz=12.0 txt='场景'
+          c1 sz=12.0 txt='首选'
+          c2 sz=12.0 txt='次选'
+          c3 sz=12.0 txt='不推荐'
+          c4 sz=12.0 txt='证据强度'
+        row1 h=0.455
+          c0 sz=12.0 txt='近缘（人 ↔ 鼠）'
+          c1 sz=12.0 txt='ortholog-PCA'
+          c2 sz=12.0 txt='scVI（很接近）'
+          c3 sz=12.0 txt='SAMap'
+          c4 sz=12.0 txt='中等'
+        row2 h=0.455
+          c0 sz=12.0 txt='远缘 · 人 ↔ 鱼'
+          c1 sz=12.0 txt='scVI'
+          c2 sz=12.0 txt='SATURN'
+          c3 sz=12.0 txt='SAMap'
+          c4 sz=12.0 txt='中等'
+        row3 h=0.455
+          c0 sz=12.0 txt='远缘 · 鼠 ↔ 鱼'
+          c1 sz=12.0 txt='SATURN'
+          c2 sz=12.0 txt='scVI'
+          c3 sz=12.0 txt='SAMap'
+          c4 sz=12.0 txt='中等'
+        row4 h=0.455
+          c0 sz=12.0 txt='跨门（七鳃鳗 ↔ 鼠）'
+          c1 sz=12.0 txt='待跑'
+          c2 sz=12.0 txt='—'
+          c3 sz=12.0 txt='—'
+          c4 sz=12.0 txt='数据已定位'
+        row5 h=0.455
+          c0 sz=12.0 txt='无 GPU'
+          c1 sz=12.0 txt='ortholog-PCA'
+          c2 sz=12.0 txt='scVI（8.5 min）'
+          c3 sz=12.0 txt='SATURN'
+          c4 sz=12.0 txt='中等偏强'
+  [9] AUTO_SHAPE (1) name='Text 5' L=0.67 T=4.62 W=6.0 H=0.3
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('三条限定语（必须随表一起出现）', '微软雅黑', 12.0, True, '12365A')
+  [10] AUTO_SHAPE (1) name='Text 6' L=0.67 T=4.96 W=11.98 H=0.62
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('① 全部为 transductive / in-sample，不是留出评估\u3000② ', '微软雅黑', 11.5, None, '1F2D3D')
+  [11] AUTO_SHAPE (1) name='Text 7' L=0.67 T=5.62 W=11.98 H=0.45
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('一句话：近缘先试 oPCA；跨得越远越要靠联合训练的潜空间方法，但人↔鱼与鼠↔鱼', '微软雅黑', 12.5, True, '12365A')
+  [12] AUTO_SHAPE (1) name='Shape 8' L=0.0 T=6.45 W=13.333 H=0.44
+  [13] AUTO_SHAPE (1) name='Text 9' L=0.75 T=6.49 W=11.9 H=0.36
+      p0 align=None lvl=0 space_b=None space_a=None ls=None
+         run=('跨门仍是 insufficient evidence：数据已定位，但尚未跑；下次', '微软雅黑', 13.0, True, '8A4B00')

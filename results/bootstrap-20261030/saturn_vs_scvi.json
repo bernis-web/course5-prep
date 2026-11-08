@@ -1,0 +1,117 @@
+{
+ "protocol": "paired bootstrap over shared query cells, 2000 resamples",
+ "conventions": {
+  "published": "SATURN cells with out-of-coarse predictions dropped",
+  "strict_cell": "those cells kept, counted wrong (fair against oPCA/scVI)"
+ },
+ "comparisons": {
+  "mouse->zebrafish": {
+   "n_shared": 988,
+   "published": {
+    "n": 446,
+    "saturn_mf1": 0.6491,
+    "scvi_mf1": 0.6206,
+    "delta": 0.0285,
+    "delta_se": 0.038,
+    "delta_ci95": [
+     -0.0511,
+     0.1043
+    ],
+    "significant_at_95": false
+   },
+   "strict_cell": {
+    "n": 988,
+    "saturn_mf1": 0.4513,
+    "scvi_mf1": 0.6226,
+    "delta": -0.1713,
+    "delta_se": 0.0281,
+    "delta_ci95": [
+     -0.2273,
+     -0.1185
+    ],
+    "significant_at_95": true
+   }
+  },
+  "zebrafish->mouse": {
+   "n_shared": 1368,
+   "published": {
+    "n": 911,
+    "saturn_mf1": 0.6508,
+    "scvi_mf1": 0.6168,
+    "delta": 0.034,
+    "delta_se": 0.0272,
+    "delta_ci95": [
+     -0.0226,
+     0.0867
+    ],
+    "significant_at_95": false
+   },
+   "strict_cell": {
+    "n": 1368,
+    "saturn_mf1": 0.4585,
+    "scvi_mf1": 0.5295,
+    "delta": -0.0709,
+    "delta_se": 0.0365,
+    "delta_ci95": [
+     -0.18,
+     -0.0334
+    ],
+    "significant_at_95": true
+   }
+  },
+  "zebrafish->human": {
+   "n_shared": 1378,
+   "published": {
+    "n": 642,
+    "saturn_mf1": 0.4021,
+    "scvi_mf1": 0.6026,
+    "delta": -0.2005,
+    "delta_se": 0.0204,
+    "delta_ci95": [
+     -0.2404,
+     -0.1624
+    ],
+    "significant_at_95": true
+   },
+   "strict_cell": {
+    "n": 1378,
+    "saturn_mf1": 0.2139,
+    "scvi_mf1": 0.4698,
+    "delta": -0.2559,
+    "delta_se": 0.0115,
+    "delta_ci95": [
+     -0.2781,
+     -0.2325
+    ],
+    "significant_at_95": true
+   }
+  },
+  "human->zebrafish": {
+   "n_shared": 1047,
+   "published": {
+    "n": 1032,
+    "saturn_mf1": 0.2479,
+    "scvi_mf1": 0.5112,
+    "delta": -0.2633,
+    "delta_se": 0.0227,
+    "delta_ci95": [
+     -0.3392,
+     -0.2343
+    ],
+    "significant_at_95": true
+   },
+   "strict_cell": {
+    "n": 1047,
+    "saturn_mf1": 0.2051,
+    "scvi_mf1": 0.5111,
+    "delta": -0.306,
+    "delta_se": 0.0204,
+    "delta_ci95": [
+     -0.3764,
+     -0.2798
+    ],
+    "significant_at_95": true
+   }
+  }
+ }
+}

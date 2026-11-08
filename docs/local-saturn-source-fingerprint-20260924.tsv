@@ -1,0 +1,9 @@
+field	value	note
+source_root	wheelhouse/saturn-src	Local checked-in SATURN reference; compare with the v71 runtime, do not assume equality.
+git_commit	6906abf23728aa8ebf400cedf4ce38e4821a0a49	Nested repository HEAD; commit subject: fix pandas concat bug.
+git_commit_date	2024-07-02T19:00:57-07:00	Nested repository commit date.
+train-saturn.py_sha256	3FB86F6D77DB643E20D0155A9446DD73ADA228F84960D12D00156C245046DAEC	Local file SHA-256.
+miners/base_miner.py_sha256	EA520CCD796B36692DD5B7367777DB64C568EF098CD1A69A3CF752C9C569C1EC	Local file SHA-256.
+miners/triplet_margin_miner.py_sha256	E0686FEB02DA547CECA991B6B18ACBD6201FDA96BFC8CCD1DDB1AD716E42689B	Local file SHA-256.
+utils/loss_and_miner_utils.py_sha256	0EE75578FE2230B5FDB93761962BE28760E1D5719FEAB6C9930241648BB66EC2	Local file SHA-256.
+comparison_status	pending	No v71 runtime commit, image-layer hash, or patch has been retrieved from DCS.

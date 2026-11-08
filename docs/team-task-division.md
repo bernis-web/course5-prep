@@ -133,3 +133,33 @@ Pull Request 或工作记录尽量写清楚：改了什么、使用了哪份输�
 1. A 在 DCS 核实数据、字段和候选物种；B 复核仓库中的预算/镜像约束；C 运行本地测试套件并熟悉运行产物（测试数量以当前仓库输出为准）。
 2. A 拿到字段后更新启动门；B 根据只读环境报告更新镜像证据；C 准备真实运行的指标表和报告骨架。
 3. 四人共同审查启动门和预算，确认后再决定是否申请第一次单卡试运行。
+
+## 2026-09-24 课题五审计交接附录
+
+本附录覆盖 v71/v72 审计阶段，优先级高于上面的历史 R0-R6 快照，但不删除历史记录。
+详细的逐项判定见 `docs/audit-coverage-matrix-20260924.md`；DCS 只读取证直接按 `docs/dcs-v71-v72-evidence-request-20260924.md` 执行。
+
+| 角色 | 当前小交付 | 交付物 | 明确不要做的事 |
+| --- | --- | --- | --- |
+| 数据与生物学 | 只读取得 v71/v72 的输入路径、标签列、物种和 barcode 角色；整理 HEART 同源 cell-type 证据 | `config/eval-manifest-v73.json`、`config/barcode-roles-v73.tsv`、`config/heart-celltype-map-v1.tsv` | 不猜路径、标签映射或 barcode；不把论文作者结果当真值 |
+| 环境与算力 | 只读确认原始命令、task ID、完整日志、Final AnnData hash 和 SATURN 源码版本/补丁 hash；核对表示层和资源记录 | provenance 记录及 manifest 中的命令、路径、源码/数据 hash 字段 | 不启动 DCS、不上传数据、不充值、不安装依赖 |
+| 评测与报告 | 用显式 NPZ bundle 验收 exact/mapped 双评分、barcode 泄漏排除和 inductive/transductive 两套协议 | `scripts/evaluate_cross_species_transfer.py` 的本地输出、逐细胞预测和审计摘要 | 不把 v72 transductive 数字写成 held-out benchmark |
+| 机动复核 | 复核一条主线的证据和文档一致性，维护阻塞清单 | `docs/audit-coverage-matrix-20260924.md` 及复核记录 | 不清理或回退已有用户文件，不修改研究结果 |
+
+### 进入下一阶段的共同门槛
+
+只有当原始 DCS provenance、barcode 角色、标签映射和表示层全部落库后，才讨论容量消融或正式方法排名。当前三物种 HEART pilot 的本地启动门已通过；LBSPA snRNA 仍必须等待 scRNA 主评估结论和数据路径。
+
+## 2026-09-25 续审轮：可直接认领的三个重任务
+
+本轮优先把“已有本地结果”与“尚缺 DCS 原始证据”分开。三名组员各认领一条主线，第四人只做交叉复核；没有证据的字段继续写 `pending`。本轮不创建云任务、不上传数据、不改研究结果。
+
+| 认领线 | 具体动作 | 交付物 | 完成判据 |
+| --- | --- | --- | --- |
+| A：DCS provenance（适合 Claude/zcode 重查页面） | 只读核对 v71/v72 task ID、原始命令、完整日志、Final AnnData/epoch scores 路径与 hash、query/reference barcode 文件、表示层 | `config/eval-manifest-v73.json`、`config/barcode-roles-v73.tsv` 的脱敏回填；附查询时间和页面位置 | 6 类核心证据均有来源；缺失项明确写 `pending`，没有猜填 |
+| B：本地评测与泄漏审计（适合 Claude/zcode 跑脚本） | 生成显式 NPZ bundle（只在获授权的本地副本上），运行 exact/mapped、transductive/inductive 双协议，检查重复 barcode、query/reference 交集和逐细胞输出 | `summary.json`、逐细胞预测表、提取命令与 SHA-256 记录 | 评分器测试通过；输出含 accuracy/F1/top-k/coverage/abstention/混淆矩阵；协议标签清楚 |
+| C：论文方法与报告边界（适合熟悉文献的成员） | 将 HEART、LBSPA、BENGAL、scSpecies、CAMEX 的“方法启发”和“不能替代的项目证据”逐项整理，核对 Word 报告中的已证实/探索性/待补证据三栏 | `docs/paper-method-evidence-20260924.md`、`docs/source-evidence-index-20260924.tsv` 的审阅记录；Word 报告提纲 | 每条论文结论都有一手来源；没有把论文结果填入 DCS manifest 或本项目真值 |
+
+### 本轮统一回报格式
+
+每条线只需回报四项：`已完成`、`证据文件/页面位置`、`仍阻塞`、`下一步`。A 若无法从 DCS 页面取得任务详情，应把页面入口、查询时间和“未显示字段”记录下来，而不是反复重试或启动新任务。B 若没有经过授权的 NPZ 提取物，只完成评分器合成测试，不生成正式结果。C 若 HEART 原 PDF 不可重新读取，必须沿用 A/B/C 证据分层并明确说明来源等级。

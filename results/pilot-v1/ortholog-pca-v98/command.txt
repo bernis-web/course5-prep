@@ -1,0 +1,1 @@
+D:/projects/course5-prep/.venv39/Scripts/python.exe scripts/ortholog_pca_local_v1.py

@@ -1,0 +1,74 @@
+{
+ "method": "ortholog-PCA (fixkey v3, 4,606 cells x 3 species, 200 perms)",
+ "host": "Windows 11 laptop, python 3.9.6, single process",
+ "n_runs": 5,
+ "wall_sec_median": 26.68,
+ "wall_sec_min": 25.52,
+ "wall_sec_max": 26.92,
+ "peak_ws_mb_median": 1307.9,
+ "peak_ws_mb_min": 1306.6,
+ "peak_ws_mb_max": 1308.3,
+ "peak_pagefile_mb_median": 1317.2,
+ "runs": [
+  {
+   "wall_sec_total": 26.12,
+   "peak_working_set_mb": 1306.6,
+   "peak_pagefile_mb": 1316.0,
+   "python": "3.9.6",
+   "seed": "0",
+   "nperm": "200",
+   "h5ad_dir": "D:\\projects\\course5-prep",
+   "out": "D:\\projects\\course5-prep\\results\\resource-20261030\\opca-rep0\\output",
+   "tag": "opca-rep0",
+   "outer_wall_sec": 26.74
+  },
+  {
+   "wall_sec_total": 26.9,
+   "peak_working_set_mb": 1308.0,
+   "peak_pagefile_mb": 1317.4,
+   "python": "3.9.6",
+   "seed": "1",
+   "nperm": "200",
+   "h5ad_dir": "D:\\projects\\course5-prep",
+   "out": "D:\\projects\\course5-prep\\results\\resource-20261030\\opca-rep1\\output",
+   "tag": "opca-rep1",
+   "outer_wall_sec": 27.53
+  },
+  {
+   "wall_sec_total": 26.68,
+   "peak_working_set_mb": 1307.5,
+   "peak_pagefile_mb": 1316.9,
+   "python": "3.9.6",
+   "seed": "2",
+   "nperm": "200",
+   "h5ad_dir": "D:\\projects\\course5-prep",
+   "out": "D:\\projects\\course5-prep\\results\\resource-20261030\\opca-rep2\\output",
+   "tag": "opca-rep2",
+   "outer_wall_sec": 27.26
+  },
+  {
+   "wall_sec_total": 26.92,
+   "peak_working_set_mb": 1308.3,
+   "peak_pagefile_mb": 1317.5,
+   "python": "3.9.6",
+   "seed": "3",
+   "nperm": "200",
+   "h5ad_dir": "D:\\projects\\course5-prep",
+   "out": "D:\\projects\\course5-prep\\results\\resource-20261030\\opca-rep3\\output",
+   "tag": "opca-rep3",
+   "outer_wall_sec": 27.51
+  },
+  {
+   "wall_sec_total": 25.52,
+   "peak_working_set_mb": 1307.9,
+   "peak_pagefile_mb": 1317.2,
+   "python": "3.9.6",
+   "seed": "4",
+   "nperm": "200",
+   "h5ad_dir": "D:\\projects\\course5-prep",
+   "out": "D:\\projects\\course5-prep\\results\\resource-20261030\\opca-rep4\\output",
+   "tag": "opca-rep4",
+   "outer_wall_sec": 26.11
+  }
+ ]
+}

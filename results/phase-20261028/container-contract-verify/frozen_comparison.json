@@ -1,0 +1,97 @@
+{
+ "source_run": "tmp\\ctr-out-run1",
+ "frozen": "results/phase-20261010/opca-fixkey-recovered-20261015/metrics.json",
+ "cells": {
+  "human->mouse|exact": {
+   "run": 0.7824,
+   "frozen": 0.7824,
+   "equal": true
+  },
+  "human->mouse|coarse": {
+   "run": 0.8618,
+   "frozen": 0.8618,
+   "equal": true
+  },
+  "human->mouse|fine": {
+   "run": 0.798,
+   "frozen": 0.798,
+   "equal": true
+  },
+  "mouse->human|exact": {
+   "run": 0.4084,
+   "frozen": 0.4084,
+   "equal": true
+  },
+  "mouse->human|coarse": {
+   "run": 0.7369,
+   "frozen": 0.7369,
+   "equal": true
+  },
+  "mouse->human|fine": {
+   "run": 0.4103,
+   "frozen": 0.4103,
+   "equal": true
+  },
+  "human->zebrafish|exact": {
+   "run": 0.1504,
+   "frozen": 0.1504,
+   "equal": true
+  },
+  "human->zebrafish|coarse": {
+   "run": 0.1795,
+   "frozen": 0.1795,
+   "equal": true
+  },
+  "human->zebrafish|fine": {
+   "run": 0.1608,
+   "frozen": 0.1608,
+   "equal": true
+  },
+  "mouse->zebrafish|exact": {
+   "run": 0.164,
+   "frozen": 0.164,
+   "equal": true
+  },
+  "mouse->zebrafish|coarse": {
+   "run": 0.2675,
+   "frozen": 0.2675,
+   "equal": true
+  },
+  "mouse->zebrafish|fine": {
+   "run": 0.1721,
+   "frozen": 0.1721,
+   "equal": true
+  },
+  "zebrafish->human|exact": {
+   "run": 0.1387,
+   "frozen": 0.1387,
+   "equal": true
+  },
+  "zebrafish->human|coarse": {
+   "run": 0.1734,
+   "frozen": 0.1734,
+   "equal": true
+  },
+  "zebrafish->human|fine": {
+   "run": 0.161,
+   "frozen": 0.161,
+   "equal": true
+  },
+  "zebrafish->mouse|exact": {
+   "run": 0.471,
+   "frozen": 0.471,
+   "equal": true
+  },
+  "zebrafish->mouse|coarse": {
+   "run": 0.5814,
+   "frozen": 0.5814,
+   "equal": true
+  },
+  "zebrafish->mouse|fine": {
+   "run": 0.5003,
+   "frozen": 0.5003,
+   "equal": true
+  }
+ },
+ "all_match": true
+}

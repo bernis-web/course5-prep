@@ -1,0 +1,10 @@
+{
+ "protocol": "transductive_formal_reassessment",
+ "seed": 0,
+ "k": 15,
+ "npcs": 50,
+ "nperm": 200,
+ "smoke": false,
+ "script_sha256": "801cf05e08df6ad5a5c47109c4c8bb59f70cf75ec0278ce2022048bd78ff57e4",
+ "mapping_sha256": "be9857354778535b76d1884d004c54691dc5ff2daa7b098d71dc719daf583165"
+}

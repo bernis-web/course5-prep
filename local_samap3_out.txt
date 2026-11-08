@@ -1,0 +1,246 @@
+step1: build SAM objects
+D:\projects\course5-prep\.venv39\lib\site-packages\umap\umap_.py:1952: UserWarning: n_jobs value 1 overridden to 1 by setting random_state. Use no seed for parallelism.
+  warn(
+RUNNING SAM
+Iteration: 0, Convergence: 1.0
+Iteration: 1, Convergence: 0.8230918893999687
+Iteration: 2, Convergence: 0.025917697076949967
+Computing the UMAP embedding...
+Elapsed time: 9.756633996963501 seconds
+hu sam genes= 32732
+D:\projects\course5-prep\.venv39\lib\site-packages\umap\umap_.py:1952: UserWarning: n_jobs value 1 overridden to 1 by setting random_state. Use no seed for parallelism.
+  warn(
+RUNNING SAM
+Iteration: 0, Convergence: 1.0
+Iteration: 1, Convergence: 0.8931202418826115
+Iteration: 2, Convergence: 0.011264399636241483
+Computing the UMAP embedding...
+Elapsed time: 6.5051374435424805 seconds
+ms sam genes= 32379
+D:\projects\course5-prep\.venv39\lib\site-packages\umap\umap_.py:1952: UserWarning: n_jobs value 1 overridden to 1 by setting random_state. Use no seed for parallelism.
+  warn(
+RUNNING SAM
+Iteration: 0, Convergence: 1.0
+Iteration: 1, Convergence: 0.8839762531274936
+Iteration: 2, Convergence: 0.015253620737218481
+Computing the UMAP embedding...
+Elapsed time: 5.5457282066345215 seconds
+zf sam genes= 27661
+step2: ortholog maps
+hm=17611 fh=10398 fmm=9058
+step3: gnnm
+graph n=92772 edges=32873
+step4: SAMAP
+Not updating the manifold...
+Not updating the manifold...
+Not updating the manifold...
+32732 `hu` gene symbols match between the datasets and the BLAST graph.
+32379 `ms` gene symbols match between the datasets and the BLAST graph.
+27661 `zf` gene symbols match between the datasets and the BLAST graph.
+init ok
+D:\projects\course5-prep\.venv39\lib\site-packages\anndata\_core\anndata.py:1754: UserWarning: Observation names are not unique. To make them unique, call `.obs_names_make_unique`.
+  utils.warn_names_duplicates("obs")
+D:\projects\course5-prep\.venv39\lib\site-packages\anndata\_core\anndata.py:1754: UserWarning: Observation names are not unique. To make them unique, call `.obs_names_make_unique`.
+  utils.warn_names_duplicates("obs")
+D:\projects\course5-prep\.venv39\lib\site-packages\anndata\_core\anndata.py:1754: UserWarning: Observation names are not unique. To make them unique, call `.obs_names_make_unique`.
+  utils.warn_names_duplicates("obs")
+Prepping datasets for translation.
+Translating feature spaces pairwise.
+Projecting data into joint latent space. 0.604219913482666
+Correcting data with means. 1.4404513835906982
+Expanding neighbourhoods of species hu...
+Expanding neighbourhoods of species ms...
+Expanding neighbourhoods of species zf...
+Indegree coarsening
+0/1 (0, 4606)
+Rescaling edge weights by expression correlations.
+Concatenating SAM objects...
+Iteration 1 complete.
+Alignment scores:
+          hu        ms        zf
+hu  0.000000  0.783738  0.532242
+ms  0.806005  0.000000  0.539165
+zf  0.722873  0.684094  0.000000
+Calculating gene-gene correlations in the homology graph...
+Prepping datasets for translation.
+Translating feature spaces pairwise.
+Projecting data into joint latent space. 0.6886444091796875
+Correcting data with means. 1.694796085357666
+Expanding neighbourhoods of species hu...
+Expanding neighbourhoods of species ms...
+Expanding neighbourhoods of species zf...
+Indegree coarsening
+0/1 (0, 4606)
+Rescaling edge weights by expression correlations.
+Concatenating SAM objects...
+Iteration 2 complete.
+Alignment scores:
+          hu        ms        zf
+hu  0.000000  0.800196  0.542841
+ms  0.810913  0.000000  0.543878
+zf  0.731563  0.694739  0.000000
+Calculating gene-gene correlations in the homology graph...
+Prepping datasets for translation.
+Translating feature spaces pairwise.
+Projecting data into joint latent space. 0.6398003101348877
+Correcting data with means. 1.6383912563323975
+Expanding neighbourhoods of species hu...
+Expanding neighbourhoods of species ms...
+Expanding neighbourhoods of species zf...
+Indegree coarsening
+0/1 (0, 4606)
+Rescaling edge weights by expression correlations.
+Concatenating SAM objects...
+Iteration 3 complete.
+Alignment scores:
+          hu        ms        zf
+hu  0.000000  0.802209  0.545049
+ms  0.811472  0.000000  0.545107
+zf  0.731533  0.695568  0.000000
+Elapsed time: 0.9125822424888611 minutes.
+run done
+D:\projects\course5-prep\.venv39\lib\site-packages\umap\umap_.py:1952: UserWarning: n_jobs value 1 overridden to 1 by setting random_state. Use no seed for parallelism.
+  warn(
+RUNNING SAM
+Iteration: 0, Convergence: 1.0
+Iteration: 1, Convergence: 0.9171613878047051
+Iteration: 2, Convergence: 0.03133658577127452
+Computing the UMAP embedding...
+Elapsed time: 41.885910749435425 seconds
+species_counts={"zebrafish": 1543, "mouse": 1535, "human": 1528}
+truth NA=3
+SAVED
+SAMAP3_EVAL {
+ "exact": {
+  "human>mouse": {
+   "acc": 0.0195,
+   "majority": 0.4528,
+   "shuffle_p": 1.0,
+   "coverage_q": 1.0,
+   "n_excluded_q": 0
+  },
+  "human>zebrafish": {
+   "acc": 0.0,
+   "majority": 0.3856,
+   "shuffle_p": 1.0,
+   "coverage_q": 1.0,
+   "n_excluded_q": 0
+  },
+  "mouse>human": {
+   "acc": 0.1715,
+   "majority": 0.2526,
+   "shuffle_p": 1.0,
+   "coverage_q": 1.0,
+   "n_excluded_q": 0
+  },
+  "mouse>zebrafish": {
+   "acc": 0.3856,
+   "majority": 0.3856,
+   "shuffle_p": 1.0,
+   "coverage_q": 1.0,
+   "n_excluded_q": 0
+  },
+  "zebrafish>human": {
+   "acc": 0.0,
+   "majority": 0.2526,
+   "shuffle_p": 1.0,
+   "coverage_q": 1.0,
+   "n_excluded_q": 0
+  },
+  "zebrafish>mouse": {
+   "acc": 0.0,
+   "majority": 0.4528,
+   "shuffle_p": 1.0,
+   "coverage_q": 1.0,
+   "n_excluded_q": 0
+  }
+ },
+ "coarse": {
+  "human>mouse": {
+   "acc": 0.0195,
+   "majority": 0.4723,
+   "shuffle_p": 0.98,
+   "coverage_q": 1.0,
+   "n_excluded_q": 0
+  },
+  "human>zebrafish": {
+   "acc": 0.0,
+   "majority": 0.3856,
+   "shuffle_p": 1.0,
+   "coverage_q": 1.0,
+   "n_excluded_q": 0
+  },
+  "mouse>human": {
+   "acc": 0.1911,
+   "majority": 0.3115,
+   "shuffle_p": 1.0,
+   "coverage_q": 1.0,
+   "n_excluded_q": 0
+  },
+  "mouse>zebrafish": {
+   "acc": 0.3856,
+   "majority": 0.3856,
+   "shuffle_p": 1.0,
+   "coverage_q": 1.0,
+   "n_excluded_q": 0
+  },
+  "zebrafish>human": {
+   "acc": 0.0196,
+   "majority": 0.3115,
+   "shuffle_p": 1.0,
+   "coverage_q": 1.0,
+   "n_excluded_q": 0
+  },
+  "zebrafish>mouse": {
+   "acc": 0.0195,
+   "majority": 0.4723,
+   "shuffle_p": 1.0,
+   "coverage_q": 1.0,
+   "n_excluded_q": 0
+  }
+ },
+ "fine": {
+  "human>mouse": {
+   "acc": 0.0199,
+   "majority": 0.4618,
+   "shuffle_p": 1.0,
+   "coverage_q": 0.9805,
+   "n_excluded_q": 30
+  },
+  "human>zebrafish": {
+   "acc": 0.0,
+   "majority": 0.3969,
+   "shuffle_p": 1.0,
+   "coverage_q": 0.9715,
+   "n_excluded_q": 44
+  },
+  "mouse>human": {
+   "acc": 0.1715,
+   "majority": 0.2526,
+   "shuffle_p": 1.0,
+   "coverage_q": 1.0,
+   "n_excluded_q": 0
+  },
+  "mouse>zebrafish": {
+   "acc": 0.3969,
+   "majority": 0.3969,
+   "shuffle_p": 1.0,
+   "coverage_q": 0.9715,
+   "n_excluded_q": 44
+  },
+  "zebrafish>human": {
+   "acc": 0.0196,
+   "majority": 0.2526,
+   "shuffle_p": 1.0,
+   "coverage_q": 1.0,
+   "n_excluded_q": 0
+  },
+  "zebrafish>mouse": {
+   "acc": 0.0199,
+   "majority": 0.4618,
+   "shuffle_p": 1.0,
+   "coverage_q": 0.9805,
+   "n_excluded_q": 30
+  }
+ }
+}

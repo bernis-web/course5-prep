@@ -1,0 +1,164 @@
+{
+ "human->mouse": {
+  "ortholog": {
+   "acc": 0.8618,
+   "n_q": 1505,
+   "correct": 1297,
+   "maj": 0.4817,
+   "p": 0.0,
+   "cov": 0.9805,
+   "genes": 15869
+  },
+  "v99": {
+   "acc": 0.4844,
+   "n_q": 1505,
+   "correct": 729,
+   "maj": 0.4618,
+   "p": 0.0,
+   "excl": 30
+  },
+  "samap": {
+   "acc": 0.105,
+   "n_q": 1505,
+   "correct": 158,
+   "maj": 0.4618,
+   "p": 0.0,
+   "excl": 30
+  }
+ },
+ "mouse->human": {
+  "ortholog": {
+   "acc": 0.7369,
+   "n_q": 1528,
+   "correct": 1126,
+   "maj": 0.3115,
+   "p": 0.0,
+   "cov": 1.0,
+   "genes": 15869
+  },
+  "v99": {
+   "acc": 0.1924,
+   "n_q": 1528,
+   "correct": 294,
+   "maj": 0.2526,
+   "p": 0.0,
+   "excl": 0
+  },
+  "samap": {
+   "acc": 0.0196,
+   "n_q": 1528,
+   "correct": 30,
+   "maj": 0.2526,
+   "p": 1.0,
+   "excl": 0
+  }
+ },
+ "human->zebrafish": {
+  "ortholog": {
+   "acc": 0.1961,
+   "n_q": 1499,
+   "correct": 294,
+   "maj": 0.3976,
+   "p": 0.0,
+   "cov": 0.9715,
+   "genes": 9131
+  },
+  "v99": {
+   "acc": 0.1127,
+   "n_q": 1499,
+   "correct": 169,
+   "maj": 0.3976,
+   "p": 0.0,
+   "excl": 44
+  },
+  "samap": {
+   "acc": 0.0341,
+   "n_q": 1496,
+   "correct": 51,
+   "maj": 0.3977,
+   "p": 0.035,
+   "excl": 47
+  }
+ },
+ "mouse->zebrafish": {
+  "ortholog": {
+   "acc": 0.2755,
+   "n_q": 1499,
+   "correct": 413,
+   "maj": 0.3976,
+   "p": 0.0,
+   "cov": 0.9715,
+   "genes": 7670
+  },
+  "v99": {
+   "acc": 0.1948,
+   "n_q": 1499,
+   "correct": 292,
+   "maj": 0.3976,
+   "p": 0.0,
+   "excl": 44
+  },
+  "samap": {
+   "acc": 0.0,
+   "n_q": 1496,
+   "correct": 0,
+   "maj": 0.3977,
+   "p": 1.0,
+   "excl": 47
+  }
+ },
+ "zebrafish->human": {
+  "ortholog": {
+   "acc": 0.1813,
+   "n_q": 1528,
+   "correct": 277,
+   "maj": 0.3115,
+   "p": 0.0,
+   "cov": 1.0,
+   "genes": 9131
+  },
+  "v99": {
+   "acc": 0.1872,
+   "n_q": 1528,
+   "correct": 286,
+   "maj": 0.2526,
+   "p": 0.0,
+   "excl": 0
+  },
+  "samap": {
+   "acc": 0.0,
+   "n_q": 1528,
+   "correct": 0,
+   "maj": 0.2526,
+   "p": 1.0,
+   "excl": 0
+  }
+ },
+ "zebrafish->mouse": {
+  "ortholog": {
+   "acc": 0.5761,
+   "n_q": 1505,
+   "correct": 867,
+   "maj": 0.4817,
+   "p": 0.0,
+   "cov": 0.9805,
+   "genes": 7670
+  },
+  "v99": {
+   "acc": 0.3375,
+   "n_q": 1505,
+   "correct": 508,
+   "maj": 0.4618,
+   "p": 0.0,
+   "excl": 30
+  },
+  "samap": {
+   "acc": 0.0,
+   "n_q": 1505,
+   "correct": 0,
+   "maj": 0.4618,
+   "p": 1.0,
+   "excl": 30
+  }
+ }
+}

@@ -1,0 +1,22 @@
+{
+ "embedding": "results/phase-20261026/samap-batch/samap_joint_embedding.npy",
+ "n_cells": 4606,
+ "dim": 150,
+ "n_mapped_coarse": 4603,
+ "n_coarse_classes": 10,
+ "silhouette_cosine_coarse": 0.043094,
+ "ilisi_species_k30": 1.006092,
+ "kbet_accept_k30_alpha005": 0.001086,
+ "k": 30,
+ "alpha": 0.05,
+ "species_counts": {
+  "human": 1528,
+  "mouse": 1535,
+  "zebrafish": 1543
+ },
+ "mapping_status_counts": {
+  "None": 3,
+  "active": 4529,
+  "unmapped": 74
+ }
+}

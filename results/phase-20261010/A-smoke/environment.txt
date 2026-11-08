@@ -1,0 +1,16 @@
+task=task-1-a-smoke
+direction=human->mouse
+level=coarse
+nperm=200
+interpreter=D:\projects\course5-prep\.venv39\Scripts\python.exe
+python=3.9.6
+platform=Windows-10-10.0.22631-SP0
+numpy=1.23.5
+anndata=0.10.9
+scanpy=1.9.3
+sklearn=1.6.1
+wrapper=D:\projects\course5-prep\scripts\ortholog_pca_task1_isolated.py
+wrapper_sha256=71ab5642ad8e8a964717ad738c7f60524f9d1372fcc5bbc534cf63c64d7002ed
+authoritative_source=D:\projects\course5-prep\scripts\ortholog_pca_local_v1.py
+authoritative_source_sha256=6582d8736c3570f3de23ed36cb57c9cf58f6190c4730c3d39e29928415fd0c44
+patched_source_sha256=c56d3ee7607cf4a5b20af446ba279390f1cef3ba361e7b76d55ec3871367ba55

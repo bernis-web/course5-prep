@@ -34,6 +34,14 @@ Genpilot 文献搜索以完整题名精确命中该 Science 论文，DOI 为 `10
 
 对课题5的直接帮助：它可在单细胞主评测形成基本结论后，提供跨门类的 snRNA 小规模补充测试。老师已明确空间数据暂时不用，因此空间图谱只作为论文背景，不进入当前主实验；这样也避免把物种差异和模态差异混在一起。
 
+## 近期方法论文的一手入口
+
+- **BENGAL**：Song et al., *Benchmarking strategies for cross-species integration of single-cell RNA sequencing data*, Nature Communications (2023), DOI `10.1038/s41467-023-41855-w`。论文比较同源基因映射与整合算法组合，并把 species mixing、biology conservation 和 annotation transfer 分开评估；这直接支持课题5采用多维指标，而不是只报 accuracy。
+- **scSpecies**：Schächter et al., *scSpecies: enhancement of network architecture alignment in comparative single-cell studies*, Genome Biology (2025), DOI `10.1186/s13059-025-03866-2`。论文将 context/reference 与 target/query 分开，使用同源基因索引、batch indicator 和 context 标签，适合作为 inductive 参考到目标物种的轻量对照；不能把作者论文结果当作本项目真值。
+- **CAMEX**：*Multi-species integration, alignment and annotation of single-cell RNA-seq data with CAMEX*, Nature Communications (2026), DOI `10.1038/s41467-026-69696-3`。论文使用多对多同源关系和异质图模型；可作为后续方法综述，但不应在当前 1c4g 首轮中默认加入，除非依赖、许可证和资源需求完成独立核验。
+
+以上 DOI 和期刊入口用于可靠的论文方法核对；它们不证明对应软件已安装，也不证明课程数据已经挂载到 DCS。当前项目仍以本地源码、manifest 和 DCS 原始运行证据为准。
+
 ## 老师回复对实验范围的修正
 
 - HEART 和 LBSPA 数据及工具信息应优先在 DCS 内只读查询；“平台可查”不等于仓库已经拿到具体路径、字段或版本。

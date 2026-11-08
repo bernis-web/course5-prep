@@ -1,0 +1,1217 @@
+{
+ "protocol": "bootstrap over query cells, 1000 resamples, RandomState(20261030)",
+ "label_space": "coarse / union (active rows only, per unified_coarse_macro_f1.py)",
+ "note": "CI = sampling dispersion of the query set; not seed/parameter dispersion (see results/stability-20261030)",
+ "frozen_sources": {
+  "ortholog_pca": "results/phase-20261010/opca-fixkey-recovered-20261015/metrics.json",
+  "scVI": "results/phase-20261019/scvi-cross-species/recomputed_union.json",
+  "saturn_v99": "results/phase-20261017/unified-coarse-macro-f1/unified-coarse-macro-f1.json",
+  "samap": "results/phase-20261017/unified-coarse-macro-f1/unified-coarse-macro-f1.json"
+ },
+ "methods": {
+  "ortholog_pca": {
+   "human->mouse": {
+    "n_q": 1505,
+    "acc": 0.8618,
+    "mf1": 0.6435,
+    "acc_se": 0.0091,
+    "acc_ci95": [
+     0.8452,
+     0.8797
+    ],
+    "mf1_se": 0.0186,
+    "mf1_ci95": [
+     0.6051,
+     0.678
+    ],
+    "frozen_mf1": 0.6435,
+    "frozen_n": 1505,
+    "matches_frozen": true,
+    "per_class": {
+     "adipocyte": {
+      "recall": 0.0,
+      "n": 30,
+      "correct": 0
+     },
+     "cardiomyocyte": {
+      "recall": 0.4043,
+      "n": 47,
+      "correct": 19
+     },
+     "endothelial": {
+      "recall": 0.9931,
+      "n": 725,
+      "correct": 720
+     },
+     "epicardial": {
+      "recall": 0.8667,
+      "n": 30,
+      "correct": 26
+     },
+     "fibroblast": {
+      "recall": 0.7083,
+      "n": 360,
+      "correct": 255
+     },
+     "immune": {
+      "recall": 0.9752,
+      "n": 202,
+      "correct": 197
+     },
+     "neural": {
+      "recall": 0.4,
+      "n": 30,
+      "correct": 12
+     },
+     "smooth_muscle": {
+      "recall": 0.8395,
+      "n": 81,
+      "correct": 68
+     }
+    }
+   },
+   "mouse->human": {
+    "n_q": 1528,
+    "acc": 0.7369,
+    "mf1": 0.6729,
+    "acc_se": 0.011,
+    "acc_ci95": [
+     0.7153,
+     0.7572
+    ],
+    "mf1_se": 0.0215,
+    "mf1_ci95": [
+     0.6263,
+     0.7102
+    ],
+    "frozen_mf1": 0.6729,
+    "frozen_n": 1528,
+    "matches_frozen": true,
+    "per_class": {
+     "adipocyte": {
+      "recall": 0.6,
+      "n": 30,
+      "correct": 18
+     },
+     "cardiomyocyte": {
+      "recall": 0.9664,
+      "n": 476,
+      "correct": 460
+     },
+     "endothelial": {
+      "recall": 0.9863,
+      "n": 292,
+      "correct": 288
+     },
+     "fibroblast": {
+      "recall": 0.5036,
+      "n": 276,
+      "correct": 139
+     },
+     "immune": {
+      "recall": 0.612,
+      "n": 183,
+      "correct": 112
+     },
+     "epicardial": {
+      "recall": 0.3333,
+      "n": 30,
+      "correct": 10
+     },
+     "neural": {
+      "recall": 0.4333,
+      "n": 30,
+      "correct": 13
+     },
+     "smooth_muscle": {
+      "recall": 0.4076,
+      "n": 211,
+      "correct": 86
+     }
+    }
+   },
+   "human->zebrafish": {
+    "n_q": 1499,
+    "acc": 0.1795,
+    "mf1": 0.1654,
+    "acc_se": 0.0101,
+    "acc_ci95": [
+     0.1601,
+     0.1988
+    ],
+    "mf1_se": 0.0152,
+    "mf1_ci95": [
+     0.1348,
+     0.1951
+    ],
+    "frozen_mf1": 0.1654,
+    "frozen_n": 1499,
+    "matches_frozen": true,
+    "per_class": {
+     "cardiomyocyte": {
+      "recall": 0.0504,
+      "n": 119,
+      "correct": 6
+     },
+     "endothelial": {
+      "recall": 0.1107,
+      "n": 596,
+      "correct": 66
+     },
+     "epicardial": {
+      "recall": 0.1667,
+      "n": 30,
+      "correct": 5
+     },
+     "fibroblast": {
+      "recall": 0.0094,
+      "n": 106,
+      "correct": 1
+     },
+     "immune": {
+      "recall": 0.975,
+      "n": 120,
+      "correct": 117
+     },
+     "neural": {
+      "recall": 0.1,
+      "n": 30,
+      "correct": 3
+     },
+     "smooth_muscle": {
+      "recall": 0.4277,
+      "n": 166,
+      "correct": 71
+     },
+     "erythroid": {
+      "recall": 0.0,
+      "n": 332,
+      "correct": 0
+     }
+    }
+   },
+   "zebrafish->human": {
+    "n_q": 1528,
+    "acc": 0.1734,
+    "mf1": 0.1512,
+    "acc_se": 0.0097,
+    "acc_ci95": [
+     0.1557,
+     0.1924
+    ],
+    "mf1_se": 0.007,
+    "mf1_ci95": [
+     0.1379,
+     0.1647
+    ],
+    "frozen_mf1": 0.1512,
+    "frozen_n": 1528,
+    "matches_frozen": true,
+    "per_class": {
+     "adipocyte": {
+      "recall": 0.0,
+      "n": 30,
+      "correct": 0
+     },
+     "cardiomyocyte": {
+      "recall": 0.0399,
+      "n": 476,
+      "correct": 19
+     },
+     "endothelial": {
+      "recall": 0.4521,
+      "n": 292,
+      "correct": 132
+     },
+     "fibroblast": {
+      "recall": 0.0217,
+      "n": 276,
+      "correct": 6
+     },
+     "immune": {
+      "recall": 0.3333,
+      "n": 183,
+      "correct": 61
+     },
+     "epicardial": {
+      "recall": 0.0,
+      "n": 30,
+      "correct": 0
+     },
+     "neural": {
+      "recall": 0.9,
+      "n": 30,
+      "correct": 27
+     },
+     "smooth_muscle": {
+      "recall": 0.0948,
+      "n": 211,
+      "correct": 20
+     }
+    }
+   },
+   "mouse->zebrafish": {
+    "n_q": 1499,
+    "acc": 0.2675,
+    "mf1": 0.2177,
+    "acc_se": 0.0113,
+    "acc_ci95": [
+     0.2455,
+     0.2895
+    ],
+    "mf1_se": 0.0135,
+    "mf1_ci95": [
+     0.1996,
+     0.2549
+    ],
+    "frozen_mf1": 0.2177,
+    "frozen_n": 1499,
+    "matches_frozen": true,
+    "per_class": {
+     "cardiomyocyte": {
+      "recall": 0.8908,
+      "n": 119,
+      "correct": 106
+     },
+     "endothelial": {
+      "recall": 0.1862,
+      "n": 596,
+      "correct": 111
+     },
+     "epicardial": {
+      "recall": 0.0333,
+      "n": 30,
+      "correct": 1
+     },
+     "fibroblast": {
+      "recall": 0.0377,
+      "n": 106,
+      "correct": 4
+     },
+     "immune": {
+      "recall": 0.9167,
+      "n": 120,
+      "correct": 110
+     },
+     "neural": {
+      "recall": 0.0,
+      "n": 30,
+      "correct": 0
+     },
+     "smooth_muscle": {
+      "recall": 0.4157,
+      "n": 166,
+      "correct": 69
+     },
+     "erythroid": {
+      "recall": 0.0,
+      "n": 332,
+      "correct": 0
+     }
+    }
+   },
+   "zebrafish->mouse": {
+    "n_q": 1505,
+    "acc": 0.5814,
+    "mf1": 0.4405,
+    "acc_se": 0.0126,
+    "acc_ci95": [
+     0.5568,
+     0.606
+    ],
+    "mf1_se": 0.0144,
+    "mf1_ci95": [
+     0.4108,
+     0.4679
+    ],
+    "frozen_mf1": 0.4405,
+    "frozen_n": 1505,
+    "matches_frozen": true,
+    "per_class": {
+     "adipocyte": {
+      "recall": 0.0,
+      "n": 30,
+      "correct": 0
+     },
+     "cardiomyocyte": {
+      "recall": 0.617,
+      "n": 47,
+      "correct": 29
+     },
+     "endothelial": {
+      "recall": 0.3917,
+      "n": 725,
+      "correct": 284
+     },
+     "epicardial": {
+      "recall": 0.2667,
+      "n": 30,
+      "correct": 8
+     },
+     "fibroblast": {
+      "recall": 0.7694,
+      "n": 360,
+      "correct": 277
+     },
+     "immune": {
+      "recall": 0.9802,
+      "n": 202,
+      "correct": 198
+     },
+     "neural": {
+      "recall": 0.9,
+      "n": 30,
+      "correct": 27
+     },
+     "smooth_muscle": {
+      "recall": 0.642,
+      "n": 81,
+      "correct": 52
+     }
+    }
+   }
+  },
+  "scVI": {
+   "human->mouse": {
+    "n_q": 1505,
+    "acc": 0.9189,
+    "mf1": 0.6683,
+    "acc_se": 0.0071,
+    "acc_ci95": [
+     0.9056,
+     0.9322
+    ],
+    "mf1_se": 0.0206,
+    "mf1_ci95": [
+     0.6261,
+     0.7062
+    ],
+    "frozen_mf1": 0.6683,
+    "frozen_n": 1505,
+    "matches_frozen": true,
+    "per_class": {
+     "adipocyte": {
+      "recall": 0.0333,
+      "n": 30,
+      "correct": 1
+     },
+     "cardiomyocyte": {
+      "recall": 0.4468,
+      "n": 47,
+      "correct": 21
+     },
+     "endothelial": {
+      "recall": 0.9876,
+      "n": 725,
+      "correct": 716
+     },
+     "epicardial": {
+      "recall": 0.8333,
+      "n": 30,
+      "correct": 25
+     },
+     "fibroblast": {
+      "recall": 0.9694,
+      "n": 360,
+      "correct": 349
+     },
+     "immune": {
+      "recall": 0.9703,
+      "n": 202,
+      "correct": 196
+     },
+     "neural": {
+      "recall": 0.2,
+      "n": 30,
+      "correct": 6
+     },
+     "smooth_muscle": {
+      "recall": 0.8519,
+      "n": 81,
+      "correct": 69
+     }
+    }
+   },
+   "mouse->human": {
+    "n_q": 1528,
+    "acc": 0.7781,
+    "mf1": 0.5895,
+    "acc_se": 0.0112,
+    "acc_ci95": [
+     0.7572,
+     0.8017
+    ],
+    "mf1_se": 0.014,
+    "mf1_ci95": [
+     0.5626,
+     0.6177
+    ],
+    "frozen_mf1": 0.5895,
+    "frozen_n": 1528,
+    "matches_frozen": true,
+    "per_class": {
+     "adipocyte": {
+      "recall": 0.1333,
+      "n": 30,
+      "correct": 4
+     },
+     "cardiomyocyte": {
+      "recall": 0.5945,
+      "n": 476,
+      "correct": 283
+     },
+     "endothelial": {
+      "recall": 0.9966,
+      "n": 292,
+      "correct": 291
+     },
+     "fibroblast": {
+      "recall": 0.9493,
+      "n": 276,
+      "correct": 262
+     },
+     "immune": {
+      "recall": 0.9672,
+      "n": 183,
+      "correct": 177
+     },
+     "epicardial": {
+      "recall": 0.1667,
+      "n": 30,
+      "correct": 5
+     },
+     "neural": {
+      "recall": 0.2,
+      "n": 30,
+      "correct": 6
+     },
+     "smooth_muscle": {
+      "recall": 0.763,
+      "n": 211,
+      "correct": 161
+     }
+    }
+   },
+   "human->zebrafish": {
+    "n_q": 1499,
+    "acc": 0.6217,
+    "mf1": 0.4014,
+    "acc_se": 0.0121,
+    "acc_ci95": [
+     0.5977,
+     0.6438
+    ],
+    "mf1_se": 0.0117,
+    "mf1_ci95": [
+     0.3793,
+     0.4249
+    ],
+    "frozen_mf1": 0.4014,
+    "frozen_n": 1499,
+    "matches_frozen": true,
+    "per_class": {
+     "cardiomyocyte": {
+      "recall": 0.9412,
+      "n": 119,
+      "correct": 112
+     },
+     "endothelial": {
+      "recall": 0.8658,
+      "n": 596,
+      "correct": 516
+     },
+     "epicardial": {
+      "recall": 0.5333,
+      "n": 30,
+      "correct": 16
+     },
+     "fibroblast": {
+      "recall": 0.434,
+      "n": 106,
+      "correct": 46
+     },
+     "immune": {
+      "recall": 0.8167,
+      "n": 120,
+      "correct": 98
+     },
+     "neural": {
+      "recall": 0.0667,
+      "n": 30,
+      "correct": 2
+     },
+     "smooth_muscle": {
+      "recall": 0.8554,
+      "n": 166,
+      "correct": 142
+     },
+     "erythroid": {
+      "recall": 0.0,
+      "n": 332,
+      "correct": 0
+     }
+    }
+   },
+   "zebrafish->human": {
+    "n_q": 1528,
+    "acc": 0.6479,
+    "mf1": 0.429,
+    "acc_se": 0.0125,
+    "acc_ci95": [
+     0.6217,
+     0.6721
+    ],
+    "mf1_se": 0.0119,
+    "mf1_ci95": [
+     0.404,
+     0.4522
+    ],
+    "frozen_mf1": 0.429,
+    "frozen_n": 1528,
+    "matches_frozen": true,
+    "per_class": {
+     "adipocyte": {
+      "recall": 0.0,
+      "n": 30,
+      "correct": 0
+     },
+     "cardiomyocyte": {
+      "recall": 0.7584,
+      "n": 476,
+      "correct": 361
+     },
+     "endothelial": {
+      "recall": 0.9932,
+      "n": 292,
+      "correct": 290
+     },
+     "fibroblast": {
+      "recall": 0.5326,
+      "n": 276,
+      "correct": 147
+     },
+     "immune": {
+      "recall": 0.5574,
+      "n": 183,
+      "correct": 102
+     },
+     "epicardial": {
+      "recall": 0.1333,
+      "n": 30,
+      "correct": 4
+     },
+     "neural": {
+      "recall": 0.3667,
+      "n": 30,
+      "correct": 11
+     },
+     "smooth_muscle": {
+      "recall": 0.3555,
+      "n": 211,
+      "correct": 75
+     }
+    }
+   },
+   "mouse->zebrafish": {
+    "n_q": 1499,
+    "acc": 0.6338,
+    "mf1": 0.4248,
+    "acc_se": 0.0125,
+    "acc_ci95": [
+     0.6084,
+     0.6571
+    ],
+    "mf1_se": 0.0155,
+    "mf1_ci95": [
+     0.3934,
+     0.4552
+    ],
+    "frozen_mf1": 0.4248,
+    "frozen_n": 1499,
+    "matches_frozen": true,
+    "per_class": {
+     "cardiomyocyte": {
+      "recall": 0.4538,
+      "n": 119,
+      "correct": 54
+     },
+     "endothelial": {
+      "recall": 0.9732,
+      "n": 596,
+      "correct": 580
+     },
+     "epicardial": {
+      "recall": 0.2333,
+      "n": 30,
+      "correct": 7
+     },
+     "fibroblast": {
+      "recall": 0.8679,
+      "n": 106,
+      "correct": 92
+     },
+     "immune": {
+      "recall": 0.8333,
+      "n": 120,
+      "correct": 100
+     },
+     "neural": {
+      "recall": 0.0667,
+      "n": 30,
+      "correct": 2
+     },
+     "smooth_muscle": {
+      "recall": 0.6928,
+      "n": 166,
+      "correct": 115
+     },
+     "erythroid": {
+      "recall": 0.0,
+      "n": 332,
+      "correct": 0
+     }
+    }
+   },
+   "zebrafish->mouse": {
+    "n_q": 1505,
+    "acc": 0.802,
+    "mf1": 0.4786,
+    "acc_se": 0.0103,
+    "acc_ci95": [
+     0.7814,
+     0.8219
+    ],
+    "mf1_se": 0.0114,
+    "mf1_ci95": [
+     0.4561,
+     0.4993
+    ],
+    "frozen_mf1": 0.4786,
+    "frozen_n": 1505,
+    "matches_frozen": true,
+    "per_class": {
+     "adipocyte": {
+      "recall": 0.0,
+      "n": 30,
+      "correct": 0
+     },
+     "cardiomyocyte": {
+      "recall": 0.5319,
+      "n": 47,
+      "correct": 25
+     },
+     "endothelial": {
+      "recall": 0.9683,
+      "n": 725,
+      "correct": 702
+     },
+     "epicardial": {
+      "recall": 0.6333,
+      "n": 30,
+      "correct": 19
+     },
+     "fibroblast": {
+      "recall": 0.5833,
+      "n": 360,
+      "correct": 210
+     },
+     "immune": {
+      "recall": 0.9307,
+      "n": 202,
+      "correct": 188
+     },
+     "neural": {
+      "recall": 0.0333,
+      "n": 30,
+      "correct": 1
+     },
+     "smooth_muscle": {
+      "recall": 0.7654,
+      "n": 81,
+      "correct": 62
+     }
+    }
+   }
+  },
+  "saturn_v99": {
+   "human->mouse": {
+    "n_q": 1309,
+    "acc": 0.6241,
+    "mf1": 0.4147,
+    "acc_se": 0.0133,
+    "acc_ci95": [
+     0.5997,
+     0.6516
+    ],
+    "mf1_se": 0.0152,
+    "mf1_ci95": [
+     0.3868,
+     0.4454
+    ],
+    "frozen_mf1": 0.4147,
+    "frozen_n": 1309,
+    "matches_frozen": true,
+    "per_class": {
+     "adipocyte": {
+      "recall": 0.0,
+      "n": 27,
+      "correct": 0
+     },
+     "endothelial": {
+      "recall": 0.4647,
+      "n": 680,
+      "correct": 316
+     },
+     "fibroblast": {
+      "recall": 1.0,
+      "n": 329,
+      "correct": 329
+     },
+     "immune": {
+      "recall": 0.7612,
+      "n": 201,
+      "correct": 153
+     },
+     "neural": {
+      "recall": 0.0333,
+      "n": 30,
+      "correct": 1
+     },
+     "smooth_muscle": {
+      "recall": 0.4286,
+      "n": 42,
+      "correct": 18
+     }
+    }
+   },
+   "mouse->human": {
+    "n_q": 857,
+    "acc": 0.3734,
+    "mf1": 0.401,
+    "acc_se": 0.017,
+    "acc_ci95": [
+     0.3396,
+     0.4061
+    ],
+    "mf1_se": 0.021,
+    "mf1_ci95": [
+     0.3574,
+     0.4394
+    ],
+    "frozen_mf1": 0.401,
+    "frozen_n": 857,
+    "matches_frozen": true,
+    "per_class": {
+     "adipocyte": {
+      "recall": 0.0345,
+      "n": 29,
+      "correct": 1
+     },
+     "endothelial": {
+      "recall": 0.2727,
+      "n": 275,
+      "correct": 75
+     },
+     "fibroblast": {
+      "recall": 0.4545,
+      "n": 176,
+      "correct": 80
+     },
+     "immune": {
+      "recall": 0.25,
+      "n": 152,
+      "correct": 38
+     },
+     "neural": {
+      "recall": 0.4444,
+      "n": 27,
+      "correct": 12
+     },
+     "smooth_muscle": {
+      "recall": 0.5758,
+      "n": 198,
+      "correct": 114
+     }
+    }
+   },
+   "human->zebrafish": {
+    "n_q": 1032,
+    "acc": 0.219,
+    "mf1": 0.2479,
+    "acc_se": 0.0128,
+    "acc_ci95": [
+     0.1957,
+     0.2452
+    ],
+    "mf1_se": 0.0137,
+    "mf1_ci95": [
+     0.2217,
+     0.2743
+    ],
+    "frozen_mf1": 0.2479,
+    "frozen_n": 1032,
+    "matches_frozen": true,
+    "per_class": {
+     "cardiomyocyte": {
+      "recall": 0.9748,
+      "n": 119,
+      "correct": 116
+     },
+     "endothelial": {
+      "recall": 0.0034,
+      "n": 585,
+      "correct": 2
+     },
+     "fibroblast": {
+      "recall": 0.8133,
+      "n": 75,
+      "correct": 61
+     },
+     "immune": {
+      "recall": 0.2991,
+      "n": 117,
+      "correct": 35
+     },
+     "smooth_muscle": {
+      "recall": 0.0882,
+      "n": 136,
+      "correct": 12
+     }
+    }
+   },
+   "zebrafish->human": {
+    "n_q": 642,
+    "acc": 0.5047,
+    "mf1": 0.4021,
+    "acc_se": 0.0206,
+    "acc_ci95": [
+     0.4642,
+     0.5452
+    ],
+    "mf1_se": 0.0178,
+    "mf1_ci95": [
+     0.3684,
+     0.4371
+    ],
+    "frozen_mf1": 0.4021,
+    "frozen_n": 642,
+    "matches_frozen": true,
+    "per_class": {
+     "cardiomyocyte": {
+      "recall": 0.728,
+      "n": 250,
+      "correct": 182
+     },
+     "endothelial": {
+      "recall": 0.3353,
+      "n": 170,
+      "correct": 57
+     },
+     "fibroblast": {
+      "recall": 0.2703,
+      "n": 74,
+      "correct": 20
+     },
+     "immune": {
+      "recall": 0.8228,
+      "n": 79,
+      "correct": 65
+     },
+     "smooth_muscle": {
+      "recall": 0.0,
+      "n": 69,
+      "correct": 0
+     }
+    }
+   },
+   "mouse->zebrafish": {
+    "n_q": 459,
+    "acc": 0.6863,
+    "mf1": 0.65,
+    "acc_se": 0.021,
+    "acc_ci95": [
+     0.6448,
+     0.7277
+    ],
+    "mf1_se": 0.0259,
+    "mf1_ci95": [
+     0.5937,
+     0.6964
+    ],
+    "frozen_mf1": 0.65,
+    "frozen_n": 459,
+    "matches_frozen": true,
+    "per_class": {
+     "endothelial": {
+      "recall": 0.2137,
+      "n": 117,
+      "correct": 25
+     },
+     "epicardial": {
+      "recall": 0.6842,
+      "n": 19,
+      "correct": 13
+     },
+     "fibroblast": {
+      "recall": 0.6582,
+      "n": 79,
+      "correct": 52
+     },
+     "immune": {
+      "recall": 0.8839,
+      "n": 112,
+      "correct": 99
+     },
+     "smooth_muscle": {
+      "recall": 0.9545,
+      "n": 132,
+      "correct": 126
+     }
+    }
+   },
+   "zebrafish->mouse": {
+    "n_q": 912,
+    "acc": 0.6875,
+    "mf1": 0.651,
+    "acc_se": 0.0152,
+    "acc_ci95": [
+     0.6579,
+     0.7171
+    ],
+    "mf1_se": 0.026,
+    "mf1_ci95": [
+     0.5957,
+     0.698
+    ],
+    "frozen_mf1": 0.651,
+    "frozen_n": 912,
+    "matches_frozen": true,
+    "per_class": {
+     "endothelial": {
+      "recall": 0.7237,
+      "n": 304,
+      "correct": 220
+     },
+     "epicardial": {
+      "recall": 0.5517,
+      "n": 29,
+      "correct": 16
+     },
+     "fibroblast": {
+      "recall": 0.5385,
+      "n": 351,
+      "correct": 189
+     },
+     "immune": {
+      "recall": 0.9947,
+      "n": 188,
+      "correct": 187
+     },
+     "smooth_muscle": {
+      "recall": 0.375,
+      "n": 40,
+      "correct": 15
+     }
+    }
+   }
+  },
+  "samap": {
+   "human->mouse": {
+    "n_q": 1368,
+    "acc": 0.1689,
+    "mf1": 0.1127,
+    "acc_se": 0.0099,
+    "acc_ci95": [
+     0.1506,
+     0.1901
+    ],
+    "mf1_se": 0.0141,
+    "mf1_ci95": [
+     0.0842,
+     0.1398
+    ],
+    "frozen_mf1": 0.1127,
+    "frozen_n": 1368,
+    "matches_frozen": true,
+    "per_class": {
+     "adipocyte": {
+      "recall": 0.3333,
+      "n": 30,
+      "correct": 10
+     },
+     "endothelial": {
+      "recall": 0.0378,
+      "n": 714,
+      "correct": 27
+     },
+     "fibroblast": {
+      "recall": 0.0,
+      "n": 327,
+      "correct": 0
+     },
+     "immune": {
+      "recall": 0.9898,
+      "n": 196,
+      "correct": 194
+     },
+     "neural": {
+      "recall": 0.0,
+      "n": 26,
+      "correct": 0
+     },
+     "smooth_muscle": {
+      "recall": 0.0,
+      "n": 75,
+      "correct": 0
+     }
+    }
+   },
+   "mouse->human": {
+    "n_q": 307,
+    "acc": 0.1368,
+    "mf1": 0.0401,
+    "acc_se": 0.0197,
+    "acc_ci95": [
+     0.0977,
+     0.1759
+    ],
+    "mf1_se": 0.0051,
+    "mf1_ci95": [
+     0.0297,
+     0.0499
+    ],
+    "frozen_mf1": 0.0401,
+    "frozen_n": 307,
+    "matches_frozen": true,
+    "per_class": {
+     "adipocyte": {
+      "recall": 0.0,
+      "n": 18,
+      "correct": 0
+     },
+     "endothelial": {
+      "recall": 1.0,
+      "n": 42,
+      "correct": 42
+     },
+     "fibroblast": {
+      "recall": 0.0,
+      "n": 99,
+      "correct": 0
+     },
+     "immune": {
+      "recall": 0.0,
+      "n": 77,
+      "correct": 0
+     },
+     "neural": {
+      "recall": 0.0,
+      "n": 17,
+      "correct": 0
+     },
+     "smooth_muscle": {
+      "recall": 0.0,
+      "n": 54,
+      "correct": 0
+     }
+    }
+   },
+   "human->zebrafish": {
+    "n_q": 986,
+    "acc": 0.1197,
+    "mf1": 0.0477,
+    "acc_se": 0.0105,
+    "acc_ci95": [
+     0.0994,
+     0.141
+    ],
+    "mf1_se": 0.0042,
+    "mf1_ci95": [
+     0.0394,
+     0.0564
+    ],
+    "frozen_mf1": 0.0477,
+    "frozen_n": 986,
+    "matches_frozen": true,
+    "per_class": {
+     "cardiomyocyte": {
+      "recall": 0.0,
+      "n": 94,
+      "correct": 0
+     },
+     "endothelial": {
+      "recall": 0.0224,
+      "n": 580,
+      "correct": 13
+     },
+     "fibroblast": {
+      "recall": 0.0,
+      "n": 72,
+      "correct": 0
+     },
+     "immune": {
+      "recall": 0.9906,
+      "n": 106,
+      "correct": 105
+     },
+     "smooth_muscle": {
+      "recall": 0.0,
+      "n": 134,
+      "correct": 0
+     }
+    }
+   },
+   "zebrafish->human": {
+    "status": "insufficient_cells",
+    "n_q": 0
+   },
+   "mouse->zebrafish": {
+    "status": "insufficient_cells",
+    "n_q": 1
+   },
+   "zebrafish->mouse": {
+    "status": "insufficient_cells",
+    "n_q": 0
+   }
+  }
+ },
+ "opca_v98_vs_fixkey": {
+  "human->mouse": {
+   "v98_acc": 0.8618,
+   "v98_mf1": 0.6435,
+   "fixkey_acc": 0.8618,
+   "fixkey_mf1": 0.6435
+  },
+  "mouse->human": {
+   "v98_acc": 0.7369,
+   "v98_mf1": 0.6729,
+   "fixkey_acc": 0.7369,
+   "fixkey_mf1": 0.6729
+  },
+  "human->zebrafish": {
+   "v98_acc": 0.1961,
+   "v98_mf1": 0.1682,
+   "fixkey_acc": 0.1795,
+   "fixkey_mf1": 0.1654
+  },
+  "zebrafish->human": {
+   "v98_acc": 0.1813,
+   "v98_mf1": 0.1585,
+   "fixkey_acc": 0.1734,
+   "fixkey_mf1": 0.1512
+  },
+  "mouse->zebrafish": {
+   "v98_acc": 0.2755,
+   "v98_mf1": 0.2314,
+   "fixkey_acc": 0.2675,
+   "fixkey_mf1": 0.2177
+  },
+  "zebrafish->mouse": {
+   "v98_acc": 0.5761,
+   "v98_mf1": 0.4396,
+   "fixkey_acc": 0.5814,
+   "fixkey_mf1": 0.4405
+  }
+ },
+ "mismatches": []
+}

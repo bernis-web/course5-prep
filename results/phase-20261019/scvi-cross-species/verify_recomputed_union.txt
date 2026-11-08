@@ -1,0 +1,21 @@
+direction           level        acc     mf1  acc_met  mf1_met  ok
+human->mouse        coarse    0.9189  0.6683   0.9189   0.6683  True
+human->mouse        exact     0.8241  0.3421   0.8241   0.4276  False
+human->mouse        fine      0.8405  0.3688   0.8405   0.4694  False
+human->zebrafish    coarse    0.6217  0.4014   0.6217   0.4516  False
+human->zebrafish    exact     0.5133  0.2033   0.5133   0.2759  False
+human->zebrafish    fine      0.5457  0.2735   0.5457    0.373  False
+mouse->human        coarse    0.7781  0.5895   0.7781   0.5895  True
+mouse->human        exact     0.5419  0.2777   0.5419   0.3703  False
+mouse->human        fine      0.5438  0.2966   0.5438   0.3708  False
+mouse->zebrafish    coarse    0.6338  0.4248   0.6338   0.4779  False
+mouse->zebrafish    exact     0.4971   0.198   0.4971   0.2546  False
+mouse->zebrafish    fine      0.5504  0.2742   0.5504    0.349  False
+zebrafish->human    coarse    0.6479   0.429   0.6479   0.4826  False
+zebrafish->human    exact     0.4581   0.212   0.4581   0.3356  False
+zebrafish->human    fine       0.498  0.2875    0.498   0.3593  False
+zebrafish->mouse    coarse     0.802  0.4786    0.802   0.5384  False
+zebrafish->mouse    exact     0.6717  0.2193   0.6717    0.329  False
+zebrafish->mouse    fine      0.7056  0.3125   0.7056   0.3978  False
+
+files=18 mismatch=16

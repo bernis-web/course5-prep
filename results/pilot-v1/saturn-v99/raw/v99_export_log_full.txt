@@ -1,0 +1,1000 @@
+    "Lymphatic Endothelial cell=>Epicardium": 1,
+    "Lymphoid=>Lymphoid": 20,
+    "Lymphoid=>Adipocyte": 19,
+    "Lymphoid=>Smooth muscle cell": 9,
+    "Lymphoid=>Endothelial cell": 1,
+    "Mast cell=>Adipocyte": 2,
+    "Mast cell=>Lymphoid": 12,
+    "Mast cell=>Endothelial cell": 3,
+    "Mast cell=>Smooth muscle cell": 13,
+    "Mesothelial cell=>Adipocyte": 14,
+    "Mesothelial cell=>Smooth muscle cell": 7,
+    "Mesothelial cell=>Endothelial cell": 5,
+    "Mesothelial cell=>Epicardium": 4,
+    "Myeloid=>Smooth muscle cell": 40,
+    "Myeloid=>Adipocyte": 31,
+    "Myeloid=>Lymphoid": 16,
+    "Myeloid=>Endothelial cell": 14,
+    "Myeloid=>Myeloid": 2,
+    "Myeloid=>Epicardium": 1,
+    "Neural cell=>Neural cell": 12,
+    "Neural cell=>Endothelial cell": 3,
+    "Neural cell=>Smooth muscle cell": 9,
+    "Neural cell=>Epicardium": 3,
+    "Neural cell=>Fibroblast": 2,
+    "Neural cell=>Adipocyte": 1,
+    "Smooth muscle cell=>Smooth muscle cell": 114,
+    "Smooth muscle cell=>Endothelial cell": 26,
+    "Smooth muscle cell=>Adipocyte": 44,
+    "Smooth muscle cell=>Fibroblast": 14,
+    "Smooth muscle cell=>Epicardium": 13,
+    "Ventricular Cardiomyocyte=>Smooth muscle cell": 380,
+    "Ventricular Cardiomyocyte=>Cardiomyocyte": 5,
+    "Ventricular Cardiomyocyte=>Epicardium": 1
+   }
+  },
+  "fine": {
+   "acc": 0.1924,
+   "majority": 0.2526,
+   "shuffle_p": 0.0,
+   "n_ref": 1505,
+   "n_q": 1528,
+   "n_excluded_ref": 30,
+   "n_excluded_q": 0,
+   "confusion": {
+    "Adipocyte=>Fibroblast": 2,
+    "Adipocyte=>Smooth muscle cell": 9,
+    "Adipocyte=>Endothelial cell": 17,
+    "Adipocyte=>Epicardium": 1,
+    "Adipocyte=>Adipocyte": 1,
+    "Atrial Cardiomyocyte=>Smooth muscle cell": 86,
+    "Atrial Cardiomyocyte=>Cardiomyocyte": 4,
+    "Endothelial cell=>Adipocyte": 145,
+    "Endothelial cell=>Neural cell": 1,
+    "Endothelial cell=>Smooth muscle cell": 26,
+    "Endothelial cell=>Fibroblast": 3,
+    "Endothelial cell=>Endothelial cell": 64,
+    "Endothelial cell=>Lymphoid": 7,
+    "Endothelial cell=>Epicardium": 16,
+    "Fibroblast=>Endothelial cell": 39,
+    "Fibroblast=>Smooth muscle cell": 39,
+    "Fibroblast=>Fibroblast": 80,
+    "Fibroblast=>Epicardium": 98,
+    "Fibroblast=>Adipocyte": 18,
+    "Fibroblast=>Valve": 2,
+    "Lymphatic Endothelial cell=>Endothelial cell": 10,
+    "Lymphatic Endothelial cell=>Lymphoid": 1,
+    "Lymphatic Endothelial cell=>Adipocyte": 9,
+    "Lymphatic Endothelial cell=>Smooth muscle cell": 8,
+    "Lymphatic Endothelial cell=>Lymphatic Endothelial cell": 1,
+    "Lymphatic Endothelial cell=>Epicardium": 1,
+    "Lymphoid=>Lymphoid": 20,
+    "Lymphoid=>Adipocyte": 19,
+    "Lymphoid=>Smooth muscle cell": 9,
+    "Lymphoid=>Endothelial cell": 1,
+    "Mast cell=>Adipocyte": 2,
+    "Mast cell=>Lymphoid": 12,
+    "Mast cell=>Endothelial cell": 3,
+    "Mast cell=>Smooth muscle cell": 13,
+    "Mesothelial cell=>Adipocyte": 14,
+    "Mesothelial cell=>Smooth muscle cell": 7,
+    "Mesothelial cell=>Endothelial cell": 5,
+    "Mesothelial cell=>Epicardium": 4,
+    "Myeloid=>Smooth muscle cell": 40,
+    "Myeloid=>Adipocyte": 31,
+    "Myeloid=>Lymphoid": 16,
+    "Myeloid=>Endothelial cell": 14,
+    "Myeloid=>Myeloid": 2,
+    "Myeloid=>Epicardium": 1,
+    "Neural cell=>Neural cell": 12,
+    "Neural cell=>Endothelial cell": 3,
+    "Neural cell=>Smooth muscle cell": 9,
+    "Neural cell=>Epicardium": 3,
+    "Neural cell=>Fibroblast": 2,
+    "Neural cell=>Adipocyte": 1,
+    "Smooth muscle cell=>Smooth muscle cell": 114,
+    "Smooth muscle cell=>Endothelial cell": 26,
+    "Smooth muscle cell=>Adipocyte": 44,
+    "Smooth muscle cell=>Fibroblast": 14,
+    "Smooth muscle cell=>Epicardium": 13,
+    "Ventricular Cardiomyocyte=>Smooth muscle cell": 380,
+    "Ventricular Cardiomyocyte=>Cardiomyocyte": 5,
+    "Ventricular Cardiomyocyte=>Epicardium": 1
+   }
+  }
+ },
+ "mouse->zebrafish": {
+  "exact": {
+   "acc": 0.186,
+   "majority": 0.3863,
+   "shuffle_p": 0.0,
+   "n_ref": 1535,
+   "n_q": 1543,
+   "n_excluded_ref": 0,
+   "n_excluded_q": 0,
+   "confusion": {
+    "Atrial Cardiomyocyte=>Cardiomyocyte": 26,
+    "Atrial Cardiomyocyte=>Endothelial cell": 4,
+    "Endothelial cell=>Fibroblast": 38,
+    "Endothelial cell=>Cardiomyocyte": 118,
+    "Endothelial cell=>Adipocyte": 361,
+    "Endothelial cell=>Endothelial cell": 22,
+    "Endothelial cell=>Myeloid": 9,
+    "Endothelial cell=>Smooth muscle cell": 39,
+    "Endothelial cell=>Epicardium": 3,
+    "Endothelial cell=>Lymphatic Endothelial cell": 1,
+    "Endothelial cell=>Proliferating cell": 3,
+    "Endothelial cell=>Lymphoid": 2,
+    "Epicardium=>Adipocyte": 10,
+    "Epicardium=>Epicardium": 13,
+    "Epicardium=>Fibroblast": 6,
+    "Epicardium=>Cardiomyocyte": 1,
+    "Fibroblast=>Fibroblast": 42,
+    "Fibroblast=>Smooth muscle cell": 14,
+    "Fibroblast=>Epicardium": 2,
+    "Fibroblast=>Adipocyte": 11,
+    "Fibroblast=>Endothelial cell": 2,
+    "Fibroblast=>Myeloid": 3,
+    "Fibroblast=>Cardiomyocyte": 2,
+    "Lymphoid=>Myeloid": 11,
+    "Lymphoid=>Lymphoid": 22,
+    "Lymphoid=>Proliferating cell": 5,
+    "Lymphoid=>Endothelial cell": 2,
+    "Lymphoid=>Adipocyte": 3,
+    "Lymphoid=>Fibroblast": 1,
+    "Lymphoid=>Cardiomyocyte": 1,
+    "Myeloid=>Myeloid": 58,
+    "Myeloid=>Adipocyte": 7,
+    "Myeloid=>Smooth muscle cell": 3,
+    "Myeloid=>Lymphoid": 3,
+    "Myeloid=>Endothelial cell": 2,
+    "Myeloid=>Fibroblast": 2,
+    "Orthers=>Endothelial cell": 11,
+    "Orthers=>Adipocyte": 10,
+    "Orthers=>Epicardium": 2,
+    "Orthers=>Fibroblast": 2,
+    "Orthers=>Proliferating cell": 2,
+    "Orthers=>Cardiomyocyte": 1,
+    "Orthers=>Neural cell": 1,
+    "Orthers=>Lymphoid": 1,
+    "Perivascular cells=>Smooth muscle cell": 16,
+    "Perivascular cells=>Cardiomyocyte": 6,
+    "Perivascular cells=>Endothelial cell": 2,
+    "Perivascular cells=>Adipocyte": 4,
+    "Perivascular cells=>Fibroblast": 1,
+    "Perivascular cells=>Myeloid": 1,
+    "Proliferating cell=>Smooth muscle cell": 7,
+    "Proliferating cell=>Adipocyte": 4,
+    "Proliferating cell=>Endothelial cell": 1,
+    "Proliferating cell=>Myeloid": 1,
+    "Proliferating cell=>Cardiomyocyte": 1,
+    "Red blood cell=>Adipocyte": 29,
+    "Red blood cell=>Endothelial cell": 265,
+    "Red blood cell=>Cardiomyocyte": 27,
+    "Red blood cell=>Smooth muscle cell": 6,
+    "Red blood cell=>Fibroblast": 2,
+    "Red blood cell=>Proliferating cell": 3,
+    "Smooth muscle cell=>Smooth muscle cell": 126,
+    "Smooth muscle cell=>Fibroblast": 4,
+    "Smooth muscle cell=>Endothelial cell": 1,
+    "Smooth muscle cell=>Adipocyte": 4,
+    "Smooth muscle cell=>Proliferating cell": 1,
+    "Valve=>Adipocyte": 14,
+    "Valve=>Valve": 4,
+    "Valve=>Fibroblast": 6,
+    "Valve=>Smooth muscle cell": 3,
+    "Valve=>Endothelial cell": 2,
+    "Valve=>Epicardium": 1,
+    "Ventricular Cardiomyocyte=>Cardiomyocyte": 88,
+    "Ventricular Cardiomyocyte=>Smooth muscle cell": 1,
+    "mt=>Cardiomyocyte": 13,
+    "mt=>Endothelial cell": 17
+   }
+  },
+  "coarse": {
+   "acc": 0.1948,
+   "majority": 0.3976,
+   "shuffle_p": 0.0,
+   "n_ref": 1505,
+   "n_q": 1499,
+   "n_excluded_ref": 30,
+   "n_excluded_q": 44,
+   "confusion": {
+    "Atrial Cardiomyocyte=>Cardiomyocyte": 26,
+    "Atrial Cardiomyocyte=>Endothelial cell": 4,
+    "Endothelial cell=>Fibroblast": 39,
+    "Endothelial cell=>Cardiomyocyte": 122,
+    "Endothelial cell=>Adipocyte": 356,
+    "Endothelial cell=>Endothelial cell": 25,
+    "Endothelial cell=>Myeloid": 9,
+    "Endothelial cell=>Smooth muscle cell": 40,
+    "Endothelial cell=>Epicardium": 3,
+    "Endothelial cell=>Lymphatic Endothelial cell": 1,
+    "Endothelial cell=>Lymphoid": 1,
+    "Epicardium=>Adipocyte": 10,
+    "Epicardium=>Epicardium": 13,
+    "Epicardium=>Fibroblast": 6,
+    "Epicardium=>Cardiomyocyte": 1,
+    "Fibroblast=>Fibroblast": 42,
+    "Fibroblast=>Smooth muscle cell": 14,
+    "Fibroblast=>Epicardium": 2,
+    "Fibroblast=>Adipocyte": 11,
+    "Fibroblast=>Endothelial cell": 2,
+    "Fibroblast=>Myeloid": 2,
+    "Fibroblast=>Cardiomyocyte": 2,
+    "Fibroblast=>Lymphoid": 1,
+    "Lymphoid=>Myeloid": 14,
+    "Lymphoid=>Lymphoid": 24,
+    "Lymphoid=>Cardiomyocyte": 2,
+    "Lymphoid=>Endothelial cell": 2,
+    "Lymphoid=>Fibroblast": 1,
+    "Lymphoid=>Adipocyte": 2,
+    "Myeloid=>Myeloid": 58,
+    "Myeloid=>Adipocyte": 4,
+    "Myeloid=>Smooth muscle cell": 4,
+    "Myeloid=>Lymphoid": 3,
+    "Myeloid=>Fibroblast": 3,
+    "Myeloid=>Endothelial cell": 3,
+    "Orthers=>Endothelial cell": 7,
+    "Orthers=>Adipocyte": 15,
+    "Orthers=>Epicardium": 2,
+    "Orthers=>Fibroblast": 2,
+    "Orthers=>Smooth muscle cell": 1,
+    "Orthers=>Cardiomyocyte": 1,
+    "Orthers=>Neural cell": 1,
+    "Orthers=>Lymphoid": 1,
+    "Perivascular cells=>Smooth muscle cell": 16,
+    "Perivascular cells=>Cardiomyocyte": 6,
+    "Perivascular cells=>Endothelial cell": 2,
+    "Perivascular cells=>Adipocyte": 4,
+    "Perivascular cells=>Fibroblast": 1,
+    "Perivascular cells=>Myeloid": 1,
+    "Red blood cell=>Adipocyte": 31,
+    "Red blood cell=>Endothelial cell": 267,
+    "Red blood cell=>Cardiomyocyte": 26,
+    "Red blood cell=>Smooth muscle cell": 6,
+    "Red blood cell=>Fibroblast": 2,
+    "Smooth muscle cell=>Smooth muscle cell": 126,
+    "Smooth muscle cell=>Fibroblast": 4,
+    "Smooth muscle cell=>Endothelial cell": 2,
+    "Smooth muscle cell=>Adipocyte": 4,
+    "Valve=>Adipocyte": 14,
+    "Valve=>Valve": 4,
+    "Valve=>Fibroblast": 6,
+    "Valve=>Smooth muscle cell": 3,
+    "Valve=>Endothelial cell": 2,
+    "Valve=>Epicardium": 1,
+    "Ventricular Cardiomyocyte=>Cardiomyocyte": 88,
+    "Ventricular Cardiomyocyte=>Smooth muscle cell": 1
+   }
+  },
+  "fine": {
+   "acc": 0.1948,
+   "majority": 0.3976,
+   "shuffle_p": 0.0,
+   "n_ref": 1505,
+   "n_q": 1499,
+   "n_excluded_ref": 30,
+   "n_excluded_q": 44,
+   "confusion": {
+    "Atrial Cardiomyocyte=>Cardiomyocyte": 26,
+    "Atrial Cardiomyocyte=>Endothelial cell": 4,
+    "Endothelial cell=>Fibroblast": 39,
+    "Endothelial cell=>Cardiomyocyte": 122,
+    "Endothelial cell=>Adipocyte": 356,
+    "Endothelial cell=>Endothelial cell": 25,
+    "Endothelial cell=>Myeloid": 9,
+    "Endothelial cell=>Smooth muscle cell": 40,
+    "Endothelial cell=>Epicardium": 3,
+    "Endothelial cell=>Lymphatic Endothelial cell": 1,
+    "Endothelial cell=>Lymphoid": 1,
+    "Epicardium=>Adipocyte": 10,
+    "Epicardium=>Epicardium": 13,
+    "Epicardium=>Fibroblast": 6,
+    "Epicardium=>Cardiomyocyte": 1,
+    "Fibroblast=>Fibroblast": 42,
+    "Fibroblast=>Smooth muscle cell": 14,
+    "Fibroblast=>Epicardium": 2,
+    "Fibroblast=>Adipocyte": 11,
+    "Fibroblast=>Endothelial cell": 2,
+    "Fibroblast=>Myeloid": 2,
+    "Fibroblast=>Cardiomyocyte": 2,
+    "Fibroblast=>Lymphoid": 1,
+    "Lymphoid=>Myeloid": 14,
+    "Lymphoid=>Lymphoid": 24,
+    "Lymphoid=>Cardiomyocyte": 2,
+    "Lymphoid=>Endothelial cell": 2,
+    "Lymphoid=>Fibroblast": 1,
+    "Lymphoid=>Adipocyte": 2,
+    "Myeloid=>Myeloid": 58,
+    "Myeloid=>Adipocyte": 4,
+    "Myeloid=>Smooth muscle cell": 4,
+    "Myeloid=>Lymphoid": 3,
+    "Myeloid=>Fibroblast": 3,
+    "Myeloid=>Endothelial cell": 3,
+    "Orthers=>Endothelial cell": 7,
+    "Orthers=>Adipocyte": 15,
+    "Orthers=>Epicardium": 2,
+    "Orthers=>Fibroblast": 2,
+    "Orthers=>Smooth muscle cell": 1,
+    "Orthers=>Cardiomyocyte": 1,
+    "Orthers=>Neural cell": 1,
+    "Orthers=>Lymphoid": 1,
+    "Perivascular cells=>Smooth muscle cell": 16,
+    "Perivascular cells=>Cardiomyocyte": 6,
+    "Perivascular cells=>Endothelial cell": 2,
+    "Perivascular cells=>Adipocyte": 4,
+    "Perivascular cells=>Fibroblast": 1,
+    "Perivascular cells=>Myeloid": 1,
+    "Red blood cell=>Adipocyte": 31,
+    "Red blood cell=>Endothelial cell": 267,
+    "Red blood cell=>Cardiomyocyte": 26,
+    "Red blood cell=>Smooth muscle cell": 6,
+    "Red blood cell=>Fibroblast": 2,
+    "Smooth muscle cell=>Smooth muscle cell": 126,
+    "Smooth muscle cell=>Fibroblast": 4,
+    "Smooth muscle cell=>Endothelial cell": 2,
+    "Smooth muscle cell=>Adipocyte": 4,
+    "Valve=>Adipocyte": 14,
+    "Valve=>Valve": 4,
+    "Valve=>Fibroblast": 6,
+    "Valve=>Smooth muscle cell": 3,
+    "Valve=>Endothelial cell": 2,
+    "Valve=>Epicardium": 1,
+    "Ventricular Cardiomyocyte=>Cardiomyocyte": 88,
+    "Ventricular Cardiomyocyte=>Smooth muscle cell": 1
+   }
+  }
+ },
+ "zebrafish->human": {
+  "exact": {
+   "acc": 0.1872,
+   "majority": 0.2526,
+   "shuffle_p": 0.0,
+   "n_ref": 1543,
+   "n_q": 1528,
+   "n_excluded_ref": 0,
+   "n_excluded_q": 0,
+   "confusion": {
+    "Adipocyte=>Myeloid": 1,
+    "Adipocyte=>Orthers": 29,
+    "Atrial Cardiomyocyte=>Ventricular Cardiomyocyte": 21,
+    "Atrial Cardiomyocyte=>Orthers": 51,
+    "Atrial Cardiomyocyte=>Endothelial cell": 18,
+    "Endothelial cell=>Myeloid": 113,
+    "Endothelial cell=>Orthers": 92,
+    "Endothelial cell=>Endothelial cell": 57,
+    "Fibroblast=>Orthers": 200,
+    "Fibroblast=>Endothelial cell": 50,
+    "Fibroblast=>Fibroblast": 20,
+    "Fibroblast=>Epicardium": 2,
+    "Fibroblast=>Myeloid": 4,
+    "Lymphatic Endothelial cell=>Orthers": 24,
+    "Lymphatic Endothelial cell=>Endothelial cell": 4,
+    "Lymphatic Endothelial cell=>Myeloid": 2,
+    "Lymphoid=>Orthers": 21,
+    "Lymphoid=>Endothelial cell": 11,
+    "Lymphoid=>Myeloid": 17,
+    "Mast cell=>Orthers": 30,
+    "Mesothelial cell=>Orthers": 19,
+    "Mesothelial cell=>Endothelial cell": 11,
+    "Myeloid=>Myeloid": 48,
+    "Myeloid=>Orthers": 53,
+    "Myeloid=>Endothelial cell": 2,
+    "Myeloid=>Ventricular Cardiomyocyte": 1,
+    "Neural cell=>Orthers": 29,
+    "Neural cell=>Endothelial cell": 1,
+    "Smooth muscle cell=>Orthers": 142,
+    "Smooth muscle cell=>Endothelial cell": 56,
+    "Smooth muscle cell=>Myeloid": 12,
+    "Smooth muscle cell=>Ventricular Cardiomyocyte": 1,
+    "Ventricular Cardiomyocyte=>Ventricular Cardiomyocyte": 161,
+    "Ventricular Cardiomyocyte=>Endothelial cell": 45,
+    "Ventricular Cardiomyocyte=>Orthers": 175,
+    "Ventricular Cardiomyocyte=>Myeloid": 5
+   }
+  },
+  "coarse": {
+   "acc": 0.1872,
+   "majority": 0.2526,
+   "shuffle_p": 0.0,
+   "n_ref": 1499,
+   "n_q": 1528,
+   "n_excluded_ref": 44,
+   "n_excluded_q": 0,
+   "confusion": {
+    "Adipocyte=>Myeloid": 1,
+    "Adipocyte=>Orthers": 29,
+    "Atrial Cardiomyocyte=>Ventricular Cardiomyocyte": 21,
+    "Atrial Cardiomyocyte=>Orthers": 51,
+    "Atrial Cardiomyocyte=>Endothelial cell": 18,
+    "Endothelial cell=>Myeloid": 113,
+    "Endothelial cell=>Orthers": 92,
+    "Endothelial cell=>Endothelial cell": 57,
+    "Fibroblast=>Orthers": 200,
+    "Fibroblast=>Endothelial cell": 50,
+    "Fibroblast=>Fibroblast": 20,
+    "Fibroblast=>Epicardium": 2,
+    "Fibroblast=>Myeloid": 4,
+    "Lymphatic Endothelial cell=>Orthers": 24,
+    "Lymphatic Endothelial cell=>Endothelial cell": 4,
+    "Lymphatic Endothelial cell=>Myeloid": 2,
+    "Lymphoid=>Orthers": 21,
+    "Lymphoid=>Endothelial cell": 11,
+    "Lymphoid=>Myeloid": 17,
+    "Mast cell=>Orthers": 30,
+    "Mesothelial cell=>Orthers": 19,
+    "Mesothelial cell=>Endothelial cell": 11,
+    "Myeloid=>Myeloid": 48,
+    "Myeloid=>Orthers": 53,
+    "Myeloid=>Endothelial cell": 2,
+    "Myeloid=>Ventricular Cardiomyocyte": 1,
+    "Neural cell=>Orthers": 29,
+    "Neural cell=>Endothelial cell": 1,
+    "Smooth muscle cell=>Orthers": 142,
+    "Smooth muscle cell=>Endothelial cell": 56,
+    "Smooth muscle cell=>Myeloid": 12,
+    "Smooth muscle cell=>Ventricular Cardiomyocyte": 1,
+    "Ventricular Cardiomyocyte=>Ventricular Cardiomyocyte": 161,
+    "Ventricular Cardiomyocyte=>Endothelial cell": 45,
+    "Ventricular Cardiomyocyte=>Orthers": 175,
+    "Ventricular Cardiomyocyte=>Myeloid": 5
+   }
+  },
+  "fine": {
+   "acc": 0.1872,
+   "majority": 0.2526,
+   "shuffle_p": 0.0,
+   "n_ref": 1499,
+   "n_q": 1528,
+   "n_excluded_ref": 44,
+   "n_excluded_q": 0,
+   "confusion": {
+    "Adipocyte=>Myeloid": 1,
+    "Adipocyte=>Orthers": 29,
+    "Atrial Cardiomyocyte=>Ventricular Cardiomyocyte": 21,
+    "Atrial Cardiomyocyte=>Orthers": 51,
+    "Atrial Cardiomyocyte=>Endothelial cell": 18,
+    "Endothelial cell=>Myeloid": 113,
+    "Endothelial cell=>Orthers": 92,
+    "Endothelial cell=>Endothelial cell": 57,
+    "Fibroblast=>Orthers": 200,
+    "Fibroblast=>Endothelial cell": 50,
+    "Fibroblast=>Fibroblast": 20,
+    "Fibroblast=>Epicardium": 2,
+    "Fibroblast=>Myeloid": 4,
+    "Lymphatic Endothelial cell=>Orthers": 24,
+    "Lymphatic Endothelial cell=>Endothelial cell": 4,
+    "Lymphatic Endothelial cell=>Myeloid": 2,
+    "Lymphoid=>Orthers": 21,
+    "Lymphoid=>Endothelial cell": 11,
+    "Lymphoid=>Myeloid": 17,
+    "Mast cell=>Orthers": 30,
+    "Mesothelial cell=>Orthers": 19,
+    "Mesothelial cell=>Endothelial cell": 11,
+    "Myeloid=>Myeloid": 48,
+    "Myeloid=>Orthers": 53,
+    "Myeloid=>Endothelial cell": 2,
+    "Myeloid=>Ventricular Cardiomyocyte": 1,
+    "Neural cell=>Orthers": 29,
+    "Neural cell=>Endothelial cell": 1,
+    "Smooth muscle cell=>Orthers": 142,
+    "Smooth muscle cell=>Endothelial cell": 56,
+    "Smooth muscle cell=>Myeloid": 12,
+    "Smooth muscle cell=>Ventricular Cardiomyocyte": 1,
+    "Ventricular Cardiomyocyte=>Ventricular Cardiomyocyte": 161,
+    "Ventricular Cardiomyocyte=>Endothelial cell": 45,
+    "Ventricular Cardiomyocyte=>Orthers": 175,
+    "Ventricular Cardiomyocyte=>Myeloid": 5
+   }
+  }
+ },
+ "zebrafish->mouse": {
+  "exact": {
+   "acc": 0.3303,
+   "majority": 0.4528,
+   "shuffle_p": 0.0,
+   "n_ref": 1543,
+   "n_q": 1535,
+   "n_excluded_ref": 0,
+   "n_excluded_q": 0,
+   "confusion": {
+    "Adipocyte=>Endothelial cell": 24,
+    "Adipocyte=>Ventricular Cardiomyocyte": 2,
+    "Adipocyte=>Myeloid": 3,
+    "Adipocyte=>Red blood cell": 1,
+    "Cardiomyocyte=>Ventricular Cardiomyocyte": 45,
+    "Cardiomyocyte=>Red blood cell": 2,
+    "Endothelial cell=>Ventricular Cardiomyocyte": 264,
+    "Endothelial cell=>Red blood cell": 70,
+    "Endothelial cell=>Myeloid": 60,
+    "Endothelial cell=>Endothelial cell": 219,
+    "Endothelial cell=>Orthers": 56,
+    "Endothelial cell=>Valve": 12,
+    "Endothelial cell=>Fibroblast": 10,
+    "Endothelial cell=>Smooth muscle cell": 1,
+    "Endothelial cell=>Atrial Cardiomyocyte": 2,
+    "Endothelial cell=>Epicardium": 1,
+    "Epicardium=>Fibroblast": 5,
+    "Epicardium=>Epicardium": 16,
+    "Epicardium=>Endothelial cell": 7,
+    "Epicardium=>Myeloid": 1,
+    "Epicardium=>Ventricular Cardiomyocyte": 1,
+    "Fibroblast=>Fibroblast": 167,
+    "Fibroblast=>Endothelial cell": 136,
+    "Fibroblast=>Valve": 7,
+    "Fibroblast=>Epicardium": 8,
+    "Fibroblast=>Red blood cell": 6,
+    "Fibroblast=>Ventricular Cardiomyocyte": 1,
+    "Fibroblast=>Myeloid": 4,
+    "Fibroblast=>Orthers": 1,
+    "Lymphatic Endothelial cell=>Orthers": 11,
+    "Lymphatic Endothelial cell=>Endothelial cell": 15,
+    "Lymphatic Endothelial cell=>Myeloid": 3,
+    "Lymphatic Endothelial cell=>Ventricular Cardiomyocyte": 1,
+    "Lymphoid=>Myeloid": 98,
+    "Lymphoid=>Orthers": 11,
+    "Lymphoid=>Lymphoid": 16,
+    "Lymphoid=>Ventricular Cardiomyocyte": 3,
+    "Myeloid=>Myeloid": 73,
+    "Myeloid=>Endothelial cell": 1,
+    "Neural cell=>Myeloid": 3,
+    "Neural cell=>Orthers": 16,
+    "Neural cell=>Endothelial cell": 10,
+    "Neural cell=>Fibroblast": 1,
+    "Proliferating cell=>Ventricular Cardiomyocyte": 11,
+    "Proliferating cell=>Myeloid": 10,
+    "Proliferating cell=>Orthers": 7,
+    "Proliferating cell=>Fibroblast": 1,
+    "Proliferating cell=>Endothelial cell": 1,
+    "Smooth muscle cell=>Orthers": 5,
+    "Smooth muscle cell=>Smooth muscle cell": 15,
+    "Smooth muscle cell=>Ventricular Cardiomyocyte": 33,
+    "Smooth muscle cell=>Fibroblast": 5,
+    "Smooth muscle cell=>Red blood cell": 3,
+    "Smooth muscle cell=>Endothelial cell": 9,
+    "Smooth muscle cell=>Myeloid": 11,
+    "Valve=>Endothelial cell": 14,
+    "Valve=>Fibroblast": 14,
+    "Valve=>Red blood cell": 1,
+    "Valve=>Valve": 1
+   }
+  },
+  "coarse": {
+   "acc": 0.3375,
+   "majority": 0.4618,
+   "shuffle_p": 0.0,
+   "n_ref": 1499,
+   "n_q": 1505,
+   "n_excluded_ref": 44,
+   "n_excluded_q": 30,
+   "confusion": {
+    "Adipocyte=>Endothelial cell": 24,
+    "Adipocyte=>Ventricular Cardiomyocyte": 2,
+    "Adipocyte=>Myeloid": 3,
+    "Adipocyte=>Red blood cell": 1,
+    "Cardiomyocyte=>Ventricular Cardiomyocyte": 45,
+    "Cardiomyocyte=>Red blood cell": 2,
+    "Endothelial cell=>Ventricular Cardiomyocyte": 264,
+    "Endothelial cell=>Red blood cell": 70,
+    "Endothelial cell=>Myeloid": 60,
+    "Endothelial cell=>Endothelial cell": 220,
+    "Endothelial cell=>Orthers": 56,
+    "Endothelial cell=>Valve": 12,
+    "Endothelial cell=>Fibroblast": 10,
+    "Endothelial cell=>Smooth muscle cell": 1,
+    "Endothelial cell=>Atrial Cardiomyocyte": 1,
+    "Endothelial cell=>Epicardium": 1,
+    "Epicardium=>Fibroblast": 5,
+    "Epicardium=>Epicardium": 16,
+    "Epicardium=>Endothelial cell": 7,
+    "Epicardium=>Myeloid": 1,
+    "Epicardium=>Ventricular Cardiomyocyte": 1,
+    "Fibroblast=>Fibroblast": 167,
+    "Fibroblast=>Endothelial cell": 136,
+    "Fibroblast=>Valve": 7,
+    "Fibroblast=>Epicardium": 8,
+    "Fibroblast=>Red blood cell": 6,
+    "Fibroblast=>Ventricular Cardiomyocyte": 1,
+    "Fibroblast=>Myeloid": 4,
+    "Fibroblast=>Orthers": 1,
+    "Lymphatic Endothelial cell=>Orthers": 11,
+    "Lymphatic Endothelial cell=>Endothelial cell": 15,
+    "Lymphatic Endothelial cell=>Myeloid": 3,
+    "Lymphatic Endothelial cell=>Ventricular Cardiomyocyte": 1,
+    "Lymphoid=>Myeloid": 98,
+    "Lymphoid=>Orthers": 11,
+    "Lymphoid=>Lymphoid": 16,
+    "Lymphoid=>Ventricular Cardiomyocyte": 3,
+    "Myeloid=>Myeloid": 73,
+    "Myeloid=>Endothelial cell": 1,
+    "Neural cell=>Myeloid": 3,
+    "Neural cell=>Orthers": 16,
+    "Neural cell=>Endothelial cell": 10,
+    "Neural cell=>Fibroblast": 1,
+    "Smooth muscle cell=>Orthers": 5,
+    "Smooth muscle cell=>Smooth muscle cell": 15,
+    "Smooth muscle cell=>Ventricular Cardiomyocyte": 33,
+    "Smooth muscle cell=>Fibroblast": 5,
+    "Smooth muscle cell=>Red blood cell": 3,
+    "Smooth muscle cell=>Endothelial cell": 9,
+    "Smooth muscle cell=>Myeloid": 11,
+    "Valve=>Endothelial cell": 14,
+    "Valve=>Fibroblast": 14,
+    "Valve=>Red blood cell": 1,
+    "Valve=>Valve": 1
+   }
+  },
+  "fine": {
+   "acc": 0.3375,
+   "majority": 0.4618,
+   "shuffle_p": 0.0,
+   "n_ref": 1499,
+   "n_q": 1505,
+   "n_excluded_ref": 44,
+   "n_excluded_q": 30,
+   "confusion": {
+    "Adipocyte=>Endothelial cell": 24,
+    "Adipocyte=>Ventricular Cardiomyocyte": 2,
+    "Adipocyte=>Myeloid": 3,
+    "Adipocyte=>Red blood cell": 1,
+    "Cardiomyocyte=>Ventricular Cardiomyocyte": 45,
+    "Cardiomyocyte=>Red blood cell": 2,
+    "Endothelial cell=>Ventricular Cardiomyocyte": 264,
+    "Endothelial cell=>Red blood cell": 70,
+    "Endothelial cell=>Myeloid": 60,
+    "Endothelial cell=>Endothelial cell": 220,
+    "Endothelial cell=>Orthers": 56,
+    "Endothelial cell=>Valve": 12,
+    "Endothelial cell=>Fibroblast": 10,
+    "Endothelial cell=>Smooth muscle cell": 1,
+    "Endothelial cell=>Atrial Cardiomyocyte": 1,
+    "Endothelial cell=>Epicardium": 1,
+    "Epicardium=>Fibroblast": 5,
+    "Epicardium=>Epicardium": 16,
+    "Epicardium=>Endothelial cell": 7,
+    "Epicardium=>Myeloid": 1,
+    "Epicardium=>Ventricular Cardiomyocyte": 1,
+    "Fibroblast=>Fibroblast": 167,
+    "Fibroblast=>Endothelial cell": 136,
+    "Fibroblast=>Valve": 7,
+    "Fibroblast=>Epicardium": 8,
+    "Fibroblast=>Red blood cell": 6,
+    "Fibroblast=>Ventricular Cardiomyocyte": 1,
+    "Fibroblast=>Myeloid": 4,
+    "Fibroblast=>Orthers": 1,
+    "Lymphatic Endothelial cell=>Orthers": 11,
+    "Lymphatic Endothelial cell=>Endothelial cell": 15,
+    "Lymphatic Endothelial cell=>Myeloid": 3,
+    "Lymphatic Endothelial cell=>Ventricular Cardiomyocyte": 1,
+    "Lymphoid=>Myeloid": 98,
+    "Lymphoid=>Orthers": 11,
+    "Lymphoid=>Lymphoid": 16,
+    "Lymphoid=>Ventricular Cardiomyocyte": 3,
+    "Myeloid=>Myeloid": 73,
+    "Myeloid=>Endothelial cell": 1,
+    "Neural cell=>Myeloid": 3,
+    "Neural cell=>Orthers": 16,
+    "Neural cell=>Endothelial cell": 10,
+    "Neural cell=>Fibroblast": 1,
+    "Smooth muscle cell=>Orthers": 5,
+    "Smooth muscle cell=>Smooth muscle cell": 15,
+    "Smooth muscle cell=>Ventricular Cardiomyocyte": 33,
+    "Smooth muscle cell=>Fibroblast": 5,
+    "Smooth muscle cell=>Red blood cell": 3,
+    "Smooth muscle cell=>Endothelial cell": 9,
+    "Smooth muscle cell=>Myeloid": 11,
+    "Valve=>Endothelial cell": 14,
+    "Valve=>Fibroblast": 14,
+    "Valve=>Red blood cell": 1,
+    "Valve=>Valve": 1
+   }
+  }
+ }
+}===ENV===
+{
+ "utc": "2026-09-29T12:27:04.565963+00:00",
+ "beijing": "2026-09-29T20:27:04.565963+08:00",
+ "command": "dcs_provenance_v99.py",
+ "script_sha256": "7ad1a479e07b48c22b3231f8d21b77eb1857a1e8ba845e44ebf9f23a73c59508",
+ "python_version": "3.9.12 | packaged by conda-forge | (main, Mar 24 2022, 23:22:55) \n[GCC 10.3.0]",
+ "protocol_label": "transductive_formal_reassessment"
+}
+pip_freeze_begin
+Babel @ file:///home/conda/feedstock_root/build_artifacts/babel_1667688356751/work
+Jinja2 @ file:///home/conda/feedstock_root/build_artifacts/jinja2_1654302431367/work
+MarkupSafe @ file:///home/conda/feedstock_root/build_artifacts/markupsafe_1695367432301/work
+Pillow @ file:///home/conda/feedstock_root/build_artifacts/pillow_1666920578599/work
+PySocks @ file:///home/conda/feedstock_root/build_artifacts/pysocks_1661604839144/work
+PyYAML @ file:///home/conda/feedstock_root/build_artifacts/pyyaml_1695373447169/work
+Pygments @ file:///home/conda/feedstock_root/build_artifacts/pygments_1660666458521/work
+Send2Trash @ file:///home/conda/feedstock_root/build_artifacts/send2trash_1628511208346/work
+absl-py==2.2.2
+aiohappyeyeballs==2.6.1
+aiohttp==3.11.18
+aiosignal==1.3.2
+anndata==0.10.8
+anyio @ file:///home/conda/feedstock_root/build_artifacts/anyio_1666191106763/work/dist
+argon2-cffi @ file:///home/conda/feedstock_root/build_artifacts/argon2-cffi_1640817743617/work
+argon2-cffi-bindings @ file:///home/conda/feedstock_root/build_artifacts/argon2-cffi-bindings_1695386548994/work
+array_api_compat==1.11.2
+arrow==1.3.0
+asttokens @ file:///home/conda/feedstock_root/build_artifacts/asttokens_1670263926556/work
+async-timeout==5.0.1
+attrs @ file:///home/conda/feedstock_root/build_artifacts/attrs_1671632566681/work
+backcall @ file:///home/conda/feedstock_root/build_artifacts/backcall_1592338393461/work
+backports.functools-lru-cache @ file:///home/conda/feedstock_root/build_artifacts/backports.functools_lru_cache_1618230623929/work
+beautifulsoup4 @ file:///home/conda/feedstock_root/build_artifacts/beautifulsoup4_1649463573192/work
+biopython==1.85
+bleach @ file:///home/conda/feedstock_root/build_artifacts/bleach_1656355450470/work
+brotlipy @ file:///home/conda/feedstock_root/build_artifacts/brotlipy_1695621667020/work
+certifi @ file:///home/conda/feedstock_root/build_artifacts/certifi_1739515848642/work/certifi
+cffi @ file:///home/conda/feedstock_root/build_artifacts/cffi_1696001742886/work
+charset-normalizer @ file:///home/conda/feedstock_root/build_artifacts/charset-normalizer_1661170624537/work
+chex==0.1.89
+colorama @ file:///home/conda/feedstock_root/build_artifacts/colorama_1666700638685/work
+comm @ file:///home/conda/feedstock_root/build_artifacts/comm_1670575068857/work
+conda-package-handling @ file:///home/conda/feedstock_root/build_artifacts/conda-package-handling_1669907009957/work
+conda==23.1.0
+conda_package_streaming @ file:///home/conda/feedstock_root/build_artifacts/conda-package-streaming_1669733752472/work
+contextlib2==21.6.0
+contourpy==1.3.0
+cramjam==2.9.1
+cryptography @ file:///home/conda/feedstock_root/build_artifacts/cryptography_1669592186959/work
+cupy-cuda11x==13.4.1
+cycler @ file:///home/conda/feedstock_root/build_artifacts/cycler_1635519461629/work
+daal4py==2024.7.0
+daal==2024.7.0
+debugpy @ file:///home/conda/feedstock_root/build_artifacts/debugpy_1695534305529/work
+decorator @ file:///home/conda/feedstock_root/build_artifacts/decorator_1641555617451/work
+defusedxml @ file:///home/conda/feedstock_root/build_artifacts/defusedxml_1615232257335/work
+docrep==0.3.2
+docstring_parser==0.16
+ensembl-rest==0.3.4
+entrypoints @ file:///home/conda/feedstock_root/build_artifacts/entrypoints_1643888246732/work
+etils==1.5.2
+exceptiongroup==1.2.2
+executing @ file:///home/conda/feedstock_root/build_artifacts/executing_1667317341051/work
+fair-esm==2.0.0
+faiss-gpu==1.7.2
+fastjsonschema @ file:///home/conda/feedstock_root/build_artifacts/python-fastjsonschema_1663619548554/work/dist
+fastparquet==2024.11.0
+fastrlock==0.8.3
+filelock==3.18.0
+flax==0.8.5
+flit_core @ file:///home/conda/feedstock_root/build_artifacts/flit-core_1667734568827/work/source/flit_core
+fonttools==4.57.0
+fqdn==1.5.1
+frozenlist==1.6.0
+fsspec==2025.3.2
+get-annotations==0.1.2
+h5py==3.13.0
+humanize==4.12.2
+idna @ file:///home/conda/feedstock_root/build_artifacts/idna_1663625384323/work
+igraph==0.11.8
+importlib-metadata @ file:///home/conda/feedstock_root/build_artifacts/importlib-metadata_1671416996338/work
+importlib-resources @ file:///home/conda/feedstock_root/build_artifacts/importlib_resources_1671623401502/work
+intervaltree==3.1.0
+ipdb==0.13.13
+ipykernel @ file:///home/conda/feedstock_root/build_artifacts/ipykernel_1671555071666/work
+ipython @ file:///home/conda/feedstock_root/build_artifacts/ipython_1669904059457/work
+ipython-genutils==0.2.0
+isoduration==20.11.0
+jax==0.4.30
+jaxlib==0.4.30
+jedi @ file:///home/conda/feedstock_root/build_artifacts/jedi_1669134318875/work
+joblib==1.4.2
+json5 @ file:///home/conda/feedstock_root/build_artifacts/json5_1600692310011/work
+jsonpointer==3.0.0
+jsonschema @ file:///home/conda/feedstock_root/build_artifacts/jsonschema-meta_1669810440410/work
+jupyter-contrib-core @ file:///home/conda/feedstock_root/build_artifacts/jupyter_contrib_core_1657548529421/work
+jupyter-events @ file:///home/conda/feedstock_root/build_artifacts/jupyter_events_1671662222530/work
+jupyter-nbextensions-configurator @ file:///home/conda/feedstock_root/build_artifacts/jupyter_nbextensions_configurator_1670793770953/work
+jupyter_client @ file:///home/conda/feedstock_root/build_artifacts/jupyter_client_1670253809910/work
+jupyter_core @ file:///home/conda/feedstock_root/build_artifacts/jupyter_core_1696972403538/work
+jupyter_server @ file:///home/conda/feedstock_root/build_artifacts/jupyter_server_1672069081018/work
+jupyter_server_terminals @ file:///home/conda/feedstock_root/build_artifacts/jupyter_server_terminals_1671471420435/work
+jupyterlab @ file:///home/conda/feedstock_root/build_artifacts/jupyterlab_1666613090338/work
+jupyterlab-pygments @ file:///home/conda/feedstock_root/build_artifacts/jupyterlab_pygments_1649936611996/work
+jupyterlab_server @ file:///home/conda/feedstock_root/build_artifacts/jupyterlab_server_1672062504702/work
+kiwisolver @ file:///home/conda/feedstock_root/build_artifacts/kiwisolver_1695379916629/work
+legacy-api-wrap==1.4.1
+leidenalg==0.10.2
+libmambapy @ file:///home/conda/feedstock_root/build_artifacts/mamba-split_1671598321536/work/libmambapy
+lightning-utilities==0.14.3
+lightning==2.5.1.post0
+llvmlite==0.43.0
+louvain==0.8.2
+mamba @ file:///home/conda/feedstock_root/build_artifacts/mamba-split_1671598321536/work/mamba
+markdown-it-py==3.0.0
+matplotlib-inline @ file:///home/conda/feedstock_root/build_artifacts/matplotlib-inline_1660814786464/work
+matplotlib==3.9.4
+mdurl==0.1.2
+mistune @ file:///home/conda/feedstock_root/build_artifacts/mistune_1657892024508/work
+ml-collections==0.1.1
+ml_dtypes==0.5.1
+mofapy2==0.7.2
+mofax==0.3.7
+mpmath @ file:///home/conda/feedstock_root/build_artifacts/mpmath_1612895720168/work
+msgpack==1.1.0
+mudata==0.2.4
+multidict==6.4.3
+multipledispatch==1.0.0
+munkres==1.1.4
+muon==0.1.6
+mypy_extensions==1.1.0
+narwhals==1.36.0
+natsort==8.4.0
+nbclassic @ file:///home/conda/feedstock_root/build_artifacts/nbclassic_1667492839781/work
+nbclient @ file:///home/conda/feedstock_root/build_artifacts/nbclient_1669795076334/work
+nbconvert @ file:///home/conda/feedstock_root/build_artifacts/nbconvert-meta_1671523743066/work
+nbformat @ file:///home/conda/feedstock_root/build_artifacts/nbformat_1671474423563/work
+nest-asyncio @ file:///home/conda/feedstock_root/build_artifacts/nest-asyncio_1664684991461/work
+networkx==3.2.1
+notebook @ file:///home/conda/feedstock_root/build_artifacts/notebook_1667565639349/work
+notebook_shim @ file:///home/conda/feedstock_root/build_artifacts/notebook-shim_1667478401171/work
+numba==0.60.0
+numpy @ file:///home/conda/feedstock_root/build_artifacts/numpy_1695290879892/work/dist/numpy-1.26.0-cp39-cp39-linux_x86_64.whl#sha256=2145d30cdd6d3c9c4a4be216bb158edeac64e1c9aba388e733918d65b9481735
+numpyro==0.18.0
+nvidia-cublas-cu12==12.4.5.8
+nvidia-cuda-cupti-cu12==12.4.127
+nvidia-cuda-nvrtc-cu12==12.4.127
+nvidia-cuda-runtime-cu12==12.4.127
+nvidia-cudnn-cu12==9.1.0.70
+nvidia-cufft-cu12==11.2.1.3
+nvidia-curand-cu12==10.3.5.147
+nvidia-cusolver-cu12==11.6.1.9
+nvidia-cusparse-cu12==12.3.1.170
+nvidia-cusparselt-cu12==0.6.2
+nvidia-nccl-cu12==2.21.5
+nvidia-nvjitlink-cu12==12.4.127
+nvidia-nvtx-cu12==12.4.127
+opt_einsum==3.4.0
+optax==0.2.4
+orbax-checkpoint==0.6.4
+packaging @ file:///home/conda/feedstock_root/build_artifacts/packaging_1670530880680/work
+pandas @ file:///home/conda/feedstock_root/build_artifacts/pandas_1696030087130/work
+pandocfilters @ file:///home/conda/feedstock_root/build_artifacts/pandocfilters_1631603243851/work
+parso @ file:///home/conda/feedstock_root/build_artifacts/parso_1638334955874/work
+patsy==1.0.1
+pexpect @ file:///home/conda/feedstock_root/build_artifacts/pexpect_1667297516076/work
+pickleshare @ file:///home/conda/feedstock_root/build_artifacts/pickleshare_1602536217715/work
+pip==22.3.1
+pkgutil_resolve_name @ file:///home/conda/feedstock_root/build_artifacts/pkgutil-resolve-name_1633981968097/work
+platformdirs @ file:///home/conda/feedstock_root/build_artifacts/platformdirs_1670613602756/work
+plotly==6.0.1
+pluggy @ file:///home/conda/feedstock_root/build_artifacts/pluggy_1667232663820/work
+ply==3.11
+pooch @ file:///home/conda/feedstock_root/build_artifacts/pooch_1695993109846/work
+prometheus-client @ file:///home/conda/feedstock_root/build_artifacts/prometheus_client_1665692535292/work
+prompt-toolkit @ file:///home/conda/feedstock_root/build_artifacts/prompt-toolkit_1670414775770/work
+propcache==0.3.1
+protobuf==6.30.2
+psutil @ file:///home/conda/feedstock_root/build_artifacts/psutil_1695367186825/work
+ptyprocess @ file:///home/conda/feedstock_root/build_artifacts/ptyprocess_1609419310487/work/dist/ptyprocess-0.7.0-py2.py3-none-any.whl
+pure-eval @ file:///home/conda/feedstock_root/build_artifacts/pure_eval_1642875951954/work
+pyOpenSSL @ file:///home/conda/feedstock_root/build_artifacts/pyopenssl_1665350324128/work
+pyarrow==19.0.1
+pycosat @ file:///home/conda/feedstock_root/build_artifacts/pycosat_1696355771368/work
+pycparser @ file:///home/conda/feedstock_root/build_artifacts/pycparser_1636257122734/work
+pynndescent==0.5.13
+pyparsing @ file:///home/conda/feedstock_root/build_artifacts/pyparsing_1652235407899/work
+pyro-api==0.1.2
+pyro-ppl==1.9.1
+pyrsistent @ file:///home/conda/feedstock_root/build_artifacts/pyrsistent_1695501249085/work
+python-dateutil @ file:///home/conda/feedstock_root/build_artifacts/python-dateutil_1626286286081/work
+python-json-logger @ file:///home/conda/feedstock_root/build_artifacts/python-json-logger_1671655909697/work
+pytorch-lightning==2.5.1.post0
+pytz @ file:///home/conda/feedstock_root/build_artifacts/pytz_1671365381334/work
+pyzmq @ file:///home/conda/feedstock_root/build_artifacts/pyzmq_1695384318214/work
+record-keeper==0.9.32
+requests @ file:///home/conda/feedstock_root/build_artifacts/requests_1661872987712/work
+rfc3339-validator==0.1.4
+rfc3986-validator==0.1.1
+rich==14.0.0
+rpy2 @ file:///home/conda/feedstock_root/build_artifacts/rpy2_1681739721149/work
+ruamel.yaml @ file:///home/conda/feedstock_root/build_artifacts/ruamel.yaml_1697743510842/work
+ruamel.yaml.clib @ file:///home/conda/feedstock_root/build_artifacts/ruamel.yaml.clib_1695996823774/work
+scanpy==1.10.3
+scikit-learn-intelex==2024.7.0
+scikit-learn==1.6.1
+scikit-misc==0.3.1
+scipy @ file:///home/conda/feedstock_root/build_artifacts/scipy-split_1683900212083/work/base/dist/scipy-1.10.1-cp39-cp39-linux_x86_64.whl#sha256=9cf5ab9346500556bd9381db5c987124e630ef8038f1acbc0a9f162bc143903d
+scvi-tools==1.1.6.post2
+seaborn==0.13.2
+secuer==1.1
+session_info==1.0.1
+setuptools==65.6.3
+simplegeneric==0.8.1
+simplejson==3.20.1
+six @ file:///home/conda/feedstock_root/build_artifacts/six_1620240208055/work
+sniffio @ file:///home/conda/feedstock_root/build_artifacts/sniffio_1662051266223/work
+sortedcontainers==2.4.0
+soupsieve @ file:///home/conda/feedstock_root/build_artifacts/soupsieve_1658207591808/work
+stack-data @ file:///home/conda/feedstock_root/build_artifacts/stack_data_1669632077133/work
+statsmodels==0.14.4
+stdlib-list==0.11.1
+sympy==1.13.1
+tbb==2021.13.1
+tensorstore==0.1.69
+terminado @ file:///home/conda/feedstock_root/build_artifacts/terminado_1670253674810/work
+texttable==1.7.0
+threadpoolctl==3.6.0
+tinycss2 @ file:///home/conda/feedstock_root/build_artifacts/tinycss2_1666100256010/work
+toml @ file:///home/conda/feedstock_root/build_artifacts/toml_1604308577558/work
+tomli @ file:///home/conda/feedstock_root/build_artifacts/tomli_1644342247877/work
+toolz @ file:///home/conda/feedstock_root/build_artifacts/toolz_1657485559105/work
+torch==2.6.0
+torchmetrics==1.7.1
+torchvision==0.21.0
+tornado @ file:///home/conda/feedstock_root/build_artifacts/tornado_1695373443748/work
+tqdm @ file:///home/conda/feedstock_root/build_artifacts/tqdm_1662214488106/work
+traitlets @ file:///home/conda/feedstock_root/build_artifacts/traitlets_1671473371426/work
+triton==3.2.0
+typed-argument-parser==1.10.1
+types-python-dateutil==2.9.0.20241206
+typing-inspect==0.9.0
+typing_extensions==4.13.2
+tzdata @ file:///home/conda/feedstock_root/build_artifacts/python-tzdata_1669846329064/work
+tzlocal @ file:///home/conda/feedstock_root/build_artifacts/tzlocal_1698012956072/work
+umap-learn==0.5.7
+uri-template==1.3.0
+urllib3 @ file:///home/conda/feedstock_root/build_artifacts/urllib3_1669259737463/work
+wcwidth @ file:///home/conda/feedstock_root/build_artifacts/wcwidth_1600965781394/work
+webcolors==24.11.1
+webencodings==0.5.1
+websocket-client @ file:///home/conda/feedstock_root/build_artifacts/websocket-client_1667568040382/work
+wheel==0.38.4
+yarl==1.20.0
+zipp @ file:///home/conda/feedstock_root/build_artifacts/zipp_1669453021653/work
+zstandard==0.19.0
+===CMD===
+dcs_provenance_v99.py
+===SHA===
+c2c29fec85327efdf06a63401b94e4461b17bae4e2f20c3642aeea677621c13f  candidate_hashes.json
+0e5ee3dc6240be40d2f60f0bb7f93a6a739be2a626e5a6c042dc1700729359d6  command.txt
+082636cf9e424246e3659a923a0cc9d16c81f4d887fd958ad403ba6823400959  confusion/coarse_human->mouse.json
+a82f2de6cfef9987cdf37c81c37a8e91cdba6d33992bc50a01055336167635b3  confusion/coarse_human->zebrafish.json
+ff6774eec249831cef999e29268fbfb7dc5105b98e56aab7cfa6ea42229a4ddb  confusion/coarse_mouse->human.json
+6d29042f2594e4e3e081d323eff10e478a53d67f468836cc82b41759c42ff62e  confusion/coarse_mouse->zebrafish.json
+871fb3aa639ee5e3fc026fa1e1c3e9caf4451f8adf82541fd4d57e2e9c5f424a  confusion/coarse_zebrafish->human.json
+38713a3e64187399f1dc0d664b6984a210b817d6b814a88603c22eff26560319  confusion/coarse_zebrafish->mouse.json
+ea00c1cfc964b0fc2a7b102df519be183cbca1d0e726163379892bed02422026  confusion/exact_human->mouse.json
+bab0234e5ab58a4119c71945cf2178cb9d61980fa98757c6858031226c8c8fef  confusion/exact_human->zebrafish.json
+ab47c40a362ec9eb15336951656c4dd343b8c125a303b4d685828f553dde866e  confusion/exact_mouse->human.json
+d8898f8cb1af17027f52a01b9597cf332bb00ad86c858ce51ebcd5cfdd38ab48  confusion/exact_mouse->zebrafish.json
+871fb3aa639ee5e3fc026fa1e1c3e9caf4451f8adf82541fd4d57e2e9c5f424a  confusion/exact_zebrafish->human.json
+80740979bd268fe7a10acf6ca8f73184c5b4560717c9720bf5431667d3b26dd3  confusion/exact_zebrafish->mouse.json
+082636cf9e424246e3659a923a0cc9d16c81f4d887fd958ad403ba6823400959  confusion/fine_human->mouse.json
+a82f2de6cfef9987cdf37c81c37a8e91cdba6d33992bc50a01055336167635b3  confusion/fine_human->zebrafish.json
+ff6774eec249831cef999e29268fbfb7dc5105b98e56aab7cfa6ea42229a4ddb  confusion/fine_mouse->human.json
+6d29042f2594e4e3e081d323eff10e478a53d67f468836cc82b41759c42ff62e  confusion/fine_mouse->zebrafish.json
+871fb3aa639ee5e3fc026fa1e1c3e9caf4451f8adf82541fd4d57e2e9c5f424a  confusion/fine_zebrafish->human.json
+38713a3e64187399f1dc0d664b6984a210b817d6b814a88603c22eff26560319  confusion/fine_zebrafish->mouse.json
+1fd002ccd18c3cfd0d1bf305c2dbadb8bf2fb7470da301ffc85be0ccebb40cde  course5_v99_readout.ipynb
+7ad1a479e07b48c22b3231f8d21b77eb1857a1e8ba845e44ebf9f23a73c59508  dcs_provenance_v99.py
+2c9dcb5d0ae3a4f707af7d8bc995858f5270e8f02c959458990711a031457039  environment.txt
+84267bd78bfe59ac60a22d1727a1f5398561e3e3d7bc53a50e43785fbeff8407  manifest.json
+d1081cfd2489bf2afd30af7706fadf2d08b90390c26d38a766ea97b54b3dc261  metrics.json
+86cd5137903b0ec670e34d950d696b78aaeb7b171320a6e0ae7dda5f6d0c80c6  predictions/coarse_human->mouse.json
+3c2696462a6bae4f40eca84e4a02109504cadf18df78f86d29a3dfda2d6eaea9  predictions/coarse_human->zebrafish.json
+7d5ad8b817aa5f684d091890056291746535a99e6d1bde201df11af82838a3b4  predictions/coarse_mouse->human.json
+ecff0befa30ac87649446429194a7827ebe51ff4766308fa79d373fe62d0ee17  predictions/coarse_mouse->zebrafish.json
+df645dfd70b37bc9c263f15d94d6d3d4e151fae6d971b92cf2282fd5943dac4e  predictions/coarse_zebrafish->human.json
+945448ca11d731221e846cce8e3cc443b1db7b4326e87f760ab7359e11d42c60  predictions/coarse_zebrafish->mouse.json
+99fa02b2f3b673c2f2fa5aa611a6bdf6d3e6d1dce243329b9b14cee28c3a2d56  predictions/exact_human->mouse.json
+7d7e850d0238098eb44a3f010f339d129b68314d742380a994c83ade7ae2cbba  predictions/exact_human->zebrafish.json
+e28138297202092edb51526de7ad21f17bfb83c55b0ba2d55c37101922142974  predictions/exact_mouse->human.json
+19cf772237bdfec3eb2b60915809de9de0c8680f575748bb6a8062331a0fdd7c  predictions/exact_mouse->zebrafish.json
+240d3e75d0979bd7665d82ae78e7ab61d932ef27c0f395c195066d314ea7b8c6  predictions/exact_zebrafish->human.json
+2d8f87311fd98d39887ea31f4e6fdbf1cfa52607c7e38b3d806987a0b35813cd  predictions/exact_zebrafish->mouse.json
+64b355b321e3fc20389112266b5735d98639ab7e176eddf535698a2632d4f3b9  predictions/fine_human->mouse.json
+10bd34e947970c34bcbfadc97cbdcf0038f6b656871a97b54b76f42b553b7f47  predictions/fine_human->zebrafish.json
+acbbdf93174cb45d2bb2d19e272ae563389a35bdc6735cd2f5474caaa3acf5a9  predictions/fine_mouse->human.json
+065f763229630d4c47c8f750f7c5eb1e0b5dad02d663b9eed1b94812764db5c6  predictions/fine_mouse->zebrafish.json
+af5eab8767c8a9a23092569017b3e74b02273a3da051e9d32544e0579fac567a  predictions/fine_zebrafish->human.json
+94aca621783df98e557e07836d6b7f3eb2360771a8b4291ca8f1e3e8029e3b71  predictions/fine_zebrafish->mouse.json
+952243a200e176e8aac48f6c627d06942c2e46bf126482c3c79275b647a1a72f  saturn_src_tree_sha256.tsv
+c84dd3780cb0db09f54ef4020a4e1e6ad91aef72433c949079634f6fcc35d687  sha256.tsv
+d92e32aa788672492febe8cd428beac71ba69fd99df68c7f362cba2e553eea4a  v99_mapping_embedded.json
+===END===

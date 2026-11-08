@@ -1,0 +1,183 @@
+{
+ "baseline": {
+  "human->mouse": {
+   "mf1": 0.3522,
+   "n_q": 1505,
+   "dropped": 0
+  },
+  "mouse->human": {
+   "mf1": 0.2566,
+   "n_q": 1528,
+   "dropped": 0
+  },
+  "human->zebrafish": {
+   "mf1": 0.1269,
+   "n_q": 1499,
+   "dropped": 0
+  },
+  "zebrafish->human": {
+   "mf1": 0.164,
+   "n_q": 1528,
+   "dropped": 0
+  },
+  "mouse->zebrafish": {
+   "mf1": 0.3658,
+   "n_q": 1499,
+   "dropped": 0
+  },
+  "zebrafish->mouse": {
+   "mf1": 0.3563,
+   "n_q": 1505,
+   "dropped": 0
+  }
+ },
+ "candidates": {
+  "R36_zebrafish_Orthers": {
+   "changed_row": [
+    "zebrafish",
+    "Orthers"
+   ],
+   "after": {
+    "human->mouse": {
+     "mf1": 0.3522,
+     "n_q": 1505,
+     "dropped": 0
+    },
+    "mouse->human": {
+     "mf1": 0.2566,
+     "n_q": 1528,
+     "dropped": 0
+    },
+    "human->zebrafish": {
+     "mf1": 0.1282,
+     "n_q": 1469,
+     "dropped": 0
+    },
+    "zebrafish->human": {
+     "mf1": 0.1386,
+     "n_q": 1528,
+     "dropped": 865
+    },
+    "mouse->zebrafish": {
+     "mf1": 0.4076,
+     "n_q": 1469,
+     "dropped": 0
+    },
+    "zebrafish->mouse": {
+     "mf1": 0.2961,
+     "n_q": 1505,
+     "dropped": 100
+    }
+   },
+   "delta_mf1": {
+    "human->mouse": 0.0,
+    "mouse->human": 0.0,
+    "human->zebrafish": 0.0013,
+    "zebrafish->human": -0.0254,
+    "mouse->zebrafish": 0.0418,
+    "zebrafish->mouse": -0.0602
+   },
+   "extra_dropped": {
+    "zebrafish->human": 865,
+    "zebrafish->mouse": 100
+   }
+  },
+  "R21_mouse_Valve": {
+   "changed_row": [
+    "mouse",
+    "Valve"
+   ],
+   "after": {
+    "human->mouse": {
+     "mf1": 0.35,
+     "n_q": 1475,
+     "dropped": 0
+    },
+    "mouse->human": {
+     "mf1": 0.2271,
+     "n_q": 1528,
+     "dropped": 2
+    },
+    "human->zebrafish": {
+     "mf1": 0.1269,
+     "n_q": 1499,
+     "dropped": 0
+    },
+    "zebrafish->human": {
+     "mf1": 0.164,
+     "n_q": 1528,
+     "dropped": 0
+    },
+    "mouse->zebrafish": {
+     "mf1": 0.3264,
+     "n_q": 1499,
+     "dropped": 4
+    },
+    "zebrafish->mouse": {
+     "mf1": 0.3567,
+     "n_q": 1475,
+     "dropped": 0
+    }
+   },
+   "delta_mf1": {
+    "human->mouse": -0.0022,
+    "mouse->human": -0.0295,
+    "human->zebrafish": 0.0,
+    "zebrafish->human": 0.0,
+    "mouse->zebrafish": -0.0394,
+    "zebrafish->mouse": 0.0004
+   },
+   "extra_dropped": {
+    "mouse->human": 2,
+    "mouse->zebrafish": 4
+   }
+  },
+  "R30_zebrafish_Perivascular": {
+   "changed_row": [
+    "zebrafish",
+    "Perivascular cells"
+   ],
+   "after": {
+    "human->mouse": {
+     "mf1": 0.3522,
+     "n_q": 1505,
+     "dropped": 0
+    },
+    "mouse->human": {
+     "mf1": 0.2566,
+     "n_q": 1528,
+     "dropped": 0
+    },
+    "human->zebrafish": {
+     "mf1": 0.1235,
+     "n_q": 1469,
+     "dropped": 0
+    },
+    "zebrafish->human": {
+     "mf1": 0.164,
+     "n_q": 1528,
+     "dropped": 0
+    },
+    "mouse->zebrafish": {
+     "mf1": 0.3684,
+     "n_q": 1469,
+     "dropped": 0
+    },
+    "zebrafish->mouse": {
+     "mf1": 0.3563,
+     "n_q": 1505,
+     "dropped": 0
+    }
+   },
+   "delta_mf1": {
+    "human->mouse": 0.0,
+    "mouse->human": 0.0,
+    "human->zebrafish": -0.0034,
+    "zebrafish->human": 0.0,
+    "mouse->zebrafish": 0.0026,
+    "zebrafish->mouse": 0.0
+   },
+   "extra_dropped": {}
+  }
+ }
+}

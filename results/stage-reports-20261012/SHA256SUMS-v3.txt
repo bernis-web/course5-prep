@@ -1,0 +1,10 @@
+# 汇报 1「实质内容版」产物 SHA-256（2026-10-12，LF 行尾，可 sha256sum -c）
+# 含生成脚本、成品 PPTX、渲染 PDF 与校验脚本
+604b6c5d54a686af50e90b5a6f50b9eb8dfb42ea3a122aa27521cd438a94b6b0  build_report01_v3.js
+75c3058f4ebe13f7c1b1b1342331bc4c132b0afe0834693c36ad3877b0d0773c  课题5第01次汇报_实做进度与关键问题_实质版.pptx
+02658c4e4fa82dfabb9336e23a3acd24e03ede21edf69accbbe183a62e6a54fc  render-v3\课题5第01次汇报_实做进度与关键问题_实质版.pdf
+8258fca3d0e8ad4b169e9de296dd035e720e739a96d25e14ba9ad6bf06b567e0  render_and_check.py
+1ef97e3473444067bc77a54fb16af126b8accbf7bfb6cba34f241f7d5720b66b  check_cards_v3.py
+208a2bfe7e8b192dd330d2a7f6eb2c7fba631fd39a21ae84b62d60d7e6b15153  check_overlap_v3.py
+365c43284f78c731832254b4765441470c8d6e8bdea45af11426992b447f5fc8  verify_v3.py
+e26001ae3473c8e4e9235ad1889f78f6f7603d7fea646dbc9d2a9bac51abb74c  ../../../docs/reports/report-01-substantive-v3-20261012.md

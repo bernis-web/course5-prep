@@ -1,0 +1,41 @@
+{
+  "captured_at": "2026-10-31T05:10:00Z",
+  "goal_step": "② 在 g5-opca-container 镜像内跑一次离线任务复现 6 个冻结 coarse accuracy",
+  "status": "TASK_SUBMITTED_AWAITING_RESULT",
+  "already_done": {
+    "image_built": "g5-opca-container 构建成功（2026-10-30 14:52）",
+    "image_url_from_cli": "stereonote_hpc/user50719-8334_11775ba415fa46a09ca9707341fbe8d2_private:latest",
+    "task_submitted": "dcs task run --type s -i \"bash /work/user50719-8334/selfcheck/selfcheck.sh\" -l vf=8g,num_proc=2 --image <url> --output /Files/ResultData/Workflow/selfcheck-20261030",
+    "task_id": "2116148572871282690",
+    "inputs_verified_in_pod": "/Files 可读（total 82000）；/Files/wheelhouse 可读，含 MGI_HOM_MouseHumanSequence.rpt 15,122,222 B"
+  },
+  "blockers_hit_this_round": [
+    {
+      "what": "stereonote 子应用白屏",
+      "detail": "直接访问 https://www.dcs.cloud/stereonote/#/... 与从主站侧边栏「个性分析」进入，子应用 bodyLen 都是 0，页面只剩一个转圈；数据管理子应用同样 bodyLen=0",
+      "consequence": "无法用 UI 查离线任务列表 / 日志 / 产物目录"
+    },
+    {
+      "what": "/stereonote/api/* 一律 401",
+      "detail": "getTaskListByParam / task/info / ipynb/taskInfo / workspace/get/resource/cfg 等端点，裸 fetch 与 XHR 都返回 {\"code\":401}；该命名空间要 X-Access-Token 头",
+      "consequence": "按项目纪律不读凭据，无法用 API 直查"
+    },
+    {
+      "what": "/api/task/dcsTask/getUserTaskById 查不到该 ID",
+      "detail": "返回 {\"code\":10102,\"msg\":\"core:data_not_found\"}",
+      "consequence": "确认离线任务（nb 体系）与流程任务（W 体系）是两套，W 体系接口查不到它，这不代表任务不存在"
+    },
+    {
+      "what": "Genpilot 右侧 Bash 终端卡在「加载终端…」",
+      "detail": "点击「终端」启动容器，iframe 指向 https://www.dcs.cloud/notebook/st-gw/task-p20260920085640327-s2a8wk5n/... 但 3 分钟内未连上；昨天那个 jiliawog 容器是连上的",
+      "consequence": "本轮拿不到 dcs CLI，无法自己查任务结果"
+    }
+  ],
+  "next_step_when_terminal_is_up": [
+    "dcs task ls -t a -i 2116148572871282690",
+    "dcs task info 2116148572871282690",
+    "dcs task log 2116148572871282690",
+    "ls -la /Files/ResultData/Workflow/ | grep selfcheck"
+  ],
+  "honest_assessment": "第 ② 步只做到「任务已投递」，没做到「结果已拿到」。镜像构建成功（第 ① 步）有 DOM 证据；任务投递有 task_id 与 CLI 回显；但 7 个包版本是否精确匹配、6 个冻结值能否复现，目前都没有证据，不能声称完成。"
+}

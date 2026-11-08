@@ -1,0 +1,9 @@
+# Pinned to the combination verified on DCS (task W202610150090794).
+# Do not loosen without re-running the smoke test.
+numpy==1.23.5
+scipy==1.10.1
+pandas==1.5.3
+scikit-learn==1.6.1
+anndata==0.10.8
+scanpy==1.9.3
+h5py==3.8.0

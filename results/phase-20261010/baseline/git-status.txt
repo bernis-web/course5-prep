@@ -1,0 +1,11 @@
+Phase 0 git status snapshot
+observed_at=2026-10-10T11:04:48+08:00
+branch=codex/teacher-reply-report-prep
+head=8b597d788352009609688e28c7f2ed23a0358f17
+status_command=git status --porcelain=v1
+total_entries=228
+staged_entries=0
+tracked_unstaged_entries=29
+untracked_entries=199
+
+This is a summary snapshot, not a replacement for the user's existing worktree. Existing staged/unstaged/untracked files were not modified, reset, cleaned, or deleted by Phase 0.

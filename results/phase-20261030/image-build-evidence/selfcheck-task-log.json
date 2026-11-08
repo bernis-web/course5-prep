@@ -1,0 +1,51 @@
+{
+  "captured_at": "2026-10-31T06:45:00Z",
+  "goal_step": "② 在 g5-opca-container 镜像内跑一次离线任务复现 6 个冻结 coarse accuracy",
+  "status": "PARTIAL__version_check_passed__accuracy_repro_pending",
+
+  "PART_A_DONE__版本核对通过": {
+    "task_id": "2116148572871282690",
+    "image": "g5-opca-container (stereonote_hpc/user50719-8334_11775ba415fa46a09ca9707341fbe8d2_private:latest)",
+    "how_retrieved": "dcs task log -t s（Genpilot 右侧 Bash 终端）",
+    "raw_versions_line": "=== VERSIONS === 3.9.12 1.23.5 1.10.1 1.5.3 1.6.1 0.10.8 1.9.3 3.8.0",
+    "field_order": ["python", "numpy", "scipy", "pandas", "sklearn", "anndata", "scanpy", "h5py"],
+    "pinned_expected": {"numpy":"1.23.5","scipy":"1.10.1","pandas":"1.5.3","sklearn":"1.6.1","anndata":"0.10.8","scanpy":"1.9.3","h5py":"3.8.0"},
+    "all_seven_match": true,
+    "raw_files_line": "=== FILES === 006 1-3_group 1-3zuNB 3 Miller",
+    "raw_orthologs_line": "heart-celltype-map-v1.tsv orth-MGI-HOM.rpt orth-human-orthos.txt orth-mouse-orthos.txt",
+    "done_line": "=== DONE ===",
+    "harmless_warning": "setlocale: LC_ALL: cannot change locale (C.UTF-8) —— 镜像内缺 locale，不影响数值",
+    "no_output_dir_explained": "ls /Files/ResultData/Workflow/selfcheck-20261030 → No such file or directory。脚本只往 stdout 打印、不写文件，离线任务的 --output 目录只在产生结果文件时才创建。这不是失败。"
+  },
+
+  "PART_B_PENDING__6个冻结值复现": {
+    "task_id": "2116416523012755457",
+    "command": "bash /work/user50719-8334/fixkey/fixkey.sh",
+    "image": "同上",
+    "resource": "vf=8g,num_proc=2",
+    "submitted_at": "2026-10-31 14:26:35",
+    "status_observed": "已提交（未调度），更新时间停在 14:29:49 后再无变动",
+    "poll_rounds": ["5 次 / 约 147 秒，全部「已提交」", "10 次 / 约 290 秒，全部「已提交」"],
+    "total_wait_minutes": 18,
+    "quota_hypothesis_tested_and_rejected": {
+      "hypothesis": "本账号有 running 的在线容器占满配额，导致离线任务排不上",
+      "test": "dcs task ls -t a -u user50719-8334 -a",
+      "result": "名下除当前这条「已提交」外，其余全是历史终态（完成/失败/取消），没有 running 的离线任务",
+      "conclusion": "配额假设不成立；调度器至今未拾取该任务"
+    },
+    "script_ready_in_pod": "/work/user50719-8334/fixkey/ortholog_pca_dcs_v3_fixkey.py 与 fixkey.sh 已就位",
+    "env_contract_used": {
+      "OPCA_H5AD_DIR": "/Files",
+      "OPCA_ORTH_DIR": "/Files/wheelhouse",
+      "OPCA_ORTH_MGI": "/Files/wheelhouse/orth-MGI-HOM.rpt",
+      "OPCA_ORTH_HF": "/Files/wheelhouse/orth-human-orthos.txt",
+      "OPCA_ORTH_MF": "/Files/wheelhouse/orth-mouse-orthos.txt",
+      "OPCA_MAPPING": "/Files/wheelhouse/heart-celltype-map-v1.tsv",
+      "OPCA_OUT": "/work/user50719-8334/fixkey/out-<ts>"
+    }
+  },
+
+  "honest_assessment": "第②步拆成两半：版本核对与输入可见性已经拿到真实日志证据，7 个包全部命中；6 个冻结 accuracy 的复现还差最后一步，任务已投递但平台调度器 18 分钟没拾取，属于平台队列问题，不是脚本问题。不能声称第②步整体完成。",
+
+  "next_step": "等调度器拾取 2116416523012755457；或用 dcs task log -t s 2116416523012755457 直接拉日志（一旦开始运行就会有 === METRICS === 后 6 行）"
+}

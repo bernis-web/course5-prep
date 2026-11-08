@@ -1,0 +1,144 @@
+{
+ "question": "SATURN 的 union macro-F1 是否因丢弃不可映射预测而被抬高？",
+ "sources": "results/pilot-v1/saturn-v99/raw/recovered-20261001/confusion",
+ "directions": {
+  "human->mouse": {
+   "n_published": 1309,
+   "n_strict": 1398,
+   "n_dropped_unmappable": 89,
+   "dropped_labels": {
+    "Mesothelial cell": 3,
+    "Atrial Cardiomyocyte": 11,
+    "Ventricular Cardiomyocyte": 74,
+    "Mast cell": 1
+   },
+   "published": {
+    "acc": 0.6241,
+    "mf1": 0.4147
+   },
+   "strict_cell": {
+    "acc": 0.5844,
+    "mf1": 0.3402
+   },
+   "strict": {
+    "acc": 0.5844,
+    "mf1": 0.3402
+   },
+   "mf1_inflation": 0.0745
+  },
+  "mouse->human": {
+   "n_published": 857,
+   "n_strict": 992,
+   "n_dropped_unmappable": 135,
+   "dropped_labels": {
+    "Epicardium": 133,
+    "Valve": 2
+   },
+   "published": {
+    "acc": 0.3734,
+    "mf1": 0.401
+   },
+   "strict_cell": {
+    "acc": 0.3226,
+    "mf1": 0.3118
+   },
+   "strict": {
+    "acc": 0.3226,
+    "mf1": 0.3118
+   },
+   "mf1_inflation": 0.0892
+  },
+  "human->zebrafish": {
+   "n_published": 1032,
+   "n_strict": 1047,
+   "n_dropped_unmappable": 15,
+   "dropped_labels": {
+    "Mesothelial cell": 11,
+    "Neural cell": 1,
+    "Mast cell": 3
+   },
+   "published": {
+    "acc": 0.219,
+    "mf1": 0.2479
+   },
+   "strict_cell": {
+    "acc": 0.2159,
+    "mf1": 0.2051
+   },
+   "strict": {
+    "acc": 0.2159,
+    "mf1": 0.2051
+   },
+   "mf1_inflation": 0.0428
+  },
+  "zebrafish->human": {
+   "n_published": 642,
+   "n_strict": 1378,
+   "n_dropped_unmappable": 736,
+   "dropped_labels": {
+    "Orthers": 734,
+    "Epicardium": 2
+   },
+   "published": {
+    "acc": 0.5047,
+    "mf1": 0.4021
+   },
+   "strict_cell": {
+    "acc": 0.2351,
+    "mf1": 0.2139
+   },
+   "strict": {
+    "acc": 0.2351,
+    "mf1": 0.2139
+   },
+   "mf1_inflation": 0.1882
+  },
+  "mouse->zebrafish": {
+   "n_published": 459,
+   "n_strict": 988,
+   "n_dropped_unmappable": 529,
+   "dropped_labels": {
+    "Adipocyte": 401,
+    "Cardiomyocyte": 127,
+    "Lymphatic Endothelial cell": 1
+   },
+   "published": {
+    "acc": 0.6863,
+    "mf1": 0.65
+   },
+   "strict_cell": {
+    "acc": 0.3188,
+    "mf1": 0.456
+   },
+   "strict": {
+    "acc": 0.3188,
+    "mf1": 0.456
+   },
+   "mf1_inflation": 0.194
+  },
+  "zebrafish->mouse": {
+   "n_published": 912,
+   "n_strict": 1368,
+   "n_dropped_unmappable": 456,
+   "dropped_labels": {
+    "Atrial Cardiomyocyte": 1,
+    "Orthers": 73,
+    "Red blood cell": 80,
+    "Ventricular Cardiomyocyte": 302
+   },
+   "published": {
+    "acc": 0.6875,
+    "mf1": 0.651
+   },
+   "strict_cell": {
+    "acc": 0.4583,
+    "mf1": 0.4588
+   },
+   "strict": {
+    "acc": 0.4583,
+    "mf1": 0.4588
+   },
+   "mf1_inflation": 0.1922
+  }
+ }
+}

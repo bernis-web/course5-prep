@@ -1,0 +1,10 @@
+{
+ "wall_sec_total": 26.12,
+ "peak_working_set_mb": 1306.6,
+ "peak_pagefile_mb": 1316.0,
+ "python": "3.9.6",
+ "seed": "0",
+ "nperm": "200",
+ "h5ad_dir": "D:\\projects\\course5-prep",
+ "out": "D:\\projects\\course5-prep\\results\\resource-20261030\\opca-rep0\\output"
+}

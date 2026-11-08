@@ -1,0 +1,942 @@
+[
+ {
+  "tag": "cells-1",
+  "seed": 0,
+  "elapsed_sec": 26.1,
+  "human->mouse": {
+   "acc": 0.856,
+   "mf1": 0.617556,
+   "n_q": 1354,
+   "n_q_total": 1381,
+   "majority": 0.4889
+  },
+  "mouse->human": {
+   "acc": 0.7236,
+   "mf1": 0.665792,
+   "n_q": 1375,
+   "n_q_total": 1375,
+   "majority": 0.3105
+  },
+  "human->zebrafish": {
+   "acc": 0.1803,
+   "mf1": 0.149434,
+   "n_q": 1353,
+   "n_q_total": 1388,
+   "majority": 0.3984
+  },
+  "zebrafish->human": {
+   "acc": 0.1869,
+   "mf1": 0.165631,
+   "n_q": 1375,
+   "n_q_total": 1375,
+   "majority": 0.3105
+  },
+  "mouse->zebrafish": {
+   "acc": 0.2646,
+   "mf1": 0.216221,
+   "n_q": 1353,
+   "n_q_total": 1388,
+   "majority": 0.3984
+  },
+  "zebrafish->mouse": {
+   "acc": 0.5931,
+   "mf1": 0.426665,
+   "n_q": 1354,
+   "n_q_total": 1381,
+   "majority": 0.4889
+  }
+ },
+ {
+  "tag": "cells-2",
+  "seed": 0,
+  "elapsed_sec": 26.1,
+  "human->mouse": {
+   "acc": 0.8618,
+   "mf1": 0.642785,
+   "n_q": 1353,
+   "n_q_total": 1381,
+   "majority": 0.4819
+  },
+  "mouse->human": {
+   "acc": 0.7258,
+   "mf1": 0.660298,
+   "n_q": 1375,
+   "n_q_total": 1375,
+   "majority": 0.3076
+  },
+  "human->zebrafish": {
+   "acc": 0.1939,
+   "mf1": 0.165714,
+   "n_q": 1351,
+   "n_q_total": 1388,
+   "majority": 0.4004
+  },
+  "zebrafish->human": {
+   "acc": 0.1775,
+   "mf1": 0.15236,
+   "n_q": 1375,
+   "n_q_total": 1375,
+   "majority": 0.3076
+  },
+  "mouse->zebrafish": {
+   "acc": 0.2598,
+   "mf1": 0.218068,
+   "n_q": 1351,
+   "n_q_total": 1388,
+   "majority": 0.4004
+  },
+  "zebrafish->mouse": {
+   "acc": 0.5329,
+   "mf1": 0.407362,
+   "n_q": 1353,
+   "n_q_total": 1381,
+   "majority": 0.4819
+  }
+ },
+ {
+  "tag": "cells-3",
+  "seed": 0,
+  "elapsed_sec": 25.3,
+  "human->mouse": {
+   "acc": 0.8548,
+   "mf1": 0.625805,
+   "n_q": 1357,
+   "n_q_total": 1381,
+   "majority": 0.4842
+  },
+  "mouse->human": {
+   "acc": 0.7651,
+   "mf1": 0.691035,
+   "n_q": 1375,
+   "n_q_total": 1375,
+   "majority": 0.3091
+  },
+  "human->zebrafish": {
+   "acc": 0.1778,
+   "mf1": 0.144742,
+   "n_q": 1350,
+   "n_q_total": 1388,
+   "majority": 0.4015
+  },
+  "zebrafish->human": {
+   "acc": 0.184,
+   "mf1": 0.169121,
+   "n_q": 1375,
+   "n_q_total": 1375,
+   "majority": 0.3091
+  },
+  "mouse->zebrafish": {
+   "acc": 0.2496,
+   "mf1": 0.231909,
+   "n_q": 1350,
+   "n_q_total": 1388,
+   "majority": 0.4015
+  },
+  "zebrafish->mouse": {
+   "acc": 0.5578,
+   "mf1": 0.412988,
+   "n_q": 1357,
+   "n_q_total": 1381,
+   "majority": 0.4842
+  }
+ },
+ {
+  "tag": "cells-4",
+  "seed": 0,
+  "elapsed_sec": 24.8,
+  "human->mouse": {
+   "acc": 0.804,
+   "mf1": 0.604675,
+   "n_q": 1352,
+   "n_q_total": 1381,
+   "majority": 0.48
+  },
+  "mouse->human": {
+   "acc": 0.7244,
+   "mf1": 0.655242,
+   "n_q": 1375,
+   "n_q_total": 1375,
+   "majority": 0.3098
+  },
+  "human->zebrafish": {
+   "acc": 0.195,
+   "mf1": 0.171893,
+   "n_q": 1349,
+   "n_q_total": 1388,
+   "majority": 0.4018
+  },
+  "zebrafish->human": {
+   "acc": 0.1767,
+   "mf1": 0.153224,
+   "n_q": 1375,
+   "n_q_total": 1375,
+   "majority": 0.3098
+  },
+  "mouse->zebrafish": {
+   "acc": 0.2602,
+   "mf1": 0.220962,
+   "n_q": 1349,
+   "n_q_total": 1388,
+   "majority": 0.4018
+  },
+  "zebrafish->mouse": {
+   "acc": 0.5747,
+   "mf1": 0.444298,
+   "n_q": 1352,
+   "n_q_total": 1381,
+   "majority": 0.48
+  }
+ },
+ {
+  "tag": "cells-5",
+  "seed": 0,
+  "elapsed_sec": 25.8,
+  "human->mouse": {
+   "acc": 0.8546,
+   "mf1": 0.625728,
+   "n_q": 1355,
+   "n_q_total": 1381,
+   "majority": 0.4753
+  },
+  "mouse->human": {
+   "acc": 0.7622,
+   "mf1": 0.684161,
+   "n_q": 1375,
+   "n_q_total": 1375,
+   "majority": 0.3084
+  },
+  "human->zebrafish": {
+   "acc": 0.1689,
+   "mf1": 0.152396,
+   "n_q": 1350,
+   "n_q_total": 1388,
+   "majority": 0.4007
+  },
+  "zebrafish->human": {
+   "acc": 0.1724,
+   "mf1": 0.15388,
+   "n_q": 1375,
+   "n_q_total": 1375,
+   "majority": 0.3084
+  },
+  "mouse->zebrafish": {
+   "acc": 0.2563,
+   "mf1": 0.204585,
+   "n_q": 1350,
+   "n_q_total": 1388,
+   "majority": 0.4007
+  },
+  "zebrafish->mouse": {
+   "acc": 0.5255,
+   "mf1": 0.384568,
+   "n_q": 1355,
+   "n_q_total": 1381,
+   "majority": 0.4753
+  }
+ },
+ {
+  "tag": "genes-1",
+  "seed": 0,
+  "elapsed_sec": 24.5,
+  "human->mouse": {
+   "acc": 0.8591,
+   "mf1": 0.653122,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  },
+  "mouse->human": {
+   "acc": 0.7212,
+   "mf1": 0.652216,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "human->zebrafish": {
+   "acc": 0.1681,
+   "mf1": 0.147502,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->human": {
+   "acc": 0.178,
+   "mf1": 0.152611,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "mouse->zebrafish": {
+   "acc": 0.2708,
+   "mf1": 0.229979,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->mouse": {
+   "acc": 0.5641,
+   "mf1": 0.430942,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  }
+ },
+ {
+  "tag": "genes-2",
+  "seed": 0,
+  "elapsed_sec": 23.3,
+  "human->mouse": {
+   "acc": 0.8538,
+   "mf1": 0.634995,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  },
+  "mouse->human": {
+   "acc": 0.7258,
+   "mf1": 0.649186,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "human->zebrafish": {
+   "acc": 0.1888,
+   "mf1": 0.16196,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->human": {
+   "acc": 0.1774,
+   "mf1": 0.156819,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "mouse->zebrafish": {
+   "acc": 0.2422,
+   "mf1": 0.18794,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->mouse": {
+   "acc": 0.5654,
+   "mf1": 0.406826,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  }
+ },
+ {
+  "tag": "genes-3",
+  "seed": 0,
+  "elapsed_sec": 24.3,
+  "human->mouse": {
+   "acc": 0.8771,
+   "mf1": 0.664104,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  },
+  "mouse->human": {
+   "acc": 0.748,
+   "mf1": 0.675966,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "human->zebrafish": {
+   "acc": 0.2275,
+   "mf1": 0.188278,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->human": {
+   "acc": 0.1872,
+   "mf1": 0.166031,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "mouse->zebrafish": {
+   "acc": 0.2268,
+   "mf1": 0.168372,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->mouse": {
+   "acc": 0.5827,
+   "mf1": 0.417343,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  }
+ },
+ {
+  "tag": "genes-4",
+  "seed": 0,
+  "elapsed_sec": 24.1,
+  "human->mouse": {
+   "acc": 0.8764,
+   "mf1": 0.654738,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  },
+  "mouse->human": {
+   "acc": 0.7441,
+   "mf1": 0.662662,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "human->zebrafish": {
+   "acc": 0.2201,
+   "mf1": 0.15957,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->human": {
+   "acc": 0.1813,
+   "mf1": 0.152686,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "mouse->zebrafish": {
+   "acc": 0.2728,
+   "mf1": 0.211005,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->mouse": {
+   "acc": 0.608,
+   "mf1": 0.421963,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  }
+ },
+ {
+  "tag": "genes-5",
+  "seed": 0,
+  "elapsed_sec": 24.2,
+  "human->mouse": {
+   "acc": 0.8525,
+   "mf1": 0.641871,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  },
+  "mouse->human": {
+   "acc": 0.7199,
+   "mf1": 0.642251,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "human->zebrafish": {
+   "acc": 0.1968,
+   "mf1": 0.165525,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->human": {
+   "acc": 0.1643,
+   "mf1": 0.154472,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "mouse->zebrafish": {
+   "acc": 0.2708,
+   "mf1": 0.226429,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->mouse": {
+   "acc": 0.515,
+   "mf1": 0.395154,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  }
+ },
+ {
+  "tag": "seed-0",
+  "seed": 0,
+  "elapsed_sec": 26.7,
+  "human->mouse": {
+   "acc": 0.8618,
+   "mf1": 0.643543,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  },
+  "mouse->human": {
+   "acc": 0.7369,
+   "mf1": 0.672864,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "human->zebrafish": {
+   "acc": 0.1795,
+   "mf1": 0.165424,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->human": {
+   "acc": 0.1734,
+   "mf1": 0.151189,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "mouse->zebrafish": {
+   "acc": 0.2675,
+   "mf1": 0.217703,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->mouse": {
+   "acc": 0.5814,
+   "mf1": 0.440544,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  }
+ },
+ {
+  "tag": "seed-1",
+  "seed": 1,
+  "elapsed_sec": 27.1,
+  "human->mouse": {
+   "acc": 0.8585,
+   "mf1": 0.653508,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  },
+  "mouse->human": {
+   "acc": 0.7349,
+   "mf1": 0.65318,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "human->zebrafish": {
+   "acc": 0.1841,
+   "mf1": 0.166875,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->human": {
+   "acc": 0.1754,
+   "mf1": 0.15407,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "mouse->zebrafish": {
+   "acc": 0.2642,
+   "mf1": 0.217131,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->mouse": {
+   "acc": 0.5714,
+   "mf1": 0.433123,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  }
+ },
+ {
+  "tag": "seed-2",
+  "seed": 2,
+  "elapsed_sec": 28.0,
+  "human->mouse": {
+   "acc": 0.8578,
+   "mf1": 0.645002,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  },
+  "mouse->human": {
+   "acc": 0.7323,
+   "mf1": 0.654208,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "human->zebrafish": {
+   "acc": 0.1795,
+   "mf1": 0.152855,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->human": {
+   "acc": 0.1715,
+   "mf1": 0.150798,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "mouse->zebrafish": {
+   "acc": 0.2622,
+   "mf1": 0.222088,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->mouse": {
+   "acc": 0.5668,
+   "mf1": 0.424553,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  }
+ },
+ {
+  "tag": "seed-3",
+  "seed": 3,
+  "elapsed_sec": 26.5,
+  "human->mouse": {
+   "acc": 0.8578,
+   "mf1": 0.647649,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  },
+  "mouse->human": {
+   "acc": 0.7395,
+   "mf1": 0.672398,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "human->zebrafish": {
+   "acc": 0.1795,
+   "mf1": 0.161118,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->human": {
+   "acc": 0.1774,
+   "mf1": 0.155301,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "mouse->zebrafish": {
+   "acc": 0.2668,
+   "mf1": 0.215586,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->mouse": {
+   "acc": 0.5701,
+   "mf1": 0.424774,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  }
+ },
+ {
+  "tag": "seed-4",
+  "seed": 4,
+  "elapsed_sec": 28.0,
+  "human->mouse": {
+   "acc": 0.8591,
+   "mf1": 0.644009,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  },
+  "mouse->human": {
+   "acc": 0.733,
+   "mf1": 0.657374,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "human->zebrafish": {
+   "acc": 0.1788,
+   "mf1": 0.152287,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->human": {
+   "acc": 0.1754,
+   "mf1": 0.154868,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "mouse->zebrafish": {
+   "acc": 0.2648,
+   "mf1": 0.220685,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->mouse": {
+   "acc": 0.5754,
+   "mf1": 0.429397,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  }
+ },
+ {
+  "tag": "seed-5",
+  "seed": 5,
+  "elapsed_sec": 29.7,
+  "human->mouse": {
+   "acc": 0.8585,
+   "mf1": 0.642564,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  },
+  "mouse->human": {
+   "acc": 0.7323,
+   "mf1": 0.647291,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "human->zebrafish": {
+   "acc": 0.1855,
+   "mf1": 0.171067,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->human": {
+   "acc": 0.18,
+   "mf1": 0.157317,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "mouse->zebrafish": {
+   "acc": 0.2655,
+   "mf1": 0.21622,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->mouse": {
+   "acc": 0.5841,
+   "mf1": 0.43863,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  }
+ },
+ {
+  "tag": "seed-6",
+  "seed": 6,
+  "elapsed_sec": 27.2,
+  "human->mouse": {
+   "acc": 0.8605,
+   "mf1": 0.652378,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  },
+  "mouse->human": {
+   "acc": 0.7363,
+   "mf1": 0.656888,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "human->zebrafish": {
+   "acc": 0.1815,
+   "mf1": 0.155371,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->human": {
+   "acc": 0.1774,
+   "mf1": 0.154969,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "mouse->zebrafish": {
+   "acc": 0.2602,
+   "mf1": 0.212949,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->mouse": {
+   "acc": 0.5821,
+   "mf1": 0.419105,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  }
+ },
+ {
+  "tag": "seed-7",
+  "seed": 7,
+  "elapsed_sec": 27.1,
+  "human->mouse": {
+   "acc": 0.8571,
+   "mf1": 0.636446,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  },
+  "mouse->human": {
+   "acc": 0.7363,
+   "mf1": 0.653272,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "human->zebrafish": {
+   "acc": 0.1821,
+   "mf1": 0.153063,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->human": {
+   "acc": 0.178,
+   "mf1": 0.154149,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "mouse->zebrafish": {
+   "acc": 0.2655,
+   "mf1": 0.221869,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->mouse": {
+   "acc": 0.5767,
+   "mf1": 0.416638,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  }
+ },
+ {
+  "tag": "seed-8",
+  "seed": 8,
+  "elapsed_sec": 27.2,
+  "human->mouse": {
+   "acc": 0.8558,
+   "mf1": 0.641919,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  },
+  "mouse->human": {
+   "acc": 0.733,
+   "mf1": 0.651383,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "human->zebrafish": {
+   "acc": 0.1821,
+   "mf1": 0.152581,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->human": {
+   "acc": 0.1702,
+   "mf1": 0.149205,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "mouse->zebrafish": {
+   "acc": 0.2648,
+   "mf1": 0.208509,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->mouse": {
+   "acc": 0.5781,
+   "mf1": 0.439374,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  }
+ },
+ {
+  "tag": "seed-9",
+  "seed": 9,
+  "elapsed_sec": 26.9,
+  "human->mouse": {
+   "acc": 0.8578,
+   "mf1": 0.644666,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  },
+  "mouse->human": {
+   "acc": 0.7376,
+   "mf1": 0.658564,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "human->zebrafish": {
+   "acc": 0.1888,
+   "mf1": 0.177884,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->human": {
+   "acc": 0.1767,
+   "mf1": 0.155612,
+   "n_q": 1528,
+   "n_q_total": 1528,
+   "majority": 0.3115
+  },
+  "mouse->zebrafish": {
+   "acc": 0.2648,
+   "mf1": 0.217386,
+   "n_q": 1499,
+   "n_q_total": 1543,
+   "majority": 0.3976
+  },
+  "zebrafish->mouse": {
+   "acc": 0.5827,
+   "mf1": 0.433347,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "majority": 0.4817
+  }
+ }
+]

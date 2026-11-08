@@ -1,0 +1,37 @@
+{
+ "manifest.json": {
+  "status": "byte_exact",
+  "variant": "no_trailing_newline",
+  "sha256": "84267bd78bfe59ac60a22d1727a1f5398561e3e3d7bc53a50e43785fbeff8407"
+ },
+ "sha256.tsv": {
+  "status": "content_only_sha_mismatch",
+  "variants_tried": [
+   "no_trailing_newline",
+   "trailing_newline"
+  ],
+  "target_sha256": "c84dd3780cb0db09f54ef4020a4e1e6ad91aef72433c949079634f6fcc35d687",
+  "best_local_sha256": "06be567bb214a854287d03edf5dba22ea97f0e877ab13df5689cfc6b13773271"
+ },
+ "environment.txt": {
+  "status": "byte_exact",
+  "variant": "trailing_newline",
+  "sha256": "2c9dcb5d0ae3a4f707af7d8bc995858f5270e8f02c959458990711a031457039"
+ },
+ "command.txt": {
+  "status": "byte_exact",
+  "variant": "trailing_newline",
+  "sha256": "0e5ee3dc6240be40d2f60f0bb7f93a6a739be2a626e5a6c042dc1700729359d6"
+ },
+ "_counts": {
+  "pred_count": "18",
+  "conf_count": "18",
+  "hm_coarse_sample_rows": "1535",
+  "sample_bytes": 2222
+ },
+ "v99_mapping_embedded.json": {
+  "status": "byte_exact",
+  "variant": "local scripts/v99_mapping_embedded.json",
+  "sha256": "d92e32aa788672492febe8cd428beac71ba69fd99df68c7f362cba2e553eea4a"
+ }
+}

@@ -1,0 +1,33 @@
+{
+ "protocol": "transductive_formal_reassessment",
+ "seed": 0,
+ "k": 15,
+ "nperm": 200,
+ "n_latent": 10,
+ "max_epochs": 50,
+ "min_shared": 100,
+ "script_sha256": "f894119fd4b8d91731b6e54e1a1d698ae495096a8bbbf2f8d2bbb751c55c2bfd",
+ "mapping_sha256": "be9857354778535b76d1884d004c54691dc5ff2daa7b098d71dc719daf583165",
+ "scvi_version": "1.1.6.post2",
+ "torch_version": "2.6.0+cu124",
+ "input_sha256": {
+  "local_human_s.h5ad": "af41618b6941d2f1eacc7535e34a73b08e57cce78060c9f6d0df15984e57c633",
+  "local_mouse_s.h5ad": "7fda583d59d3767ee0d61c741ae2ab89dc0c43f5d587caf2f768b4d8a12d9d2e",
+  "local_zebrafish_s.h5ad": "6b1e8798d5f848acd6340486836ff2e3a8393408e282b6b0c50695b13e49a879",
+  "orth-MGI-HOM.rpt": "b8220b7689f11066c3d82e0f24c23ba3c7a30ad26a0f24ab639357aebc09582d",
+  "orth-human-orthos.txt": "a921e188574b190a10916f3722ec0ed9dd7726151fcf6044b29434bca57a19a0",
+  "orth-mouse-orthos.txt": "36218cade856252444e4e2acf57748a58f63c1d6f34cf51ede2afd8f52959ea6",
+  "heart-celltype-map-v1.tsv": "be9857354778535b76d1884d004c54691dc5ff2daa7b098d71dc719daf583165"
+ },
+ "n_genes": 9018,
+ "species_counts": {
+  "human": 1528,
+  "mouse": 1535,
+  "zebrafish": 1543
+ },
+ "utc": "2026-10-19T03:33:41.476192+00:00",
+ "numpy_version": "1.23.5",
+ "anndata_version": "0.10.8",
+ "scanpy_version": "1.9.3",
+ "sklearn_version": "1.6.1"
+}

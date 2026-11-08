@@ -1,0 +1,673 @@
+{
+ "source_dir": "C:\\Users\\28417\\.zcode\\workspace\\default\\opca_recovered",
+ "frozen_metrics_sha256": "b2b3ac6bc37c410841bdcbbd968159246e1990db47d02b8fa11844527d66c725",
+ "checks": [
+  {
+   "check": "field:human->mouse/exact/acc",
+   "ok": true,
+   "detail": "new=0.7824 frozen=0.7824"
+  },
+  {
+   "check": "field:human->mouse/exact/majority",
+   "ok": true,
+   "detail": "new=0.4528 frozen=0.4528"
+  },
+  {
+   "check": "field:human->mouse/exact/shuffle_p",
+   "ok": true,
+   "detail": "new=0.0 frozen=0.0"
+  },
+  {
+   "check": "field:human->mouse/exact/n_q",
+   "ok": true,
+   "detail": "new=1535 frozen=1535"
+  },
+  {
+   "check": "field:human->mouse/exact/coverage_q",
+   "ok": true,
+   "detail": "new=1.0 frozen=1.0"
+  },
+  {
+   "check": "independent:human->mouse/exact/diag_eq_round_acc_x_nq",
+   "ok": true,
+   "detail": "diag=1201 n_q=1535 acc=0.7824"
+  },
+  {
+   "check": "independent:human->mouse/exact/diag_matches_frozen",
+   "ok": true,
+   "detail": "new_diag=1201 frozen_diag=1201"
+  },
+  {
+   "check": "field:human->mouse/coarse/acc",
+   "ok": true,
+   "detail": "new=0.8618 frozen=0.8618"
+  },
+  {
+   "check": "field:human->mouse/coarse/majority",
+   "ok": true,
+   "detail": "new=0.4817 frozen=0.4817"
+  },
+  {
+   "check": "field:human->mouse/coarse/shuffle_p",
+   "ok": true,
+   "detail": "new=0.0 frozen=0.0"
+  },
+  {
+   "check": "field:human->mouse/coarse/n_q",
+   "ok": true,
+   "detail": "new=1505 frozen=1505"
+  },
+  {
+   "check": "field:human->mouse/coarse/coverage_q",
+   "ok": true,
+   "detail": "new=0.9805 frozen=0.9805"
+  },
+  {
+   "check": "independent:human->mouse/coarse/diag_eq_round_acc_x_nq",
+   "ok": true,
+   "detail": "diag=1297 n_q=1505 acc=0.8618"
+  },
+  {
+   "check": "independent:human->mouse/coarse/diag_matches_frozen",
+   "ok": true,
+   "detail": "new_diag=1297 frozen_diag=1297"
+  },
+  {
+   "check": "field:human->mouse/fine/acc",
+   "ok": true,
+   "detail": "new=0.798 frozen=0.798"
+  },
+  {
+   "check": "field:human->mouse/fine/majority",
+   "ok": true,
+   "detail": "new=0.4618 frozen=0.4618"
+  },
+  {
+   "check": "field:human->mouse/fine/shuffle_p",
+   "ok": true,
+   "detail": "new=0.0 frozen=0.0"
+  },
+  {
+   "check": "field:human->mouse/fine/n_q",
+   "ok": true,
+   "detail": "new=1505 frozen=1505"
+  },
+  {
+   "check": "field:human->mouse/fine/coverage_q",
+   "ok": true,
+   "detail": "new=0.9805 frozen=0.9805"
+  },
+  {
+   "check": "independent:human->mouse/fine/diag_eq_round_acc_x_nq",
+   "ok": true,
+   "detail": "diag=1201 n_q=1505 acc=0.798"
+  },
+  {
+   "check": "independent:human->mouse/fine/diag_matches_frozen",
+   "ok": true,
+   "detail": "new_diag=1201 frozen_diag=1201"
+  },
+  {
+   "check": "field:mouse->human/exact/acc",
+   "ok": true,
+   "detail": "new=0.4084 frozen=0.4084"
+  },
+  {
+   "check": "field:mouse->human/exact/majority",
+   "ok": true,
+   "detail": "new=0.2526 frozen=0.2526"
+  },
+  {
+   "check": "field:mouse->human/exact/shuffle_p",
+   "ok": true,
+   "detail": "new=0.0 frozen=0.0"
+  },
+  {
+   "check": "field:mouse->human/exact/n_q",
+   "ok": true,
+   "detail": "new=1528 frozen=1528"
+  },
+  {
+   "check": "field:mouse->human/exact/coverage_q",
+   "ok": true,
+   "detail": "new=1.0 frozen=1.0"
+  },
+  {
+   "check": "independent:mouse->human/exact/diag_eq_round_acc_x_nq",
+   "ok": true,
+   "detail": "diag=624 n_q=1528 acc=0.4084"
+  },
+  {
+   "check": "independent:mouse->human/exact/diag_matches_frozen",
+   "ok": true,
+   "detail": "new_diag=624 frozen_diag=624"
+  },
+  {
+   "check": "field:mouse->human/coarse/acc",
+   "ok": true,
+   "detail": "new=0.7369 frozen=0.7369"
+  },
+  {
+   "check": "field:mouse->human/coarse/majority",
+   "ok": true,
+   "detail": "new=0.3115 frozen=0.3115"
+  },
+  {
+   "check": "field:mouse->human/coarse/shuffle_p",
+   "ok": true,
+   "detail": "new=0.0 frozen=0.0"
+  },
+  {
+   "check": "field:mouse->human/coarse/n_q",
+   "ok": true,
+   "detail": "new=1528 frozen=1528"
+  },
+  {
+   "check": "field:mouse->human/coarse/coverage_q",
+   "ok": true,
+   "detail": "new=1.0 frozen=1.0"
+  },
+  {
+   "check": "independent:mouse->human/coarse/diag_eq_round_acc_x_nq",
+   "ok": true,
+   "detail": "diag=1126 n_q=1528 acc=0.7369"
+  },
+  {
+   "check": "independent:mouse->human/coarse/diag_matches_frozen",
+   "ok": true,
+   "detail": "new_diag=1126 frozen_diag=1126"
+  },
+  {
+   "check": "field:mouse->human/fine/acc",
+   "ok": true,
+   "detail": "new=0.4103 frozen=0.4103"
+  },
+  {
+   "check": "field:mouse->human/fine/majority",
+   "ok": true,
+   "detail": "new=0.2526 frozen=0.2526"
+  },
+  {
+   "check": "field:mouse->human/fine/shuffle_p",
+   "ok": true,
+   "detail": "new=0.0 frozen=0.0"
+  },
+  {
+   "check": "field:mouse->human/fine/n_q",
+   "ok": true,
+   "detail": "new=1528 frozen=1528"
+  },
+  {
+   "check": "field:mouse->human/fine/coverage_q",
+   "ok": true,
+   "detail": "new=1.0 frozen=1.0"
+  },
+  {
+   "check": "independent:mouse->human/fine/diag_eq_round_acc_x_nq",
+   "ok": true,
+   "detail": "diag=627 n_q=1528 acc=0.4103"
+  },
+  {
+   "check": "independent:mouse->human/fine/diag_matches_frozen",
+   "ok": true,
+   "detail": "new_diag=627 frozen_diag=627"
+  },
+  {
+   "check": "field:human->zebrafish/exact/acc",
+   "ok": false,
+   "detail": "new=0.1529 frozen=0.1698"
+  },
+  {
+   "check": "field:human->zebrafish/exact/majority",
+   "ok": true,
+   "detail": "new=0.3863 frozen=0.3863"
+  },
+  {
+   "check": "field:human->zebrafish/exact/shuffle_p",
+   "ok": true,
+   "detail": "new=0.0 frozen=0.0"
+  },
+  {
+   "check": "field:human->zebrafish/exact/n_q",
+   "ok": true,
+   "detail": "new=1543 frozen=1543"
+  },
+  {
+   "check": "field:human->zebrafish/exact/coverage_q",
+   "ok": true,
+   "detail": "new=1.0 frozen=1.0"
+  },
+  {
+   "check": "independent:human->zebrafish/exact/diag_eq_round_acc_x_nq",
+   "ok": true,
+   "detail": "diag=236 n_q=1543 acc=0.1529"
+  },
+  {
+   "check": "independent:human->zebrafish/exact/diag_matches_frozen",
+   "ok": false,
+   "detail": "new_diag=236 frozen_diag=262"
+  },
+  {
+   "check": "field:human->zebrafish/coarse/acc",
+   "ok": false,
+   "detail": "new=0.1801 frozen=0.1961"
+  },
+  {
+   "check": "field:human->zebrafish/coarse/majority",
+   "ok": true,
+   "detail": "new=0.3976 frozen=0.3976"
+  },
+  {
+   "check": "field:human->zebrafish/coarse/shuffle_p",
+   "ok": true,
+   "detail": "new=0.0 frozen=0.0"
+  },
+  {
+   "check": "field:human->zebrafish/coarse/n_q",
+   "ok": true,
+   "detail": "new=1499 frozen=1499"
+  },
+  {
+   "check": "field:human->zebrafish/coarse/coverage_q",
+   "ok": true,
+   "detail": "new=0.9715 frozen=0.9715"
+  },
+  {
+   "check": "independent:human->zebrafish/coarse/diag_eq_round_acc_x_nq",
+   "ok": true,
+   "detail": "diag=270 n_q=1499 acc=0.1801"
+  },
+  {
+   "check": "independent:human->zebrafish/coarse/diag_matches_frozen",
+   "ok": false,
+   "detail": "new_diag=270 frozen_diag=294"
+  },
+  {
+   "check": "field:human->zebrafish/fine/acc",
+   "ok": false,
+   "detail": "new=0.1648 frozen=0.1801"
+  },
+  {
+   "check": "field:human->zebrafish/fine/majority",
+   "ok": true,
+   "detail": "new=0.3976 frozen=0.3976"
+  },
+  {
+   "check": "field:human->zebrafish/fine/shuffle_p",
+   "ok": true,
+   "detail": "new=0.0 frozen=0.0"
+  },
+  {
+   "check": "field:human->zebrafish/fine/n_q",
+   "ok": true,
+   "detail": "new=1499 frozen=1499"
+  },
+  {
+   "check": "field:human->zebrafish/fine/coverage_q",
+   "ok": true,
+   "detail": "new=0.9715 frozen=0.9715"
+  },
+  {
+   "check": "independent:human->zebrafish/fine/diag_eq_round_acc_x_nq",
+   "ok": true,
+   "detail": "diag=247 n_q=1499 acc=0.1648"
+  },
+  {
+   "check": "independent:human->zebrafish/fine/diag_matches_frozen",
+   "ok": false,
+   "detail": "new_diag=247 frozen_diag=270"
+  },
+  {
+   "check": "field:mouse->zebrafish/exact/acc",
+   "ok": false,
+   "detail": "new=0.1581 frozen=0.1659"
+  },
+  {
+   "check": "field:mouse->zebrafish/exact/majority",
+   "ok": true,
+   "detail": "new=0.3863 frozen=0.3863"
+  },
+  {
+   "check": "field:mouse->zebrafish/exact/shuffle_p",
+   "ok": false,
+   "detail": "new=0.06 frozen=0.02"
+  },
+  {
+   "check": "field:mouse->zebrafish/exact/n_q",
+   "ok": true,
+   "detail": "new=1543 frozen=1543"
+  },
+  {
+   "check": "field:mouse->zebrafish/exact/coverage_q",
+   "ok": true,
+   "detail": "new=1.0 frozen=1.0"
+  },
+  {
+   "check": "independent:mouse->zebrafish/exact/diag_eq_round_acc_x_nq",
+   "ok": true,
+   "detail": "diag=244 n_q=1543 acc=0.1581"
+  },
+  {
+   "check": "independent:mouse->zebrafish/exact/diag_matches_frozen",
+   "ok": false,
+   "detail": "new_diag=244 frozen_diag=256"
+  },
+  {
+   "check": "field:mouse->zebrafish/coarse/acc",
+   "ok": false,
+   "detail": "new=0.2608 frozen=0.2755"
+  },
+  {
+   "check": "field:mouse->zebrafish/coarse/majority",
+   "ok": true,
+   "detail": "new=0.3976 frozen=0.3976"
+  },
+  {
+   "check": "field:mouse->zebrafish/coarse/shuffle_p",
+   "ok": true,
+   "detail": "new=0.0 frozen=0.0"
+  },
+  {
+   "check": "field:mouse->zebrafish/coarse/n_q",
+   "ok": true,
+   "detail": "new=1499 frozen=1499"
+  },
+  {
+   "check": "field:mouse->zebrafish/coarse/coverage_q",
+   "ok": true,
+   "detail": "new=0.9715 frozen=0.9715"
+  },
+  {
+   "check": "independent:mouse->zebrafish/coarse/diag_eq_round_acc_x_nq",
+   "ok": true,
+   "detail": "diag=391 n_q=1499 acc=0.2608"
+  },
+  {
+   "check": "independent:mouse->zebrafish/coarse/diag_matches_frozen",
+   "ok": false,
+   "detail": "new_diag=391 frozen_diag=413"
+  },
+  {
+   "check": "field:mouse->zebrafish/fine/acc",
+   "ok": false,
+   "detail": "new=0.1661 frozen=0.1748"
+  },
+  {
+   "check": "field:mouse->zebrafish/fine/majority",
+   "ok": true,
+   "detail": "new=0.3976 frozen=0.3976"
+  },
+  {
+   "check": "field:mouse->zebrafish/fine/shuffle_p",
+   "ok": false,
+   "detail": "new=0.01 frozen=0.0"
+  },
+  {
+   "check": "field:mouse->zebrafish/fine/n_q",
+   "ok": true,
+   "detail": "new=1499 frozen=1499"
+  },
+  {
+   "check": "field:mouse->zebrafish/fine/coverage_q",
+   "ok": true,
+   "detail": "new=0.9715 frozen=0.9715"
+  },
+  {
+   "check": "independent:mouse->zebrafish/fine/diag_eq_round_acc_x_nq",
+   "ok": true,
+   "detail": "diag=249 n_q=1499 acc=0.1661"
+  },
+  {
+   "check": "independent:mouse->zebrafish/fine/diag_matches_frozen",
+   "ok": false,
+   "detail": "new_diag=249 frozen_diag=262"
+  },
+  {
+   "check": "field:zebrafish->human/exact/acc",
+   "ok": false,
+   "detail": "new=0.1374 frozen=0.1453"
+  },
+  {
+   "check": "field:zebrafish->human/exact/majority",
+   "ok": true,
+   "detail": "new=0.2526 frozen=0.2526"
+  },
+  {
+   "check": "field:zebrafish->human/exact/shuffle_p",
+   "ok": true,
+   "detail": "new=0.0 frozen=0.0"
+  },
+  {
+   "check": "field:zebrafish->human/exact/n_q",
+   "ok": true,
+   "detail": "new=1528 frozen=1528"
+  },
+  {
+   "check": "field:zebrafish->human/exact/coverage_q",
+   "ok": true,
+   "detail": "new=1.0 frozen=1.0"
+  },
+  {
+   "check": "independent:zebrafish->human/exact/diag_eq_round_acc_x_nq",
+   "ok": true,
+   "detail": "diag=210 n_q=1528 acc=0.1374"
+  },
+  {
+   "check": "independent:zebrafish->human/exact/diag_matches_frozen",
+   "ok": false,
+   "detail": "new_diag=210 frozen_diag=222"
+  },
+  {
+   "check": "field:zebrafish->human/coarse/acc",
+   "ok": false,
+   "detail": "new=0.1728 frozen=0.1813"
+  },
+  {
+   "check": "field:zebrafish->human/coarse/majority",
+   "ok": true,
+   "detail": "new=0.3115 frozen=0.3115"
+  },
+  {
+   "check": "field:zebrafish->human/coarse/shuffle_p",
+   "ok": true,
+   "detail": "new=0.0 frozen=0.0"
+  },
+  {
+   "check": "field:zebrafish->human/coarse/n_q",
+   "ok": true,
+   "detail": "new=1528 frozen=1528"
+  },
+  {
+   "check": "field:zebrafish->human/coarse/coverage_q",
+   "ok": true,
+   "detail": "new=1.0 frozen=1.0"
+  },
+  {
+   "check": "independent:zebrafish->human/coarse/diag_eq_round_acc_x_nq",
+   "ok": true,
+   "detail": "diag=264 n_q=1528 acc=0.1728"
+  },
+  {
+   "check": "independent:zebrafish->human/coarse/diag_matches_frozen",
+   "ok": false,
+   "detail": "new_diag=264 frozen_diag=277"
+  },
+  {
+   "check": "field:zebrafish->human/fine/acc",
+   "ok": false,
+   "detail": "new=0.1597 frozen=0.1695"
+  },
+  {
+   "check": "field:zebrafish->human/fine/majority",
+   "ok": true,
+   "detail": "new=0.2526 frozen=0.2526"
+  },
+  {
+   "check": "field:zebrafish->human/fine/shuffle_p",
+   "ok": true,
+   "detail": "new=0.0 frozen=0.0"
+  },
+  {
+   "check": "field:zebrafish->human/fine/n_q",
+   "ok": true,
+   "detail": "new=1528 frozen=1528"
+  },
+  {
+   "check": "field:zebrafish->human/fine/coverage_q",
+   "ok": true,
+   "detail": "new=1.0 frozen=1.0"
+  },
+  {
+   "check": "independent:zebrafish->human/fine/diag_eq_round_acc_x_nq",
+   "ok": true,
+   "detail": "diag=244 n_q=1528 acc=0.1597"
+  },
+  {
+   "check": "independent:zebrafish->human/fine/diag_matches_frozen",
+   "ok": false,
+   "detail": "new_diag=244 frozen_diag=259"
+  },
+  {
+   "check": "field:zebrafish->mouse/exact/acc",
+   "ok": false,
+   "detail": "new=0.4717 frozen=0.4769"
+  },
+  {
+   "check": "field:zebrafish->mouse/exact/majority",
+   "ok": true,
+   "detail": "new=0.4528 frozen=0.4528"
+  },
+  {
+   "check": "field:zebrafish->mouse/exact/shuffle_p",
+   "ok": true,
+   "detail": "new=0.0 frozen=0.0"
+  },
+  {
+   "check": "field:zebrafish->mouse/exact/n_q",
+   "ok": true,
+   "detail": "new=1535 frozen=1535"
+  },
+  {
+   "check": "field:zebrafish->mouse/exact/coverage_q",
+   "ok": true,
+   "detail": "new=1.0 frozen=1.0"
+  },
+  {
+   "check": "independent:zebrafish->mouse/exact/diag_eq_round_acc_x_nq",
+   "ok": true,
+   "detail": "diag=724 n_q=1535 acc=0.4717"
+  },
+  {
+   "check": "independent:zebrafish->mouse/exact/diag_matches_frozen",
+   "ok": false,
+   "detail": "new_diag=724 frozen_diag=732"
+  },
+  {
+   "check": "field:zebrafish->mouse/coarse/acc",
+   "ok": false,
+   "detail": "new=0.5754 frozen=0.5761"
+  },
+  {
+   "check": "field:zebrafish->mouse/coarse/majority",
+   "ok": true,
+   "detail": "new=0.4817 frozen=0.4817"
+  },
+  {
+   "check": "field:zebrafish->mouse/coarse/shuffle_p",
+   "ok": true,
+   "detail": "new=0.0 frozen=0.0"
+  },
+  {
+   "check": "field:zebrafish->mouse/coarse/n_q",
+   "ok": true,
+   "detail": "new=1505 frozen=1505"
+  },
+  {
+   "check": "field:zebrafish->mouse/coarse/coverage_q",
+   "ok": true,
+   "detail": "new=0.9805 frozen=0.9805"
+  },
+  {
+   "check": "independent:zebrafish->mouse/coarse/diag_eq_round_acc_x_nq",
+   "ok": true,
+   "detail": "diag=866 n_q=1505 acc=0.5754"
+  },
+  {
+   "check": "independent:zebrafish->mouse/coarse/diag_matches_frozen",
+   "ok": false,
+   "detail": "new_diag=866 frozen_diag=867"
+  },
+  {
+   "check": "field:zebrafish->mouse/fine/acc",
+   "ok": false,
+   "detail": "new=0.4977 frozen=0.501"
+  },
+  {
+   "check": "field:zebrafish->mouse/fine/majority",
+   "ok": true,
+   "detail": "new=0.4618 frozen=0.4618"
+  },
+  {
+   "check": "field:zebrafish->mouse/fine/shuffle_p",
+   "ok": true,
+   "detail": "new=0.0 frozen=0.0"
+  },
+  {
+   "check": "field:zebrafish->mouse/fine/n_q",
+   "ok": true,
+   "detail": "new=1505 frozen=1505"
+  },
+  {
+   "check": "field:zebrafish->mouse/fine/coverage_q",
+   "ok": true,
+   "detail": "new=0.9805 frozen=0.9805"
+  },
+  {
+   "check": "independent:zebrafish->mouse/fine/diag_eq_round_acc_x_nq",
+   "ok": true,
+   "detail": "diag=749 n_q=1505 acc=0.4977"
+  },
+  {
+   "check": "independent:zebrafish->mouse/fine/diag_matches_frozen",
+   "ok": false,
+   "detail": "new_diag=749 frozen_diag=754"
+  },
+  {
+   "check": "byte_identical_files",
+   "ok": false,
+   "detail": "same=0/36 diff=[('hu-\\uf03emo.json', 'frozen missing'), ('hu-\\uf03ezf.json', 'frozen missing'), ('mo-\\uf03ehu.json', 'frozen missing'), ('mo-\\uf03ezf.json', 'frozen missing'), ('zf-\\uf03ehu.json', 'frozen missing')]"
+  }
+ ],
+ "passed": 100,
+ "total": 127,
+ "byte_identical_files": 0,
+ "failed_checks": [
+  "field:human->zebrafish/exact/acc",
+  "independent:human->zebrafish/exact/diag_matches_frozen",
+  "field:human->zebrafish/coarse/acc",
+  "independent:human->zebrafish/coarse/diag_matches_frozen",
+  "field:human->zebrafish/fine/acc",
+  "independent:human->zebrafish/fine/diag_matches_frozen",
+  "field:mouse->zebrafish/exact/acc",
+  "field:mouse->zebrafish/exact/shuffle_p",
+  "independent:mouse->zebrafish/exact/diag_matches_frozen",
+  "field:mouse->zebrafish/coarse/acc",
+  "independent:mouse->zebrafish/coarse/diag_matches_frozen",
+  "field:mouse->zebrafish/fine/acc",
+  "field:mouse->zebrafish/fine/shuffle_p",
+  "independent:mouse->zebrafish/fine/diag_matches_frozen",
+  "field:zebrafish->human/exact/acc",
+  "independent:zebrafish->human/exact/diag_matches_frozen",
+  "field:zebrafish->human/coarse/acc",
+  "independent:zebrafish->human/coarse/diag_matches_frozen",
+  "field:zebrafish->human/fine/acc",
+  "independent:zebrafish->human/fine/diag_matches_frozen",
+  "field:zebrafish->mouse/exact/acc",
+  "independent:zebrafish->mouse/exact/diag_matches_frozen",
+  "field:zebrafish->mouse/coarse/acc",
+  "independent:zebrafish->mouse/coarse/diag_matches_frozen",
+  "field:zebrafish->mouse/fine/acc",
+  "independent:zebrafish->mouse/fine/diag_matches_frozen",
+  "byte_identical_files"
+ ]
+}

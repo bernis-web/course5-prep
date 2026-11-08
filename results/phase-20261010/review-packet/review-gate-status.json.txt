@@ -1,0 +1,121 @@
+{
+  "phase": "phase-20261010",
+  "gate": "phase0-claude-flash-review",
+  "status": "passed",
+  "observed_at": "2026-10-10T16:58:03+08:00",
+  "sha_check": {
+    "expected_rows": 11,
+    "checked": 11,
+    "mismatches": 0
+  },
+  "task1": "completed",
+  "task2": "not_started",
+  "dcs_submission": false,
+  "training": false,
+  "gpu": false,
+  "recharge": false,
+  "reason": "Phase 0 gate passed at external review round 4. Task 1 (isolated human->mouse / coarse A-smoke) then ran and reproduced the frozen numbers exactly; its stage report passed external review round 3. The earlier 'Claude CLI unavailable' reading was a misdiagnosis: claude -p exits 0; the unrecognized_model line is a stderr warning, not a failure.",
+  "external_review": {
+    "channel": "claude -p (Claude Code 2.1.296, configured model deepseek-v4.1-flash)",
+    "tool_policy": "allowedTools=Read,Glob,Grep,Bash,PowerShell disallowedTools=Edit,Write,NotebookEdit",
+    "phase0_rounds": [
+      {
+        "round": 1,
+        "file": "docs/execution/20261010-phase0-review-external-claude.md",
+        "verdict": "REVISE",
+        "found": [
+          "C1: __file__ pointed at A-smoke/_patched_source.py, so BASE resolved to results/phase-20261010 and every input path was missing - the wrapper could never have run",
+          "C2: dry-run proof boundary overstated",
+          "C3: SATURN ref_labels wording too strong (train-saturn.py has a default-off --use_ref_labels switch)",
+          "C4: recovered sha256.tsv self-entry inconsistent",
+          "C5: SAMap environment.txt omitted from the inventory description"
+        ]
+      },
+      {
+        "round": 2,
+        "file": "docs/execution/20261010-phase0-review-external-claude-r2.md",
+        "verdict": "PASS",
+        "note": "independently exec'd the patched source with a deliberately forged __file__; recomputed the C4 statistics (46 rows / 23 match / 1 mismatch / 6 gz-only / 16 missing)"
+      },
+      {
+        "round": 3,
+        "file": "docs/execution/20261010-phase0-review-external-claude-r3.md",
+        "verdict": "REVISE",
+        "found": [
+          "F1: _patched_source.py was written with write_text, so the manifest hashed CRLF disk bytes while wrapper-provenance.json recorded the LF text hash - two different values both labelled 'patched source hash'"
+        ]
+      },
+      {
+        "round": 4,
+        "file": "docs/execution/20261010-phase0-review-external-claude-r4.md",
+        "verdict": "PASS",
+        "note": "F1 closed, both residuals closed, patch set and frozen hashes undrifted, read-only boundary intact"
+      }
+    ],
+    "task1_rounds": [
+      {
+        "round": 1,
+        "file": "docs/execution/20261010-task1-review-external-claude.md",
+        "verdict": "REVISE",
+        "found": [
+          "D1: report claimed the top-level predictions.json / confusion.json copies were CRLF-translated and not byte-identical; measurement showed all four files CR=0 / LF=0 and byte-identical (json.dumps emits no newlines, so the newline translation is an identity operation)",
+          "D2: report said 12 files but listed 13; disk has 13"
+        ]
+      },
+      {
+        "round": 2,
+        "file": "docs/execution/20261010-task1-review-external-claude-r2.md",
+        "verdict": "REVISE",
+        "found": [
+          "D3: report said 1505 per-cell predictions; the file has 1535 rows (1505 included + 30 excluded) - n_q vs n_q_total conflated"
+        ]
+      },
+      {
+        "round": 3,
+        "file": "docs/execution/20261010-task1-review-external-claude-r3.md",
+        "verdict": "PASS",
+        "note": "recomputed every number in the report against disk and frozen registrations; no new errors; the only non-reproducible item is the externally measured 10.5 s end-to-end timing, which contradicts nothing"
+      }
+    ],
+    "non_blocking_observations": [
+      "O1: scripts/__pycache__/ortholog_pca_task1_isolated.cpython-39.pyc exists from an import-based check; gitignored and covered by no declared hash",
+      "O2: CORRECTED after the actual Task 1 run - round 4 predicted the top-level predictions.json / confusion.json copies would be CRLF-translated and not byte-identical; that inference was wrong because json.dumps emits no newline characters, so all four files are byte-identical (CR=0, LF=0, same SHA-256). See docs/execution/20261010-task1-a-smoke-report.md section '更正' (D1).",
+      "O3: the F1 byte-hash assertion is a tautology by construction; treat it as a regression guard, not as independent verification",
+      "O4: frozen_metrics:parse is only recorded on exception; a non-dict top level is still caught by frozen_metrics:has_... recording FAIL"
+    ]
+  },
+  "task1_wrapper": {
+    "path": "scripts/ortholog_pca_task1_isolated.py",
+    "sha256": "71ab5642ad8e8a964717ad738c7f60524f9d1372fcc5bbc534cf63c64d7002ed",
+    "authoritative_source": "scripts/ortholog_pca_local_v1.py",
+    "authoritative_source_sha256": "6582d8736c3570f3de23ed36cb57c9cf58f6190c4730c3d39e29928415fd0c44",
+    "patched_source_sha256": "c56d3ee7607cf4a5b20af446ba279390f1cef3ba361e7b76d55ec3871367ba55",
+    "patches": 6,
+    "dry_run_checks": "15/15",
+    "output_dir": "results/phase-20261010/A-smoke/",
+    "output_dir_exists": true
+  },
+  "task1_result": {
+    "report": "docs/execution/20261010-task1-a-smoke-report.md",
+    "output_dir": "results/phase-20261010/A-smoke/",
+    "files": 13,
+    "exit_code": 0,
+    "elapsed_sec_script": 9.8,
+    "verification": "16/16 checks pass, failed_checks: []",
+    "all_numeric_fields_abs_diff": 0.0,
+    "byte_identical_to_frozen": [
+      "confusion/coarse_human_to_mouse.json (167da767a21c8688b77dfdd210f17d3bdddec2077182c11648b5ed0e3533580d)",
+      "predictions/coarse_human_to_mouse.json (dc729820b3a442d676cc17913f2e79e852ce795d4517730eb10807d145f10847)"
+    ],
+    "label": "confirmed-for-recompute",
+    "scope": "human->mouse / coarse only; still transductive / in-sample; not inductive, not generalisation, not a cross-method comparison"
+  },
+  "frozen_root_untouched": {
+    "path": "results/pilot-v1",
+    "files_after_snapshot": 0,
+    "ortholog_pca_v98_metrics_sha256": "b2b3ac6bc37c410841bdcbbd968159246e1990db47d02b8fa11844527d66c725"
+  },
+  "next_action": "Task 2 (full A-tier local recompute) may be prepared only after the full-mode overwrite risk is closed: scripts/ortholog_pca_local_v1.py (full mode, line 158) and scripts/run_samap_compliant_v98.py:249 still write into results/pilot-v1 with no guard, so Task 2 needs an --out parameter or an equivalent isolated copy plus a hard stop when the target directory exists. Do not submit DCS, train, start GPU or recharge.",
+  "review_channel_check": "docs/execution/20261010-review-channel-check.md",
+  "preserve": "Do not modify or overwrite results/pilot-v1."
+}

@@ -1,0 +1,43 @@
+{
+  "project": "P20260920085640327",
+  "located_at": "2026-09-29",
+  "candidates": [
+    {
+      "taskName": "g5-v97g-rule-compliant-eval-1",
+      "batchId": "2104535560355926018",
+      "subtaskId": "2104535560372703234",
+      "status": "Failed",
+      "imageName": "SATURN--22",
+      "computingName": "1c 4g",
+      "createTime": "2026-09-28 19:35:53",
+      "finishTime": "2026-09-28 19:36:45",
+      "fingerprint": {
+        "final_anndata_sha256": "20cf807fcaa5e8ed9ac65a28d50e781c82c9c48cdac9b7a1820dcf74bdf5143f",
+        "representation": "obsm/macrogenes",
+        "shape": [4606, 1000],
+        "k": 15,
+        "distance": "cosine",
+        "seed": 0,
+        "coarse_fine_unmapped": "excluded_from_train_and_denominator_both_sides",
+        "note": "SHA 门在脚本内 assert 通过后才继续；EVAL3G 全量指标（六方向×三层+coverage+excluded）已完整打印到任务日志"
+      },
+      "verdict": "v97g 确认：SHA 门 + 协议指纹全部匹配。Failed 状态源于脚本收尾段退出码非零（打印完成后），指标行完整无缺"
+    },
+    {
+      "taskName": "g5-v97f-incore-eval-1",
+      "subtaskId": "2104517269960364034",
+      "status": "Completed",
+      "verdict": "排除：v97f 为全保留版（unmapped 未排除），非规则合规版"
+    },
+    {
+      "taskName": "g5-v97e-incore-eval-1 / g5-v97e-probe0-1",
+      "verdict": "排除：轴错误失败版 / 占位探针"
+    }
+  ],
+  "artifacts_on_disk": {
+    "eval_output": "/data/work/eval3_v97g_out.txt",
+    "script": "/data/work/eval3_v97g.py",
+    "bundle_dir": "/data/work/v97_out/",
+    "files_copy": "/Files/wheelhouse/v97_out/"
+  }
+}

@@ -30,3 +30,23 @@
 ---
 
 *发群时可附一句：数据（G1）+ 环境（G2 主体）都核验完了，接下来走 G3 审批就能开跑。*
+
+## 更新（2026-09-24）：SATURN 跨物种基准首轮数字
+
+三物种（人/鼠/斑马鱼心脏，真实 ESM2 嵌入，SATURN 1000 macrogenes）跨物种标签迁移（KNN15）：
+- human→mouse coarse **61.8%**（exact 47.5%；规则合规排除 74 个 unmapped 细胞后，v97g 协议）
+- mouse→zebrafish 20.9%，human→zebrafish 11.5%
+- zebrafish→mouse 6.7%，zebrafish→human 0.1%
+
+注：斑马鱼方向低主要因标签命名体系不同（精确匹配惩罚），同源类型映射后预计大幅提升（下一步）。物种内 scVI 基线不变（human 98.38 / mouse 98.12 / fish 92.51）。方案细节与产物路径见 saturn-smoke-evidence 文档。
+
+## 更新（2026-09-25 晚）：零整合基线对照 + 消融 + 稳定性
+
+在同一评估协议下（KNN15、统一映射表 v1【已冻结 sha256:be98…3165】、200 次置换检验）加入三个对照：
+
+1. **ortholog-PCA 零整合基线**（1:1 直系同源基因→PCA50）：6 方向中 5 方向显著优于 SATURN（human→mouse 80.9% vs 67.4%；zebrafish→mouse 79.5% vs 11.3%）。仅 mouse→zebrafish SATURN 胜出（31.2% vs 22.4%）。
+2. **ESM2 行置换消融**：打乱基因-嵌入对应后 human→mouse 从 67.4% 崩至 20.4%——SATURN 在哺乳动物对的增益来自真实蛋白同源信号。
+3. **seed 稳定性**：human→mouse 67.1±3.8（稳）；斑马鱼方向剧烈双峰（fish→mouse 11.3/48.8/8.3），单次运行不可信。
+4. **物种内 ceiling**：SATURN 潜空间 85.5/93.5/74.2，均低于 scVI（98.4/98.1/92.5）。
+
+一句话结论：低算力条件下，跨物种对齐信号主要由直系同源基因携带；SATURN 的蛋白嵌入捷径只在部分方向有真增益，且鱼方向不稳定。详细数据见 saturn-smoke-evidence 文档（git db49679）。

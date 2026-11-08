@@ -1,0 +1,35 @@
+{
+ "protocol_label": "transductive_formal_reassessment",
+ "variant": "FIXKEY-equiv: first-occurrence gene dedup + correct zebrafish mapping orientation",
+ "seed": 0,
+ "k": 15,
+ "nperm": 200,
+ "npcs": 50,
+ "min_shared": 100,
+ "distance": "cosine",
+ "script_sha256": "514d931487f80fd7bfd6152c64729a960a0e5d566552087dceaafb6a0f77ee16",
+ "mapping_sha256": "d92e32aa788672492febe8cd428beac71ba69fd99df68c7f362cba2e553eea4a",
+ "input_sha256": {
+  "local_human_s.h5ad": "af41618b6941d2f1eacc7535e34a73b08e57cce78060c9f6d0df15984e57c633",
+  "local_mouse_s.h5ad": "7fda583d59d3767ee0d61c741ae2ab89dc0c43f5d587caf2f768b4d8a12d9d2e",
+  "local_zebrafish_s.h5ad": "6b1e8798d5f848acd6340486836ff2e3a8393408e282b6b0c50695b13e49a879",
+  "orth-MGI-HOM.rpt": "b8220b7689f11066c3d82e0f24c23ba3c7a30ad26a0f24ab639357aebc09582d",
+  "orth-human-orthos.txt": "a921e188574b190a10916f3722ec0ed9dd7726151fcf6044b29434bca57a19a0",
+  "orth-mouse-orthos.txt": "36218cade856252444e4e2acf57748a58f63c1d6f34cf51ede2afd8f52959ea6",
+  "v99_mapping_embedded.json": "d92e32aa788672492febe8cd428beac71ba69fd99df68c7f362cba2e553eea4a"
+ },
+ "species_counts": {
+  "human": 1528,
+  "mouse": 1535,
+  "zebrafish": 1543
+ },
+ "shared_genes": {
+  "human->mouse": 15869,
+  "human->zebrafish": 9311,
+  "mouse->human": 15869,
+  "mouse->zebrafish": 8160,
+  "zebrafish->human": 9311,
+  "zebrafish->mouse": 8160
+ },
+ "n_directions": 6
+}

@@ -1,0 +1,62 @@
+{
+  "manifest_version": "v73",
+  "created_at": "2026-09-24",
+  "purpose": "audit SATURN v71/v72 and freeze the next evaluation contract",
+  "evidence_status": "pending",
+  "run": {
+    "run_id": "pending_v71_or_v72_original_run_id",
+    "source_training_run": "v71",
+    "source_evaluation_run": "v72",
+    "dcs_task_id": null,
+    "original_command": null,
+    "complete_log_path": null,
+    "input_manifest_path": null
+  },
+  "datasets": [
+    {"species":"Homo_sapiens","role":"pending","query_or_reference":"pending","input_path":null,"input_sha256":null,"final_anndata_path":null,"final_anndata_sha256":null,"n_cells_reported":1528,"barcode_list_path":null,"barcode_sha256":null,"label_column":"pending","batch_column":"pending","species_source":"HEART"},
+    {"species":"Mus_musculus","role":"pending","query_or_reference":"pending","input_path":null,"input_sha256":null,"final_anndata_path":null,"final_anndata_sha256":null,"n_cells_reported":1535,"barcode_list_path":null,"barcode_sha256":null,"label_column":"pending","batch_column":"pending","species_source":"HEART"},
+    {"species":"Danio_rerio","role":"pending","query_or_reference":"pending","input_path":null,"input_sha256":null,"final_anndata_path":null,"final_anndata_sha256":null,"n_cells_reported":1543,"barcode_list_path":null,"barcode_sha256":null,"label_column":"pending","batch_column":"pending","species_source":"HEART"}
+  ],
+  "representation": {
+    "evaluation_layer":"obsm/macrogenes",
+    "allowed_values":["X","obsm/macrogenes"],
+    "n_dimensions":1000,
+    "distance":"cosine",
+    "neighbors_k":15,
+    "self_barcode_exclusion":"required",
+    "duplicate_barcode_exclusion":"required"
+  },
+  "labels": {
+    "exact_label_column":"pending",
+    "mapped_label_column":"pending",
+    "mapping_version":"v1",
+    "mapping_source":"config/heart-celltype-map-v1.tsv; docs/celltype-map-validation-v1.md",
+    "ambiguous_policy":"unknown_or_ambiguous_not_forced",
+    "reviewer":"pending_human_signoff"
+  },
+  "training_parameters": {
+    "num_macrogenes":1000,
+    "hvg_candidates_per_species":2500,
+    "hvg_genes":2000,
+    "epochs":50,
+    "embedding_model":"ESM2",
+    "miner_type":"cross_species",
+    "use_ref_labels":"pending_from_original_command",
+    "unfreeze_macrogenes":"pending_from_original_command",
+    "seed":"pending_from_original_command"
+  },
+  "evaluation_protocol": {
+    "transductive":{"target_expression_seen_during_integration":true,"target_labels_seen_during_training":null,"status":"pending_barcode_and_training_log_audit"},
+    "inductive":{"target_expression_seen_during_training":false,"target_labels_seen_during_training":false,"status":"not_run"}
+  },
+  "metrics": {
+    "required":["exact_accuracy","mapped_accuracy","macro_f1","micro_f1","top1","top3","coverage","abstention_rate","confusion_matrix","per_class_coverage"],
+    "prediction_table_path":null,
+    "summary_json_path":null
+  },
+  "provenance": {
+    "source_evidence":["docs/saturn-smoke-evidence-20260922.md","docs/audit-and-next-round-20260924.md","docs/dcs-provenance-recovery-v95-20260927.md","docs/dcs-provenance-recovery-v96-20260928.md"],
+    "unverified_fields_must_remain_pending":true,
+    "cloud_actions_allowed":false
+  }
+}

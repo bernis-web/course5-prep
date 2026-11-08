@@ -1,0 +1,21 @@
+{
+  "phase": "phase-20261010",
+  "task": "task-0-baseline",
+  "observed_at": "2026-10-10T11:04:48+08:00",
+  "workspace": "D:\\projects\\course5-prep",
+  "protocol": "transductive",
+  "no_training": true,
+  "no_platform_submission": true,
+  "no_gpu": true,
+  "no_recharge": true,
+  "preserve_existing_changes": true,
+  "frozen_results_root": "results/pilot-v1",
+  "new_results_root": "results/phase-20261010",
+  "next_gate": "Claude/Flash read-only review of Phase 0 evidence",
+  "stop_conditions": [
+    "missing or unreadable key input",
+    "SHA-256 cannot be recorded",
+    "any operation would overwrite frozen results",
+    "any DCS submission or model training request appears in this phase"
+  ]
+}

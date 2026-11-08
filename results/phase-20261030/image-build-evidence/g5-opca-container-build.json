@@ -1,0 +1,37 @@
+{
+  "captured_at": "2026-10-30T07:38:49.408Z",
+  "source": "DOM read from the /images/ iframe (https://www.dcs.cloud/images/#/notebookMirror?projectId=P20260920085640327)",
+  "note": "Headless-Chrome screenshots of this page were compositor-cached (three consecutive shots had identical sha256 while the DOM had already changed), so the authoritative record here is the status node text, not a PNG.",
+  "target": {
+    "name": "g5-opca-container",
+    "status": "构建成功",
+    "status_node": "div.status",
+    "created": "2026/10/30 14:52",
+    "owner": "user50719-8334",
+    "base_image": "SATURN--22",
+    "build_mode": "基于平台镜像",
+    "pip_command": "pip install numpy==1.23.5 scipy==1.10.1 pandas==1.5.3 scikit-learn==1.6.1 anndata==0.10.8 scanpy==1.9.3 h5py==3.8.0",
+    "description": "XenoTransfer v1.0 oPCA baseline reproducible container: python3.9 + numpy1.23.5 / scipy1.10.1 / pandas1.5.3 / scikit-learn1.6.1 / anndata0.10.8 / scanpy1.9.3 / h5py3.8.0, CPU only"
+  },
+  "all_mirrors_at_capture": [
+    {"name": "g5-opca-container", "status": "构建成功"},
+    {"name": "g5-samap-101", "status": "构建失败"},
+    {"name": "g5-samap-try", "status": "构建失败"},
+    {"name": "g5-kbet-jaxpin", "status": "构建失败"},
+    {"name": "g5-canary-pinned", "status": "构建成功"},
+    {"name": "g5-canary-net4", "status": "构建失败"},
+    {"name": "g5-canary-net3", "status": "构建中"},
+    {"name": "g5-canary-net2", "status": "构建中"},
+    {"name": "g5-canary-netprobe", "status": "构建中"},
+    {"name": "centos-7", "status": "构建成功"}
+  ],
+  "how_it_was_done": {
+    "portal": "https://www.dcs.cloud/#/project-management/P20260920085640327/image",
+    "actual_app_document": "https://www.dcs.cloud/images/#/notebookMirror",
+    "obstacle_1": "The image page renders inside a Wujie micro-frontend (<wujie-app class='wujie_iframe'> with shadowRoot). Selector queries against the top document return nothing; elementFromPoint resolves to the WUJIE-APP host only.",
+    "obstacle_2": "The dialog's 确定/取消 buttons read as box [0,0,0,0] in the shadow tree while the visible ones live in a same-origin iframe.",
+    "solution": "Drive the same-origin iframe at https://www.dcs.cloud/images/ directly: enumerate inputs, write values via the iframe realm's native value setter + InputEvent, and use its CodeMirror instance for the Bash-instruction tab.",
+    "obstacle_3": "The form only allows ONE tool-package row (the 添加 button disappears after the first row), so the 7 pinned packages were entered through the Bash指令 tab instead.",
+    "obstacle_4": "The Bash指令 editor is CodeMirror; assigning to the underlying textarea does nothing. Set it via document.querySelector('.CodeMirror').CodeMirror.setValue(...)."
+  }
+}

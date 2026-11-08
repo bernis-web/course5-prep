@@ -1,0 +1,54 @@
+{
+  "captured_at": "2026-10-30T12:55:00Z",
+  "goal_step": "② 在 g5-opca-container 镜像内跑一次离线任务",
+  "status": "TASK_SUBMITTED",
+  "breakthrough": "绕过前端缺陷（计算资源下拉「无数据」）的办法找到了：Genpilot 右侧的 Bash 终端给出了一个真实 Running 容器，里面有 `dcs` CLI。用 `dcs task run` 直接投递，完全不需要页面下拉。",
+  "container": {
+    "prompt_observed": "user50719-8334@task-p20260920085640327-jiliawog-7595645b58-hphpk:/work/user50719-8334$",
+    "note": "终端在跨源 iframe (https://www.dcs.cloud/notebook/st-gw/task-.../stereopy/user50719-8334/?_ws=1) 里，DOM 不可访问，但可以通过 Genpilot 自己的 agent 执行命令并回贴输出"
+  },
+  "dcs_cli_facts": {
+    "binary": "/dcs-sdk-soft/dcs",
+    "no_version_flag": true,
+    "commands": ["app", "data", "image", "model", "preview", "table", "task"],
+    "task_subcommands": ["cancel", "consume", "info", "log", "ls", "rm", "run", "start"],
+    "task_run_key_params": {
+      "-i": "要跑的 shell 命令",
+      "-l": "资源，CPU型写 vf=<g>,num_proc=<n>；GPU型再加 gpu=L4/T4...",
+      "--image": "云平台镜像库中的 **URL 路径**，不是镜像名、不是镜像 ID",
+      "-o": "输出路径 (--output)",
+      "-m": "挂载数据，用数据管理的文件路径，多个逗号分隔",
+      "--type": "s = shell 脚本"
+    },
+    "task_run_example_from_help": "dcs task run --type s -i \"sh /data/work/test.sh\" -l vf=32g,num_proc=8 --image \"stereonote/stereonote_conda_jupyterhub:latest\" --output /Files/test0408 -m \"/Files/gef/test3_NC.tissue16.gef,/Files/gef/test3_NC.tissue17.gef\"",
+    "task_ls_type_codes": "type=w 流程分析任务；type=a 个性分析离线任务。注意与 task run 的 --type s 不是同一套编码"
+  },
+  "local_image_from_cli": {
+    "name": "g5-opca-container",
+    "url": "stereonote_hpc/user50719-8334_11775ba415fa46a09ca9707341fbe8d2_private:latest",
+    "tag": "latest",
+    "env": "jupyter",
+    "created": "2026-10-30 14:52:50",
+    "owner": "user50719-8334",
+    "source": "dcs image ls（共 31 条，第 1/4 页）"
+  },
+  "inputs_visible_in_container": {
+    "/Files": "可读，total 82000，含 006 / 1-3_group 等目录",
+    "/Files/wheelhouse": "可读，其中确有 MGI_HOM_MouseHumanSequence.rpt（15,112,222 B）；另有大量 .whl 与 .whl.txt"
+  },
+  "submitted_task": {
+    "task_id": "2116148572871282690",
+    "submitted_via": "dcs task run --type s -i \"bash /work/user50719-8334/selfcheck/selfcheck.sh\" -l vf=8g,num_proc=2 --image <url> --output /Files/ResultData/Workflow/selfcheck-20261030",
+    "image_used": "stereonote_hpc/user50719-8334_11775ba415fa46a09ca9707341fbe8d2_private:latest",
+    "resource": "vf=8g,num_proc=2",
+    "output_dir": "/Files/ResultData/Workflow/selfcheck-20261030",
+    "script_path_in_pod": "/work/user50719-8334/selfcheck/selfcheck.sh",
+    "first_attempt": "直接把 python -c 塞进 -i 导致嵌套引号 syntax error（exit 2），已按预案改为先写脚本再投递",
+    "state_at_capture": "已入队；dcs task log 报「数据不存在」= 尚未生成日志记录（排队/调度阶段），非命令写错"
+  },
+  "next_poll_commands": [
+    "dcs task ls -t a -i 2116148572871282690",
+    "dcs task info 2116148572871282690",
+    "dcs task log 2116148572871282690"
+  ]
+}

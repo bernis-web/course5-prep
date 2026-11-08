@@ -1,0 +1,221 @@
+slide size: 13.333 x 7.500 in
+layout: DEFAULT
+=== slide 1 layout='DEFAULT'  shapes=10
+    has bg: False  
+    [AUTO_SHAPE] Shape 0        x=0.00 y=1.72 w=13.33 h=3.62  
+    [PICTURE] Image 0        x=0.84 y=0.50 w=3.60 h=1.11 img=image.png 
+    [AUTO_SHAPE] Text 1         x=0.90 y=1.92 w=11.46 h=0.62  跨物种单细胞整合：三场景结论与可复现闭环
+    [AUTO_SHAPE] Text 2         x=0.92 y=2.62 w=11.20 h=0.40  课题5 第 3 次汇报（老师七条意见之后的重做）｜ XenoTransfer v
+    [AUTO_SHAPE] Text 3         x=0.92 y=3.22 w=11.20 h=0.32  上次汇报后，老师提了 7 条意见 → 这一轮全部落地
+    [AUTO_SHAPE] Text 4         x=0.92 y=3.74 w=11.20 h=0.32  最重要的一件事：我们发现自己的 SATURN 分数被算高了 0.04–0.19，
+    [AUTO_SHAPE] Text 5         x=0.92 y=4.26 w=11.20 h=0.32  本讲三件事：① 三场景分开给结论　② 每个分数都带偏置　③ 可复现闭环已跑通
+    [AUTO_SHAPE] Text 6         x=0.92 y=4.80 w=11.20 h=0.28  课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026
+    [AUTO_SHAPE] Shape 7        x=0.00 y=6.94 w=13.33 h=0.56  
+    [AUTO_SHAPE] Text 8         x=0.75 y=6.94 w=11.90 h=0.56  这一轮不是加内容，是纠错。结论有改，而且改得更硬。
+    NOTES: 开场就认错——先说我们发现了自己的口径问题，比等到被问出来强多了。
+=== slide 2 layout='DEFAULT'  shapes=10
+    has bg: False  
+    [AUTO_SHAPE] bar-blue       x=0.00 y=0.72 w=9.56 h=0.19  
+    [AUTO_SHAPE] bar-gold       x=10.19 y=0.72 w=3.14 h=0.19  
+    [PICTURE] Image 0        x=10.63 y=0.09 w=1.92 h=0.59 img=image.png 
+    [AUTO_SHAPE] Text 2         x=0.67 y=1.02 w=11.25 h=0.62  一、老师七条意见 → 我们的落地
+    [AUTO_SHAPE] Text 3         x=0.67 y=1.58 w=11.98 h=0.34  每条都对应一个可复核的产物
+    [AUTO_SHAPE] Text 4         x=0.67 y=7.06 w=8.00 h=0.23  课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026
+    [AUTO_SHAPE] Text 5         x=11.60 y=7.06 w=1.06 h=0.23  02
+    [TABLE] Table 0        x=0.67 y=2.05 w=11.98 h=1.00  
+    [AUTO_SHAPE] Shape 6        x=0.00 y=6.45 w=13.33 h=0.44  
+    [AUTO_SHAPE] Text 7         x=0.75 y=6.49 w=11.90 h=0.36  七条全部有落点，没有一条靠口头回答。
+    NOTES: 这一页是导航页，让老师知道每条都在哪儿。
+=== slide 3 layout='DEFAULT'  shapes=15
+    has bg: False  
+    [AUTO_SHAPE] bar-blue       x=0.00 y=0.72 w=9.56 h=0.19  
+    [AUTO_SHAPE] bar-gold       x=10.19 y=0.72 w=3.14 h=0.19  
+    [PICTURE] Image 0        x=10.63 y=0.09 w=1.92 h=0.59 img=image.png 
+    [AUTO_SHAPE] Text 2         x=0.67 y=1.02 w=11.25 h=0.62  二、最重要的发现：SATURN 分数被口径抬高了
+    [AUTO_SHAPE] Text 3         x=0.67 y=1.58 w=11.98 h=0.34  映射不到 coarse 的预测被丢弃 = 按预测结果筛样本
+    [AUTO_SHAPE] Text 4         x=0.67 y=7.06 w=8.00 h=0.23  课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026
+    [AUTO_SHAPE] Text 5         x=11.60 y=7.06 w=1.06 h=0.23  03
+    [AUTO_SHAPE] Shape 6        x=0.67 y=2.16 w=11.98 h=1.36  
+    [AUTO_SHAPE] Text 7         x=0.97 y=2.50 w=11.38 h=0.68  oPCA/scVI 的预测只可能是训练用的 8–9 个 coarse 类，永远不
+    [AUTO_SHAPE] Shape 8        x=0.67 y=3.81 w=11.98 h=1.05  
+    [AUTO_SHAPE] Text 9         x=0.97 y=4.14 w=11.38 h=0.37  旧口径：这些预测连同细胞一起丢掉 → 分母只留「预测恰好可映射」的细胞
+    [AUTO_SHAPE] Shape 10       x=0.67 y=5.14 w=11.98 h=1.05  
+    [AUTO_SHAPE] Text 11        x=0.97 y=5.48 w=11.38 h=0.37  后果：鼠↔鱼两向被抬高 0.19 左右，结论直接从「SATURN 大胜」翻成「s
+    [AUTO_SHAPE] Shape 12       x=0.00 y=6.45 w=13.33 h=0.44  
+    [AUTO_SHAPE] Text 13        x=0.75 y=6.49 w=11.90 h=0.36  这不是小修，是结论翻转。所以我们同时报两个口径，对外用公平口径。
+    NOTES: 这页是整个汇报的重点，讲慢一点。强调「按预测结果筛样本」这句话。
+=== slide 4 layout='DEFAULT'  shapes=10
+    has bg: False  
+    [AUTO_SHAPE] bar-blue       x=0.00 y=0.72 w=9.56 h=0.19  
+    [AUTO_SHAPE] bar-gold       x=10.19 y=0.72 w=3.14 h=0.19  
+    [PICTURE] Image 0        x=10.63 y=0.09 w=1.92 h=0.59 img=image.png 
+    [AUTO_SHAPE] Text 2         x=0.67 y=1.02 w=11.25 h=0.62  三、口径偏差的量化
+    [AUTO_SHAPE] Text 3         x=0.67 y=1.58 w=11.98 h=0.34  同一批预测，两种口径差多少
+    [AUTO_SHAPE] Text 4         x=0.67 y=7.06 w=8.00 h=0.23  课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026
+    [AUTO_SHAPE] Text 5         x=11.60 y=7.06 w=1.06 h=0.23  04
+    [TABLE] Table 0        x=0.67 y=2.05 w=11.98 h=1.00  
+    [AUTO_SHAPE] Shape 6        x=0.00 y=6.45 w=13.33 h=0.44  
+    [AUTO_SHAPE] Text 7         x=0.75 y=6.49 w=11.90 h=0.36  抬高幅度 0.043–0.194，前四向温和、后两向致命。
+    NOTES: 鼠→斑马鱼、斑马鱼→鼠这两行是重点，抬高接近 0.19。
+=== slide 5 layout='DEFAULT'  shapes=10
+    has bg: False  
+    [AUTO_SHAPE] bar-blue       x=0.00 y=0.72 w=9.56 h=0.19  
+    [AUTO_SHAPE] bar-gold       x=10.19 y=0.72 w=3.14 h=0.19  
+    [PICTURE] Image 0        x=10.63 y=0.09 w=1.92 h=0.59 img=image.png 
+    [AUTO_SHAPE] Text 2         x=0.67 y=1.02 w=11.25 h=0.62  四、近缘场景：oPCA 与 scVI 打平
+    [AUTO_SHAPE] Text 3         x=0.67 y=1.58 w=11.98 h=0.34  人↔鼠｜macro-F1 ± bootstrap SE
+    [AUTO_SHAPE] Text 4         x=0.67 y=7.06 w=8.00 h=0.23  课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026
+    [AUTO_SHAPE] Text 5         x=11.60 y=7.06 w=1.06 h=0.23  05
+    [TABLE] Table 0        x=0.67 y=2.37 w=11.98 h=1.00  
+    [AUTO_SHAPE] Shape 6        x=0.00 y=6.45 w=13.33 h=0.44  
+    [AUTO_SHAPE] Text 7         x=0.75 y=6.49 w=11.90 h=0.36  人→鼠差 −0.0247（不显著）；鼠→人 oPCA 显著更高 +0.0833。
+    NOTES: 打平是关键：既然打平，就该选代价小的那个。
+=== slide 6 layout='DEFAULT'  shapes=10
+    has bg: False  
+    [AUTO_SHAPE] bar-blue       x=0.00 y=0.72 w=9.56 h=0.19  
+    [AUTO_SHAPE] bar-gold       x=10.19 y=0.72 w=3.14 h=0.19  
+    [PICTURE] Image 0        x=10.63 y=0.09 w=1.92 h=0.59 img=image.png 
+    [AUTO_SHAPE] Text 2         x=0.67 y=1.02 w=11.25 h=0.62  五、远缘场景：统一选 scVI
+    [AUTO_SHAPE] Text 3         x=0.67 y=1.58 w=11.98 h=0.34  鱼参与的四方向｜注意两个口径的 SATURN 都列出来
+    [AUTO_SHAPE] Text 4         x=0.67 y=7.06 w=8.00 h=0.23  课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026
+    [AUTO_SHAPE] Text 5         x=11.60 y=7.06 w=1.06 h=0.23  06
+    [TABLE] Table 0        x=0.67 y=2.37 w=11.98 h=1.00  
+    [AUTO_SHAPE] Shape 6        x=0.00 y=6.45 w=13.33 h=0.44  
+    [AUTO_SHAPE] Text 7         x=0.75 y=6.49 w=11.90 h=0.36  同细胞配对检验：鼠→鱼 SATURN−scVI = −0.1713、鱼→鼠 = 
+    NOTES: 强调「同一批细胞上比」才算公平，跨方法比绝对值会被分母骗。
+=== slide 7 layout='DEFAULT'  shapes=10
+    has bg: False  
+    [AUTO_SHAPE] bar-blue       x=0.00 y=0.72 w=9.56 h=0.19  
+    [AUTO_SHAPE] bar-gold       x=10.19 y=0.72 w=3.14 h=0.19  
+    [PICTURE] Image 0        x=10.63 y=0.09 w=1.92 h=0.59 img=image.png 
+    [AUTO_SHAPE] Text 2         x=0.67 y=1.02 w=11.25 h=0.62  六、跨门场景：这一族方法都做不了
+    [AUTO_SHAPE] Text 3         x=0.67 y=1.58 w=11.98 h=0.34  七鳃鳗↔小鼠｜13 类交集｜55,694 细胞
+    [AUTO_SHAPE] Text 4         x=0.67 y=7.06 w=8.00 h=0.23  课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026
+    [AUTO_SHAPE] Text 5         x=11.60 y=7.06 w=1.06 h=0.23  07
+    [TABLE] Table 0        x=0.67 y=2.31 w=11.98 h=1.00  
+    [AUTO_SHAPE] Shape 6        x=0.00 y=6.45 w=13.33 h=0.44  
+    [AUTO_SHAPE] Text 7         x=0.75 y=6.49 w=11.90 h=0.36  accuracy 4.6–5.8%，低于 13 类随机猜的 7.69%；macr
+    NOTES: 负结果要讲得理直气壮：它证明的不是「我们没做好」，是「这条路在跨门断掉了」。
+=== slide 8 layout='DEFAULT'  shapes=10
+    has bg: False  
+    [AUTO_SHAPE] bar-blue       x=0.00 y=0.72 w=9.56 h=0.19  
+    [AUTO_SHAPE] bar-gold       x=10.19 y=0.72 w=3.14 h=0.19  
+    [PICTURE] Image 0        x=10.63 y=0.09 w=1.92 h=0.59 img=image.png 
+    [AUTO_SHAPE] Text 2         x=0.67 y=1.02 w=11.25 h=0.62  七、稳定性：十个 seed 不会给出十个结果
+    [AUTO_SHAPE] Text 3         x=0.67 y=1.58 w=11.98 h=0.34  老师问的「一个方法测十次」，我们拆成三种不确定性分别测
+    [AUTO_SHAPE] Text 4         x=0.67 y=7.06 w=8.00 h=0.23  课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026
+    [AUTO_SHAPE] Text 5         x=11.60 y=7.06 w=1.06 h=0.23  08
+    [TABLE] Table 0        x=0.67 y=2.05 w=11.98 h=1.00  
+    [AUTO_SHAPE] Shape 6        x=0.00 y=6.45 w=13.33 h=0.44  
+    [AUTO_SHAPE] Text 7         x=0.75 y=6.49 w=11.90 h=0.36  换种子 SD 只有 0.0017–0.0059；换 10% 细胞能到 0.028
+    NOTES: 这一页直接回答老师第③条，而且结论反直觉：换种子几乎没用。
+=== slide 9 layout='DEFAULT'  shapes=10
+    has bg: False  
+    [AUTO_SHAPE] bar-blue       x=0.00 y=0.72 w=9.56 h=0.19  
+    [AUTO_SHAPE] bar-gold       x=10.19 y=0.72 w=3.14 h=0.19  
+    [PICTURE] Image 0        x=10.63 y=0.09 w=1.92 h=0.59 img=image.png 
+    [AUTO_SHAPE] Text 2         x=0.67 y=1.02 w=11.25 h=0.62  八、每个分数都带偏置
+    [AUTO_SHAPE] Text 3         x=0.67 y=1.58 w=11.98 h=0.34  四方法 × 六方向全部配 bootstrap SE 与 95% CI
+    [AUTO_SHAPE] Text 4         x=0.67 y=7.06 w=8.00 h=0.23  课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026
+    [AUTO_SHAPE] Text 5         x=11.60 y=7.06 w=1.06 h=0.23  09
+    [TABLE] Table 0        x=0.67 y=2.05 w=11.98 h=1.00  
+    [AUTO_SHAPE] Shape 6        x=0.00 y=6.45 w=13.33 h=0.44  
+    [AUTO_SHAPE] Text 7         x=0.75 y=6.49 w=11.90 h=0.36  22 格全部通过「与冻结值逐格对齐」校验（0 mismatch），所以这些 CI
+    NOTES: 可以现场点开 bootstrap.json 给老师看 matches_frozen 全是 true。
+=== slide 10 layout='DEFAULT'  shapes=12
+    has bg: False  
+    [AUTO_SHAPE] bar-blue       x=0.00 y=0.72 w=9.56 h=0.19  
+    [AUTO_SHAPE] bar-gold       x=10.19 y=0.72 w=3.14 h=0.19  
+    [PICTURE] Image 0        x=10.63 y=0.09 w=1.92 h=0.59 img=image.png 
+    [AUTO_SHAPE] Text 2         x=0.67 y=1.02 w=11.25 h=0.62  九、实际消耗
+    [AUTO_SHAPE] Text 3         x=0.67 y=1.58 w=11.98 h=0.34  平台任务台账 + 本地白盒测内存
+    [AUTO_SHAPE] Text 4         x=0.67 y=7.06 w=8.00 h=0.23  课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026
+    [AUTO_SHAPE] Text 5         x=11.60 y=7.06 w=1.06 h=0.23  10
+    [TABLE] Table 0        x=0.67 y=2.00 w=11.98 h=1.00  
+    [AUTO_SHAPE] Text 6         x=0.67 y=5.45 w=11.98 h=0.37  oPCA 本地白盒测量：墙钟 26.68 s（25.52–26.92），峰值工作
+    [AUTO_SHAPE] Text 7         x=0.67 y=5.98 w=11.98 h=0.37  跨门那次占总额 84%（¥2.06/¥2.47），细胞数 12 倍、耗时 10.
+    [AUTO_SHAPE] Shape 8        x=0.00 y=6.45 w=13.33 h=0.44  
+    [AUTO_SHAPE] Text 9         x=0.75 y=6.49 w=11.90 h=0.36  四个任务合计 11,909 CPU 秒 / ¥2.47。SATURN 是 GPU
+    NOTES: 诚实标缺口：SATURN 没有资源数据，不编。
+=== slide 11 layout='DEFAULT'  shapes=12
+    has bg: False  
+    [AUTO_SHAPE] bar-blue       x=0.00 y=0.72 w=9.56 h=0.19  
+    [AUTO_SHAPE] bar-gold       x=10.19 y=0.72 w=3.14 h=0.19  
+    [PICTURE] Image 0        x=10.63 y=0.09 w=1.92 h=0.59 img=image.png 
+    [AUTO_SHAPE] Text 2         x=0.67 y=1.02 w=11.25 h=0.62  十、可复现闭环：镜像建好，6 个值在里面逐位复现
+    [AUTO_SHAPE] Text 3         x=0.67 y=1.58 w=11.98 h=0.34  g5-opca-container（基于 SATURN--22，7 个 pip 
+    [AUTO_SHAPE] Text 4         x=0.67 y=7.06 w=8.00 h=0.23  课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026
+    [AUTO_SHAPE] Text 5         x=11.60 y=7.06 w=1.06 h=0.23  11
+    [TABLE] Table 0        x=0.67 y=2.00 w=11.98 h=1.00  
+    [AUTO_SHAPE] Text 6         x=0.67 y=5.14 w=11.98 h=0.37  镜像构建成功 → 离线任务实测可选中 → 在镜像内跑完整评估，6/6 逐位一致
+    [AUTO_SHAPE] Text 7         x=0.67 y=5.67 w=11.98 h=0.68  7 个包版本全部命中：numpy 1.23.5 / scipy 1.10.1 /
+    [AUTO_SHAPE] Shape 8        x=0.00 y=6.45 w=13.33 h=0.44  
+    [AUTO_SHAPE] Text 9         x=0.75 y=6.49 w=11.90 h=0.36  从「配方看起来完整」到「真的跑出同样数字」，这一步此前从未做到过。
+    NOTES: 这是本轮最硬的一块证据，可以给老师看日志里的 header 和 DONE。
+=== slide 12 layout='DEFAULT'  shapes=15
+    has bg: False  
+    [AUTO_SHAPE] bar-blue       x=0.00 y=0.72 w=9.56 h=0.19  
+    [AUTO_SHAPE] bar-gold       x=10.19 y=0.72 w=3.14 h=0.19  
+    [PICTURE] Image 0        x=10.63 y=0.09 w=1.92 h=0.59 img=image.png 
+    [AUTO_SHAPE] Text 2         x=0.67 y=1.02 w=11.25 h=0.62  十一、一路上查清的两件事（都是坑）
+    [AUTO_SHAPE] Text 3         x=0.67 y=1.58 w=11.98 h=0.34  同名 ≠ 同文件
+    [AUTO_SHAPE] Text 4         x=0.67 y=7.06 w=8.00 h=0.23  课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026
+    [AUTO_SHAPE] Text 5         x=11.60 y=7.06 w=1.06 h=0.23  12
+    [AUTO_SHAPE] Shape 6        x=0.67 y=2.00 w=11.98 h=1.59  
+    [AUTO_SHAPE] Text 7         x=0.97 y=2.30 w=11.38 h=0.99  平台 ortholog_pca_dcs_v3_fixkey.txt（17,382
+    [AUTO_SHAPE] Shape 8        x=0.67 y=3.85 w=11.98 h=1.28  
+    [AUTO_SHAPE] Text 9         x=0.97 y=4.14 w=11.38 h=0.68  平台版要的映射是 /Files/wheelhouse/v99_mapping_e
+    [AUTO_SHAPE] Shape 10       x=0.67 y=5.38 w=11.98 h=0.97  
+    [AUTO_SHAPE] Text 11        x=0.97 y=5.68 w=11.38 h=0.37  平台把任务标成「失败」那次，其实计算成功了——只是脚本最后 cat 了错误的输出
+    [AUTO_SHAPE] Shape 12       x=0.00 y=6.45 w=13.33 h=0.44  
+    [AUTO_SHAPE] Text 13        x=0.75 y=6.49 w=11.90 h=0.36  教训：先比 wc -c / wc -l / sha256sum，再决定用哪个文件
+    NOTES: 这一页体现工程严谨，老师会认这个。
+=== slide 13 layout='DEFAULT'  shapes=11
+    has bg: False  
+    [AUTO_SHAPE] bar-blue       x=0.00 y=0.72 w=9.56 h=0.19  
+    [AUTO_SHAPE] bar-gold       x=10.19 y=0.72 w=3.14 h=0.19  
+    [PICTURE] Image 0        x=10.63 y=0.09 w=1.92 h=0.59 img=image.png 
+    [AUTO_SHAPE] Text 2         x=0.67 y=1.02 w=11.25 h=0.62  十二、跟原文一致吗
+    [AUTO_SHAPE] Text 3         x=0.67 y=1.58 w=11.98 h=0.34  三篇原文逐条对比
+    [AUTO_SHAPE] Text 4         x=0.67 y=7.06 w=8.00 h=0.23  课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026
+    [AUTO_SHAPE] Text 5         x=11.60 y=7.06 w=1.06 h=0.23  13
+    [TABLE] Table 0        x=0.67 y=2.00 w=11.98 h=1.00  
+    [AUTO_SHAPE] Text 6         x=0.67 y=5.67 w=11.98 h=0.68  不一致的三个原因：①原文 scVI 是纯无监督整合，我们加了 KNN 标签迁移层
+    [AUTO_SHAPE] Shape 7        x=0.00 y=6.45 w=13.33 h=0.44  
+    [AUTO_SHAPE] Text 8         x=0.75 y=6.49 w=11.90 h=0.36  「SAMap 不行」不能说，只能说「在本项目 1,500 细胞 + 1:1 同源
+    NOTES: 这一页回答老师第④条，重点是把「我们和别人不一样」说成可解释的差异，而不是掩饰。
+=== slide 14 layout='DEFAULT'  shapes=14
+    has bg: False  
+    [AUTO_SHAPE] bar-blue       x=0.00 y=0.72 w=9.56 h=0.19  
+    [AUTO_SHAPE] bar-gold       x=10.19 y=0.72 w=3.14 h=0.19  
+    [PICTURE] Image 0        x=10.63 y=0.09 w=1.92 h=0.59 img=image.png 
+    [AUTO_SHAPE] Text 2         x=0.67 y=1.02 w=11.25 h=0.62  十三、还剩什么
+    [AUTO_SHAPE] Text 3         x=0.67 y=1.58 w=11.98 h=0.34  三条边界，两条待人做
+    [AUTO_SHAPE] Text 4         x=0.67 y=7.06 w=8.00 h=0.23  课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026
+    [AUTO_SHAPE] Text 5         x=11.60 y=7.06 w=1.06 h=0.23  14
+    [AUTO_SHAPE] Text 6         x=0.67 y=2.45 w=11.98 h=0.68  待人做 ①：mapping 表 38 行 reviewer 仍是 pending
+    [AUTO_SHAPE] Text 7         x=0.67 y=3.29 w=11.98 h=0.37  待人做 ②：GitHub 推送（本地领先 63 提交，当时代理端口无监听）
+    [AUTO_SHAPE] Text 8         x=0.67 y=4.06 w=11.98 h=0.37  明确不做：SATURN 批次指标（重训会产出不同表示，造成假对照）
+    [AUTO_SHAPE] Text 9         x=0.67 y=4.59 w=11.98 h=0.37  明确不做：排总分冠军（分母/特征空间/训练方式/统计强度都不同）
+    [AUTO_SHAPE] Text 10        x=0.67 y=5.13 w=11.98 h=0.37  明确不做：held-out / inductive 重跑（需新协议与预算，现有结
+    [AUTO_SHAPE] Shape 11       x=0.00 y=6.45 w=13.33 h=0.44  
+    [AUTO_SHAPE] Text 12        x=0.75 y=6.49 w=11.90 h=0.36  12 项课程要求：11 项完成、1 项部分（批次混合，SATURN 缺席有硬理由
+    NOTES: 收口页，把「还剩什么」说成清单，不是辩解。
+=== slide 15 layout='DEFAULT'  shapes=15
+    has bg: False  
+    [AUTO_SHAPE] bar-blue       x=0.00 y=0.72 w=9.56 h=0.19  
+    [AUTO_SHAPE] bar-gold       x=10.19 y=0.72 w=3.14 h=0.19  
+    [PICTURE] Image 0        x=10.63 y=0.09 w=1.92 h=0.59 img=image.png 
+    [AUTO_SHAPE] Text 2         x=0.67 y=1.02 w=11.25 h=0.62  如果只记三句
+    [AUTO_SHAPE] Text 3         x=0.67 y=1.58 w=11.98 h=0.34  课后能复述的三句
+    [AUTO_SHAPE] Text 4         x=0.67 y=7.06 w=8.00 h=0.23  课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026
+    [AUTO_SHAPE] Text 5         x=11.60 y=7.06 w=1.06 h=0.23  15
+    [AUTO_SHAPE] Shape 6        x=0.67 y=2.42 w=11.98 h=0.97  
+    [AUTO_SHAPE] Text 7         x=1.01 y=2.72 w=11.30 h=0.37  1. 没有全面赢家 → 不排总分，只做「场景 → 方法」
+    [AUTO_SHAPE] Shape 8        x=0.67 y=3.69 w=11.98 h=0.97  
+    [AUTO_SHAPE] Text 9         x=1.01 y=3.99 w=11.30 h=0.37  2. 我们自己发现并修正了一个抬高 0.04–0.19 的口径偏差，鼠↔鱼结论因
+    [AUTO_SHAPE] Shape 10       x=0.67 y=4.96 w=11.98 h=0.97  
+    [AUTO_SHAPE] Text 11        x=1.01 y=5.26 w=11.30 h=0.37  3. 所有结论限定在 transductive / in-sample、4,60
+    [AUTO_SHAPE] Shape 12       x=0.00 y=6.45 w=13.33 h=0.44  
+    [AUTO_SHAPE] Text 13        x=0.75 y=6.49 w=11.90 h=0.36  算得对是底线，分得对要人签字。
+    NOTES: 结束页，停在这里提问。

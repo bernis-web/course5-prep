@@ -1,0 +1,106 @@
+{
+ "current": {
+  "human->mouse": {
+   "mf1": 0.3522,
+   "acc": 0.5887,
+   "n_q": 1505,
+   "n_classes": 8,
+   "dropped": 0,
+   "dropped_labels": {}
+  },
+  "mouse->human": {
+   "mf1": 0.2566,
+   "acc": 0.2271,
+   "n_q": 1528,
+   "n_classes": 8,
+   "dropped": 0,
+   "dropped_labels": {}
+  },
+  "human->zebrafish": {
+   "mf1": 0.1269,
+   "acc": 0.1775,
+   "n_q": 1499,
+   "n_classes": 9,
+   "dropped": 0,
+   "dropped_labels": {}
+  },
+  "zebrafish->human": {
+   "mf1": 0.164,
+   "acc": 0.2336,
+   "n_q": 1528,
+   "n_classes": 8,
+   "dropped": 0,
+   "dropped_labels": {}
+  },
+  "mouse->zebrafish": {
+   "mf1": 0.3658,
+   "acc": 0.2982,
+   "n_q": 1499,
+   "n_classes": 9,
+   "dropped": 0,
+   "dropped_labels": {}
+  },
+  "zebrafish->mouse": {
+   "mf1": 0.3563,
+   "acc": 0.4671,
+   "n_q": 1505,
+   "n_classes": 9,
+   "dropped": 0,
+   "dropped_labels": {}
+  }
+ },
+ "orhters_unmapped": {
+  "human->mouse": {
+   "mf1": 0.3522,
+   "acc": 0.5887,
+   "n_q": 1505,
+   "n_classes": 8,
+   "dropped": 0,
+   "dropped_labels": {}
+  },
+  "mouse->human": {
+   "mf1": 0.2566,
+   "acc": 0.2271,
+   "n_q": 1528,
+   "n_classes": 8,
+   "dropped": 0,
+   "dropped_labels": {}
+  },
+  "human->zebrafish": {
+   "mf1": 0.1282,
+   "acc": 0.1811,
+   "n_q": 1469,
+   "n_classes": 9,
+   "dropped": 0,
+   "dropped_labels": {}
+  },
+  "zebrafish->human": {
+   "mf1": 0.1386,
+   "acc": 0.2147,
+   "n_q": 1528,
+   "n_classes": 9,
+   "dropped": 865,
+   "dropped_labels": {
+    "Orthers": 865
+   }
+  },
+  "mouse->zebrafish": {
+   "mf1": 0.4076,
+   "acc": 0.3036,
+   "n_q": 1469,
+   "n_classes": 8,
+   "dropped": 0,
+   "dropped_labels": {}
+  },
+  "zebrafish->mouse": {
+   "mf1": 0.2961,
+   "acc": 0.4565,
+   "n_q": 1505,
+   "n_classes": 10,
+   "dropped": 100,
+   "dropped_labels": {
+    "Orthers": 100
+   }
+  }
+ }
+}

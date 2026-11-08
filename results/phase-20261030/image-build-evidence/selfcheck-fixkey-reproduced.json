@@ -1,0 +1,73 @@
+{
+  "captured_at": "2026-10-31T12:12:00Z",
+  "goal_step": "② 在 g5-opca-container 镜像内跑一次离线任务复现 6 个冻结 coarse accuracy",
+  "status": "PASSED",
+
+  "task": {
+    "task_id": "2116497194053881858",
+    "batch_id": "2116416522979201026 的同系列重投",
+    "command": "bash /work/user50719-8334/fixkey/fixkey.sh",
+    "image": "g5-opca-container / stereonote_hpc/user50719-8334_11775ba415fa46a09ca9707341fbe8d2_private:latest",
+    "resource": "vf=8g,num_proc=2",
+    "platform_status": "失败（标记），但主计算成功",
+    "actual_output_dir": "/work/user50719-8334/opca-full-20261031T115728Z/",
+    "contents": ["metrics.json", "predictions/", "confusion/", "manifest.json", "sha256.tsv", "environment.txt"]
+  },
+
+  "reproduction_result": {
+    "frozen_expected": {
+      "human->mouse": 0.8618,
+      "mouse->human": 0.7369,
+      "human->zebrafish": 0.1795,
+      "zebrafish->human": 0.1734,
+      "mouse->zebrafish": 0.2675,
+      "zebrafish->mouse": 0.5814
+    },
+    "in_container_observed": {
+      "human->mouse": 0.8618,
+      "mouse->human": 0.7369,
+      "human->zebrafish": 0.1795,
+      "zebrafish->human": 0.1734,
+      "mouse->zebrafish": 0.2675,
+      "zebrafish->mouse": 0.5814
+    },
+    "all_six_match": true,
+    "note": "6/6 逐位一致，无 drift"
+  },
+
+  "log_evidence": {
+    "header_line": "header={\"protocol\": \"transductive_formal_reassessment\", \"seed\": 0, \"k\": 15, \"nperm\": 200, \"npcs\": 50, \"min_shared\": 100, \"script_sha256\": \"514d931487f80fd7bfd6152c64729a960a0e5d566552087dceaafb6a0f77ee16\", \"mapping_sha256\": \"d92e32aa788672492febe8cd428beac71ba69fd99df68c7f362cba2e553eea4a\"}",
+    "ortholog_line": "ortholog pairs: hm=17611 fh=10398 fmm=9058",
+    "cells_line": ["human: 1528 cells x 32732 genes", "mouse: 1535 cells x 32379 genes", "zebrafish: 1543 cells x 27661 genes"],
+    "directions_done": ["human->mouse done", "human->zebrafish done", "mouse->human done", "mouse->zebrafish done", "zebrafish->human done", "zebrafish->mouse done"],
+    "final": "DONE",
+    "harmless_warning": "setlocale: LC_ALL: cannot change locale (C.UTF-8)"
+  },
+
+  "why_platform_marked_it_failed": {
+    "cause": "fixkey.sh 最后一步 cat $OPCA_OUT/metrics.json，但脚本实际读的环境变量名是 OPCA_OUT_ROOT（不是 OPCA_OUT），产物默认写到 <OPCA_OUT_ROOT>/opca-full-<UTC>/",
+    "consequence": "cat 报 No such file or directory → 退出码非 0 → 平台标记失败",
+    "is_computation_failure": false,
+    "fix_for_next_time": "把 fixkey.sh 里的 OPCA_OUT 改成 OPCA_OUT_ROOT，并 cat 对应 opca-full-<UTC>/metrics.json"
+  },
+
+  "three_root_causes_found_and_fixed_along_the_way": [
+    {
+      "issue": "平台 /Files/ResultData/Notebook/ortholog_pca_dcs_v3_fixkey.txt 与本地 scripts/ortholog_pca_dcs_v3_fixkey.py 不是同一文件",
+      "evidence": "平台 17382 B / 421 行 / 含 json.loads 第 167 行 / sha256 514d9314…；本地 16463 B / 383 行 / 含 csv.DictReader 第 123 行 / sha256 f9683cf9…",
+      "first_failure": "JSONDecodeError: Expecting value: line 1 column 1 (char 0) —— 用 json.loads 去读 TSV",
+      "fix": "改用平台版脚本真正需要的映射文件 /Files/wheelhouse/v99_mapping_embedded.json（dict，38 条，value=[coarse,fine,status]）"
+    },
+    {
+      "issue": "OPCA_MAPPING 指向了 TSV 而非 JSON",
+      "fix": "OPCA_MAPPING=/Files/wheelhouse/v99_mapping_embedded.json，mapping_sha256 变为 d92e32aa…"
+    },
+    {
+      "issue": "fixkey.sh 把输出目录变量名写错（OPCA_OUT vs OPCA_OUT_ROOT）",
+      "consequence": "计算成功但任务被判失败",
+      "fix_documented": true
+    }
+  ],
+
+  "conclusion": "目标② 达成：在新建的 g5-opca-container 镜像内跑通了完整评估，6 个冻结 coarse accuracy 逐位复现（6/6），ortholog 对数、细胞数、基因数、mapping_sha256 全部与预期一致。"
+}

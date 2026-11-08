@@ -1,0 +1,214 @@
+{
+ "protocol": "paired bootstrap over shared query cells, 2000 resamples, RandomState(20261030)",
+ "statistic": "delta macro-F1 (union), A - B",
+ "comparisons": [
+  {
+   "direction": "human->mouse",
+   "A": "ortholog_pca",
+   "B": "scVI",
+   "n_shared": 1505,
+   "mf1_A": 0.6435,
+   "mf1_B": 0.6683,
+   "delta": -0.0247,
+   "delta_se": 0.0195,
+   "delta_ci95": [
+    -0.0639,
+    0.0134
+   ],
+   "significant_at_95": false,
+   "n_over_se": 1.27
+  },
+  {
+   "direction": "mouse->human",
+   "A": "ortholog_pca",
+   "B": "scVI",
+   "n_shared": 1528,
+   "mf1_A": 0.6729,
+   "mf1_B": 0.5895,
+   "delta": 0.0833,
+   "delta_se": 0.0218,
+   "delta_ci95": [
+    0.0386,
+    0.1238
+   ],
+   "significant_at_95": true,
+   "n_over_se": 3.82
+  },
+  {
+   "direction": "human->zebrafish",
+   "A": "scVI",
+   "B": "saturn_v99",
+   "n_shared": 1032,
+   "mf1_A": 0.5112,
+   "mf1_B": 0.2479,
+   "delta": 0.2633,
+   "delta_se": 0.0215,
+   "delta_ci95": [
+    0.2344,
+    0.335
+   ],
+   "significant_at_95": true,
+   "n_over_se": 12.25
+  },
+  {
+   "direction": "zebrafish->human",
+   "A": "scVI",
+   "B": "saturn_v99",
+   "n_shared": 642,
+   "mf1_A": 0.6026,
+   "mf1_B": 0.4021,
+   "delta": 0.2005,
+   "delta_se": 0.0208,
+   "delta_ci95": [
+    0.1607,
+    0.2406
+   ],
+   "significant_at_95": true,
+   "n_over_se": 9.65
+  },
+  {
+   "direction": "mouse->zebrafish",
+   "A": "saturn_v99",
+   "B": "scVI",
+   "n_shared": 446,
+   "mf1_A": 0.6491,
+   "mf1_B": 0.6206,
+   "delta": 0.0285,
+   "delta_se": 0.0381,
+   "delta_ci95": [
+    -0.0481,
+    0.0998
+   ],
+   "significant_at_95": false,
+   "n_over_se": 0.75
+  },
+  {
+   "direction": "zebrafish->mouse",
+   "A": "saturn_v99",
+   "B": "scVI",
+   "n_shared": 911,
+   "mf1_A": 0.6508,
+   "mf1_B": 0.6168,
+   "delta": 0.034,
+   "delta_se": 0.0271,
+   "delta_ci95": [
+    -0.0221,
+    0.084
+   ],
+   "significant_at_95": false,
+   "n_over_se": 1.25
+  },
+  {
+   "direction": "human->mouse",
+   "A": "scVI",
+   "B": "saturn_v99",
+   "n_shared": 1309,
+   "mf1_A": 0.5121,
+   "mf1_B": 0.4147,
+   "delta": 0.0974,
+   "delta_se": 0.0228,
+   "delta_ci95": [
+    0.0532,
+    0.1409
+   ],
+   "significant_at_95": true,
+   "n_over_se": 4.27
+  },
+  {
+   "direction": "human->zebrafish",
+   "A": "scVI",
+   "B": "ortholog_pca",
+   "n_shared": 1499,
+   "mf1_A": 0.4014,
+   "mf1_B": 0.1654,
+   "delta": 0.236,
+   "delta_se": 0.0166,
+   "delta_ci95": [
+    0.2039,
+    0.2676
+   ],
+   "significant_at_95": true,
+   "n_over_se": 14.21
+  },
+  {
+   "direction": "mouse->zebrafish",
+   "A": "saturn_v99",
+   "B": "ortholog_pca",
+   "n_shared": 446,
+   "mf1_A": 0.6491,
+   "mf1_B": 0.2706,
+   "delta": 0.3785,
+   "delta_se": 0.0307,
+   "delta_ci95": [
+    0.3136,
+    0.4353
+   ],
+   "significant_at_95": true,
+   "n_over_se": 12.34
+  },
+  {
+   "direction": "zebrafish->mouse",
+   "A": "saturn_v99",
+   "B": "ortholog_pca",
+   "n_shared": 911,
+   "mf1_A": 0.6508,
+   "mf1_B": 0.4034,
+   "delta": 0.2474,
+   "delta_se": 0.039,
+   "delta_ci95": [
+    0.145,
+    0.2948
+   ],
+   "significant_at_95": true,
+   "n_over_se": 6.34
+  },
+  {
+   "direction": "human->mouse",
+   "A": "ortholog_pca",
+   "B": "saturn_v99",
+   "n_shared": 1309,
+   "mf1_A": 0.4615,
+   "mf1_B": 0.4147,
+   "delta": 0.0468,
+   "delta_se": 0.0372,
+   "delta_ci95": [
+    0.0122,
+    0.1415
+   ],
+   "significant_at_95": true,
+   "n_over_se": 1.26
+  },
+  {
+   "direction": "human->zebrafish",
+   "A": "saturn_v99",
+   "B": "ortholog_pca",
+   "n_shared": 1032,
+   "mf1_A": 0.2479,
+   "mf1_B": 0.183,
+   "delta": 0.0649,
+   "delta_se": 0.0179,
+   "delta_ci95": [
+    0.03,
+    0.1001
+   ],
+   "significant_at_95": true,
+   "n_over_se": 3.63
+  },
+  {
+   "direction": "zebrafish->human",
+   "A": "saturn_v99",
+   "B": "ortholog_pca",
+   "n_shared": 642,
+   "mf1_A": 0.4021,
+   "mf1_B": 0.2832,
+   "delta": 0.1189,
+   "delta_se": 0.023,
+   "delta_ci95": [
+    0.0731,
+    0.1629
+   ],
+   "significant_at_95": true,
+   "n_over_se": 5.17
+  }
+ ]
+}

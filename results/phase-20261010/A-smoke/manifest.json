@@ -1,0 +1,48 @@
+{
+ "protocol": "transductive_formal_reassessment",
+ "mode": "full",
+ "roles": "src=reference(knn fit) tgt=query",
+ "params": {
+  "seed": 0,
+  "k": 15,
+  "npcs": 50,
+  "nperm": 200,
+  "min_shared_genes": 1000,
+  "normalisation": "log1p(CPM/100) = normalize_total(1e4)+log1p full-gene-space",
+  "gene_symbol_dedup_dropped": {
+   "human": 0,
+   "mouse": 0
+  }
+ },
+ "script_sha256": "c56d3ee7607cf4a5b20af446ba279390f1cef3ba361e7b76d55ec3871367ba55",
+ "inputs": {
+  "mapping": "D:\\projects\\course5-prep\\config\\heart-celltype-map-v1.tsv",
+  "orth_human_mouse": "D:\\projects\\course5-prep\\ortholog\\MGI_HOM_MouseHumanSequence.rpt",
+  "orth_human_fish": "D:\\projects\\course5-prep\\ortholog\\human_orthos.txt",
+  "orth_mouse_fish": "D:\\projects\\course5-prep\\ortholog\\mouse_orthos.txt",
+  "human": "D:\\projects\\course5-prep\\local_human_s.h5ad",
+  "mouse": "D:\\projects\\course5-prep\\local_mouse_s.h5ad",
+  "zebrafish": "D:\\projects\\course5-prep\\local_zebrafish_s.h5ad"
+ },
+ "input_sha256": {
+  "mapping": "be9857354778535b76d1884d004c54691dc5ff2daa7b098d71dc719daf583165",
+  "orth_human_mouse": "b8220b7689f11066c3d82e0f24c23ba3c7a30ad26a0f24ab639357aebc09582d",
+  "orth_human_fish": "a921e188574b190a10916f3722ec0ed9dd7726151fcf6044b29434bca57a19a0",
+  "orth_mouse_fish": "36218cade856252444e4e2acf57748a58f63c1d6f34cf51ede2afd8f52959ea6",
+  "human": "af41618b6941d2f1eacc7535e34a73b08e57cce78060c9f6d0df15984e57c633",
+  "mouse": "7fda583d59d3767ee0d61c741ae2ab89dc0c43f5d587caf2f768b4d8a12d9d2e",
+  "zebrafish": "6b1e8798d5f848acd6340486836ff2e3a8393408e282b6b0c50695b13e49a879"
+ },
+ "output_sha256": {
+  "_patched_source.py": "c56d3ee7607cf4a5b20af446ba279390f1cef3ba361e7b76d55ec3871367ba55",
+  "command.txt": "0e2742409e088e0e6711e8dde25429454657d9bf0830d5742869c6bf0df0940c",
+  "confusion/coarse_human_to_mouse.json": "167da767a21c8688b77dfdd210f17d3bdddec2077182c11648b5ed0e3533580d",
+  "environment.json": "8553c1c7da3333930eb45daf98847aea5d9913e76a7a2bae0b14ab398ece5bde",
+  "metrics.json": "e13a2bdb87438c5ae63d82ef6b41ed0ab649bbf733063944125c0c1cbe5cf94f",
+  "predictions/coarse_human_to_mouse.json": "dc729820b3a442d676cc17913f2e79e852ce795d4517730eb10807d145f10847"
+ },
+ "note": "manifest.json 自身不在 output_sha256 内（哈希时未生成）",
+ "started": "2026-10-10T16:39:33",
+ "finished": "2026-10-10T16:39:43",
+ "elapsed_sec": 9.8
+}

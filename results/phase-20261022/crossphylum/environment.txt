@@ -1,0 +1,8 @@
+python=3.9.12
+numpy=1.23.5
+scipy=1.10.1
+sklearn=1.6.1
+torch=2.6.0+cu124
+scvi=1.1.6.post2
+anndata=0.10.8
+total_time_s=9647.3

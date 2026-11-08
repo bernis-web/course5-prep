@@ -1,0 +1,45 @@
+{
+ "human->mouse": {
+  "coarse": {
+   "acc": 0.8618,
+   "majority": 0.4817,
+   "shuffle_p": 0.0,
+   "n_ref": 1528,
+   "n_q": 1505,
+   "n_q_total": 1535,
+   "coverage_q": 0.9805,
+   "confusion": {
+    "adipocyte=>smooth_muscle": 6,
+    "adipocyte=>epicardial": 8,
+    "adipocyte=>endothelial": 9,
+    "adipocyte=>immune": 7,
+    "cardiomyocyte=>endothelial": 27,
+    "cardiomyocyte=>cardiomyocyte": 19,
+    "cardiomyocyte=>smooth_muscle": 1,
+    "endothelial=>endothelial": 720,
+    "endothelial=>immune": 4,
+    "endothelial=>fibroblast": 1,
+    "epicardial=>epicardial": 26,
+    "epicardial=>immune": 2,
+    "epicardial=>endothelial": 2,
+    "fibroblast=>fibroblast": 255,
+    "fibroblast=>smooth_muscle": 82,
+    "fibroblast=>endothelial": 9,
+    "fibroblast=>epicardial": 5,
+    "fibroblast=>immune": 9,
+    "immune=>immune": 197,
+    "immune=>endothelial": 5,
+    "neural=>endothelial": 2,
+    "neural=>cardiomyocyte": 1,
+    "neural=>smooth_muscle": 11,
+    "neural=>neural": 12,
+    "neural=>fibroblast": 3,
+    "neural=>immune": 1,
+    "smooth_muscle=>smooth_muscle": 68,
+    "smooth_muscle=>endothelial": 13
+   },
+   "n_perm": 200,
+   "shared_genes": 15869
+  }
+ }
+}

@@ -1,0 +1,95 @@
+{
+ "generated": "2026-10-30",
+ "sources": {
+  "platform": "GET /api/task/dcsTask/getUserTaskById (analyseDuration / analysisAmount)",
+  "local": "results/resource-20261030/resource_summary.json (PeakWorkingSetSize in-process)"
+ },
+ "platform_tasks": [
+  {
+   "method": "ortholog-PCA",
+   "variant": "FIXKEY v3, platform",
+   "task": "W202610150090794",
+   "workflow": "opca_v2",
+   "cells": 4606,
+   "genes": 15869,
+   "analyse_sec": 866,
+   "billing_sec": 926,
+   "wall_total_sec": 1589,
+   "cny": 0.19,
+   "resource_class": "2c8g",
+   "status": "completed",
+   "mem_note": "平台未记录峰值内存字段；本地实测见 memory_local"
+  },
+  {
+   "method": "scVI",
+   "variant": "in-phylum 6 dir, platform",
+   "task": "W202610190042919",
+   "workflow": "scvi_cross2",
+   "cells": 4606,
+   "genes": 9018,
+   "analyse_sec": 916,
+   "billing_sec": 976,
+   "wall_total_sec": 1513,
+   "cny": 0.2,
+   "resource_class": "2c8g",
+   "status": "completed",
+   "mem_note": "平台任务记录未返回峰值内存；早期记录为 2.37 GB（2c8g 档内实测）"
+  },
+  {
+   "method": "scVI",
+   "variant": "cross-phylum lamprey/mouse",
+   "task": "W202610220063725",
+   "workflow": "scvi_cross2",
+   "cells": 55694,
+   "genes": 6222,
+   "analyse_sec": 9773,
+   "billing_sec": 9833,
+   "wall_total_sec": 10037,
+   "cny": 2.06,
+   "resource_class": "2c8g",
+   "status": "completed",
+   "mem_note": "早期记录 3.63 GB"
+  },
+  {
+   "method": "SAMap",
+   "variant": "joint embedding 4606x150",
+   "task": "W202610260103163",
+   "workflow": "runsamap",
+   "cells": 4606,
+   "genes": null,
+   "analyse_sec": 354,
+   "billing_sec": 414,
+   "wall_total_sec": 566,
+   "cny": 0.02,
+   "resource_class": "1c4g",
+   "status": "completed",
+   "mem_note": "未测"
+  }
+ ],
+ "totals": {
+  "n_tasks": 4,
+  "compute_sec_sum": 11909,
+  "cny_sum": 2.47
+ },
+ "memory_local": {
+  "method": "ortholog-PCA (fixkey v3, 4,606 cells x 3 species, 200 perms)",
+  "n_runs": 5,
+  "peak_ws_mb_median": 1307.9,
+  "peak_ws_mb_range": [
+   1306.6,
+   1308.3
+  ],
+  "peak_pagefile_mb_median": 1317.2,
+  "wall_sec_median": 26.68,
+  "wall_sec_range": [
+   25.52,
+   26.92
+  ],
+  "note": "白盒测量：在被测进程内部读 PeakWorkingSetSize，不是外部轮询"
+ },
+ "gaps": [
+  "SATURN 任务没有 CPU/内存字段（GPU 任务，平台未记录）",
+  "scVI / SAMap 的峰值内存来自早期单次记录，未重复测量",
+  "本台账包含一次 5.5 万细胞重试运行（¥2.06），占总额 84%"
+ ]
+}

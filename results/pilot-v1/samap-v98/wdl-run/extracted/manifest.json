@@ -1,0 +1,24 @@
+{
+ "environment": {
+  "utc": "2026-10-04T16:51:07.179889+00:00",
+  "beijing": "2026-10-05T00:51:07.179952+08:00",
+  "command": "./samap_script.py",
+  "script_sha256": "c0f05b89653e220e8353ad6eb0feb698cc37e92720c5daa1e8bc0f5698d43807",
+  "protocol_label": "transductive_formal_reassessment",
+  "samap": "1.0.16",
+  "sam_algorithm": "1.0.2"
+ },
+ "protocol_label": "transductive_formal_reassessment",
+ "samap_version": "1.0.16",
+ "sam_algorithm_version": "1.0.2",
+ "seed": 0,
+ "k": 15,
+ "nperm": 200,
+ "distance": "cosine",
+ "mapping_sha256": "d92e32aa788672492febe8cd428beac71ba69fd99df68c7f362cba2e553eea4a",
+ "input_sha256": {
+  "human": "d21df28890d139dd7d13d430106eefda510c5bad638c0100d8511613dba0f44b",
+  "mouse": "5dd87a0ab6ec83949e4f05161ebc8793259c05fb75800e5c8f9e0565a1b0a331",
+  "zebrafish": "5e51a8562b237a7f2082f064cb24dd3b3a6e96cc7dac4707a395ba212266ee92"
+ }
+}

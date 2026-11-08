@@ -1,0 +1,55 @@
+# wrapper dry-run 与拒绝语义实测记录（2026-10-11 重采，含真实退出码）
+# 工作目录除标注外均为仓库根（D:/projects/course5-prep）
+
+### 正例 A --dry-run（仓库根）
+PASS output_inside_repo D:\projects\course5-prep\results\phase-20261010\A-full-20261011T091916Z
+PREFLIGHT|18/18|out=D:\projects\course5-prep\results\phase-20261010\A-full-20261011T091916Z
+DRY-RUN|no model executed, no output dir created
+exit=0
+
+### 正例 B --dry-run（仓库根）
+PASS output_inside_repo D:\projects\course5-prep\results\phase-20261010\A-full-samap-20261011T091917Z
+PREFLIGHT|20/20|out=D:\projects\course5-prep\results\phase-20261010\A-full-samap-20261011T091917Z
+DRY-RUN|no model executed, no output dir created
+exit=0
+
+### 负例 a1: A --out 已存在目录(A-smoke)
+ERROR: output dir already exists: D:\projects\course5-prep\results\phase-20261010\A-smoke (refusing to overwrite)
+exit=3
+
+### 负例 a2: B --out 已存在目录(A-smoke)
+ERROR: output dir already exists: D:\projects\course5-prep\results\phase-20261010\A-smoke (refusing to overwrite)
+exit=3
+
+### 负例 b1: A --out pilot-v1
+ERROR: output resolves inside results/pilot-v1: D:\projects\course5-prep\results\pilot-v1\x (refusing)
+exit=3
+
+### 负例 b2: B --out pilot-v1
+ERROR: output resolves inside results/pilot-v1: D:\projects\course5-prep\results\pilot-v1\x (refusing)
+exit=3
+
+### 负例 b3: A --out PILOT-V1（大小写）
+ERROR: output resolves inside results/pilot-v1: D:\projects\course5-prep\results\pilot-v1\x (refusing)
+exit=3
+
+### 负例 b4: A --out .. 穿越
+ERROR: output resolves inside results/pilot-v1: D:\projects\course5-prep\results\pilot-v1\x (refusing)
+exit=3
+
+### 负例 c1: A 非仓库根 cwd
+ERROR: must be invoked from the repo root: cwd=D:\projects\course5-prep\results expected=D:\projects\course5-prep
+exit=2
+
+### 负例 c2: B 非仓库根 cwd
+ERROR: must be invoked from the repo root: cwd=D:\projects\course5-prep\results expected=D:\projects\course5-prep
+exit=2
+
+### 负例 d: A --out 仓库外
+ERROR: output resolves outside repo root: D:\tmp\x (refusing)
+exit=3
+
+### 负例 e: B --out 仓库外
+ERROR: output resolves outside repo root: D:\tmp\x (refusing)
+exit=3
+

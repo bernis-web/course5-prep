@@ -1,0 +1,192 @@
+{
+ "human|Ventricular Cardiomyocyte": [
+  "cardiomyocyte",
+  "ventricular cardiomyocyte",
+  "active"
+ ],
+ "human|Atrial Cardiomyocyte": [
+  "cardiomyocyte",
+  "atrial cardiomyocyte",
+  "active"
+ ],
+ "human|Fibroblast": [
+  "fibroblast",
+  "fibroblast",
+  "active"
+ ],
+ "human|Endothelial cell": [
+  "endothelial",
+  "endothelial cell",
+  "active"
+ ],
+ "human|Lymphatic Endothelial cell": [
+  "endothelial",
+  "lymphatic endothelial cell",
+  "active"
+ ],
+ "human|Smooth muscle cell": [
+  "smooth_muscle",
+  "smooth muscle cell",
+  "active"
+ ],
+ "human|Myeloid": [
+  "immune",
+  "myeloid",
+  "active"
+ ],
+ "human|Lymphoid": [
+  "immune",
+  "lymphoid",
+  "active"
+ ],
+ "human|Mast cell": [
+  "immune",
+  "mast cell",
+  "active"
+ ],
+ "human|Adipocyte": [
+  "adipocyte",
+  "adipocyte",
+  "active"
+ ],
+ "human|Mesothelial cell": [
+  "epicardial",
+  "mesothelial cell",
+  "active"
+ ],
+ "human|Neural cell": [
+  "neural",
+  "neural cell",
+  "active"
+ ],
+ "mouse|Cardiomyocyte": [
+  "cardiomyocyte",
+  "cardiomyocyte",
+  "active"
+ ],
+ "mouse|Endothelial cell": [
+  "endothelial",
+  "endothelial cell",
+  "active"
+ ],
+ "mouse|Fibroblast": [
+  "fibroblast",
+  "fibroblast",
+  "active"
+ ],
+ "mouse|Smooth muscle cell": [
+  "smooth_muscle",
+  "smooth muscle cell",
+  "active"
+ ],
+ "mouse|Lymphatic Endothelial cell": [
+  "endothelial",
+  "lymphatic endothelial cell",
+  "active"
+ ],
+ "mouse|Myeloid": [
+  "immune",
+  "myeloid",
+  "active"
+ ],
+ "mouse|Lymphoid": [
+  "immune",
+  "lymphoid",
+  "active"
+ ],
+ "mouse|Epicardium": [
+  "epicardial",
+  "epicardium",
+  "active"
+ ],
+ "mouse|Valve": [
+  "fibroblast",
+  "valve interstitial cell",
+  "active"
+ ],
+ "mouse|Adipocyte": [
+  "adipocyte",
+  "adipocyte",
+  "active"
+ ],
+ "mouse|Neural cell": [
+  "neural",
+  "neural cell",
+  "active"
+ ],
+ "mouse|Proliferating cell": [
+  "other",
+  "unmapped",
+  "unmapped"
+ ],
+ "zebrafish|Ventricular Cardiomyocyte": [
+  "cardiomyocyte",
+  "ventricular cardiomyocyte",
+  "active"
+ ],
+ "zebrafish|Atrial Cardiomyocyte": [
+  "cardiomyocyte",
+  "atrial cardiomyocyte",
+  "active"
+ ],
+ "zebrafish|Fibroblast": [
+  "fibroblast",
+  "fibroblast",
+  "active"
+ ],
+ "zebrafish|Endothelial cell": [
+  "endothelial",
+  "endothelial cell",
+  "active"
+ ],
+ "zebrafish|Smooth muscle cell": [
+  "smooth_muscle",
+  "smooth muscle cell",
+  "active"
+ ],
+ "zebrafish|Perivascular cells": [
+  "smooth_muscle",
+  "smooth muscle cell",
+  "active"
+ ],
+ "zebrafish|Myeloid": [
+  "immune",
+  "myeloid",
+  "active"
+ ],
+ "zebrafish|Lymphoid": [
+  "immune",
+  "lymphoid",
+  "active"
+ ],
+ "zebrafish|Epicardium": [
+  "epicardial",
+  "epicardium",
+  "active"
+ ],
+ "zebrafish|Valve": [
+  "fibroblast",
+  "valve interstitial cell",
+  "active"
+ ],
+ "zebrafish|Red blood cell": [
+  "erythroid",
+  "erythrocyte",
+  "active"
+ ],
+ "zebrafish|Orthers": [
+  "neural",
+  "neural cell",
+  "active"
+ ],
+ "zebrafish|mt": [
+  "other",
+  "unmapped",
+  "unmapped"
+ ],
+ "zebrafish|Proliferating cell": [
+  "other",
+  "unmapped",
+  "unmapped"
+ ]
+}

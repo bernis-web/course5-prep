@@ -1,0 +1,39 @@
+source_species	source_label	coarse_level	fine_mapped_label	evidence_source	mapping_confidence	mapping_status	reviewer	notes
+human	Ventricular Cardiomyocyte	cardiomyocyte	ventricular cardiomyocyte	canonical CM markers RYR2/TTN/MYBPC3; Litviňuková 2020 human heart atlas nomenclature	high	active	pending	atrial/ventricular split preserved at fine level
+human	Atrial Cardiomyocyte	cardiomyocyte	atrial cardiomyocyte	MYH6/MYL7/NPPA markers; Litviňuková 2020	high	active	pending	atrial/ventricular split preserved at fine level
+human	Fibroblast	fibroblast	fibroblast	DCN/COL6A3/LAMA2 markers; canonical	high	active	pending	
+human	Endothelial cell	endothelial	endothelial cell	VWF/PECAM1/FLT1 markers; canonical	high	active	pending	
+human	Lymphatic Endothelial cell	endothelial	lymphatic endothelial cell	MMRN1/CCL21/PROX1 lineage; canonical	high	active	pending	coarse merged into endothelial
+human	Smooth muscle cell	smooth_muscle	smooth muscle cell	PDGFRB/RGS5/GUCY1A2 mural markers; canonical	high	active	pending	
+human	Myeloid	immune	myeloid	CD163/F13A1/C1QA; canonical	high	active	pending	
+human	Lymphoid	immune	lymphoid	PTPRC/CD247/IKZF1; canonical	high	active	pending	
+human	Mast cell	immune	mast cell	CPA3/KIT/IL18R1; canonical	high	active	pending	
+human	Adipocyte	adipocyte	adipocyte	GPAM/PLIN1/PPARG; canonical	high	active	pending	coarse vocabulary extended beyond 8 with adipocyte (present in all 3 species)
+human	Mesothelial cell	epicardial	mesothelial cell	KRT19/MSLN/UPK3B mesothelial markers; epicardium=cardiac mesothelium lineage; medium support Litviňuková 2020 discussion	medium	active	pending	coarse merged with epicardial; fine kept distinct
+human	Neural cell	neural	neural cell	NRXN1/NCAM2/SCN7A; canonical	high	active	pending	
+mouse	Cardiomyocyte	cardiomyocyte	cardiomyocyte	Tnnt2/Tnni3/Myh6; canonical	high	active	pending	mouse atlas does not split atrial/ventricular; fine stays generic
+mouse	Endothelial cell	endothelial	endothelial cell	Cdh5/Pecam1/Kdr; canonical	high	active	pending	
+mouse	Fibroblast	fibroblast	fibroblast	Dcn/Col1a2/Lum; canonical	high	active	pending	
+mouse	Smooth muscle cell	smooth_muscle	smooth muscle cell	Rgs5/Pdgfrb/Notch3 mural; canonical	high	active	pending	
+mouse	Lymphatic Endothelial cell	endothelial	lymphatic endothelial cell	Mmrn1/Flt4/Ccl21a; canonical	high	active	pending	coarse merged into endothelial
+mouse	Myeloid	immune	myeloid	canonical	high	active	pending	
+mouse	Lymphoid	immune	lymphoid	canonical	high	active	pending	
+mouse	Epicardium	epicardial	epicardium	Krt19/Upk3b/Msln/Wt1 lineage; canonical	high	active	pending	
+mouse	Valve	fibroblast	valve interstitial cell	VICs mesenchymal; Hu 2022 cross-species heart atlas groups valve mesenchyme with fibroblast-like; low-medium	low	active	pending	coarse=fibroblast is a disclosed modeling choice; fine keeps VIC distinct
+mouse	Adipocyte	adipocyte	adipocyte	Ces1d/Fasn markers; canonical	high	active	pending	
+mouse	Neural cell	neural	neural cell	canonical	high	active	pending	
+mouse	Proliferating cell	other	unmapped	cell-cycle cluster, lineage-agnostic (Mcm2/Mcm6); not a terminal type	n/a	unmapped	pending	excluded from mapped denominators; coverage reported
+zebrafish	Ventricular Cardiomyocyte	cardiomyocyte	ventricular cardiomyocyte	cmlc1/vmhc canonical zebrafish ventricle markers; Hu 2022 zebrafish heart atlas	high	active	pending	
+zebrafish	Atrial Cardiomyocyte	cardiomyocyte	atrial cardiomyocyte	myl7/amhc canonical atrial markers; Hu 2022	high	active	pending	
+zebrafish	Fibroblast	fibroblast	fibroblast	col1a1a/dcn/sparc; canonical	high	active	pending	
+zebrafish	Endothelial cell	endothelial	endothelial cell	cdh5/egfl7/f8; canonical	high	active	pending	
+zebrafish	Smooth muscle cell	smooth_muscle	smooth muscle cell	canonical mural	high	active	pending	
+zebrafish	Perivascular cells	smooth_muscle	smooth muscle cell	rgs5a/pdgfrb/notch3 mural markers identical to SMC program; merged as mural	medium	active	pending	fine merged into smooth muscle
+zebrafish	Myeloid	immune	myeloid	spi1b/ctss/il1b; canonical	high	active	pending	
+zebrafish	Lymphoid	immune	lymphoid	ptprc/b2m/coro1a; canonical	high	active	pending	
+zebrafish	Epicardium	epicardial	epicardium	krt15/tcf21 lineage; canonical	high	active	pending	
+zebrafish	Valve	fibroblast	valve interstitial cell	VIC mesenchyme; low-medium; same choice as mouse Valve	low	active	pending	coarse=fibroblast disclosed
+zebrafish	Red blood cell	erythroid	erythrocyte	zebrafish heart contains resident erythrocytes; Hu 2022	high	active	pending	no mammalian counterpart in this dataset (mammalian RBCs anucleate)
+zebrafish	Orthers	neural	neural cell	source label is a catch-all misspelling; marker profile (scn1ba/scn4ab/sncga/kcnma1a) matches neural program	low	active	pending	data-marker observation used as VALIDATION hint only; pseudobulk check required before freeze
+zebrafish	mt	other	unmapped	high-mitochondrial low-quality cluster	n/a	unmapped	pending	excluded from mapped denominators; coverage reported
+zebrafish	Proliferating cell	other	unmapped	cell-cycle cluster; lineage-agnostic	n/a	unmapped	pending	excluded from mapped denominators; coverage reported

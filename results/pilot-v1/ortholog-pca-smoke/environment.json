@@ -1,0 +1,9 @@
+{
+ "python": "3.9.6",
+ "platform": "Windows-10-10.0.22621-SP0",
+ "numpy": "1.23.5",
+ "anndata": "0.10.9",
+ "scanpy": "1.9.3",
+ "sklearn": "1.6.1",
+ "command": "D:/projects/course5-prep/.venv39/Scripts/python.exe scripts/ortholog_pca_local_v1.py --smoke"
+}

@@ -1,0 +1,79 @@
+SELFCHECK_BEGIN
+{
+ "python": "3.9.6",
+ "executable": "D:\\projects\\course5-prep\\.venv39\\Scripts\\python.exe",
+ "cwd": "D:\\projects\\course5-prep\\tmp\\sc-test",
+ "hostname": "韩先生的笔记本",
+ "versions": {
+  "numpy": "1.23.5",
+  "scipy": "1.12.0",
+  "pandas": "2.3.3",
+  "sklearn": "1.6.1",
+  "anndata": "0.10.9",
+  "scanpy": "1.9.3",
+  "h5py": "3.8.0"
+ },
+ "version_drift": {
+  "scipy": {
+   "pinned": "1.10.1",
+   "actual": "1.12.0"
+  },
+  "pandas": {
+   "pinned": "1.5.3",
+   "actual": "2.3.3"
+  },
+  "anndata": {
+   "pinned": "0.10.8",
+   "actual": "0.10.9"
+  }
+ },
+ "versions_match": false,
+ "data_dir": "data",
+ "orth_dir": "data\\wheelhouse",
+ "eval_script": "D:\\projects\\course5-prep\\tmp\\sc-test\\ortholog_pca_dcs_v3_fixkey.py",
+ "eval_exit": 0,
+ "eval_tail": [
+  "human->zebrafish done genes=9311 acc(exact)=0.1504",
+  "mouse->human done genes=15869 acc(exact)=0.4084",
+  "mouse->zebrafish done genes=8160 acc(exact)=0.164",
+  "zebrafish->human done genes=9311 acc(exact)=0.1387",
+  "zebrafish->mouse done genes=8160 acc(exact)=0.471",
+  "DONE mode=full elapsed=22.8s"
+ ],
+ "frozen_cells": {
+  "human->mouse|coarse": {
+   "frozen": 0.8618,
+   "actual": 0.8618,
+   "match": true
+  },
+  "mouse->human|coarse": {
+   "frozen": 0.7369,
+   "actual": 0.7369,
+   "match": true
+  },
+  "human->zebrafish|coarse": {
+   "frozen": 0.1795,
+   "actual": 0.1795,
+   "match": true
+  },
+  "mouse->zebrafish|coarse": {
+   "frozen": 0.2675,
+   "actual": 0.2675,
+   "match": true
+  },
+  "zebrafish->human|coarse": {
+   "frozen": 0.1734,
+   "actual": 0.1734,
+   "match": true
+  },
+  "zebrafish->mouse|coarse": {
+   "frozen": 0.5814,
+   "actual": 0.5814,
+   "match": true
+  }
+ },
+ "frozen_mismatch": [],
+ "reproduces_frozen": true,
+ "verdict": "version_drift"
+}
+SELFCHECK_END

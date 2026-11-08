@@ -1,0 +1,92 @@
+{
+ "human->mouse|coarse": {
+  "acc": 0.9189,
+  "macro_f1_union": 0.6683,
+  "n": 1505
+ },
+ "human->zebrafish|coarse": {
+  "acc": 0.6217,
+  "macro_f1_union": 0.4014,
+  "n": 1499
+ },
+ "mouse->human|coarse": {
+  "acc": 0.7781,
+  "macro_f1_union": 0.5895,
+  "n": 1528
+ },
+ "mouse->zebrafish|coarse": {
+  "acc": 0.6338,
+  "macro_f1_union": 0.4248,
+  "n": 1499
+ },
+ "zebrafish->human|coarse": {
+  "acc": 0.6479,
+  "macro_f1_union": 0.429,
+  "n": 1528
+ },
+ "zebrafish->mouse|coarse": {
+  "acc": 0.802,
+  "macro_f1_union": 0.4786,
+  "n": 1505
+ },
+ "human->mouse|exact": {
+  "acc": 0.8241,
+  "macro_f1_union": 0.3421,
+  "n": 1535
+ },
+ "human->zebrafish|exact": {
+  "acc": 0.5133,
+  "macro_f1_union": 0.2033,
+  "n": 1543
+ },
+ "mouse->human|exact": {
+  "acc": 0.5419,
+  "macro_f1_union": 0.2777,
+  "n": 1528
+ },
+ "mouse->zebrafish|exact": {
+  "acc": 0.4971,
+  "macro_f1_union": 0.198,
+  "n": 1543
+ },
+ "zebrafish->human|exact": {
+  "acc": 0.4581,
+  "macro_f1_union": 0.212,
+  "n": 1528
+ },
+ "zebrafish->mouse|exact": {
+  "acc": 0.6717,
+  "macro_f1_union": 0.2193,
+  "n": 1535
+ },
+ "human->mouse|fine": {
+  "acc": 0.8405,
+  "macro_f1_union": 0.3688,
+  "n": 1505
+ },
+ "human->zebrafish|fine": {
+  "acc": 0.5457,
+  "macro_f1_union": 0.2735,
+  "n": 1499
+ },
+ "mouse->human|fine": {
+  "acc": 0.5438,
+  "macro_f1_union": 0.2966,
+  "n": 1528
+ },
+ "mouse->zebrafish|fine": {
+  "acc": 0.5504,
+  "macro_f1_union": 0.2742,
+  "n": 1499
+ },
+ "zebrafish->human|fine": {
+  "acc": 0.498,
+  "macro_f1_union": 0.2875,
+  "n": 1528
+ },
+ "zebrafish->mouse|fine": {
+  "acc": 0.7056,
+  "macro_f1_union": 0.3125,
+  "n": 1505
+ }
+}

@@ -1,0 +1,10 @@
+ortholog pairs: hm=17611 fh=10398 fmm=9058
+human: 1528 cells × 32732 genes
+mouse: 1535 cells × 32379 genes
+zebrafish: 1543 cells × 27661 genes
+Traceback (most recent call last):
+  File "D:\projects\course5-prep\scripts\ortholog_pca_local_v1.py", line 149, in <module>
+    main()
+  File "D:\projects\course5-prep\scripts\ortholog_pca_local_v1.py", line 127, in main
+    knn.fit(Z[m_s][keep_r], ytr[keep_r])
+IndexError: boolean index did not match indexed array along dimension 0; dimension is 1543 but corresponding boolean dimension is 3063

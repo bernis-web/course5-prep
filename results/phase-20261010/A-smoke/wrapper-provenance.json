@@ -1,0 +1,143 @@
+{
+ "task": "task-1-a-smoke-provenance",
+ "why": "ortholog_pca_local_v1.py 无法限定物种/方向/层级，且全量模式无守卫直写冻结目录；本 wrapper 用锚点断言过的文本补丁把执行范围限制到 human->mouse / coarse，并把补丁后的源码落盘执行，使复现在构造上协议保真。",
+ "wrapper": "D:\\projects\\course5-prep\\scripts\\ortholog_pca_task1_isolated.py",
+ "wrapper_sha256": "71ab5642ad8e8a964717ad738c7f60524f9d1372fcc5bbc534cf63c64d7002ed",
+ "authoritative_source": "D:\\projects\\course5-prep\\scripts\\ortholog_pca_local_v1.py",
+ "authoritative_source_sha256": "6582d8736c3570f3de23ed36cb57c9cf58f6190c4730c3d39e29928415fd0c44",
+ "patched_source": "D:\\projects\\course5-prep\\results\\phase-20261010\\A-smoke\\_patched_source.py",
+ "patched_source_sha256": "c56d3ee7607cf4a5b20af446ba279390f1cef3ba361e7b76d55ec3871367ba55",
+ "patches": [
+  {
+   "name": "P1 main-header",
+   "anchor_sha256": "fa4aaa40af2c729467e33167b1b0cde367a7ab2dd5171f592574ef76787e4661",
+   "replacement_sha256": "c749cb33d96d134e03ae7e02eec23db50871f019092e02a19cd3b48cc4da3cac",
+   "anchor_line_count": 10
+  },
+  {
+   "name": "P2 species-loop",
+   "anchor_sha256": "74e2eb379acac725392b6393d6be5411e9fe526f7be1ae8f208fe7f3deae5c90",
+   "replacement_sha256": "a2a70680cf5c81f4236c1e371ca4c3e6f77dcd94e80c2e32309f1f614b5a2335",
+   "anchor_line_count": 0
+  },
+  {
+   "name": "P3 direction-map",
+   "anchor_sha256": "3285e57c656695f06948a4587191c12b16fa6d11ebcb4bc02ce263cb54fbaeea",
+   "replacement_sha256": "84350079f3526a181d36dd73980aa6c3c6756cc40fc77913c06dd085e6490de1",
+   "anchor_line_count": 3
+  },
+  {
+   "name": "P4 levels",
+   "anchor_sha256": "d45b98abfa8dfb059567432043dd932b732db470568bbf5998f2d2defdf71e25",
+   "replacement_sha256": "48e9aae8c9e6807c192ef8b7c99bd9578c5d2ee6605188fe1267ebd7350ea10d",
+   "anchor_line_count": 0
+  },
+  {
+   "name": "P5 done-print",
+   "anchor_sha256": "37df03729571c5a7c475c443d063037dccee2f17f2f1a4d57dcc08a3029085ac",
+   "replacement_sha256": "98c7ce5ff6a1edc285d63108d73df05249084d938847143bc9adef4653d1e048",
+   "anchor_line_count": 0
+  },
+  {
+   "name": "P6 base-scope",
+   "anchor_sha256": "73cc4823288a866836505a808e766b7bd4e9eff88371480ce6d0e5af162d4d35",
+   "replacement_sha256": "eec3c27547fd9aec82e4a56e8d0e9a495ae905a27baec2adffc4ec5fbec1c3dd",
+   "anchor_line_count": 0
+  }
+ ],
+ "patch_count": 6,
+ "unified_diff": "--- D:\\projects\\course5-prep\\scripts\\ortholog_pca_local_v1.py\n+++ _patched_source.py\n@@ -31,5 +31,5 @@\n import numpy as np\n \n-BASE = Path(__file__).resolve().parents[1]\n+BASE = Path(SOURCE_BASE)\n ORTH_DIR = BASE / \"ortholog\"\n MAPPING_TSV = BASE / \"config\" / \"heart-celltype-map-v1.tsv\"\n@@ -44,5 +44,5 @@\n PREFIX = {\"human\": \"hu\", \"mouse\": \"mo\", \"zebrafish\": \"zf\"}\n SPECIES_FILES = {s: BASE / f\"local_{s}_s.h5ad\" for s in [\"human\", \"mouse\", \"zebrafish\"]}\n-LEVELS = (\"exact\", \"coarse\", \"fine\")\n+LEVELS = (\"coarse\",)\n \n \n@@ -151,12 +151,9 @@\n def main():\n     t0 = time.time()\n-    ap = argparse.ArgumentParser()\n-    ap.add_argument(\"--smoke\", action=\"store_true\")\n-    args = ap.parse_args()\n-    smoke = args.smoke\n-    nperm = NPERM_SMOKE if smoke else NPERM_FULL\n-    out = BASE / \"results\" / \"pilot-v1\" / (\"ortholog-pca-smoke\" if smoke else \"ortholog-pca-v98\")\n-    if smoke and out.exists():\n-        die(\"smoke output dir already exists: %s (refusing to overwrite)\" % out, 3)\n+    smoke = False\n+    nperm = NPERM_FULL\n+    out = OUT_DIR\n+    if not out.is_dir():\n+        die(\"A-smoke output dir was not prepared by the wrapper: %s\" % out)\n     (out / \"predictions\").mkdir(parents=True, exist_ok=True)\n     (out / \"confusion\").mkdir(parents=True, exist_ok=True)\n@@ -189,5 +186,5 @@\n     data = {}\n     gene_dedup = {}\n-    for sp in [\"human\", \"mouse\", \"zebrafish\"]:\n+    for sp in [\"human\", \"mouse\"]:\n         a = ad.read_h5ad(str(SPECIES_FILES[sp]))\n         if a.obs_names.duplicated().any():\n@@ -230,7 +227,5 @@\n         print(f\"{sp}: {X.shape[0]} cells x {len(var_up)} genes (dropped {dropped} dup symbols)\", flush=True)\n \n-    MAPS = {(\"human\", \"mouse\"): hm, (\"mouse\", \"human\"): {v: k for k, v in hm.items()},\n-            (\"human\", \"zebrafish\"): fh, (\"zebrafish\", \"human\"): {v: k for k, v in fh.items()},\n-            (\"mouse\", \"zebrafish\"): fmm, (\"zebrafish\", \"mouse\"): {v: k for k, v in fmm.items()}}\n+    MAPS = {(\"human\", \"mouse\"): hm}\n \n     results = {}\n@@ -320,5 +315,5 @@\n             }\n         results[f\"{src}->{tgt}\"] = dir_res\n-        print(f\"{src}->{tgt} done genes={len(shared)} acc(exact)={dir_res['exact']['acc']}\", flush=True)\n+        print(f\"{src}->{tgt} done genes={len(shared)} acc(coarse)={dir_res['coarse']['acc']}\", flush=True)\n \n     (out / \"metrics.json\").write_text(json.dumps(results, ensure_ascii=False, indent=1), encoding=\"utf-8\")\n",
+ "preflight_checks": [
+  {
+   "check": "BASE_is_repo_root",
+   "ok": true,
+   "detail": "BASE=D:\\projects\\course5-prep expected=D:\\projects\\course5-prep"
+  },
+  {
+   "check": "ORTH_DIR_exists",
+   "ok": true,
+   "detail": "D:\\projects\\course5-prep\\ortholog"
+  },
+  {
+   "check": "ortholog:MGI_HOM_MouseHumanSequence.rpt",
+   "ok": true,
+   "detail": "D:\\projects\\course5-prep\\ortholog\\MGI_HOM_MouseHumanSequence.rpt"
+  },
+  {
+   "check": "ortholog:human_orthos.txt",
+   "ok": true,
+   "detail": "D:\\projects\\course5-prep\\ortholog\\human_orthos.txt"
+  },
+  {
+   "check": "ortholog:mouse_orthos.txt",
+   "ok": true,
+   "detail": "D:\\projects\\course5-prep\\ortholog\\mouse_orthos.txt"
+  },
+  {
+   "check": "MAPPING_TSV_exists",
+   "ok": true,
+   "detail": "D:\\projects\\course5-prep\\config\\heart-celltype-map-v1.tsv"
+  },
+  {
+   "check": "input:human",
+   "ok": true,
+   "detail": "D:\\projects\\course5-prep\\local_human_s.h5ad"
+  },
+  {
+   "check": "input:mouse",
+   "ok": true,
+   "detail": "D:\\projects\\course5-prep\\local_mouse_s.h5ad"
+  },
+  {
+   "check": "input:zebrafish",
+   "ok": true,
+   "detail": "D:\\projects\\course5-prep\\local_zebrafish_s.h5ad"
+  },
+  {
+   "check": "LEVELS_coarse_only",
+   "ok": true,
+   "detail": "LEVELS=('coarse',)"
+  },
+  {
+   "check": "NPERM_FULL_is_200",
+   "ok": true,
+   "detail": "NPERM_FULL=200"
+  },
+  {
+   "check": "smoke_branch_removed",
+   "ok": true,
+   "detail": "argparse smoke branch absent from patched source"
+  },
+  {
+   "check": "out_is_injected",
+   "ok": true,
+   "detail": "main() uses OUT_DIR"
+  },
+  {
+   "check": "frozen_metrics:has_human->mouse/coarse",
+   "ok": true,
+   "detail": "present"
+  },
+  {
+   "check": "frozen_metrics:fields",
+   "ok": true,
+   "detail": "missing=none"
+  }
+ ],
+ "scope": {
+  "species": [
+   "human",
+   "mouse"
+  ],
+  "directions": [
+   "human->mouse"
+  ],
+  "levels": [
+   "coarse"
+  ],
+  "nperm": 200
+ },
+ "frozen_root_untouched": "D:\\projects\\course5-prep\\results\\pilot-v1",
+ "invocation": "D:\\projects\\course5-prep\\.venv39\\Scripts\\python.exe scripts\\ortholog_pca_task1_isolated.py",
+ "started": "2026-10-10T16:39:33"
+}

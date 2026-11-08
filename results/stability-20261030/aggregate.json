@@ -1,0 +1,209 @@
+{
+ "seeds": {
+  "n_runs": 10,
+  "human->mouse": {
+   "acc_mean": 0.8585,
+   "acc_sd": 0.0017,
+   "acc_min": 0.8558,
+   "acc_max": 0.8618,
+   "acc_range": 0.006,
+   "mf1_mean": 0.6452,
+   "mf1_sd": 0.005,
+   "n_q_min": 1505,
+   "n_q_max": 1505
+  },
+  "mouse->human": {
+   "acc_mean": 0.7352,
+   "acc_sd": 0.0025,
+   "acc_min": 0.7323,
+   "acc_max": 0.7395,
+   "acc_range": 0.0072,
+   "mf1_mean": 0.6577,
+   "mf1_sd": 0.0085,
+   "n_q_min": 1528,
+   "n_q_max": 1528
+  },
+  "human->zebrafish": {
+   "acc_mean": 0.1821,
+   "acc_sd": 0.0032,
+   "acc_min": 0.1788,
+   "acc_max": 0.1888,
+   "acc_range": 0.01,
+   "mf1_mean": 0.1609,
+   "mf1_sd": 0.0091,
+   "n_q_min": 1499,
+   "n_q_max": 1499
+  },
+  "zebrafish->human": {
+   "acc_mean": 0.1755,
+   "acc_sd": 0.003,
+   "acc_min": 0.1702,
+   "acc_max": 0.18,
+   "acc_range": 0.0098,
+   "mf1_mean": 0.1537,
+   "mf1_sd": 0.0025,
+   "n_q_min": 1528,
+   "n_q_max": 1528
+  },
+  "mouse->zebrafish": {
+   "acc_mean": 0.2646,
+   "acc_sd": 0.0021,
+   "acc_min": 0.2602,
+   "acc_max": 0.2675,
+   "acc_range": 0.0073,
+   "mf1_mean": 0.217,
+   "mf1_sd": 0.0041,
+   "n_q_min": 1499,
+   "n_q_max": 1499
+  },
+  "zebrafish->mouse": {
+   "acc_mean": 0.5769,
+   "acc_sd": 0.0059,
+   "acc_min": 0.5668,
+   "acc_max": 0.5841,
+   "acc_range": 0.0173,
+   "mf1_mean": 0.4299,
+   "mf1_sd": 0.0085,
+   "n_q_min": 1505,
+   "n_q_max": 1505
+  }
+ },
+ "cells": {
+  "n_runs": 5,
+  "human->mouse": {
+   "acc_mean": 0.8462,
+   "acc_sd": 0.0238,
+   "acc_min": 0.804,
+   "acc_max": 0.8618,
+   "acc_range": 0.0578,
+   "mf1_mean": 0.6233,
+   "mf1_sd": 0.0139,
+   "n_q_min": 1352,
+   "n_q_max": 1357
+  },
+  "mouse->human": {
+   "acc_mean": 0.7402,
+   "acc_sd": 0.0214,
+   "acc_min": 0.7236,
+   "acc_max": 0.7651,
+   "acc_range": 0.0415,
+   "mf1_mean": 0.6713,
+   "mf1_sd": 0.0155,
+   "n_q_min": 1375,
+   "n_q_max": 1375
+  },
+  "human->zebrafish": {
+   "acc_mean": 0.1832,
+   "acc_sd": 0.0111,
+   "acc_min": 0.1689,
+   "acc_max": 0.195,
+   "acc_range": 0.0261,
+   "mf1_mean": 0.1568,
+   "mf1_sd": 0.0115,
+   "n_q_min": 1349,
+   "n_q_max": 1353
+  },
+  "zebrafish->human": {
+   "acc_mean": 0.1795,
+   "acc_sd": 0.0059,
+   "acc_min": 0.1724,
+   "acc_max": 0.1869,
+   "acc_range": 0.0145,
+   "mf1_mean": 0.1588,
+   "mf1_sd": 0.0079,
+   "n_q_min": 1375,
+   "n_q_max": 1375
+  },
+  "mouse->zebrafish": {
+   "acc_mean": 0.2581,
+   "acc_sd": 0.0056,
+   "acc_min": 0.2496,
+   "acc_max": 0.2646,
+   "acc_range": 0.015,
+   "mf1_mean": 0.2183,
+   "mf1_sd": 0.0098,
+   "n_q_min": 1349,
+   "n_q_max": 1353
+  },
+  "zebrafish->mouse": {
+   "acc_mean": 0.5568,
+   "acc_sd": 0.0282,
+   "acc_min": 0.5255,
+   "acc_max": 0.5931,
+   "acc_range": 0.0676,
+   "mf1_mean": 0.4152,
+   "mf1_sd": 0.0223,
+   "n_q_min": 1352,
+   "n_q_max": 1357
+  }
+ },
+ "genes": {
+  "n_runs": 5,
+  "human->mouse": {
+   "acc_mean": 0.8638,
+   "acc_sd": 0.0121,
+   "acc_min": 0.8525,
+   "acc_max": 0.8771,
+   "acc_range": 0.0246,
+   "mf1_mean": 0.6498,
+   "mf1_sd": 0.0114,
+   "n_q_min": 1505,
+   "n_q_max": 1505
+  },
+  "mouse->human": {
+   "acc_mean": 0.7318,
+   "acc_sd": 0.0133,
+   "acc_min": 0.7199,
+   "acc_max": 0.748,
+   "acc_range": 0.0281,
+   "mf1_mean": 0.6565,
+   "mf1_sd": 0.0132,
+   "n_q_min": 1528,
+   "n_q_max": 1528
+  },
+  "human->zebrafish": {
+   "acc_mean": 0.2003,
+   "acc_sd": 0.024,
+   "acc_min": 0.1681,
+   "acc_max": 0.2275,
+   "acc_range": 0.0594,
+   "mf1_mean": 0.1646,
+   "mf1_sd": 0.0149,
+   "n_q_min": 1499,
+   "n_q_max": 1499
+  },
+  "zebrafish->human": {
+   "acc_mean": 0.1776,
+   "acc_sd": 0.0084,
+   "acc_min": 0.1643,
+   "acc_max": 0.1872,
+   "acc_range": 0.0229,
+   "mf1_mean": 0.1565,
+   "mf1_sd": 0.0056,
+   "n_q_min": 1528,
+   "n_q_max": 1528
+  },
+  "mouse->zebrafish": {
+   "acc_mean": 0.2567,
+   "acc_sd": 0.021,
+   "acc_min": 0.2268,
+   "acc_max": 0.2728,
+   "acc_range": 0.046,
+   "mf1_mean": 0.2047,
+   "mf1_sd": 0.0262,
+   "n_q_min": 1499,
+   "n_q_max": 1499
+  },
+  "zebrafish->mouse": {
+   "acc_mean": 0.567,
+   "acc_sd": 0.0341,
+   "acc_min": 0.515,
+   "acc_max": 0.608,
+   "acc_range": 0.093,
+   "mf1_mean": 0.4144,
+   "mf1_sd": 0.0138,
+   "n_q_min": 1505,
+   "n_q_max": 1505
+  }
+ }
+}

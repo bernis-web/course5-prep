@@ -1,0 +1,97 @@
+{
+ "task": "task-1-a-smoke-verification",
+ "direction": "human->mouse",
+ "level": "coarse",
+ "status": "PASS",
+ "tolerance": 1e-12,
+ "round_dp": 4,
+ "note": "冻结 metrics 的 acc/majority/shuffle_p/coverage_q 为 round(x, 4)；核对按同一精度取整后再比，避免 ~1e-5 的表示差造成误停。",
+ "a_smoke_metrics": "results/phase-20261010/A-smoke/metrics.json",
+ "a_smoke_metrics_sha256": "e13a2bdb87438c5ae63d82ef6b41ed0ab649bbf733063944125c0c1cbe5cf94f",
+ "frozen_metrics": "results/pilot-v1/ortholog-pca-v98/metrics.json",
+ "frozen_metrics_sha256": "b2b3ac6bc37c410841bdcbbd968159246e1990db47d02b8fa11844527d66c725",
+ "checks": [
+  {
+   "check": "field:acc",
+   "ok": true,
+   "detail": "new=0.8618 frozen=0.8618 abs_diff=0.0 (tol=1e-12)"
+  },
+  {
+   "check": "field:majority",
+   "ok": true,
+   "detail": "new=0.4817 frozen=0.4817 abs_diff=0.0 (tol=1e-12)"
+  },
+  {
+   "check": "field:shuffle_p",
+   "ok": true,
+   "detail": "new=0.0 frozen=0.0 abs_diff=0.0 (tol=1e-12)"
+  },
+  {
+   "check": "field:n_ref",
+   "ok": true,
+   "detail": "new=1528 frozen=1528 abs_diff=0.0 (tol=1e-12)"
+  },
+  {
+   "check": "field:n_q",
+   "ok": true,
+   "detail": "new=1505 frozen=1505 abs_diff=0.0 (tol=1e-12)"
+  },
+  {
+   "check": "field:n_q_total",
+   "ok": true,
+   "detail": "new=1535 frozen=1535 abs_diff=0.0 (tol=1e-12)"
+  },
+  {
+   "check": "field:coverage_q",
+   "ok": true,
+   "detail": "new=0.9805 frozen=0.9805 abs_diff=0.0 (tol=1e-12)"
+  },
+  {
+   "check": "field:n_perm",
+   "ok": true,
+   "detail": "new=200 frozen=200 abs_diff=0.0 (tol=1e-12)"
+  },
+  {
+   "check": "field:shared_genes",
+   "ok": true,
+   "detail": "new=15869 frozen=15869 abs_diff=0.0 (tol=1e-12)"
+  },
+  {
+   "check": "confusion:identical",
+   "ok": true,
+   "detail": "new_entries=28 frozen_entries=28"
+  },
+  {
+   "check": "independent:confusion_total_eq_n_q",
+   "ok": true,
+   "detail": "confusion_total=1505 n_q=1505"
+  },
+  {
+   "check": "independent:round(diag/n_q,dp)_eq_acc",
+   "ok": true,
+   "detail": "diag=1297 n_q=1505 round(diag/n_q,4)=0.8618 acc=0.8618"
+  },
+  {
+   "check": "independent:abs(acc*n_q-diag)_lt_0.5",
+   "ok": true,
+   "detail": "acc*n_q=1297.009 diag=1297"
+  },
+  {
+   "check": "independent:diag_matches_frozen",
+   "ok": true,
+   "detail": "new_diag=1297 frozen_diag=1297"
+  },
+  {
+   "check": "independent:frozen_round(diag/n_q,dp)_eq_frozen_acc",
+   "ok": true,
+   "detail": "frozen_diag=1297 frozen_n_q=1505 frozen_acc=0.8618"
+  },
+  {
+   "check": "protocol:n_perm_is_full",
+   "ok": true,
+   "detail": "n_perm=200 expected=200"
+  }
+ ],
+ "failed_checks": [],
+ "checked_at": "2026-10-10T16:39:43+0800"
+}

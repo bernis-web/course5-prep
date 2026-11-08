@@ -1,0 +1,154 @@
+{
+ "protocol_label": "transductive_formal_reassessment",
+ "source": "/data/work/saturn_out_real3_h/saturn_results/test256_data_human_saturn_input_hvg_mouse_saturn_input_hvg_zebrafish_saturn_input_hvg_org_human_seed_0.h5ad",
+ "source_sha256": "20cf807fcaa5e8ed9ac65a28d50e781c82c9c48cdac9b7a1820dcf74bdf5143f",
+ "representation": "obsm/macrogenes",
+ "shape": [
+  4606,
+  1000
+ ],
+ "species_counts": {
+  "human": 1528,
+  "zebrafish": 1543,
+  "mouse": 1535
+ },
+ "k": 15,
+ "distance": "cosine",
+ "nperm": 200,
+ "seed": 0,
+ "header": {
+  "utc": "2026-09-29T12:27:04.565963+00:00",
+  "beijing": "2026-09-29T20:27:04.565963+08:00",
+  "command": "dcs_provenance_v99.py",
+  "script_sha256": "7ad1a479e07b48c22b3231f8d21b77eb1857a1e8ba845e44ebf9f23a73c59508",
+  "python_version": "3.9.12 | packaged by conda-forge | (main, Mar 24 2022, 23:22:55) \n[GCC 10.3.0]",
+  "protocol_label": "transductive_formal_reassessment"
+ },
+ "candidate_hashes": {
+  "final_anndata": {
+   "path": "/data/work/saturn_out_real3_h/saturn_results/test256_data_human_saturn_input_hvg_mouse_saturn_input_hvg_zebrafish_saturn_input_hvg_org_human_seed_0.h5ad",
+   "sha256": "20cf807fcaa5e8ed9ac65a28d50e781c82c9c48cdac9b7a1820dcf74bdf5143f",
+   "bytes": 23459360
+  },
+  "prep_real_v60.py": {
+   "path": "/data/work/prep_real_v60.py",
+   "sha256": "0e3021e7d209140fa3d0ac5c2ceebd4272a8a37c76f9377286e18a4088cc85a2",
+   "bytes": 1906
+  },
+  "eval_v72.py": {
+   "path": "/data/work/eval_v72.py",
+   "sha256": "8c58898d9ff9ad7f64202e313afe6b3c3aa6c8a2d77d88d486d848560860de24",
+   "bytes": 1642
+  },
+  "g5-provenance-v95-command.txt": {
+   "path": "/data/work/g5-provenance-v95-command.txt",
+   "sha256": "7dfeaebd3ad3c2937113b56fa6d9258d267a6d35c7638cc25cc5f7eecc853464",
+   "bytes": 194
+  },
+  "g5-provenance-v96-command.txt": {
+   "path": "/data/work/g5-provenance-v96-command.txt",
+   "sha256": "7802224f55a441d5eb54c1d3b0cd09b0c222cd2820797b10c6a2e5a036f06afd",
+   "bytes": 248
+  },
+  "dcs_provenance_v95.py": {
+   "path": "/data/work/dcs_provenance_v95.py",
+   "sha256": "89195b9aa21c372cf9c07c698e3e35a28e586291eb55b3df19900ed3c9742317",
+   "bytes": 9527
+  },
+  "dcs_provenance_v96_readout.py": {
+   "path": "/data/work/dcs_provenance_v96_readout.py",
+   "sha256": "31018e53eaeff2fee98ea88f0fa75a6f538c9581c462f5c732fdcbe372dc8ab4",
+   "bytes": 7579
+  },
+  "saturn_src_tree_file_count": {
+   "files": 214,
+   "note": "per-file hashes in saturn_src_tree_sha256.tsv"
+  }
+ },
+ "predictions_index": {
+  "human->mouse": {
+   "exact": {
+    "n_records": 1535,
+    "file": "/data/work/course5_v99/predictions/exact_human->mouse.json"
+   },
+   "coarse": {
+    "n_records": 1535,
+    "file": "/data/work/course5_v99/predictions/coarse_human->mouse.json"
+   },
+   "fine": {
+    "n_records": 1535,
+    "file": "/data/work/course5_v99/predictions/fine_human->mouse.json"
+   }
+  },
+  "human->zebrafish": {
+   "exact": {
+    "n_records": 1543,
+    "file": "/data/work/course5_v99/predictions/exact_human->zebrafish.json"
+   },
+   "coarse": {
+    "n_records": 1543,
+    "file": "/data/work/course5_v99/predictions/coarse_human->zebrafish.json"
+   },
+   "fine": {
+    "n_records": 1543,
+    "file": "/data/work/course5_v99/predictions/fine_human->zebrafish.json"
+   }
+  },
+  "mouse->human": {
+   "exact": {
+    "n_records": 1528,
+    "file": "/data/work/course5_v99/predictions/exact_mouse->human.json"
+   },
+   "coarse": {
+    "n_records": 1528,
+    "file": "/data/work/course5_v99/predictions/coarse_mouse->human.json"
+   },
+   "fine": {
+    "n_records": 1528,
+    "file": "/data/work/course5_v99/predictions/fine_mouse->human.json"
+   }
+  },
+  "mouse->zebrafish": {
+   "exact": {
+    "n_records": 1543,
+    "file": "/data/work/course5_v99/predictions/exact_mouse->zebrafish.json"
+   },
+   "coarse": {
+    "n_records": 1543,
+    "file": "/data/work/course5_v99/predictions/coarse_mouse->zebrafish.json"
+   },
+   "fine": {
+    "n_records": 1543,
+    "file": "/data/work/course5_v99/predictions/fine_mouse->zebrafish.json"
+   }
+  },
+  "zebrafish->human": {
+   "exact": {
+    "n_records": 1528,
+    "file": "/data/work/course5_v99/predictions/exact_zebrafish->human.json"
+   },
+   "coarse": {
+    "n_records": 1528,
+    "file": "/data/work/course5_v99/predictions/coarse_zebrafish->human.json"
+   },
+   "fine": {
+    "n_records": 1528,
+    "file": "/data/work/course5_v99/predictions/fine_zebrafish->human.json"
+   }
+  },
+  "zebrafish->mouse": {
+   "exact": {
+    "n_records": 1535,
+    "file": "/data/work/course5_v99/predictions/exact_zebrafish->mouse.json"
+   },
+   "coarse": {
+    "n_records": 1535,
+    "file": "/data/work/course5_v99/predictions/coarse_zebrafish->mouse.json"
+   },
+   "fine": {
+    "n_records": 1535,
+    "file": "/data/work/course5_v99/predictions/fine_zebrafish->mouse.json"
+   }
+  }
+ }
+}

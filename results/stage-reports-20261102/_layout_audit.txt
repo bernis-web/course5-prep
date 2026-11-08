@@ -1,0 +1,372 @@
+slide size: 13.333 x 7.500 in
+
+=== slide 1 ===
+  AUTO_SHAPE   Rectangle 1    L= 0.55 T= 0.48 W= 0.13 H= 0.58 :: 
+  TEXT_BOX     TextBox 2      L= 0.82 T= 0.42 W=11.60 H= 0.55 :: 跨物种单细胞整合：三场景结论与可复现闭环
+       para0 sizes=[25.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 3      L= 0.84 T= 0.97 W=11.40 H= 0.32 :: 课题5 第 3 次汇报（老师七条意见之后的重做）｜ XenoTransfer v1.0
+       para0 sizes=[12.5] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 4      L= 0.82 T= 1.50 W=11.60 H= 2.88 :: 上次汇报后，老师提了 7 条意见 → 这一轮全部落地\n最重要的一件事：我们发现自己的 SATURN 分数被算高了 0.04–0
+       para0 sizes=[15.5] align=None spaceAft=13.0
+       para1 sizes=[15.5] align=None spaceAft=13.0
+       para2 sizes=[15.5] align=None spaceAft=13.0
+  AUTO_SHAPE   Rectangle 5    L= 0.00 T= 5.72 W=13.33 H= 0.98 :: 
+  AUTO_SHAPE   Rectangle 6    L= 0.00 T= 5.72 W= 0.09 H= 0.98 :: 
+  TEXT_BOX     TextBox 7      L= 0.82 T= 5.86 W=11.90 H= 0.72 :: 这一轮不是加内容，是纠错。结论有改，而且改得更硬。
+       para0 sizes=[14.0] align=None spaceAft=None
+  TEXT_BOX     TextBox 8      L= 0.72 T= 7.04 W= 8.00 H= 0.26 :: 课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026-11-02
+       para0 sizes=[9.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 9      L=11.90 T= 7.04 W= 0.60 H= 0.26 :: 1
+       para0 sizes=[9.0] align=RIGHT spaceAft=None
+
+=== slide 2 ===
+  AUTO_SHAPE   Rectangle 1    L= 0.55 T= 0.48 W= 0.13 H= 0.58 :: 
+  TEXT_BOX     TextBox 2      L= 0.82 T= 0.42 W=11.60 H= 0.55 :: 一、老师七条意见 → 我们的落地
+       para0 sizes=[25.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 3      L= 0.84 T= 0.97 W=11.40 H= 0.32 :: 每条都对应一个可复核的产物
+       para0 sizes=[12.5] align=LEFT spaceAft=None
+  TABLE        Table 4        L= 0.72 T= 1.50 W=11.90 H= 2.66 :: 
+     table: cols=[3.332, 4.284, 4.284] rows=7 total=11.90 top=1.50
+       r0c0 w=3.33 align=LEFT   sz=10.5 marL=0.060 txt='老师意见'
+       r0c1 w=4.28 align=CENTER sz=10.5 marL=0.060 txt='我们做了什么'
+       r0c2 w=4.28 align=CENTER sz=10.5 marL=0.060 txt='产物'
+       r1c0 w=3.33 align=LEFT   sz=9.5 marL=0.060 txt='①② 近缘/远缘/跨门分开说'
+       r1c1 w=4.28 align=CENTER sz=9.5 marL=0.060 txt='三场景各自给首选+配对检验'
+       r1c2 w=4.28 align=CENTER sz=9.5 marL=0.060 txt='§2–§4'
+       rowheights=[0.38, 0.38, 0.38, 0.38, 0.38, 0.38, 0.38]
+  AUTO_SHAPE   Rectangle 5    L= 0.00 T= 5.72 W=13.33 H= 0.98 :: 
+  AUTO_SHAPE   Rectangle 6    L= 0.00 T= 5.72 W= 0.09 H= 0.98 :: 
+  TEXT_BOX     TextBox 7      L= 0.82 T= 5.86 W=11.90 H= 0.72 :: 七条全部有落点，没有一条靠口头回答。
+       para0 sizes=[14.0] align=None spaceAft=None
+  TEXT_BOX     TextBox 8      L= 0.72 T= 7.04 W= 8.00 H= 0.26 :: 课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026-11-02
+       para0 sizes=[9.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 9      L=11.90 T= 7.04 W= 0.60 H= 0.26 :: 2
+       para0 sizes=[9.0] align=RIGHT spaceAft=None
+
+=== slide 3 ===
+  AUTO_SHAPE   Rectangle 1    L= 0.55 T= 0.48 W= 0.13 H= 0.58 :: 
+  TEXT_BOX     TextBox 2      L= 0.82 T= 0.42 W=11.60 H= 0.55 :: 二、最重要的发现：SATURN 分数被口径抬高了
+       para0 sizes=[25.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 3      L= 0.84 T= 0.97 W=11.40 H= 0.32 :: 映射不到 coarse 的预测被丢弃 = 按预测结果筛样本
+       para0 sizes=[12.5] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 4      L= 0.82 T= 1.50 W=11.60 H= 2.88 :: oPCA/scVI 的预测只可能是训练用的 8–9 个 coarse 类，永远不可能「预测到类外」；SATURN 输出原始细胞类
+       para0 sizes=[14.0] align=None spaceAft=13.0
+       para1 sizes=[15.5] align=None spaceAft=13.0
+       para2 sizes=[15.5] align=None spaceAft=13.0
+  AUTO_SHAPE   Rectangle 5    L= 0.00 T= 5.72 W=13.33 H= 0.98 :: 
+  AUTO_SHAPE   Rectangle 6    L= 0.00 T= 5.72 W= 0.09 H= 0.98 :: 
+  TEXT_BOX     TextBox 7      L= 0.82 T= 5.86 W=11.90 H= 0.72 :: 这不是小修，是结论翻转。所以我们同时报两个口径，对外用公平口径。
+       para0 sizes=[14.0] align=None spaceAft=None
+  TEXT_BOX     TextBox 8      L= 0.72 T= 7.04 W= 8.00 H= 0.26 :: 课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026-11-02
+       para0 sizes=[9.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 9      L=11.90 T= 7.04 W= 0.60 H= 0.26 :: 3
+       para0 sizes=[9.0] align=RIGHT spaceAft=None
+
+=== slide 4 ===
+  AUTO_SHAPE   Rectangle 1    L= 0.55 T= 0.48 W= 0.13 H= 0.58 :: 
+  TEXT_BOX     TextBox 2      L= 0.82 T= 0.42 W=11.60 H= 0.55 :: 三、口径偏差的量化
+       para0 sizes=[25.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 3      L= 0.84 T= 0.97 W=11.40 H= 0.32 :: 同一批预测，两种口径差多少
+       para0 sizes=[12.5] align=LEFT spaceAft=None
+  TABLE        Table 4        L= 0.72 T= 1.50 W=11.90 H= 2.66 :: 
+     table: cols=[2.618, 2.32, 2.32, 2.32, 2.32] rows=7 total=11.90 top=1.50
+       r0c0 w=2.62 align=LEFT   sz=11.0 marL=0.060 txt='方向'
+       r0c1 w=2.32 align=CENTER sz=11.0 marL=0.060 txt='现口径'
+       r0c2 w=2.32 align=CENTER sz=11.0 marL=0.060 txt='公平口径'
+       r0c3 w=2.32 align=CENTER sz=11.0 marL=0.060 txt='被抬高'
+       r0c4 w=2.32 align=CENTER sz=11.0 marL=0.060 txt='被丢掉的细胞'
+       r1c0 w=2.62 align=LEFT   sz=10.0 marL=0.060 txt='人→鼠'
+       r1c1 w=2.32 align=CENTER sz=10.0 marL=0.060 txt='0.4147'
+       r1c2 w=2.32 align=CENTER sz=10.0 marL=0.060 txt='0.3402'
+       r1c3 w=2.32 align=CENTER sz=10.0 marL=0.060 txt='+0.0745'
+       r1c4 w=2.32 align=CENTER sz=10.0 marL=0.060 txt='89'
+       rowheights=[0.38, 0.38, 0.38, 0.38, 0.38, 0.38, 0.38]
+  AUTO_SHAPE   Rectangle 5    L= 0.00 T= 5.72 W=13.33 H= 0.98 :: 
+  AUTO_SHAPE   Rectangle 6    L= 0.00 T= 5.72 W= 0.09 H= 0.98 :: 
+  TEXT_BOX     TextBox 7      L= 0.82 T= 5.86 W=11.90 H= 0.72 :: 抬高幅度 0.043–0.194，前四向温和、后两向致命。
+       para0 sizes=[14.0] align=None spaceAft=None
+  TEXT_BOX     TextBox 8      L= 0.72 T= 7.04 W= 8.00 H= 0.26 :: 课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026-11-02
+       para0 sizes=[9.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 9      L=11.90 T= 7.04 W= 0.60 H= 0.26 :: 4
+       para0 sizes=[9.0] align=RIGHT spaceAft=None
+
+=== slide 5 ===
+  AUTO_SHAPE   Rectangle 1    L= 0.55 T= 0.48 W= 0.13 H= 0.58 :: 
+  TEXT_BOX     TextBox 2      L= 0.82 T= 0.42 W=11.60 H= 0.55 :: 四、近缘场景：oPCA 与 scVI 打平
+       para0 sizes=[25.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 3      L= 0.84 T= 0.97 W=11.40 H= 0.32 :: 人↔鼠｜macro-F1 ± bootstrap SE
+       para0 sizes=[12.5] align=LEFT spaceAft=None
+  TABLE        Table 4        L= 0.72 T= 1.50 W=11.90 H= 2.20 :: 
+     table: cols=[3.332, 2.856, 2.856, 2.856] rows=5 total=11.90 top=1.50
+       r0c0 w=3.33 align=LEFT   sz=11.0 marL=0.060 txt='方法'
+       r0c1 w=2.86 align=CENTER sz=11.0 marL=0.060 txt='人→鼠'
+       r0c2 w=2.86 align=CENTER sz=11.0 marL=0.060 txt='鼠→人'
+       r0c3 w=2.86 align=CENTER sz=11.0 marL=0.060 txt='两向均值'
+       r1c0 w=3.33 align=LEFT   sz=10.0 marL=0.060 txt='oPCA'
+       r1c1 w=2.86 align=CENTER sz=10.0 marL=0.060 txt='0.6435±0.0186'
+       r1c2 w=2.86 align=CENTER sz=10.0 marL=0.060 txt='0.6729±0.0215'
+       r1c3 w=2.86 align=CENTER sz=10.0 marL=0.060 txt='0.6582'
+       rowheights=[0.44, 0.44, 0.44, 0.44, 0.44]
+  AUTO_SHAPE   Rectangle 5    L= 0.00 T= 5.72 W=13.33 H= 0.98 :: 
+  AUTO_SHAPE   Rectangle 6    L= 0.00 T= 5.72 W= 0.09 H= 0.98 :: 
+  TEXT_BOX     TextBox 7      L= 0.82 T= 5.86 W=11.90 H= 0.72 :: 人→鼠差 −0.0247（不显著）；鼠→人 oPCA 显著更高 +0.0833。打平 → 选 oPCA（27 秒、1.31 GB
+       para0 sizes=[14.0] align=None spaceAft=None
+  TEXT_BOX     TextBox 8      L= 0.72 T= 7.04 W= 8.00 H= 0.26 :: 课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026-11-02
+       para0 sizes=[9.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 9      L=11.90 T= 7.04 W= 0.60 H= 0.26 :: 5
+       para0 sizes=[9.0] align=RIGHT spaceAft=None
+
+=== slide 6 ===
+  AUTO_SHAPE   Rectangle 1    L= 0.55 T= 0.48 W= 0.13 H= 0.58 :: 
+  TEXT_BOX     TextBox 2      L= 0.82 T= 0.42 W=11.60 H= 0.55 :: 五、远缘场景：统一选 scVI
+       para0 sizes=[25.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 3      L= 0.84 T= 0.97 W=11.40 H= 0.32 :: 鱼参与的四方向｜注意两个口径的 SATURN 都列出来
+       para0 sizes=[12.5] align=LEFT spaceAft=None
+  TABLE        Table 4        L= 0.72 T= 1.50 W=11.90 H= 2.20 :: 
+     table: cols=[2.618, 2.32, 2.32, 2.32, 2.32] rows=5 total=11.90 top=1.50
+       r0c0 w=2.62 align=LEFT   sz=11.0 marL=0.060 txt='方向'
+       r0c1 w=2.32 align=CENTER sz=11.0 marL=0.060 txt='oPCA'
+       r0c2 w=2.32 align=CENTER sz=11.0 marL=0.060 txt='scVI'
+       r0c3 w=2.32 align=CENTER sz=11.0 marL=0.060 txt='SATURN 现'
+       r0c4 w=2.32 align=CENTER sz=11.0 marL=0.060 txt='SATURN 公平'
+       r1c0 w=2.62 align=LEFT   sz=10.0 marL=0.060 txt='人→斑马鱼'
+       r1c1 w=2.32 align=CENTER sz=10.0 marL=0.060 txt='0.1654±0.0152'
+       r1c2 w=2.32 align=CENTER sz=10.0 marL=0.060 txt='0.4014±0.0117'
+       r1c3 w=2.32 align=CENTER sz=10.0 marL=0.060 txt='0.2479'
+       r1c4 w=2.32 align=CENTER sz=10.0 marL=0.060 txt='0.2051'
+       rowheights=[0.44, 0.44, 0.44, 0.44, 0.44]
+  AUTO_SHAPE   Rectangle 5    L= 0.00 T= 5.72 W=13.33 H= 0.98 :: 
+  AUTO_SHAPE   Rectangle 6    L= 0.00 T= 5.72 W= 0.09 H= 0.98 :: 
+  TEXT_BOX     TextBox 7      L= 0.82 T= 5.86 W=11.90 H= 0.72 :: 同细胞配对检验：鼠→鱼 SATURN−scVI = −0.1713、鱼→鼠 = −0.0709，两个方向 scVI 都显著更好。
+       para0 sizes=[14.0] align=None spaceAft=None
+  TEXT_BOX     TextBox 8      L= 0.72 T= 7.04 W= 8.00 H= 0.26 :: 课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026-11-02
+       para0 sizes=[9.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 9      L=11.90 T= 7.04 W= 0.60 H= 0.26 :: 6
+       para0 sizes=[9.0] align=RIGHT spaceAft=None
+
+=== slide 7 ===
+  AUTO_SHAPE   Rectangle 1    L= 0.55 T= 0.48 W= 0.13 H= 0.58 :: 
+  TEXT_BOX     TextBox 2      L= 0.82 T= 0.42 W=11.60 H= 0.55 :: 六、跨门场景：这一族方法都做不了
+       para0 sizes=[25.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 3      L= 0.84 T= 0.97 W=11.40 H= 0.32 :: 七鳃鳗↔小鼠｜13 类交集｜55,694 细胞
+       para0 sizes=[12.5] align=LEFT spaceAft=None
+  TABLE        Table 4        L= 0.72 T= 1.50 W=11.90 H= 2.20 :: 
+     table: cols=[2.618, 2.32, 2.32, 2.32, 2.32] rows=5 total=11.90 top=1.50
+       r0c0 w=2.62 align=LEFT   sz=11.0 marL=0.060 txt='方向'
+       r0c1 w=2.32 align=CENTER sz=11.0 marL=0.060 txt='方法'
+       r0c2 w=2.32 align=CENTER sz=11.0 marL=0.060 txt='accuracy'
+       r0c3 w=2.32 align=CENTER sz=11.0 marL=0.060 txt='macro-F1'
+       r0c4 w=2.32 align=CENTER sz=11.0 marL=0.060 txt='多数类基线'
+       r1c0 w=2.62 align=LEFT   sz=10.0 marL=0.060 txt='Lamprey→Mouse'
+       r1c1 w=2.32 align=CENTER sz=10.0 marL=0.060 txt='oPCA'
+       r1c2 w=2.32 align=CENTER sz=10.0 marL=0.060 txt='0.0575±0.0020'
+       r1c3 w=2.32 align=CENTER sz=10.0 marL=0.060 txt='0.0235'
+       r1c4 w=2.32 align=CENTER sz=10.0 marL=0.060 txt='0.2168'
+       rowheights=[0.44, 0.44, 0.44, 0.44, 0.44]
+  AUTO_SHAPE   Rectangle 5    L= 0.00 T= 5.72 W=13.33 H= 0.98 :: 
+  AUTO_SHAPE   Rectangle 6    L= 0.00 T= 5.72 W= 0.09 H= 0.98 :: 
+  TEXT_BOX     TextBox 7      L= 0.82 T= 5.86 W=11.90 H= 0.72 :: accuracy 4.6–5.8%，低于 13 类随机猜的 7.69%；macro-F1 甚至低于多数类基线。这是硬负结果。
+       para0 sizes=[14.0] align=None spaceAft=None
+  TEXT_BOX     TextBox 8      L= 0.72 T= 7.04 W= 8.00 H= 0.26 :: 课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026-11-02
+       para0 sizes=[9.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 9      L=11.90 T= 7.04 W= 0.60 H= 0.26 :: 7
+       para0 sizes=[9.0] align=RIGHT spaceAft=None
+
+=== slide 8 ===
+  AUTO_SHAPE   Rectangle 1    L= 0.55 T= 0.48 W= 0.13 H= 0.58 :: 
+  TEXT_BOX     TextBox 2      L= 0.82 T= 0.42 W=11.60 H= 0.55 :: 七、稳定性：十个 seed 不会给出十个结果
+       para0 sizes=[25.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 3      L= 0.84 T= 0.97 W=11.40 H= 0.32 :: 老师问的「一个方法测十次」，我们拆成三种不确定性分别测
+       para0 sizes=[12.5] align=LEFT spaceAft=None
+  TABLE        Table 4        L= 0.72 T= 1.50 W=11.90 H= 2.66 :: 
+     table: cols=[3.332, 2.856, 2.856, 2.856] rows=7 total=11.90 top=1.50
+       r0c0 w=3.33 align=LEFT   sz=11.0 marL=0.060 txt='方向'
+       r0c1 w=2.86 align=CENTER sz=11.0 marL=0.060 txt='10 seed SD'
+       r0c2 w=2.86 align=CENTER sz=11.0 marL=0.060 txt='换10%细胞 SD'
+       r0c3 w=2.86 align=CENTER sz=11.0 marL=0.060 txt='换10%基因 SD'
+       r1c0 w=3.33 align=LEFT   sz=10.0 marL=0.060 txt='人→鼠'
+       r1c1 w=2.86 align=CENTER sz=10.0 marL=0.060 txt='0.0017'
+       r1c2 w=2.86 align=CENTER sz=10.0 marL=0.060 txt='0.0238'
+       r1c3 w=2.86 align=CENTER sz=10.0 marL=0.060 txt='0.0121'
+       rowheights=[0.38, 0.38, 0.38, 0.38, 0.38, 0.38, 0.38]
+  AUTO_SHAPE   Rectangle 5    L= 0.00 T= 5.72 W=13.33 H= 0.98 :: 
+  AUTO_SHAPE   Rectangle 6    L= 0.00 T= 5.72 W= 0.09 H= 0.98 :: 
+  TEXT_BOX     TextBox 7      L= 0.82 T= 5.86 W=11.90 H= 0.72 :: 换种子 SD 只有 0.0017–0.0059；换 10% 细胞能到 0.028、换 10% 基因能到 0.034。不确定性来自
+       para0 sizes=[14.0] align=None spaceAft=None
+  TEXT_BOX     TextBox 8      L= 0.72 T= 7.04 W= 8.00 H= 0.26 :: 课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026-11-02
+       para0 sizes=[9.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 9      L=11.90 T= 7.04 W= 0.60 H= 0.26 :: 8
+       para0 sizes=[9.0] align=RIGHT spaceAft=None
+
+=== slide 9 ===
+  AUTO_SHAPE   Rectangle 1    L= 0.55 T= 0.48 W= 0.13 H= 0.58 :: 
+  TEXT_BOX     TextBox 2      L= 0.82 T= 0.42 W=11.60 H= 0.55 :: 八、每个分数都带偏置
+       para0 sizes=[25.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 3      L= 0.84 T= 0.97 W=11.40 H= 0.32 :: 四方法 × 六方向全部配 bootstrap SE 与 95% CI
+       para0 sizes=[12.5] align=LEFT spaceAft=None
+  TABLE        Table 4        L= 0.72 T= 1.50 W=11.90 H= 2.66 :: 
+     table: cols=[2.618, 2.32, 2.32, 2.32, 2.32] rows=7 total=11.90 top=1.50
+       r0c0 w=2.62 align=LEFT   sz=11.0 marL=0.060 txt='方向'
+       r0c1 w=2.32 align=CENTER sz=11.0 marL=0.060 txt='oPCA'
+       r0c2 w=2.32 align=CENTER sz=11.0 marL=0.060 txt='scVI'
+       r0c3 w=2.32 align=CENTER sz=11.0 marL=0.060 txt='SATURN'
+       r0c4 w=2.32 align=CENTER sz=11.0 marL=0.060 txt='SAMap'
+       r1c0 w=2.62 align=LEFT   sz=10.0 marL=0.060 txt='人→鼠'
+       r1c1 w=2.32 align=CENTER sz=10.0 marL=0.060 txt='0.6435±0.0186'
+       r1c2 w=2.32 align=CENTER sz=10.0 marL=0.060 txt='0.6683±0.0206'
+       r1c3 w=2.32 align=CENTER sz=10.0 marL=0.060 txt='0.4147±0.0152'
+       r1c4 w=2.32 align=CENTER sz=10.0 marL=0.060 txt='0.1127±0.0141'
+       rowheights=[0.38, 0.38, 0.38, 0.38, 0.38, 0.38, 0.38]
+  AUTO_SHAPE   Rectangle 5    L= 0.00 T= 5.72 W=13.33 H= 0.98 :: 
+  AUTO_SHAPE   Rectangle 6    L= 0.00 T= 5.72 W= 0.09 H= 0.98 :: 
+  TEXT_BOX     TextBox 7      L= 0.82 T= 5.86 W=11.90 H= 0.72 :: 22 格全部通过「与冻结值逐格对齐」校验（0 mismatch），所以这些 CI 是挂在已验证数字上的。
+       para0 sizes=[14.0] align=None spaceAft=None
+  TEXT_BOX     TextBox 8      L= 0.72 T= 7.04 W= 8.00 H= 0.26 :: 课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026-11-02
+       para0 sizes=[9.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 9      L=11.90 T= 7.04 W= 0.60 H= 0.26 :: 9
+       para0 sizes=[9.0] align=RIGHT spaceAft=None
+
+=== slide 10 ===
+  AUTO_SHAPE   Rectangle 1    L= 0.55 T= 0.48 W= 0.13 H= 0.58 :: 
+  TEXT_BOX     TextBox 2      L= 0.82 T= 0.42 W=11.60 H= 0.55 :: 九、实际消耗
+       para0 sizes=[25.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 3      L= 0.84 T= 0.97 W=11.40 H= 0.32 :: 平台任务台账 + 本地白盒测内存
+       para0 sizes=[12.5] align=LEFT spaceAft=None
+  TABLE        Table 4        L= 0.72 T= 1.50 W=11.90 H= 2.28 :: 
+     table: cols=[2.618, 2.32, 2.32, 2.32, 2.32] rows=6 total=11.90 top=1.50
+       r0c0 w=2.62 align=LEFT   sz=10.5 marL=0.060 txt='方法'
+       r0c1 w=2.32 align=CENTER sz=10.5 marL=0.060 txt='任务号'
+       r0c2 w=2.32 align=CENTER sz=10.5 marL=0.060 txt='实际计算'
+       r0c3 w=2.32 align=CENTER sz=10.5 marL=0.060 txt='资源档'
+       r0c4 w=2.32 align=CENTER sz=10.5 marL=0.060 txt='费用'
+       r1c0 w=2.62 align=LEFT   sz=9.5 marL=0.060 txt='oPCA (FIXKEY)'
+       r1c1 w=2.32 align=CENTER sz=9.5 marL=0.060 txt='W202610150090794'
+       r1c2 w=2.32 align=CENTER sz=9.5 marL=0.060 txt='866 s'
+       r1c3 w=2.32 align=CENTER sz=9.5 marL=0.060 txt='2c8g'
+       r1c4 w=2.32 align=CENTER sz=9.5 marL=0.060 txt='¥0.19'
+       rowheights=[0.38, 0.38, 0.38, 0.38, 0.38, 0.38]
+  TEXT_BOX     TextBox 5      L= 0.82 T= 3.94 W=11.60 H= 2.06 :: oPCA 本地白盒测量：墙钟 26.68 s（25.52–26.92），峰值工作集 1307.9 MB\n跨门那次占总额 84%
+       para0 sizes=[14.5] align=None spaceAft=13.0
+       para1 sizes=[14.5] align=None spaceAft=13.0
+  AUTO_SHAPE   Rectangle 6    L= 0.00 T= 5.72 W=13.33 H= 0.98 :: 
+  AUTO_SHAPE   Rectangle 7    L= 0.00 T= 5.72 W= 0.09 H= 0.98 :: 
+  TEXT_BOX     TextBox 8      L= 0.82 T= 5.86 W=11.90 H= 0.72 :: 四个任务合计 11,909 CPU 秒 / ¥2.47。SATURN 是 GPU 任务，平台不记 CPU/内存，如实标为缺口。
+       para0 sizes=[14.0] align=None spaceAft=None
+  TEXT_BOX     TextBox 9      L= 0.72 T= 7.04 W= 8.00 H= 0.26 :: 课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026-11-02
+       para0 sizes=[9.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 10     L=11.90 T= 7.04 W= 0.60 H= 0.26 :: 10
+       para0 sizes=[9.0] align=RIGHT spaceAft=None
+
+=== slide 11 ===
+  AUTO_SHAPE   Rectangle 1    L= 0.55 T= 0.48 W= 0.13 H= 0.58 :: 
+  TEXT_BOX     TextBox 2      L= 0.82 T= 0.42 W=11.60 H= 0.55 :: 十、可复现闭环：镜像建好，6 个值在里面逐位复现
+       para0 sizes=[25.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 3      L= 0.84 T= 0.97 W=11.40 H= 0.32 :: g5-opca-container（基于 SATURN--22，7 个 pip 精确版本）
+       para0 sizes=[12.5] align=LEFT spaceAft=None
+  TABLE        Table 4        L= 0.72 T= 1.50 W=11.90 H= 2.66 :: 
+     table: cols=[3.332, 2.856, 2.856, 2.856] rows=7 total=11.90 top=1.50
+       r0c0 w=3.33 align=LEFT   sz=11.0 marL=0.060 txt='方向'
+       r0c1 w=2.86 align=CENTER sz=11.0 marL=0.060 txt='冻结值'
+       r0c2 w=2.86 align=CENTER sz=11.0 marL=0.060 txt='镜像内实测'
+       r0c3 w=2.86 align=CENTER sz=11.0 marL=0.060 txt='一致'
+       r1c0 w=3.33 align=LEFT   sz=10.0 marL=0.060 txt='人→鼠'
+       r1c1 w=2.86 align=CENTER sz=10.0 marL=0.060 txt='0.8618'
+       r1c2 w=2.86 align=CENTER sz=10.0 marL=0.060 txt='0.8618'
+       r1c3 w=2.86 align=CENTER sz=10.0 marL=0.060 txt='✓'
+       rowheights=[0.38, 0.38, 0.38, 0.38, 0.38, 0.38, 0.38]
+  TEXT_BOX     TextBox 5      L= 0.82 T= 4.32 W=11.60 H= 2.06 :: 镜像构建成功 → 离线任务实测可选中 → 在镜像内跑完整评估，6/6 逐位一致\n7 个包版本全部命中：numpy 1.23.5
+       para0 sizes=[14.5] align=None spaceAft=13.0
+       para1 sizes=[13.0] align=None spaceAft=13.0
+  AUTO_SHAPE   Rectangle 6    L= 0.00 T= 5.72 W=13.33 H= 0.98 :: 
+  AUTO_SHAPE   Rectangle 7    L= 0.00 T= 5.72 W= 0.09 H= 0.98 :: 
+  TEXT_BOX     TextBox 8      L= 0.82 T= 5.86 W=11.90 H= 0.72 :: 从「配方看起来完整」到「真的跑出同样数字」，这一步此前从未做到过。
+       para0 sizes=[14.0] align=None spaceAft=None
+  TEXT_BOX     TextBox 9      L= 0.72 T= 7.04 W= 8.00 H= 0.26 :: 课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026-11-02
+       para0 sizes=[9.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 10     L=11.90 T= 7.04 W= 0.60 H= 0.26 :: 11
+       para0 sizes=[9.0] align=RIGHT spaceAft=None
+
+=== slide 12 ===
+  AUTO_SHAPE   Rectangle 1    L= 0.55 T= 0.48 W= 0.13 H= 0.58 :: 
+  TEXT_BOX     TextBox 2      L= 0.82 T= 0.42 W=11.60 H= 0.55 :: 十一、一路上查清的两件事（都是坑）
+       para0 sizes=[25.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 3      L= 0.84 T= 0.97 W=11.40 H= 0.32 :: 同名 ≠ 同文件
+       para0 sizes=[12.5] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 4      L= 0.82 T= 1.50 W=11.60 H= 2.88 :: 平台 ortholog_pca_dcs_v3_fixkey.txt（17,382 B / 421 行 / json.loads 
+       para0 sizes=[14.0] align=None spaceAft=13.0
+       para1 sizes=[14.0] align=None spaceAft=13.0
+       para2 sizes=[15.5] align=None spaceAft=13.0
+  AUTO_SHAPE   Rectangle 5    L= 0.00 T= 5.72 W=13.33 H= 0.98 :: 
+  AUTO_SHAPE   Rectangle 6    L= 0.00 T= 5.72 W= 0.09 H= 0.98 :: 
+  TEXT_BOX     TextBox 7      L= 0.82 T= 5.86 W=11.90 H= 0.72 :: 教训：先比 wc -c / wc -l / sha256sum，再决定用哪个文件；平台标「失败」要看它退出在哪一步。
+       para0 sizes=[14.0] align=None spaceAft=None
+  TEXT_BOX     TextBox 8      L= 0.72 T= 7.04 W= 8.00 H= 0.26 :: 课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026-11-02
+       para0 sizes=[9.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 9      L=11.90 T= 7.04 W= 0.60 H= 0.26 :: 12
+       para0 sizes=[9.0] align=RIGHT spaceAft=None
+
+=== slide 13 ===
+  AUTO_SHAPE   Rectangle 1    L= 0.55 T= 0.48 W= 0.13 H= 0.58 :: 
+  TEXT_BOX     TextBox 2      L= 0.82 T= 0.42 W=11.60 H= 0.55 :: 十二、跟原文一致吗
+       para0 sizes=[25.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 3      L= 0.84 T= 0.97 W=11.40 H= 0.32 :: 三篇原文逐条对比
+       para0 sizes=[12.5] align=LEFT spaceAft=None
+  TABLE        Table 4        L= 0.72 T= 1.50 W=11.90 H= 1.76 :: 
+     table: cols=[3.332, 4.284, 4.284] rows=4 total=11.90 top=1.50
+       r0c0 w=3.33 align=LEFT   sz=9.5 marL=0.060 txt='原文'
+       r0c1 w=4.28 align=CENTER sz=9.5 marL=0.060 txt='作者主张'
+       r0c2 w=4.28 align=CENTER sz=9.5 marL=0.060 txt='我们复现到哪'
+       r1c0 w=3.33 align=LEFT   sz=8.5 marL=0.060 txt='SATURN (Nat Methods 2024)'
+       r1c1 w=4.28 align=CENTER sz=8.5 marL=0.060 txt='蛙↔鱼 85.8% 中位准确率，比 SAMap 高 119%'
+       r1c2 w=4.28 align=CENTER sz=8.5 marL=0.060 txt='方向一致（SATURN>SAMap），但输给 scVI'
+       rowheights=[0.44, 0.44, 0.44, 0.44]
+  TEXT_BOX     TextBox 5      L= 0.82 T= 3.42 W=11.60 H= 1.24 :: 不一致的三个原因：①原文 scVI 是纯无监督整合，我们加了 KNN 标签迁移层　②我们的口径偏差（已修）　③SAMap 靠全同
+       para0 sizes=[13.0] align=None spaceAft=13.0
+  AUTO_SHAPE   Rectangle 6    L= 0.00 T= 5.72 W=13.33 H= 0.98 :: 
+  AUTO_SHAPE   Rectangle 7    L= 0.00 T= 5.72 W= 0.09 H= 0.98 :: 
+  TEXT_BOX     TextBox 8      L= 0.82 T= 5.86 W=11.90 H= 0.72 :: 「SAMap 不行」不能说，只能说「在本项目 1,500 细胞 + 1:1 同源约束下无信号」。
+       para0 sizes=[14.0] align=None spaceAft=None
+  TEXT_BOX     TextBox 9      L= 0.72 T= 7.04 W= 8.00 H= 0.26 :: 课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026-11-02
+       para0 sizes=[9.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 10     L=11.90 T= 7.04 W= 0.60 H= 0.26 :: 13
+       para0 sizes=[9.0] align=RIGHT spaceAft=None
+
+=== slide 14 ===
+  AUTO_SHAPE   Rectangle 1    L= 0.55 T= 0.48 W= 0.13 H= 0.58 :: 
+  TEXT_BOX     TextBox 2      L= 0.82 T= 0.42 W=11.60 H= 0.55 :: 十三、还剩什么
+       para0 sizes=[25.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 3      L= 0.84 T= 0.97 W=11.40 H= 0.32 :: 三条边界，两条待人做
+       para0 sizes=[12.5] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 4      L= 0.82 T= 1.50 W=11.60 H= 4.52 :: 待人做 ①：mapping 表 38 行 reviewer 仍是 pending，需导师/生物学同学签字——而且签之前建议先改 
+       para0 sizes=[14.0] align=None spaceAft=13.0
+       para1 sizes=[15.5] align=None spaceAft=13.0
+       para2 sizes=[15.5] align=None spaceAft=13.0
+       para3 sizes=[15.5] align=None spaceAft=13.0
+       para4 sizes=[14.0] align=None spaceAft=13.0
+  AUTO_SHAPE   Rectangle 5    L= 0.00 T= 5.72 W=13.33 H= 0.98 :: 
+  AUTO_SHAPE   Rectangle 6    L= 0.00 T= 5.72 W= 0.09 H= 0.98 :: 
+  TEXT_BOX     TextBox 7      L= 0.82 T= 5.86 W=11.90 H= 0.72 :: 12 项课程要求：11 项完成、1 项部分（批次混合，SATURN 缺席有硬理由）。
+       para0 sizes=[14.0] align=None spaceAft=None
+  TEXT_BOX     TextBox 8      L= 0.72 T= 7.04 W= 8.00 H= 0.26 :: 课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026-11-02
+       para0 sizes=[9.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 9      L=11.90 T= 7.04 W= 0.60 H= 0.26 :: 14
+       para0 sizes=[9.0] align=RIGHT spaceAft=None
+
+=== slide 15 ===
+  AUTO_SHAPE   Rectangle 1    L= 0.55 T= 0.48 W= 0.13 H= 0.58 :: 
+  TEXT_BOX     TextBox 2      L= 0.82 T= 0.42 W=11.60 H= 0.55 :: 如果只记三句
+       para0 sizes=[25.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 3      L= 0.84 T= 0.97 W=11.40 H= 0.32 :: 课后能复述的三句
+       para0 sizes=[12.5] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 4      L= 0.82 T= 1.50 W=11.60 H= 2.88 :: 1. 没有全面赢家 → 不排总分，只做「场景 → 方法」\n2. 我们自己发现并修正了一个抬高 0.04–0.19 的口径偏差，
+       para0 sizes=[15.5] align=None spaceAft=13.0
+       para1 sizes=[15.5] align=None spaceAft=13.0
+       para2 sizes=[14.0] align=None spaceAft=13.0
+  AUTO_SHAPE   Rectangle 5    L= 0.00 T= 5.72 W=13.33 H= 0.98 :: 
+  AUTO_SHAPE   Rectangle 6    L= 0.00 T= 5.72 W= 0.09 H= 0.98 :: 
+  TEXT_BOX     TextBox 7      L= 0.82 T= 5.86 W=11.90 H= 0.72 :: 算得对是底线，分得对要人签字。
+       para0 sizes=[14.0] align=None spaceAft=None
+  TEXT_BOX     TextBox 8      L= 0.72 T= 7.04 W= 8.00 H= 0.26 :: 课题5 · XenoTransfer v1.0 · 第 3 次汇报 · 2026-11-02
+       para0 sizes=[9.0] align=LEFT spaceAft=None
+  TEXT_BOX     TextBox 9      L=11.90 T= 7.04 W= 0.60 H= 0.26 :: 15
+       para0 sizes=[9.0] align=RIGHT spaceAft=None

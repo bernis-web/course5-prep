@@ -1,0 +1,1 @@
+D:/projects/course5-prep/.venv39/Scripts/python.exe D:\projects\course5-prep\scripts\opca_stability_run.py

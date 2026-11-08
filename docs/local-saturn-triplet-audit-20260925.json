@@ -1,0 +1,82 @@
+{
+  "schema_version": "saturn-triplet-audit-v1",
+  "source": {
+    "path": "D:\\projects\\course5-prep\\wheelhouse\\saturn-src\\train-saturn.py",
+    "sha256": "3fb86f6d77db643e20d0155a9446dd73ada228f84960d12d00156c245046daec",
+    "line_count": 1065,
+    "supplemental_ref_labels_source": {
+      "path": "D:\\projects\\course5-prep\\wheelhouse\\saturn-src\\utils\\loss_and_miner_utils.py",
+      "sha256": "0ee75578fe2230b5fdb93761962be28760e1d5719feab6c9930241648bb66ec2",
+      "line_count": 682
+    }
+  },
+  "checks": {
+    "triplet_miner": {
+      "found": true,
+      "miner_type_values": [
+        "cross_species"
+      ],
+      "evidence": [
+        {
+          "line": 780,
+          "text": "mining_func = miners.TripletMarginMiner(margin = 0.2,",
+          "call": "miners.TripletMarginMiner",
+          "miner_type": "cross_species",
+          "miner_type_keyword_present": true
+        }
+      ]
+    },
+    "use_ref_labels_branch": {
+      "found": true,
+      "evidence": [
+        {
+          "line": 100,
+          "text": "if use_ref_labels:",
+          "true_branch_calls": [
+            {
+              "line": 101,
+              "text": "indices_tuple = mining_func(embeddings, labels, species, mnn=mnn, ref_labels=ref_labels)",
+              "passes_ref_labels": true
+            }
+          ],
+          "false_branch_calls": [
+            {
+              "line": 103,
+              "text": "indices_tuple = mining_func(embeddings, labels, species, mnn=mnn)",
+              "passes_ref_labels": false
+            }
+          ]
+        }
+      ],
+      "true_branch_passes_ref_labels": true,
+      "false_branch_omits_ref_labels": true
+    },
+    "ref_labels_selection": {
+      "function_found": true,
+      "parameter_found": true,
+      "default_initialization_lines": [
+        288
+      ],
+      "reads_outside_default_initialization": false,
+      "participates_in_triplet_selection": false,
+      "evidence": [],
+      "selection_evidence": []
+    },
+    "macrogenes_output": {
+      "found": true,
+      "evidence": [
+        {
+          "line": 393,
+          "text": "adata.obsm[\"macrogenes\"] = train_macrogenes",
+          "key": "macrogenes"
+        }
+      ]
+    }
+  },
+  "summary": {
+    "status": "warning",
+    "warnings": [
+      "ref_labels is only default-initialized and has no detected triplet-selection use"
+    ]
+  }
+}
