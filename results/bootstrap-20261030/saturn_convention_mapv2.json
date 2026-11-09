@@ -1,0 +1,142 @@
+{
+ "question": "SATURN 的 union macro-F1 是否因丢弃不可映射预测而被抬高？（修正物种方向后重算）",
+ "sources": "results/pilot-v1/saturn-v99/raw/recovered-20261001/confusion",
+ "mapping": "config/heart-celltype-map-v2.tsv",
+ "supersedes": "saturn_convention.json (v1, 物种方向颠倒)",
+ "directions": {
+  "human->mouse": {
+   "n_published": 1505,
+   "n_strict": 1505,
+   "n_dropped_unmappable": 0,
+   "n_truth_unmapped": 0,
+   "truth_unmapped_labels": {},
+   "dropped_labels": {},
+   "published": {
+    "acc": 0.5887,
+    "mf1": 0.3522
+   },
+   "strict_cell": {
+    "acc": 0.5887,
+    "mf1": 0.3522
+   },
+   "strict": {
+    "acc": 0.5887,
+    "mf1": 0.3522
+   },
+   "mf1_inflation": 0.0
+  },
+  "mouse->human": {
+   "n_published": 1528,
+   "n_strict": 1528,
+   "n_dropped_unmappable": 0,
+   "n_truth_unmapped": 0,
+   "truth_unmapped_labels": {},
+   "dropped_labels": {},
+   "published": {
+    "acc": 0.2271,
+    "mf1": 0.2566
+   },
+   "strict_cell": {
+    "acc": 0.2271,
+    "mf1": 0.2566
+   },
+   "strict": {
+    "acc": 0.2271,
+    "mf1": 0.2566
+   },
+   "mf1_inflation": 0.0
+  },
+  "human->zebrafish": {
+   "n_published": 1469,
+   "n_strict": 1469,
+   "n_dropped_unmappable": 0,
+   "n_truth_unmapped": 30,
+   "truth_unmapped_labels": {
+    "Orthers": 30
+   },
+   "dropped_labels": {},
+   "published": {
+    "acc": 0.1811,
+    "mf1": 0.1282
+   },
+   "strict_cell": {
+    "acc": 0.1811,
+    "mf1": 0.1282
+   },
+   "strict": {
+    "acc": 0.1811,
+    "mf1": 0.1282
+   },
+   "mf1_inflation": 0.0
+  },
+  "zebrafish->human": {
+   "n_published": 663,
+   "n_strict": 1528,
+   "n_dropped_unmappable": 865,
+   "n_truth_unmapped": 0,
+   "truth_unmapped_labels": {},
+   "dropped_labels": {
+    "Orthers": 865
+   },
+   "published": {
+    "acc": 0.4947,
+    "mf1": 0.2501
+   },
+   "strict_cell": {
+    "acc": 0.2147,
+    "mf1": 0.1386
+   },
+   "strict": {
+    "acc": 0.2147,
+    "mf1": 0.1386
+   },
+   "mf1_inflation": 0.1115
+  },
+  "mouse->zebrafish": {
+   "n_published": 1469,
+   "n_strict": 1469,
+   "n_dropped_unmappable": 0,
+   "n_truth_unmapped": 30,
+   "truth_unmapped_labels": {
+    "Orthers": 30
+   },
+   "dropped_labels": {},
+   "published": {
+    "acc": 0.3036,
+    "mf1": 0.4076
+   },
+   "strict_cell": {
+    "acc": 0.3036,
+    "mf1": 0.4076
+   },
+   "strict": {
+    "acc": 0.3036,
+    "mf1": 0.4076
+   },
+   "mf1_inflation": 0.0
+  },
+  "zebrafish->mouse": {
+   "n_published": 1405,
+   "n_strict": 1505,
+   "n_dropped_unmappable": 100,
+   "n_truth_unmapped": 0,
+   "truth_unmapped_labels": {},
+   "dropped_labels": {
+    "Orthers": 100
+   },
+   "published": {
+    "acc": 0.489,
+    "mf1": 0.3358
+   },
+   "strict_cell": {
+    "acc": 0.4565,
+    "mf1": 0.2961
+   },
+   "strict": {
+    "acc": 0.4565,
+    "mf1": 0.2961
+   },
+   "mf1_inflation": 0.0397
+  }
+ }
+}

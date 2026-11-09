@@ -35,12 +35,13 @@ from __future__ import annotations
 
 import csv
 import json
+import os
 from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "results" / "bootstrap-20261030" / "saturn_convention_v2.json"
-MAP_TSV = ROOT / "config" / "heart-celltype-map-v1.tsv"
+MAP_TSV = Path(os.environ.get("MAP_TSV", str(ROOT / "config" / "heart-celltype-map-v1.tsv")))
 CONF = ROOT / "results" / "pilot-v1" / "saturn-v99" / "raw" / "recovered-20261001" / "confusion"
 
 # 方向 -> (源物种=参考书, 目标物种=被预测)
