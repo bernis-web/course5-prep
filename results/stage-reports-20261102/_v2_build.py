@@ -19,8 +19,8 @@ from lxml import etree
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(BASE, '课题5第03次汇报_三场景结论与可复现闭环.pptx')
-DST = os.path.join(BASE, '_candidate2.pptx')
-CONTENT = json.load(open(os.path.join(BASE, '_content.json'), encoding='utf-8'))
+DST = os.path.join(BASE, os.environ.get('DST_PPTX', '_candidate2.pptx'))
+CONTENT = json.load(open(os.path.join(BASE, os.environ.get('CONTENT_JSON', '_content.json')), encoding='utf-8'))
 
 # ══════════════════════════ 设计令牌 ══════════════════════════
 NAVY   = '12365A'
@@ -41,8 +41,9 @@ TITLE_Y, TITLE_H = 1.02, 0.56
 LEAD_Y = 1.62
 BAND_TOP, BAND_BOT = 2.26, 6.30
 BAND_H = BAND_BOT - BAND_TOP
-FOOT_RULE_Y = 6.72
-FOOT_Y = 6.80
+FOOT_RULE_Y = 6.58
+FOOT_Y = 7.02
+FOOT_TAKE_Y = 6.64
 PROSE_W = 7.80
 
 WARN = []
@@ -67,7 +68,8 @@ def charw(ch, mono=False):
 
 
 def textw(s, size, mono=False):
-    return sum(charw(c, mono) for c in s) * size / 72.0
+    # 1.06：实测 LibreOffice/PowerPoint 的实际行宽比理论字宽略宽，留 6% 余量，避免误判「一行放得下」
+    return sum(charw(c, mono) for c in s) * size / 72.0 * 1.06
 
 
 def nlines(s, w, size, mono=False, pad=0.0):
@@ -176,7 +178,7 @@ def col_widths(rows, size, total, minw=0.95, tiny=1.05):
     need, tinyc = [], []
     for c in range(n):
         mx = max(textw(str(r[c]), size, mono=is_num_col(rows, c)) for r in rows)
-        need.append(max(mx + 0.30, minw))
+        need.append(max(mx + 0.40, minw))
         tinyc.append(mx < 0.42)
     fixed = [tiny if tinyc[i] else 0.0 for i, tiny in enumerate([tiny] * n)]
     flex = [i for i in range(n) if not tinyc[i]]
@@ -203,7 +205,8 @@ def table3(slide, rows, x, y, w, *, size=S_BODY, colw=None, emph=(), bold_rows=(
         colw = col_widths(rows, size, w)
     colw = list(colw)
     colw[-1] += w - sum(colw)
-    numc = [is_num_col(rows, c) for c in range(len(rows[0]))]
+    n_col = len(rows[0])
+    numc = [is_num_col(rows, c) for c in range(n_col)]
     hs = row_heights(rows, colw, size, row_h, vpad)
 
     rule(slide, x, y, w, pt=1.5, color=NAVY)
@@ -213,7 +216,9 @@ def table3(slide, rows, x, y, w, *, size=S_BODY, colw=None, emph=(), bold_rows=(
         for ci, cell in enumerate(row):
             hit = (ri, ci) in emph
             col = ACCENT if hit else (NAVY if ri == 0 else BODY)
-            tb(slide, cx + 0.08, yy, colw[ci] - 0.16, hs[ri], str(cell), size,
+            pl = 0.0 if ci == 0 else 0.11
+            pr = 0.0 if ci == n_col - 1 else 0.11
+            tb(slide, cx + pl, yy, colw[ci] - pl - pr, hs[ri], str(cell), size,
                bold=bool(ri == 0 or hit or ri in bold_rows), color=col,
                align='r' if numc[ci] else 'l',
                font=(MONO if numc[ci] else CJK), anchor='m', spacing=1.25)
@@ -243,18 +248,23 @@ def head(slide, title, lead):
         tb(slide, L, LEAD_Y, 11.6, 0.32, lead, S_BODY, color=MUTED, anchor='t', spacing=1.2)
 
 
+META = None          # 运行页脚元信息（来自内容真源，逐字）
+
+
 def foot(slide, num, takeaway=None, rule_on=True):
+    """页脚两行：结论一行（12pt 深色）+ 元信息/页码一行（12pt 浅灰）。"""
     if rule_on:
         rule(slide, L, FOOT_RULE_Y, CW, pt=0.75, color=RULE_C)
     if takeaway:
-        tb(slide, L, FOOT_Y, 10.5, 0.27, takeaway, S_NOTE, color=MUTED, spacing=1.2)
-    tb(slide, R - 0.9, FOOT_Y, 0.9, 0.27, '%02d' % num, S_NOTE, color=MUTED,
+        tb(slide, L, FOOT_TAKE_Y, 10.6, 0.26, takeaway, S_NOTE, color=BODY, spacing=1.2)
+    if META:
+        tb(slide, L, FOOT_Y, 6.6, 0.26, META, S_NOTE, color=MUTED, spacing=1.2)
+    tb(slide, R - 0.9, FOOT_Y, 0.9, 0.26, '%02d' % num, S_NOTE, color=MUTED,
        align='r', spacing=1.2)
 
 
 def pageno(slide, num):
-    tb(slide, R - 0.9, FOOT_Y, 0.9, 0.27, '%02d' % num, S_NOTE, color=MUTED,
-       align='r', spacing=1.2)
+    foot(slide, num, None)
 
 
 # ══════════════════════════ 版式 ══════════════════════════
@@ -263,7 +273,7 @@ def lay_cover(slide, d):
     PH = 2.72
     rect(slide, 0, PH, 13.333, 7.5 - PH, WHITE)
     logo = [s for s in slide.shapes if s.shape_type == MSO_SHAPE_TYPE.PICTURE][0]
-    logo.left, logo.top = Inches(0.80), Inches(0.52)
+    logo.left, logo.top = Inches(0.75), Inches(0.52)
     logo.width, logo.height = Inches(3.00), Inches(0.922)
 
     title = d['title']
@@ -271,13 +281,13 @@ def lay_cover(slide, d):
     lines = [title[:i], title[i:]]
     assert ''.join(lines) == title
     tb(slide, L, 3.12, 11.4, 1.42, '\n'.join(lines), S_COVER, bold=True, color=NAVY, spacing=1.2)
-    tb(slide, L, 4.72, 11.4, 0.30, d['subtitle'], S_BODY, color=MUTED, spacing=1.2)
-    y = 5.10
+    tb(slide, L, 4.62, 11.4, 0.30, d['subtitle'], S_BODY, color=MUTED, spacing=1.2)
+    y = 5.24
     for b in d['bullets']:
         tb(slide, L, y, 11.5, 0.30, b, S_BODY, color=BODY, spacing=1.2)
         y += 0.40
-    tb(slide, L, 6.42, 11.5, 0.30, d['takeaway'], S_BODY, bold=True, color=ACCENT, spacing=1.2)
-    tb(slide, L, 6.94, 11.5, 0.24, d['footer'], S_NOTE, color=MUTED, spacing=1.2)
+    tb(slide, L, 6.48, 11.5, 0.30, d['takeaway'], S_BODY, bold=True, color=ACCENT, spacing=1.2)
+    tb(slide, L, 6.96, 11.5, 0.24, d['footer'], S_NOTE, color=MUTED, spacing=1.2)
 
 
 def lay_table(slide, d, num, *, narrow=False, accent_cols=(), bold_rows=(), compact=False):
@@ -287,7 +297,7 @@ def lay_table(slide, d, num, *, narrow=False, accent_cols=(), bold_rows=(), comp
     x = L + (CW - w) / 2.0 if narrow else L
     colw = col_widths(rows, S_BODY, w)
     vpad = 0.10 if compact else 0.14
-    row_h = max(0.42, min(0.62, (BAND_H - 0.30) / len(rows)))
+    row_h = max(0.42, min(0.56, (BAND_H - 0.30) / len(rows)))
     hs = row_heights(rows, colw, S_BODY, row_h, vpad)
     total = sum(hs)
     if total > BAND_H:
@@ -309,7 +319,7 @@ def lay_hero(slide, d, num, hero):
 
     rows = d['tables'][0]
     colw = col_widths(rows, S_BODY, CW)
-    avail = BAND_BOT - 3.34
+    avail = 6.40 - 3.34
     row_h = max(0.42, min(0.58, avail / len(rows)))
     hs = row_heights(rows, colw, S_BODY, row_h, 0.10)
     if sum(hs) > avail:
@@ -338,34 +348,42 @@ def lay_prose(slide, d, num, *, emph_phrase=None):
 
 
 def lay_table_notes(slide, d, num, *, check_col=None):
-    """表 + 表下说明（先试双栏，放不下退单栏）"""
+    """表 + 表下说明：先把说明的高度从页面预算里扣掉，再定行高；双栏放不下退单栏。"""
     head(slide, d['title'], d['subtitle'])
     rows = d['tables'][0]
     colw = col_widths(rows, S_BODY, CW)
-    row_h = max(0.42, min(0.56, (BAND_H - 0.30) / len(rows)))
-    hs = row_heights(rows, colw, S_BODY, row_h, 0.10)
-    t_total = sum(hs)
     y0 = BAND_TOP + 0.02
-    t_bot = y0 + t_total
-
+    limit = FOOT_RULE_Y - 0.14
     CW2 = 5.62
-    h2 = max(nlines(b, CW2, S_BODY) for b in d['bullets']) * S_BODY * 1.5 / 72.0
-    h1 = sum(nlines(b, CW, S_BODY) for b in d['bullets']) * S_BODY * 1.5 / 72.0
-    two_col = (t_bot + 0.34 + h2) <= (FOOT_RULE_Y - 0.12)
+    line = S_BODY * 1.5 / 72.0
+    h2 = max(nlines(b, CW2, S_BODY) for b in d['bullets']) * line
+    h1 = sum(nlines(b, CW, S_BODY) for b in d['bullets']) * line
+
+    two_col, row_h, nh = False, 0.42, h1
+    cands = (False,) if len(d['bullets']) < 2 else (True, False)
+    for cand in cands:
+        hh = h2 if cand else h1
+        rh = (limit - y0 - 0.28 - hh) / len(rows)
+        if rh >= 0.40:
+            two_col, row_h, nh = cand, min(0.56, rh), hh
+            break
+    hs = row_heights(rows, colw, S_BODY, row_h, 0.07)
+    t_bot = y0 + sum(hs)
+
     if two_col:
         for i, b in enumerate(d['bullets']):
-            tb(slide, L + i * (CW2 + 0.59), t_bot + 0.34, CW2, h2 + 0.05, b,
+            tb(slide, L + i * (CW2 + 0.59), t_bot + 0.30, CW2, h2 + 0.06, b,
                S_BODY, color=BODY, spacing=1.5)
     else:
-        yy = t_bot + 0.30
+        yy = t_bot + 0.28
         for b in d['bullets']:
-            hh = nlines(b, CW, S_BODY) * S_BODY * 1.5 / 72.0
-            tb(slide, L, yy, CW, hh + 0.05, b, S_BODY, color=BODY, spacing=1.5)
-            yy += hh + 0.14
-        if yy > FOOT_RULE_Y:
-            WARN.append('p%02d notes overflow %.2f > %.2f' % (num, yy, FOOT_RULE_Y))
+            hh = nlines(b, CW, S_BODY) * line
+            tb(slide, L, yy, CW, hh + 0.06, b, S_BODY, color=BODY, spacing=1.5)
+            yy += hh + 0.12
+        if yy > limit + 0.02:
+            WARN.append('p%02d notes overflow %.2f > %.2f' % (num, yy, limit))
     emph = {(ri, check_col) for ri in range(1, len(rows))} if check_col is not None else set()
-    table3(slide, rows, L, y0, CW, colw=colw, emph=emph, row_h=row_h, vpad=0.10)
+    table3(slide, rows, L, y0, CW, colw=colw, emph=emph, row_h=row_h, vpad=0.07)
     foot(slide, num, d['takeaway'])
 
 
@@ -392,9 +410,9 @@ def lay_manifesto(slide, d, num):
     items = d['bullets']
     line_h = S_TITLE * 1.35 / 72.0
     blocks = [nlines(it, CW - 1.0, S_TITLE) * line_h for it in items]
-    gap = 0.34
+    gap = 0.30
     inner = sum(blocks) + gap * (len(items) - 1)
-    pad = 0.40
+    pad = 0.34
     h = inner + pad * 2
     y0 = BAND_TOP + max(0.0, min(0.40, (BAND_H - h - 0.30) / 2.0))
     rect(slide, 0, y0, 13.333, h, NAVY)
@@ -403,11 +421,11 @@ def lay_manifesto(slide, d, num):
         tb(slide, L, y, CW - 1.0, blocks[i], it, S_TITLE, bold=True, color=WHITE,
            spacing=1.35)
         y += blocks[i] + gap
-    tb(slide, L, y0 + h + 0.22, 11.2, 0.30, d['takeaway'], S_BODY, bold=True,
+    tb(slide, L, y0 + h + 0.18, 10.30, 0.30, d['takeaway'], S_BODY, bold=True,
        color=ACCENT, spacing=1.2)
-    pageno(slide, num)
-    if y0 + h + 0.22 + 0.30 > FOOT_RULE_Y:
-        WARN.append('p%02d manifesto bottom %.2f' % (num, y0 + h + 0.52))
+    foot(slide, num, None, rule_on=False)
+    if y0 + h + 0.18 + 0.30 > FOOT_RULE_Y:
+        WARN.append('p%02d manifesto bottom %.2f' % (num, y0 + h + 0.48))
 
 
 # ══════════════════════════ 主流程 ══════════════════════════
@@ -416,6 +434,9 @@ def main():
     if not os.path.exists(bak):
         shutil.copy2(SRC, bak)
         print('backup ->', os.path.basename(bak))
+    global META
+    META = CONTENT[0]['footer']
+    assert all(d['footer'] == META for d in CONTENT)
     prs = Presentation(SRC)
     slides = list(prs.slides)
     assert len(slides) == len(CONTENT) == 15
@@ -426,7 +447,7 @@ def main():
     lay_cover(slides[0], C[1])
     lay_table(slides[1], C[2], 2)
     lay_prose(slides[2], C[3], 3, emph_phrase='0.19')
-    lay_hero(slides[3], C[4], 4, '0.043–0.194')
+    lay_hero(slides[3], C[4], 4, '0.06–0.35')
     lay_table(slides[4], C[5], 5, narrow=True)
     lay_table(slides[5], C[6], 6)
     lay_table(slides[6], C[7], 7, accent_cols=(2,))
@@ -434,8 +455,8 @@ def main():
     lay_table(slides[8], C[9], 9, compact=True)
     lay_table_notes(slides[9], C[10], 10)
     lay_table_notes(slides[10], C[11], 11, check_col=3)
-    lay_prose(slides[11], C[12], 12)
-    lay_table(slides[12], C[13], 13)
+    lay_prose(slides[11], C[12], 12, emph_phrase='不是同一文件')
+    lay_table_notes(slides[12], C[13], 13)
     lay_list(slides[13], C[14], 14)
     lay_manifesto(slides[14], C[15], 15)
 
