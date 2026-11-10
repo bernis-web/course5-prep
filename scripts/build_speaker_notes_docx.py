@@ -14,8 +14,9 @@ from docx.shared import Cm, Pt, RGBColor
 from pptx import Presentation
 
 ROOT = Path(r"D:\projects\course5-prep")
-PPTX = ROOT / "deliverables" / "课题5-汇报-讲故事版-20261110.pptx"
-OUT = ROOT / "deliverables" / "课题5-汇报讲稿-20261110.docx"
+import sys
+PPTX = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "deliverables" / "课题5-汇报-讲故事版-20261110.pptx"
+OUT = Path(sys.argv[2]) if len(sys.argv) > 2 else ROOT / "deliverables" / "课题5-汇报讲稿-20261110.docx"
 
 FONT = "微软雅黑"
 NAVY = RGBColor(0x0E, 0x1B, 0x2A)
