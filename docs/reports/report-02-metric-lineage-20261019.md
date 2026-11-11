@@ -1,5 +1,7 @@
 # 第 2/7 次汇报：数字来源链（内容稿）
 
+> ⚠️ **本节数字已作废（2026-11-11 标注）**：见 `docs/reports/number-index-20261111.md` 与 `docs/execution/20261108-更正索引.md`。本文件按当时口径保留，不回改。
+
 > 配套 PPT：`results/stage-reports-20261019/课题5第02次汇报_数字来源链_校模板.pptx`（9 页，7 分 55 秒）
 > 版式：康复大学校模板
 > 口径：全部 transductive / in-sample；单 seed（0）；K=15 cosine 倒距离加权

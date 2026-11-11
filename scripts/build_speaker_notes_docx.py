@@ -17,6 +17,7 @@ ROOT = Path(r"D:\projects\course5-prep")
 import sys
 PPTX = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "deliverables" / "课题5-汇报-讲故事版-20261110.pptx"
 OUT = Path(sys.argv[2]) if len(sys.argv) > 2 else ROOT / "deliverables" / "课题5-汇报讲稿-20261110.docx"
+DATE = sys.argv[3] if len(sys.argv) > 3 else "2026-11-11"
 
 FONT = "微软雅黑"
 NAVY = RGBColor(0x0E, 0x1B, 0x2A)
@@ -65,7 +66,7 @@ set_run(r, size=24, bold=True, color=NAVY)
 
 p = doc.add_paragraph()
 p.paragraph_format.space_after = Pt(14)
-r = p.add_run("配套文件：课题5-汇报-讲故事版-20261110.pptx　｜　用法：拿着纸念，不要看屏幕")
+r = p.add_run("配套文件：%s　｜　用法：拿着纸念，不要看屏幕" % PPTX.name)
 set_run(r, size=9.5, color=MUTED)
 
 # 使用说明
@@ -102,8 +103,15 @@ p._p.get_or_add_pPr().append(pbdr)
 
 
 def slide_headline(slide):
-    """取该页最大的那段文字当「观点」。"""
-    best, size = "", 0
+    """取「页面标题」当观点。
+
+    不能用「最大字号」：数字页（如 P08）最大的字是英雄数字
+    （27 s / 8.5 min / GPU，40pt），那是正文不是标题，会把标题抓成 "27 s"。
+    标题的机器特征更稳：**字号 >= 20pt 且位置最靠上**。
+    没命中时回退到「最大字号」，再不行才留空。
+    """
+    cands = []
+    fallback, fsize = "", 0
     for sh in slide.shapes:
         if not sh.has_text_frame:
             continue
@@ -112,9 +120,14 @@ def slide_headline(slide):
             if not t:
                 continue
             sz = max((r.font.size.pt for r in para.runs if r.font.size), default=0)
-            if sz > size:
-                best, size = t, sz
-    return best, size
+            if sz > fsize:
+                fallback, fsize = t, sz
+            if sz >= 20:
+                cands.append((sh.top, -sz, t))
+    if cands:
+        cands.sort()
+        return cands[0][2], -cands[0][1]
+    return fallback, fsize
 
 
 for i, slide in enumerate(prs.slides, 1):
@@ -155,7 +168,7 @@ for i, slide in enumerate(prs.slides, 1):
 # 页脚
 footer = doc.sections[0].footer.paragraphs[0]
 footer.alignment = WD_ALIGN_PARAGRAPH.CENTER
-fr = footer.add_run("课题5 汇报讲稿 · 共 %d 页 · 2026-11-10" % len(prs.slides))
+fr = footer.add_run("课题5 汇报讲稿 · 共 %d 页 · %s" % (len(prs.slides), DATE))
 set_run(fr, size=8, color=MUTED)
 
 OUT.parent.mkdir(parents=True, exist_ok=True)

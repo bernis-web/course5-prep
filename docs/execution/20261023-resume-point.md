@@ -1,5 +1,7 @@
 # 断点续接（2026-10-23）
 
+> ⚠️ **本节数字已作废（2026-11-11 标注）**：见 `docs/reports/number-index-20261111.md` 与 `docs/execution/20261108-更正索引.md`。本文件按当时口径保留，不回改。
+
 > 上下文压缩后先读这一页。完整背景见 `docs/execution/20261019-handoff-full.md`。
 
 ## 项目

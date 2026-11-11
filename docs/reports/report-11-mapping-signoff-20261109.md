@@ -1,5 +1,7 @@
 # 报告 11：mapping 表 v2 签认与留痕（2026-11-09）
 
+> ⚠️ **本节数字已作废（2026-11-11 标注）**：见 `docs/reports/number-index-20261111.md` 与 `docs/execution/20261108-更正索引.md`。本文件按当时口径保留，不回改。
+
 > 用途：记录 v2 表的**签认范围、依据与责任边界**，以及签认后数字的变化。
 > 前置：`docs/reports/report-10-mapping-v2-proposal-20261108.md`（提案与敏感性）
 

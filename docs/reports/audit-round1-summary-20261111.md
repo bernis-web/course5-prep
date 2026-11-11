@@ -124,9 +124,13 @@ JSON 里显式写 `"pairing": "independent（非同批细胞）"`。
    不实声明（「已按新值重出」）改写为实测状况。核实方式见 §六。
 2. **`saturn_convention_v2.json` 的标题级误导**：文件本身没错（它记录 v1 映射下的结果），
    但被多份文档当成现行。建议在文件旁加 `_SUPERSEDED.md`，指到 `saturn_convention_mapv2.json`。
-3. **58 行历史留档**（约 70 个文件）还没加文件头的作废声明。
-4. **跨门 `metrics.json` 存值与重算差 3 倍**（0.0711 vs 0.0235）：存值来源不明，
-   要么补一段溯源，要么从文件里删掉存值只留重算值。
+3. ~~58 行历史留档还没加声明~~ → **2026-11-11 晚已落地**：25 个 .md 已插统一声明
+   （`scripts/stamp_historical_docs.py`，幂等）；二进制件（约 45 个 docx/pdf/pptx）按
+   「版本号 + 文件名日期 + 更正索引」处置，理由写在 `audit-historical-stamps-20261111.md`。
+4. ~~跨门存值来源不明~~ → **已穷举溯源**：16 类变体（8 标准口径 + 4 标签错位 + top-k + 支持度阈值）
+   全部复现不出存值，而 `acc` 与混淆矩阵 micro-F1 逐位相等 → 不是口径差异，是那段计算本身的问题。
+   处置：`results/phase-20261022/crossphylum/_PROVENANCE.md` 标明 `macro_f1_union` 不可引用、
+   `acc` 与 `confusion_matrices` 可信；报告见 `audit-crossphylum-provenance-20261111.md`。
 5. **19 篇 pptx 里的图表 XML 缓存**（一致性审计抓到的第二片盲区）还没做全仓扫描——
    本轮只修了 v5，其余历史幻灯没动。
 6. **三条臂的源头重算跑不了**（复现审计断点 1–2）：oPCA / SAMap / scVI 的原始数据在平台
