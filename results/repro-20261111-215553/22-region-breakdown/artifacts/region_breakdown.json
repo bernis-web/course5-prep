@@ -1,0 +1,120 @@
+{
+ "date": "2026-11-11",
+ "purpose": "按 human 解剖区拆分（目标④的器官维度）",
+ "caveat": "只有 human 有 region；因此仅评估侧为 human 的两个方向可按 region 分层",
+ "region_source": "local_human_s.h5ad 的 obs['region']（8 区）",
+ "directions": {
+  "mouse->human": {
+   "_all": {
+    "n": 1528,
+    "accuracy": 0.7369,
+    "macro_f1_union": 0.6729,
+    "majority": 0.3115
+   },
+   "AVN": {
+    "n": 106,
+    "accuracy": 0.7264,
+    "macro_f1_union": 0.6394,
+    "majority": 0.3113
+   },
+   "AX": {
+    "n": 212,
+    "accuracy": 0.7453,
+    "macro_f1_union": 0.7918,
+    "majority": 0.3208
+   },
+   "LA": {
+    "n": 174,
+    "accuracy": 0.6782,
+    "macro_f1_union": 0.6375,
+    "majority": 0.2069
+   },
+   "LV": {
+    "n": 317,
+    "accuracy": 0.7382,
+    "macro_f1_union": 0.544,
+    "majority": 0.4322
+   },
+   "RA": {
+    "n": 120,
+    "accuracy": 0.7167,
+    "macro_f1_union": 0.6555,
+    "majority": 0.275
+   },
+   "RV": {
+    "n": 230,
+    "accuracy": 0.7652,
+    "macro_f1_union": 0.726,
+    "majority": 0.3913
+   },
+   "SAN": {
+    "n": 168,
+    "accuracy": 0.7679,
+    "macro_f1_union": 0.7381,
+    "majority": 0.375
+   },
+   "SP": {
+    "n": 201,
+    "accuracy": 0.7363,
+    "macro_f1_union": 0.5506,
+    "majority": 0.4229
+   }
+  },
+  "zebrafish->human": {
+   "_all": {
+    "n": 1528,
+    "accuracy": 0.2788,
+    "macro_f1_union": 0.2131,
+    "majority": 0.3115
+   },
+   "AVN": {
+    "n": 106,
+    "accuracy": 0.2264,
+    "macro_f1_union": 0.1185,
+    "majority": 0.3113
+   },
+   "AX": {
+    "n": 212,
+    "accuracy": 0.2925,
+    "macro_f1_union": 0.2181,
+    "majority": 0.3208
+   },
+   "LA": {
+    "n": 174,
+    "accuracy": 0.2701,
+    "macro_f1_union": 0.214,
+    "majority": 0.2069
+   },
+   "LV": {
+    "n": 317,
+    "accuracy": 0.3091,
+    "macro_f1_union": 0.2003,
+    "majority": 0.4322
+   },
+   "RA": {
+    "n": 120,
+    "accuracy": 0.2917,
+    "macro_f1_union": 0.2225,
+    "majority": 0.275
+   },
+   "RV": {
+    "n": 230,
+    "accuracy": 0.2652,
+    "macro_f1_union": 0.2617,
+    "majority": 0.3913
+   },
+   "SAN": {
+    "n": 168,
+    "accuracy": 0.25,
+    "macro_f1_union": 0.2244,
+    "majority": 0.375
+   },
+   "SP": {
+    "n": 201,
+    "accuracy": 0.2836,
+    "macro_f1_union": 0.2764,
+    "majority": 0.4229
+   }
+  }
+ }
+}

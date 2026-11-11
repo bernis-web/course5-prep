@@ -1,0 +1,186 @@
+{
+ "date": "2026-11-11",
+ "purpose": "给「镜像内 6 值复现」这条证据加口径标注，并给出 v2 签认表下的对应数值",
+ "conventions": {
+  "truth_side": "真值 → 目标物种词表",
+  "pred_side": "预测 → 源物种词表",
+  "mappable": "仅 mapping_status == active",
+  "denominator": "剔除真值不可映射的细胞（= 产物里的 included=True 子集）"
+ },
+ "container_embedded_mapping": {
+  "file": "scripts/v99_mapping_embedded.json",
+  "sha256": "d92e32aa788672492febe8cd428beac71ba69fd99df68c7f362cba2e553eea4a",
+  "entries": 38,
+  "matches_manifest_mapping_sha256": true
+ },
+ "table_diff_v1_vs_v2": [
+  {
+   "key": "zebrafish|Orthers",
+   "v1": [
+    "neural",
+    "active"
+   ],
+   "v2": [
+    "other",
+    "unresolved"
+   ]
+  }
+ ],
+ "table_diff_v1tsv_vs_v99json": [],
+ "frozen_in_image": {
+  "human->mouse": 0.8618,
+  "mouse->human": 0.7369,
+  "human->zebrafish": 0.1795,
+  "zebrafish->human": 0.1734,
+  "mouse->zebrafish": 0.2675,
+  "zebrafish->mouse": 0.5814
+ },
+ "reproduce_with_v99": {
+  "human->mouse": {
+   "n_exact": 1535,
+   "n_eval": 1505,
+   "n_truth_dropped": 30,
+   "truth_dropped_labels": {
+    "Proliferating cell": 30
+   },
+   "acc": 0.8571,
+   "dir_cn": "人→鼠",
+   "frozen": 0.8618,
+   "matches_frozen": false
+  },
+  "mouse->human": {
+   "n_exact": 1528,
+   "n_eval": 1528,
+   "n_truth_dropped": 0,
+   "truth_dropped_labels": {},
+   "acc": 0.7297,
+   "dir_cn": "鼠→人",
+   "frozen": 0.7369,
+   "matches_frozen": false
+  },
+  "human->zebrafish": {
+   "n_exact": 1543,
+   "n_eval": 1499,
+   "n_truth_dropped": 44,
+   "truth_dropped_labels": {
+    "Proliferating cell": 14,
+    "mt": 30
+   },
+   "acc": 0.1901,
+   "dir_cn": "人→斑马鱼",
+   "frozen": 0.1795,
+   "matches_frozen": false
+  },
+  "zebrafish->human": {
+   "n_exact": 1528,
+   "n_eval": 1528,
+   "n_truth_dropped": 0,
+   "truth_dropped_labels": {},
+   "acc": 0.1702,
+   "dir_cn": "斑马鱼→人",
+   "frozen": 0.1734,
+   "matches_frozen": false
+  },
+  "mouse->zebrafish": {
+   "n_exact": 1543,
+   "n_eval": 1499,
+   "n_truth_dropped": 44,
+   "truth_dropped_labels": {
+    "Proliferating cell": 14,
+    "mt": 30
+   },
+   "acc": 0.2695,
+   "dir_cn": "鼠→斑马鱼",
+   "frozen": 0.2675,
+   "matches_frozen": false
+  },
+  "zebrafish->mouse": {
+   "n_exact": 1535,
+   "n_eval": 1505,
+   "n_truth_dropped": 30,
+   "truth_dropped_labels": {
+    "Proliferating cell": 30
+   },
+   "acc": 0.5701,
+   "dir_cn": "斑马鱼→鼠",
+   "frozen": 0.5814,
+   "matches_frozen": false
+  }
+ },
+ "v2_signed_mapping": {
+  "human->mouse": {
+   "n_exact": 1535,
+   "n_eval": 1505,
+   "n_truth_dropped": 30,
+   "truth_dropped_labels": {
+    "Proliferating cell": 30
+   },
+   "acc": 0.8571,
+   "dir_cn": "人→鼠",
+   "delta_acc_vs_v99": 0.0,
+   "delta_n_eval": 0
+  },
+  "mouse->human": {
+   "n_exact": 1528,
+   "n_eval": 1528,
+   "n_truth_dropped": 0,
+   "truth_dropped_labels": {},
+   "acc": 0.7297,
+   "dir_cn": "鼠→人",
+   "delta_acc_vs_v99": 0.0,
+   "delta_n_eval": 0
+  },
+  "human->zebrafish": {
+   "n_exact": 1543,
+   "n_eval": 1469,
+   "n_truth_dropped": 74,
+   "truth_dropped_labels": {
+    "Orthers": 30,
+    "Proliferating cell": 14,
+    "mt": 30
+   },
+   "acc": 0.1913,
+   "dir_cn": "人→斑马鱼",
+   "delta_acc_vs_v99": 0.0012,
+   "delta_n_eval": -30
+  },
+  "zebrafish->human": {
+   "n_exact": 1528,
+   "n_eval": 1528,
+   "n_truth_dropped": 0,
+   "truth_dropped_labels": {},
+   "acc": 0.1525,
+   "dir_cn": "斑马鱼→人",
+   "delta_acc_vs_v99": -0.0177,
+   "delta_n_eval": 0
+  },
+  "mouse->zebrafish": {
+   "n_exact": 1543,
+   "n_eval": 1469,
+   "n_truth_dropped": 74,
+   "truth_dropped_labels": {
+    "Orthers": 30,
+    "Proliferating cell": 14,
+    "mt": 30
+   },
+   "acc": 0.275,
+   "dir_cn": "鼠→斑马鱼",
+   "delta_acc_vs_v99": 0.0055,
+   "delta_n_eval": -30
+  },
+  "zebrafish->mouse": {
+   "n_exact": 1535,
+   "n_eval": 1505,
+   "n_truth_dropped": 30,
+   "truth_dropped_labels": {
+    "Proliferating cell": 30
+   },
+   "acc": 0.5522,
+   "dir_cn": "斑马鱼→鼠",
+   "delta_acc_vs_v99": -0.0179,
+   "delta_n_eval": 0
+  }
+ },
+ "v99_reproduces_frozen_count": "0/6",
+ "verdict": "仍有差异，需继续定位（先不要据此改结论）"
+}

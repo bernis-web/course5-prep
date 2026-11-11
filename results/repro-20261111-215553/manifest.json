@@ -1,0 +1,975 @@
+{
+ "generated_at": "2026-11-11T22:00:32+0800",
+ "repro_dir": "D:\\projects\\course5-prep\\results\\repro-20261111-215553",
+ "duration_s": 278.5,
+ "environment": {
+  "python": "3.9.6",
+  "python_executable": "D:\\projects\\course5-prep\\.venv39\\Scripts\\python.exe",
+  "platform": "Windows-10-10.0.22631-SP0",
+  "os": "Windows",
+  "machine": "AMD64",
+  "packages": {
+   "numpy": "1.23.5",
+   "scipy": "1.12.0",
+   "pandas": "2.3.3",
+   "sklearn": "1.6.1",
+   "anndata": "0.10.9",
+   "scanpy": "1.9.3",
+   "h5py": "3.8.0",
+   "pptx": "1.0.2",
+   "docx": "MISSING (ModuleNotFoundError)",
+   "openpyxl": "MISSING (ModuleNotFoundError)",
+   "matplotlib": "3.9.4"
+  },
+  "git": {
+   "commit": "d624917e51f137c51da0d0392601abb809192a2e",
+   "branch": "codex/teacher-reply-report-prep",
+   "dirty": true
+  },
+  "cwd": "D:\\projects\\course5-prep",
+  "hard_root_redirect": "D:\\projects\\course5-prep"
+ },
+ "steps_total": 30,
+ "steps_run": 30,
+ "steps_ok": 30,
+ "steps_failed": 0,
+ "failed": [],
+ "steps": [
+  {
+   "id": "01",
+   "name": "env-check",
+   "script": "environment_check.py",
+   "mode": "sandbox",
+   "note": "运行期自检，产出 environment-report.json",
+   "rc": 0,
+   "seconds": 0.56,
+   "heavy": false,
+   "artifacts": [
+    {
+     "path": "environment-report.json",
+     "exists": true,
+     "size": 1337,
+     "sha256": "d633dd25be439bd0889159b1c7dd5822480e6939a83d1b653b6818063360fcd2",
+     "copy": "artifacts/environment-report.json"
+    }
+   ],
+   "stdout_tail": [
+    "{\"report_path\": \"environment-report.json\"}"
+   ],
+   "stderr_tail": [],
+   "dir": "01-env-check"
+  },
+  {
+   "id": "02",
+   "name": "plan-contract",
+   "script": "plan_contract.py",
+   "mode": "sandbox",
+   "note": "校验 config/benchmark-plan.json 的计划契约",
+   "rc": 0,
+   "seconds": 0.23,
+   "heavy": false,
+   "artifacts": [],
+   "stdout_tail": [
+    "    \"install_packages_on_dcs\"",
+    "  ],",
+    "  \"side_effects\": []",
+    "}"
+   ],
+   "stderr_tail": [],
+   "dir": "02-plan-contract"
+  },
+  {
+   "id": "03",
+   "name": "startup-preflight",
+   "script": "startup_preflight.py",
+   "mode": "sandbox",
+   "note": "校验 config/startup-preflight.json 的启动前置信息",
+   "rc": 0,
+   "seconds": 0.21,
+   "heavy": false,
+   "artifacts": [],
+   "stdout_tail": [
+    "    \"scVI\"",
+    "  ],",
+    "  \"side_effects\": []",
+    "}"
+   ],
+   "stderr_tail": [],
+   "dir": "03-startup-preflight"
+  },
+  {
+   "id": "04",
+   "name": "unified-coarse-macro-f1",
+   "script": "unified_coarse_macro_f1.py",
+   "mode": "sandbox",
+   "note": "18 份逐细胞预测 → 权威 coarse macro-F1 表（后续 bootstrap 的冻结校验源）",
+   "rc": 0,
+   "seconds": 0.3,
+   "heavy": false,
+   "artifacts": [
+    {
+     "path": "results/phase-20261017/unified-coarse-macro-f1/unified-coarse-macro-f1.json",
+     "exists": true,
+     "size": 18222,
+     "sha256": "9518d833ff1c16fde394f9178892ab94053431af2b45fd6f24bdb186a5ae5610",
+     "copy": "artifacts/unified-coarse-macro-f1.json",
+     "repo_sha256": "9518d833ff1c16fde394f9178892ab94053431af2b45fd6f24bdb186a5ae5610",
+     "byte_identical": true
+    },
+    {
+     "path": "results/phase-20261017/unified-coarse-macro-f1/run.log",
+     "exists": true,
+     "size": 2232,
+     "sha256": "bf0dfb9a2eb61e1a93928dea591ffe8fd7e679a46d7f4fcbe750491e9587590e",
+     "copy": "artifacts/run.log",
+     "repo_sha256": "bf0dfb9a2eb61e1a93928dea591ffe8fd7e679a46d7f4fcbe750491e9587590e",
+     "byte_identical": true
+    }
+   ],
+   "stdout_tail": [
+    "zebrafish->mouse       ortholog_pca   n= 1505 macroF1=0.4396 (maj 0.0813) acc=0.5761 (maj 0.4817)  ABOVE majority[macroF1]",
+    "zebrafish->mouse       saturn_v99     n=  912 macroF1=0.6510 (maj 0.1112) acc=0.6875 (maj 0.3849)  ABOVE majority[macroF1]",
+    "zebrafish->mouse       samap          n=    0 macroF1=0.0000 (maj 0.0000) acc=0.0000 (maj 0.0000)  below majority[macroF1]",
+    "wrote D:\\projects\\course5-prep\\results\\repro-20261111-215553\\_sandbox\\results\\phase-20261017\\unified-coarse-macro-f1\\unified-coarse-macro-f1.json"
+   ],
+   "stderr_tail": [],
+   "dir": "04-unified-coarse-macro-f1"
+  },
+  {
+   "id": "05",
+   "name": "bootstrap-ci",
+   "script": "bootstrap_ci.py",
+   "mode": "sandbox",
+   "note": "四方法 × 6 方向 ±SE/95%CI，跑前与冻结表逐格对齐，不等就 abort",
+   "rc": 0,
+   "seconds": 23.66,
+   "heavy": true,
+   "artifacts": [
+    {
+     "path": "results/bootstrap-20261030/bootstrap.json",
+     "exists": true,
+     "size": 22546,
+     "sha256": "a2226a2e6d37092039d58c4267a8264def0625f0a6324d70cc08b0f881cbba89",
+     "copy": "artifacts/bootstrap.json",
+     "repo_sha256": "a2226a2e6d37092039d58c4267a8264def0625f0a6324d70cc08b0f881cbba89",
+     "byte_identical": true
+    }
+   ],
+   "stdout_tail": [
+    "samap         human->mouse       n= 1368 acc=0.1689±0.0099 mf1=0.1127 frozen=0.1127 OK",
+    "samap         mouse->human       n=  307 acc=0.1368±0.0197 mf1=0.0401 frozen=0.0401 OK",
+    "samap         human->zebrafish   n=  986 acc=0.1197±0.0105 mf1=0.0477 frozen=0.0477 OK",
+    "wrote D:\\projects\\course5-prep\\results\\repro-20261111-215553\\_sandbox\\results\\bootstrap-20261030\\bootstrap.json  mismatches=0"
+   ],
+   "stderr_tail": [],
+   "dir": "05-bootstrap-ci"
+  },
+  {
+   "id": "06",
+   "name": "bootstrap-crossphylum",
+   "script": "bootstrap_crossphylum.py",
+   "mode": "sandbox",
+   "note": "跨门（七鳃鳗↔小鼠）臂的 bootstrap",
+   "rc": 0,
+   "seconds": 51.3,
+   "heavy": true,
+   "artifacts": [
+    {
+     "path": "results/bootstrap-20261030/crossphylum.json",
+     "exists": true,
+     "size": 1360,
+     "sha256": "13652c2742c34adbed14f03219479c11a1ac039197dbf8ae0710bf50fa21b94d",
+     "copy": "artifacts/crossphylum.json",
+     "repo_sha256": "13652c2742c34adbed14f03219479c11a1ac039197dbf8ae0710bf50fa21b94d",
+     "byte_identical": true
+    }
+   ],
+   "stdout_tail": [
+    "oPCA   Mouse->Lamprey   n= 41678 acc=0.0516±0.0011 mf1=0.0257±0.0008 majority=0.3059",
+    "scVI   Lamprey->Mouse   n= 14016 acc=0.0582±0.0020 mf1=0.0241±0.0009 majority=0.2168",
+    "scVI   Mouse->Lamprey   n= 41678 acc=0.0457±0.0011 mf1=0.0267±0.0009 majority=0.3059",
+    "wrote D:\\projects\\course5-prep\\results\\repro-20261111-215553\\_sandbox\\results\\bootstrap-20261030\\crossphylum.json"
+   ],
+   "stderr_tail": [],
+   "dir": "06-bootstrap-crossphylum"
+  },
+  {
+   "id": "07",
+   "name": "saturn-convention-audit-v1",
+   "script": "saturn_convention_audit.py",
+   "mode": "sandbox",
+   "note": "v1 口径审计（物种方向颠倒的原始版本，保留作对照）",
+   "rc": 0,
+   "seconds": 0.11,
+   "heavy": false,
+   "artifacts": [
+    {
+     "path": "results/bootstrap-20261030/saturn_convention.json",
+     "exists": true,
+     "size": 2831,
+     "sha256": "e2333cd3b4529247db6c8e697e6ef3f2e0aeba54bad8f57e0fedf930bfe26652",
+     "copy": "artifacts/saturn_convention.json",
+     "repo_sha256": "e2333cd3b4529247db6c8e697e6ef3f2e0aeba54bad8f57e0fedf930bfe26652",
+     "byte_identical": true
+    }
+   ],
+   "stdout_tail": [
+    "zebrafish->human   n_pub=  642 n_strict= 1378 published mf1=0.4021 -> strict_cell mf1=0.2139 (抬高 +0.1882)",
+    "mouse->zebrafish   n_pub=  459 n_strict=  988 published mf1=0.6500 -> strict_cell mf1=0.4560 (抬高 +0.1940)",
+    "zebrafish->mouse   n_pub=  912 n_strict= 1368 published mf1=0.6510 -> strict_cell mf1=0.4588 (抬高 +0.1922)",
+    "wrote D:\\projects\\course5-prep\\results\\repro-20261111-215553\\_sandbox\\results\\bootstrap-20261030\\saturn_convention.json"
+   ],
+   "stderr_tail": [],
+   "dir": "07-saturn-convention-audit-v1"
+  },
+  {
+   "id": "08",
+   "name": "saturn-convention-audit-v2",
+   "script": "saturn_convention_audit_v2.py",
+   "mode": "sandbox",
+   "note": "修正物种方向后重算三口径；SATURN 更正列的出处",
+   "rc": 0,
+   "seconds": 0.12,
+   "heavy": false,
+   "artifacts": [
+    {
+     "path": "results/bootstrap-20261030/saturn_convention_v2.json",
+     "exists": true,
+     "size": 2816,
+     "sha256": "e83b4607bed68a06b61ddd978f2d6976f436f26313a09c1f0818c7e2ae193955",
+     "copy": "artifacts/saturn_convention_v2.json",
+     "repo_sha256": "e83b4607bed68a06b61ddd978f2d6976f436f26313a09c1f0818c7e2ae193955",
+     "byte_identical": true
+    }
+   ],
+   "stdout_tail": [
+    "zebrafish->human   n_pub= 1528 n_strict= 1528 truth_unmapped=   0 pub_mf1=0.164 -> strict_mf1=0.164 (差 0.0)",
+    "mouse->zebrafish   n_pub= 1499 n_strict= 1499 truth_unmapped=   0 pub_mf1=0.3658 -> strict_mf1=0.3658 (差 0.0)",
+    "zebrafish->mouse   n_pub= 1505 n_strict= 1505 truth_unmapped=   0 pub_mf1=0.3563 -> strict_mf1=0.3563 (差 0.0)",
+    "wrote D:\\projects\\course5-prep\\results\\repro-20261111-215553\\_sandbox\\results\\bootstrap-20261030\\saturn_convention_v2.json"
+   ],
+   "stderr_tail": [],
+   "dir": "08-saturn-convention-audit-v2"
+  },
+  {
+   "id": "09",
+   "name": "convention-variants",
+   "script": "convention_variants.py",
+   "mode": "sandbox",
+   "note": "四种词表归属约定 A/B/C/D，判定哪种能复现 6 个冻结值",
+   "rc": 0,
+   "seconds": 0.12,
+   "heavy": false,
+   "artifacts": [
+    {
+     "path": "results/bootstrap-20261030/convention_variants.json",
+     "exists": true,
+     "size": 3367,
+     "sha256": "c39ca5b27fb46487a5d7dbcdb85592ac6b63c5c6fe249570d1de96d22b3f958f",
+     "copy": "artifacts/convention_variants.json",
+     "repo_sha256": "c39ca5b27fb46487a5d7dbcdb85592ac6b63c5c6fe249570d1de96d22b3f958f",
+     "byte_identical": true
+    }
+   ],
+   "stdout_tail": [
+    "B_truth_tgt_pred_src       复现冻结值 0/6",
+    "C_truth_src_pred_src       复现冻结值 0/6",
+    "D_truth_tgt_pred_tgt       复现冻结值 0/6",
+    "wrote D:\\projects\\course5-prep\\results\\repro-20261111-215553\\_sandbox\\results\\bootstrap-20261030\\convention_variants.json"
+   ],
+   "stderr_tail": [],
+   "dir": "09-convention-variants"
+  },
+  {
+   "id": "10",
+   "name": "convention-flip-check",
+   "script": "convention_flip_check.py",
+   "mode": "sandbox",
+   "note": "结论翻转敏感性（只打印，不落盘）",
+   "rc": 0,
+   "seconds": 0.1,
+   "heavy": false,
+   "artifacts": [],
+   "stdout_tail": [
+    "  人→斑马鱼      0.3960 - 0.1506 = +0.2454",
+    "  斑马鱼→人      0.4290 - 0.2131 = +0.2159",
+    "  鼠→斑马鱼      0.4157 - 0.2816 = +0.1341",
+    "  斑马鱼→鼠      0.4786 - 0.4186 = +0.0600"
+   ],
+   "stderr_tail": [],
+   "dir": "10-convention-flip-check"
+  },
+  {
+   "id": "11",
+   "name": "mapping-v2-sensitivity",
+   "script": "mapping_v2_sensitivity.py",
+   "mode": "sandbox",
+   "note": "三行候选改法（R36/R21/R30）逐行敏感性",
+   "rc": 0,
+   "seconds": 0.13,
+   "heavy": false,
+   "artifacts": [
+    {
+     "path": "results/bootstrap-20261030/mapping_v2_sensitivity.json",
+     "exists": true,
+     "size": 3385,
+     "sha256": "73b006e789dbdf89ca3c942732133268f5027fad6f47bd9170503796f0ea9251",
+     "copy": "artifacts/mapping_v2_sensitivity.json",
+     "repo_sha256": "73b006e789dbdf89ca3c942732133268f5027fad6f47bd9170503796f0ea9251",
+     "byte_identical": true
+    }
+   ],
+   "stdout_tail": [
+    "== R30_zebrafish_Perivascular",
+    "   human->zebrafish   0.1269 -> 0.1235  (-0.0034)  n_q 1499 -> 1469",
+    "   mouse->zebrafish   0.3658 -> 0.3684  (+0.0026)  n_q 1499 -> 1469",
+    "wrote D:\\projects\\course5-prep\\results\\repro-20261111-215553\\_sandbox\\results\\bootstrap-20261030\\mapping_v2_sensitivity.json"
+   ],
+   "stderr_tail": [],
+   "dir": "11-mapping-v2-sensitivity"
+  },
+  {
+   "id": "12",
+   "name": "orthers-variant-impact",
+   "script": "orhters_variant_impact.py",
+   "mode": "sandbox",
+   "note": "zebrafish|Orthers 改 unmapped 的后果（真值侧退出 + 预测侧记错）",
+   "rc": 0,
+   "seconds": 0.11,
+   "heavy": false,
+   "artifacts": [
+    {
+     "path": "results/bootstrap-20261030/orthers_variant_impact.json",
+     "exists": true,
+     "size": 1876,
+     "sha256": "cbb2a80ad8247a9bd4ac12ad5951e20566cdbd336bda89fc2c67b5d5ac393100",
+     "copy": "artifacts/orthers_variant_impact.json",
+     "repo_sha256": "cbb2a80ad8247a9bd4ac12ad5951e20566cdbd336bda89fc2c67b5d5ac393100",
+     "byte_identical": true
+    }
+   ],
+   "stdout_tail": [
+    "zebrafish->human  0.164     0.1386    -0.0254  1528    1528    865",
+    "mouse->zebrafish  0.3658    0.4076    +0.0418  1499    1469    0",
+    "zebrafish->mouse  0.3563    0.2961    -0.0602  1505    1505    100",
+    "wrote D:\\projects\\course5-prep\\results\\repro-20261111-215553\\_sandbox\\results\\bootstrap-20261030\\orthers_variant_impact.json"
+   ],
+   "stderr_tail": [],
+   "dir": "12-orthers-variant-impact"
+  },
+  {
+   "id": "13",
+   "name": "convention-sensitivity",
+   "script": "convention_sensitivity.py",
+   "mode": "sandbox",
+   "note": "同一批预测换口径，结论会不会翻",
+   "rc": 0,
+   "seconds": 0.11,
+   "heavy": false,
+   "artifacts": [
+    {
+     "path": "results/convention-20261111/convention_sensitivity.json",
+     "exists": true,
+     "size": 2780,
+     "sha256": "3fbf34a6ecc0c9722f785fff6678a234ccee5715cf572808f485ff88010ec20b",
+     "copy": "artifacts/convention_sensitivity.json",
+     "repo_sha256": "3fbf34a6ecc0c9722f785fff6678a234ccee5715cf572808f485ff88010ec20b",
+     "byte_identical": true
+    },
+    {
+     "path": "results/convention-20261111/convention_sensitivity.md",
+     "exists": true,
+     "size": 2318,
+     "sha256": "fbf520014c5b6bd0bec872b36242eb4bb606b3f0ad4eb41d79ee4d763f7ef69c",
+     "copy": "artifacts/convention_sensitivity.md",
+     "repo_sha256": "fbf520014c5b6bd0bec872b36242eb4bb606b3f0ad4eb41d79ee4d763f7ef69c",
+     "byte_identical": true
+    }
+   ],
+   "stdout_tail": [
+    "鼠→斑马鱼   n= 1469 acc=0.2730 mf1_union=0.2816 mf1_truthonly=0.2816 Δ=+0.0000 balacc=0.3543",
+    "斑马鱼→鼠   n= 1505 acc=0.5967 mf1_union=0.4186 mf1_truthonly=0.4709 Δ=-0.0523 balacc=0.4842",
+    "union - truth-only 差值范围: -0.0523 .. +0.0000",
+    "wrote D:\\projects\\course5-prep\\results\\repro-20261111-215553\\_sandbox\\results\\convention-20261111\\convention_sensitivity.json"
+   ],
+   "stderr_tail": [],
+   "dir": "13-convention-sensitivity"
+  },
+  {
+   "id": "14",
+   "name": "drop-unmapped-audit",
+   "script": "drop_unmapped_audit.py",
+   "mode": "sandbox",
+   "note": "strict/drop 口径下，丢弃不可映射预测会影响谁",
+   "rc": 0,
+   "seconds": 0.14,
+   "heavy": false,
+   "artifacts": [
+    {
+     "path": "results/convention-20261111/drop_unmapped_audit.json",
+     "exists": true,
+     "size": 1562,
+     "sha256": "4d9e24bb45af4e4abb45ba1bd64cc068ce318f3de56ec6f47136ed5581288db0",
+     "copy": "artifacts/drop_unmapped_audit.json",
+     "repo_sha256": "4d9e24bb45af4e4abb45ba1bd64cc068ce318f3de56ec6f47136ed5581288db0",
+     "byte_identical": true
+    },
+    {
+     "path": "results/convention-20261111/drop_unmapped_audit.md",
+     "exists": true,
+     "size": 2593,
+     "sha256": "6ec4b899eb2dc5cdfd4799e39462e6628233c0db91d8a278e0b27fb148056fd8",
+     "copy": "artifacts/drop_unmapped_audit.md",
+     "repo_sha256": "6ec4b899eb2dc5cdfd4799e39462e6628233c0db91d8a278e0b27fb148056fd8",
+     "byte_identical": true
+    }
+   ],
+   "stdout_tail": [
+    "oPCA 空间外预测数: {'human->mouse': 0, 'mouse->human': 0, 'human->zebrafish': 0, 'zebrafish->human': 0, 'mouse->zebrafish': 0, 'zebrafish->mouse': 0}",
+    "scVI 空间外预测数: {'human->mouse': 0, 'mouse->human': 0, 'human->zebrafish': 0, 'zebrafish->human': 0, 'mouse->zebrafish': 0, 'zebrafish->mouse': 0}",
+    "verdict: 论点成立：只有 SATURN 会被 drop-unmapped 抬高，oPCA/scVI 不受影响 → 该口径对四方法不公平",
+    "wrote D:\\projects\\course5-prep\\results\\repro-20261111-215553\\_sandbox\\results\\convention-20261111\\drop_unmapped_audit.json"
+   ],
+   "stderr_tail": [],
+   "dir": "14-drop-unmapped-audit"
+  },
+  {
+   "id": "15",
+   "name": "bootstrap-saturn-fixed-v1",
+   "script": "bootstrap_saturn_fixed.py",
+   "mode": "sandbox",
+   "note": "修正方向 + v1 映射，1000 次 query 细胞重抽样",
+   "rc": 0,
+   "seconds": 2.69,
+   "heavy": false,
+   "artifacts": [
+    {
+     "path": "results/bootstrap-20261030/saturn_bootstrap_fixed.json",
+     "exists": true,
+     "size": 1309,
+     "sha256": "cc43e61faf7623663c30c9a3005425079f6c8b248108f687e4e2f3c7c70f1bb1",
+     "copy": "artifacts/saturn_bootstrap_fixed.json",
+     "repo_sha256": "cc43e61faf7623663c30c9a3005425079f6c8b248108f687e4e2f3c7c70f1bb1",
+     "byte_identical": true
+    }
+   ],
+   "stdout_tail": [
+    "zebrafish->human    1528   0.2336   0.1640   0.0069   [0.1506, 0.1770]",
+    "mouse->zebrafish    1499   0.2982   0.3658   0.0143   [0.3373, 0.3935]",
+    "zebrafish->mouse    1505   0.4671   0.3563   0.0140   [0.3265, 0.3814]",
+    "wrote D:\\projects\\course5-prep\\results\\repro-20261111-215553\\_sandbox\\results\\bootstrap-20261030\\saturn_bootstrap_fixed.json"
+   ],
+   "stderr_tail": [],
+   "dir": "15-bootstrap-saturn-fixed-v1"
+  },
+  {
+   "id": "16",
+   "name": "bootstrap-saturn-fixed-mapv2",
+   "script": "bootstrap_saturn_fixed.py",
+   "mode": "sandbox",
+   "note": "同上，切到 v2 签认映射（脚本原生支持 MAP_TSV / OUT_NAME）",
+   "rc": 0,
+   "seconds": 2.79,
+   "heavy": false,
+   "artifacts": [
+    {
+     "path": "results/bootstrap-20261030/saturn_bootstrap_fixed_mapv2.json",
+     "exists": true,
+     "size": 1310,
+     "sha256": "713238449bf056873dbebbec59d71170cf42fc726517f867d29e3dfeae88b123",
+     "copy": "artifacts/saturn_bootstrap_fixed_mapv2.json",
+     "repo_sha256": "713238449bf056873dbebbec59d71170cf42fc726517f867d29e3dfeae88b123",
+     "byte_identical": true
+    }
+   ],
+   "stdout_tail": [
+    "zebrafish->human    1528   0.2147   0.1386   0.0060   [0.1266, 0.1497]",
+    "mouse->zebrafish    1469   0.3036   0.4076   0.0143   [0.3772, 0.4335]",
+    "zebrafish->mouse    1505   0.4565   0.2961   0.0116   [0.2703, 0.3160]",
+    "wrote D:\\projects\\course5-prep\\results\\repro-20261111-215553\\_sandbox\\results\\bootstrap-20261030\\saturn_bootstrap_fixed_mapv2.json"
+   ],
+   "stderr_tail": [],
+   "dir": "16-bootstrap-saturn-fixed-mapv2"
+  },
+  {
+   "id": "17",
+   "name": "donor-bootstrap",
+   "script": "donor_bootstrap.py",
+   "mode": "sandbox",
+   "note": "按供体/簇重抽样的 cluster bootstrap",
+   "rc": 0,
+   "seconds": 14.53,
+   "heavy": true,
+   "artifacts": [
+    {
+     "path": "results/bootstrap-donor-20261111/donor_bootstrap.json",
+     "exists": true,
+     "size": 3801,
+     "sha256": "aa389159c85bfe45a087be641cde0bfe87f858f9734d3d0bb3c6e10002bb5677",
+     "copy": "artifacts/donor_bootstrap.json",
+     "repo_sha256": "aa389159c85bfe45a087be641cde0bfe87f858f9734d3d0bb3c6e10002bb5677",
+     "byte_identical": true
+    },
+    {
+     "path": "results/bootstrap-donor-20261111/donor_bootstrap.md",
+     "exists": true,
+     "size": 857,
+     "sha256": "5de615217e079f19e1ec1dc72786aa7ba1f313b540b7b840776d0fa97b538db8",
+     "copy": "artifacts/donor_bootstrap.md",
+     "repo_sha256": "5de615217e079f19e1ec1dc72786aa7ba1f313b540b7b840776d0fa97b538db8",
+     "byte_identical": true
+    }
+   ],
+   "stdout_tail": [
+    "斑马鱼→人   评估侧=human     聚类= 22 n_q= 1528 mf1=0.2131 SE_cell=0.0073 SE_ind=0.0285 倍数=3.88×",
+    "鼠→斑马鱼   评估侧=zebrafish 聚类= 15 n_q= 1469 mf1=0.2816 SE_cell=0.0123 SE_ind=0.0240 倍数=1.94×",
+    "斑马鱼→鼠   评估侧=mouse     聚类=  4 n_q= 1505 mf1=0.4186 SE_cell=0.0145 SE_ind=0.0213 倍数=1.47×  聚类数 <5，个体级 CI 不可靠",
+    "wrote D:\\projects\\course5-prep\\results\\repro-20261111-215553\\_sandbox\\results\\bootstrap-donor-20261111\\donor_bootstrap.json"
+   ],
+   "stderr_tail": [],
+   "dir": "17-donor-bootstrap"
+  },
+  {
+   "id": "18",
+   "name": "opca-mapping-convention-audit",
+   "script": "opca_mapping_convention_audit.py",
+   "mode": "sandbox",
+   "note": "oPCA 六值的口径注记审计",
+   "rc": 0,
+   "seconds": 0.17,
+   "heavy": false,
+   "artifacts": [
+    {
+     "path": "results/mapping-v2-20261111/opca_mapping_convention_audit.json",
+     "exists": true,
+     "size": 4380,
+     "sha256": "3660976cd906fda6756375acc8b14ee53f69686609efd28b73e34687ae0c1b29",
+     "copy": "artifacts/opca_mapping_convention_audit.json",
+     "repo_sha256": "3660976cd906fda6756375acc8b14ee53f69686609efd28b73e34687ae0c1b29",
+     "byte_identical": true
+    }
+   ],
+   "stdout_tail": [
+    "v99 命中冻结值 0/6 -> 仍有差异，需继续定位（先不要据此改结论）",
+    "v1/v2 表差异条数: 1",
+    "v1tsv/v99json 差异条数: 0",
+    "wrote D:\\projects\\course5-prep\\results\\repro-20261111-215553\\_sandbox\\results\\mapping-v2-20261111\\opca_mapping_convention_audit.json"
+   ],
+   "stderr_tail": [],
+   "dir": "18-opca-mapping-convention-audit"
+  },
+  {
+   "id": "19",
+   "name": "opca-mapping-v1-v2",
+   "script": "opca_mapping_v1_v2_audit.py",
+   "mode": "sandbox",
+   "note": "oPCA 在 v1/v2 映射下的逐格差异",
+   "rc": 0,
+   "seconds": 0.24,
+   "heavy": false,
+   "artifacts": [
+    {
+     "path": "results/mapping-v2-20261111/opca_v1_vs_v2.json",
+     "exists": true,
+     "size": 5450,
+     "sha256": "f0bde001ef418ca3db27fe7e66bf7cad916be1743a129dee8632ea4afa54dd6f",
+     "copy": "artifacts/opca_v1_vs_v2.json",
+     "repo_sha256": "f0bde001ef418ca3db27fe7e66bf7cad916be1743a129dee8632ea4afa54dd6f",
+     "byte_identical": true
+    }
+   ],
+   "stdout_tail": [
+    "鼠→斑马鱼   v1 acc=0.2695  v2 acc=0.275  Δ=0.0055  冻结=0.2675  v1命中=False  n_eval=1499->1469",
+    "斑马鱼→鼠   v1 acc=0.5701  v2 acc=0.5522  Δ=-0.0179  冻结=0.5814  v1命中=False  n_eval=1505->1505",
+    "v1 命中冻结值: 0/6 -> 复算链与冻结值不符，先别下结论",
+    "wrote D:\\projects\\course5-prep\\results\\repro-20261111-215553\\_sandbox\\results\\mapping-v2-20261111\\opca_v1_vs_v2.json"
+   ],
+   "stderr_tail": [],
+   "dir": "19-opca-mapping-v1-v2"
+  },
+  {
+   "id": "20",
+   "name": "scvi-mapping-v1-v2",
+   "script": "scvi_mapping_v1_v2_audit.py",
+   "mode": "sandbox",
+   "note": "scVI 在 v1/v2 映射下的逐格差异",
+   "rc": 0,
+   "seconds": 0.17,
+   "heavy": false,
+   "artifacts": [
+    {
+     "path": "results/mapping-v2-20261111/scvi_v1_vs_v2.json",
+     "exists": true,
+     "size": 4154,
+     "sha256": "ff8e2cb026ac0fe2431c8a9f738cb54ba8741f23aa17bbc0e12eb1be8d55c58b",
+     "copy": "artifacts/scvi_v1_vs_v2.json",
+     "repo_sha256": "ff8e2cb026ac0fe2431c8a9f738cb54ba8741f23aa17bbc0e12eb1be8d55c58b",
+     "byte_identical": true
+    }
+   ],
+   "stdout_tail": [
+    "鼠→斑马鱼   前提=1417/1499 v1 acc=0.6124 (n=1499)  v2 acc=0.6229 (n=1469)  Δ=0.0105",
+    "斑马鱼→鼠   前提=1429/1505 v1 acc=0.7575 (n=1505)  v2 acc=0.7561 (n=1505)  Δ=-0.0014",
+    "与 recomputed_union.json 对拍: 1/6",
+    "wrote D:\\projects\\course5-prep\\results\\repro-20261111-215553\\_sandbox\\results\\mapping-v2-20261111\\scvi_v1_vs_v2.json"
+   ],
+   "stderr_tail": [],
+   "dir": "20-scvi-mapping-v1-v2"
+  },
+  {
+   "id": "21",
+   "name": "labelspace-ablation",
+   "script": "labelspace_ablation.py",
+   "mode": "sandbox",
+   "note": "exact/fine/coarse 三种标签空间下的分数",
+   "rc": 0,
+   "seconds": 0.14,
+   "heavy": false,
+   "artifacts": [
+    {
+     "path": "results/labelspace-20261111/labelspace_ablation.json",
+     "exists": true,
+     "size": 3501,
+     "sha256": "9f5af02f5e672ad140d2b5795a22454a7d04d4dbefe571a0300d09a0c0cc67ce",
+     "copy": "artifacts/labelspace_ablation.json",
+     "repo_sha256": "9f5af02f5e672ad140d2b5795a22454a7d04d4dbefe571a0300d09a0c0cc67ce",
+     "byte_identical": true
+    },
+    {
+     "path": "results/labelspace-20261111/labelspace_ablation.md",
+     "exists": true,
+     "size": 1858,
+     "sha256": "c45b6f0e423367b4b510253bada77e9108478bf8c4ac9b3d9eb7a9aa79c9666a",
+     "copy": "artifacts/labelspace_ablation.md",
+     "repo_sha256": "c45b6f0e423367b4b510253bada77e9108478bf8c4ac9b3d9eb7a9aa79c9666a",
+     "byte_identical": true
+    }
+   ],
+   "stdout_tail": [
+    "斑马鱼→鼠   fine    acc=0.5163 mf1=0.2706 n_q=1505 maj=0.4618 高于多数类",
+    "斑马鱼→鼠   coarse  acc=0.5967 mf1=0.4186 n_q=1505 maj=0.4817 高于多数类",
+    "粒度改变判断的方向数: 0",
+    "wrote D:\\projects\\course5-prep\\results\\repro-20261111-215553\\_sandbox\\results\\labelspace-20261111\\labelspace_ablation.json"
+   ],
+   "stderr_tail": [],
+   "dir": "21-labelspace-ablation"
+  },
+  {
+   "id": "22",
+   "name": "region-breakdown",
+   "script": "region_breakdown.py",
+   "mode": "sandbox",
+   "note": "区域维度的对照表（读 local_human_s.h5ad）",
+   "rc": 0,
+   "seconds": 0.42,
+   "heavy": false,
+   "artifacts": [
+    {
+     "path": "results/region-20261111/region_breakdown.json",
+     "exists": true,
+     "size": 2405,
+     "sha256": "329290ce7f01070275ba90b874a8189ce04dd39545bec55ee94abcfafc2b6300",
+     "copy": "artifacts/region_breakdown.json",
+     "repo_sha256": "329290ce7f01070275ba90b874a8189ce04dd39545bec55ee94abcfafc2b6300",
+     "byte_identical": true
+    },
+    {
+     "path": "results/region-20261111/region_breakdown.md",
+     "exists": true,
+     "size": 1488,
+     "sha256": "bf86b290b69bf04e5e0e5004a96be2b71b9d6186474d7f65e3635ebb1397fb65",
+     "copy": "artifacts/region_breakdown.md",
+     "repo_sha256": "bf86b290b69bf04e5e0e5004a96be2b71b9d6186474d7f65e3635ebb1397fb65",
+     "byte_identical": true
+    }
+   ],
+   "stdout_tail": [
+    "斑马鱼→人    RV    n=  230 acc=0.2652 mf1=0.2617 maj=0.3913",
+    "斑马鱼→人    SAN   n=  168 acc=0.2500 mf1=0.2244 maj=0.3750",
+    "斑马鱼→人    SP    n=  201 acc=0.2836 mf1=0.2764 maj=0.4229",
+    "wrote D:\\projects\\course5-prep\\results\\repro-20261111-215553\\_sandbox\\results\\region-20261111\\region_breakdown.json"
+   ],
+   "stderr_tail": [],
+   "dir": "22-region-breakdown"
+  },
+  {
+   "id": "23",
+   "name": "ortholog-coverage",
+   "script": "ortholog_coverage.py",
+   "mode": "sandbox",
+   "note": "1:1 直系同源图覆盖率",
+   "rc": 0,
+   "seconds": 0.75,
+   "heavy": false,
+   "artifacts": [
+    {
+     "path": "results/ortholog-coverage-20261111/coverage.json",
+     "exists": true,
+     "size": 785,
+     "sha256": "d8df99f10a9c3bbc462f8429a0abfae92b89a30c2e68375174f93b4f2db87574",
+     "copy": "artifacts/coverage.json",
+     "repo_sha256": "d8df99f10a9c3bbc462f8429a0abfae92b89a30c2e68375174f93b4f2db87574",
+     "byte_identical": true
+    },
+    {
+     "path": "results/ortholog-coverage-20261111/coverage.md",
+     "exists": true,
+     "size": 869,
+     "sha256": "7cc374d311946b7649a5ebb7b49b2f4382905687ba3d8f735a4e65bf2dd37a15",
+     "copy": "artifacts/coverage.md",
+     "repo_sha256": "7cc374d311946b7649a5ebb7b49b2f4382905687ba3d8f735a4e65bf2dd37a15",
+     "byte_identical": true
+    }
+   ],
+   "stdout_tail": [
+    "human      total= 32732 mapped= 17898 unmapped= 14834 coverage=0.5468",
+    "mouse      total= 32379 mapped= 11613 unmapped= 20766 coverage=0.3587",
+    "zebrafish  total= 27661 mapped= 15419 unmapped= 12242 coverage=0.5574",
+    "wrote D:\\projects\\course5-prep\\results\\repro-20261111-215553\\_sandbox\\results\\ortholog-coverage-20261111\\coverage.json"
+   ],
+   "stderr_tail": [],
+   "dir": "23-ortholog-coverage"
+  },
+  {
+   "id": "24",
+   "name": "pairwise-corrected",
+   "script": "pairwise_corrected.py",
+   "mode": "sandbox",
+   "note": "13 组同批细胞配对 bootstrap（v2 映射）",
+   "rc": 0,
+   "seconds": 40.01,
+   "heavy": true,
+   "artifacts": [
+    {
+     "path": "results/pairwise-20261111/pairwise_corrected.json",
+     "exists": true,
+     "size": 6085,
+     "sha256": "c0a9480805a5be9453c81fd667c35dc371b43b526a92516324e00f9f4693575d",
+     "copy": "artifacts/pairwise_corrected.json",
+     "repo_sha256": "c0a9480805a5be9453c81fd667c35dc371b43b526a92516324e00f9f4693575d",
+     "byte_identical": true
+    },
+    {
+     "path": "results/pairwise-20261111/pairwise_corrected.md",
+     "exists": true,
+     "size": 3524,
+     "sha256": "0705e4347224d3c38ec7848992bbe893b405bd1171f1d6f41d4e3fe08759362d",
+     "copy": "artifacts/pairwise_corrected.md",
+     "repo_sha256": "0705e4347224d3c38ec7848992bbe893b405bd1171f1d6f41d4e3fe08759362d",
+     "byte_identical": true
+    }
+   ],
+   "stdout_tail": [
+    "斑马鱼→鼠   saturn_v99 vs scVI      n= 1505/1505 0.2961 vs 0.4786 Δ=-0.1825 CI[-0.2147,-0.1518] **SIG** [indep]",
+    "斑马鱼→鼠   saturn_v99 vs opca      n= 1505/1505 0.2961 vs 0.3795 Δ=-0.0835 CI[-0.1164,-0.0500] **SIG** [indep]",
+    "斑马鱼→鼠   opca       vs scVI      n=      1505 0.4786 vs 0.3795 Δ=+0.0991 CI[+0.0724,+0.1273] **SIG** [paired]",
+    "wrote D:\\projects\\course5-prep\\results\\repro-20261111-215553\\_sandbox\\results\\pairwise-20261111\\pairwise_corrected.json"
+   ],
+   "stderr_tail": [],
+   "dir": "24-pairwise-corrected"
+  },
+  {
+   "id": "25",
+   "name": "pairwise-donor-level",
+   "script": "pairwise_donor_level.py",
+   "mode": "sandbox",
+   "note": "供体级配对：检验是不是单个供体在撑分数",
+   "rc": 0,
+   "seconds": 20.55,
+   "heavy": true,
+   "artifacts": [
+    {
+     "path": "results/pairwise-20261111/pairwise_donor_level.json",
+     "exists": true,
+     "size": 3839,
+     "sha256": "fc1a2314c43476bef2eca30678bf8d4bfc2953864182463f022d200a4a3f944a",
+     "copy": "artifacts/pairwise_donor_level.json",
+     "repo_sha256": "fc1a2314c43476bef2eca30678bf8d4bfc2953864182463f022d200a4a3f944a",
+     "byte_identical": true
+    },
+    {
+     "path": "results/pairwise-20261111/pairwise_donor_level.md",
+     "exists": true,
+     "size": 2081,
+     "sha256": "da2e9935d9773c5c87d35d141aff6ead38f79b7e50e8b56ea87b3db406b81b33",
+     "copy": "artifacts/pairwise_donor_level.md",
+     "repo_sha256": "da2e9935d9773c5c87d35d141aff6ead38f79b7e50e8b56ea87b3db406b81b33",
+     "byte_identical": true
+    }
+   ],
+   "stdout_tail": [
+    "斑马鱼→鼠   opca  vsscVI   聚类=  4 n= 1505 Δ=-0.0600 SE=0.0142 CI[-0.0948,-0.0464] **SIG**",
+    "斑马鱼→鼠   saturnvsscVI   聚类=  4 n= 1505 Δ=-0.1827 SE=0.0214 CI[-0.2225,-0.1412] **SIG**",
+    "斑马鱼→鼠   opca  vssaturn 聚类=  4 n= 1505 Δ=+0.1227 SE=0.0278 CI[+0.0601,+0.1694] **SIG**",
+    "wrote D:\\projects\\course5-prep\\results\\repro-20261111-215553\\_sandbox\\results\\pairwise-20261111\\pairwise_donor_level.json"
+   ],
+   "stderr_tail": [],
+   "dir": "25-pairwise-donor-level"
+  },
+  {
+   "id": "26",
+   "name": "pairwise-inductive",
+   "script": "pairwise_inductive.py",
+   "mode": "sandbox",
+   "note": "inductive 口径下重做配对检验",
+   "rc": 0,
+   "seconds": 27.16,
+   "heavy": true,
+   "artifacts": [
+    {
+     "path": "results/pairwise-20261111/pairwise_inductive.json",
+     "exists": true,
+     "size": 5750,
+     "sha256": "bd630258f65d0e9e335eed97d89cc0b3e4f0e9f9b0a67a571ee88ea0abfc59d1",
+     "copy": "artifacts/pairwise_inductive.json",
+     "repo_sha256": "bd630258f65d0e9e335eed97d89cc0b3e4f0e9f9b0a67a571ee88ea0abfc59d1",
+     "byte_identical": true
+    },
+    {
+     "path": "results/pairwise-20261111/pairwise_inductive.md",
+     "exists": true,
+     "size": 1793,
+     "sha256": "653d3a37b90fb5dd869dc174a438444abf8e4657ad0636e8ae6d482548459099",
+     "copy": "artifacts/pairwise_inductive.md",
+     "repo_sha256": "653d3a37b90fb5dd869dc174a438444abf8e4657ad0636e8ae6d482548459099",
+     "byte_identical": true
+    }
+   ],
+   "stdout_tail": [
+    "斑马鱼→鼠    opca vs scVI    transductive Δ=-0.0600 (SIG)  inductive Δ=-0.0951 (SIG)  ",
+    "斑马鱼→鼠    opca vs saturn  transductive Δ=+0.1227 (SIG)  inductive Δ=+0.0877 (SIG)  ",
+    "翻转条数: 3",
+    "wrote D:\\projects\\course5-prep\\results\\repro-20261111-215553\\_sandbox\\results\\pairwise-20261111\\pairwise_inductive.json"
+   ],
+   "stderr_tail": [],
+   "dir": "26-pairwise-inductive"
+  },
+  {
+   "id": "27",
+   "name": "pairwise-lr-evaluator",
+   "script": "pairwise_lr_evaluator.py",
+   "mode": "sandbox",
+   "note": "LR 评测器口径下重做配对检验",
+   "rc": 0,
+   "seconds": 27.26,
+   "heavy": true,
+   "artifacts": [
+    {
+     "path": "results/pairwise-20261111/pairwise_lr_evaluator.json",
+     "exists": true,
+     "size": 5523,
+     "sha256": "1d0b0652a50a66d29eb5c42bd194074331734d3d57579ca3efff73a3ca672fa6",
+     "copy": "artifacts/pairwise_lr_evaluator.json",
+     "repo_sha256": "1d0b0652a50a66d29eb5c42bd194074331734d3d57579ca3efff73a3ca672fa6",
+     "byte_identical": true
+    },
+    {
+     "path": "results/pairwise-20261111/pairwise_lr_evaluator.md",
+     "exists": true,
+     "size": 1611,
+     "sha256": "3830e4db61ab9760f631e8cabc6824a059618776104ff1b63c5780be17493078",
+     "copy": "artifacts/pairwise_lr_evaluator.md",
+     "repo_sha256": "3830e4db61ab9760f631e8cabc6824a059618776104ff1b63c5780be17493078",
+     "byte_identical": true
+    }
+   ],
+   "stdout_tail": [
+    "斑马鱼→鼠   opca vs scVI    聚类=  4 KNN Δ=-0.0600 (SIG)  LR Δ=-0.2259 (SIG)  ",
+    "斑马鱼→鼠   opca vs saturn  聚类=  4 KNN Δ=+0.1227 (SIG)  LR Δ=-0.0431 (SIG)  ",
+    "翻转条数: 3",
+    "wrote D:\\projects\\course5-prep\\results\\repro-20261111-215553\\_sandbox\\results\\pairwise-20261111\\pairwise_lr_evaluator.json"
+   ],
+   "stderr_tail": [],
+   "dir": "27-pairwise-lr-evaluator"
+  },
+  {
+   "id": "28",
+   "name": "pairwise-opca-official",
+   "script": "pairwise_opca_official.py",
+   "mode": "sandbox",
+   "note": "oPCA 正式配对检验（类空间 KNN 口径）",
+   "rc": 0,
+   "seconds": 26.51,
+   "heavy": true,
+   "artifacts": [
+    {
+     "path": "results/pairwise-20261111/opca_official_paired.json",
+     "exists": true,
+     "size": 3093,
+     "sha256": "0cf7d972fdbc725883ee81437741cd8d0cc850165f802a20da41dd525afa1493",
+     "copy": "artifacts/opca_official_paired.json",
+     "repo_sha256": "0cf7d972fdbc725883ee81437741cd8d0cc850165f802a20da41dd525afa1493",
+     "byte_identical": true
+    },
+    {
+     "path": "results/pairwise-20261111/opca_official_paired.md",
+     "exists": true,
+     "size": 1526,
+     "sha256": "6493d047b2150f7020cc81018c0b8b54757ff6700b05fdd0ef6bc24d11be5efe",
+     "copy": "artifacts/opca_official_paired.md",
+     "repo_sha256": "6493d047b2150f7020cc81018c0b8b54757ff6700b05fdd0ef6bc24d11be5efe",
+     "byte_identical": true
+    }
+   ],
+   "stdout_tail": [
+    "鼠→斑马鱼   opca  vs saturn_v99 n= 1469 0.2816 vs 0.3600 Δ=-0.0785 CI[-0.1073,-0.0477] **SIG**",
+    "斑马鱼→鼠   opca  vs scVI       n= 1505 0.4186 vs 0.4786 Δ=-0.0600 CI[-0.0937,-0.0277] **SIG**",
+    "斑马鱼→鼠   opca  vs saturn_v99 n= 1505 0.4186 vs 0.2959 Δ=+0.1227 CI[+0.0874,+0.1577] **SIG**",
+    "wrote D:\\projects\\course5-prep\\results\\repro-20261111-215553\\_sandbox\\results\\pairwise-20261111\\opca_official_paired.json"
+   ],
+   "stderr_tail": [],
+   "dir": "28-pairwise-opca-official"
+  },
+  {
+   "id": "29",
+   "name": "batch-metrics-samap",
+   "script": "compute_batch_metrics.py",
+   "mode": "direct",
+   "note": "silhouette/iLISI/kBET（SAMap 关节嵌入臂，有 obs 才可复算）",
+   "rc": 0,
+   "seconds": 3.53,
+   "heavy": false,
+   "artifacts": [
+    {
+     "path": "D:\\projects\\course5-prep\\results\\repro-20261111-215553\\29-batch-metrics-samap\\batch_metrics.json",
+     "exists": true,
+     "size": 478,
+     "sha256": "1d094079b84c38ec916bf83155bcf75fd3a32f03810bedbee895a986076cefd5",
+     "copy": "artifacts/batch_metrics.json",
+     "byte_identical": null
+    }
+   ],
+   "stdout_tail": [
+    "{\"embedding\": \"results/phase-20261026/samap-batch/samap_joint_embedding.npy\", \"n_cells\": 4606, \"dim\": 150, \"n_mapped_coarse\": 4603, \"n_coarse_classes\": 10, \"silhouette_cosine_coarse\": 0.043094, \"ilisi_species_k30\": 1.006092, \"kbet_accept_k30_alpha005\": 0.001086, \"k\": 30, \"alpha\": 0.05, \"species_counts\": {\"human\": 1528, \"mouse\": 1535, \"zebrafish\": 1543}, \"mapping_status_counts\": {\"None\": 3, \"active\": 4529, \"unmapped\": 74}}"
+   ],
+   "stderr_tail": [],
+   "dir": "29-batch-metrics-samap"
+  },
+  {
+   "id": "30",
+   "name": "h5ad-inspect",
+   "script": "heart_h5ad_inspect.py",
+   "mode": "direct",
+   "note": "三个源文件的 obs/var 证据（细胞数、基因数、sha256）",
+   "rc": 0,
+   "seconds": 3.16,
+   "heavy": false,
+   "artifacts": [
+    {
+     "path": "D:\\projects\\course5-prep\\results\\repro-20261111-215553\\30-h5ad-inspect\\h5ad-inspect.json",
+     "exists": true,
+     "size": 61446,
+     "sha256": "d667c35e09056fd985664820975e1fa4cb8ff12f4cb03a31cf69f1647b677347",
+     "copy": "artifacts/h5ad-inspect.json",
+     "byte_identical": null
+    }
+   ],
+   "stdout_tail": [
+    "{\"report_path\": \"D:\\\\projects\\\\course5-prep\\\\results\\\\repro-20261111-215553\\\\30-h5ad-inspect\\\\h5ad-inspect.json\", \"n_files\": 3, \"failed_files\": 0}"
+   ],
+   "stderr_tail": [],
+   "dir": "30-h5ad-inspect"
+  }
+ ],
+ "exit_code": 0
+}

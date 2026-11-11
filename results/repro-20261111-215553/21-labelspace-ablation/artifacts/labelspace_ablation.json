@@ -1,0 +1,151 @@
+{
+ "date": "2026-11-11",
+ "purpose": "标签空间粒度对分数与结论的影响（exact/fine/coarse 三层）",
+ "source": "results/mapping-v2-20261111/rerun-v2/metrics.json",
+ "method": "oPCA（FIXKEY），v2 映射，strict_cell 口径",
+ "convention": {
+  "macro_f1": "union（真实∪预测，多预测类 F1=0）",
+  "note": "层级越细，可映射细胞越少 → 必须连 n_q 一起看"
+ },
+ "directions": {
+  "human->mouse": {
+   "exact": {
+    "accuracy": 0.7824,
+    "macro_f1_union": 0.3071,
+    "n_q": 1535,
+    "majority": 0.4528,
+    "vs_majority": "高于多数类"
+   },
+   "fine": {
+    "accuracy": 0.798,
+    "macro_f1_union": 0.3299,
+    "n_q": 1505,
+    "majority": 0.4618,
+    "vs_majority": "高于多数类"
+   },
+   "coarse": {
+    "accuracy": 0.8618,
+    "macro_f1_union": 0.6435,
+    "n_q": 1505,
+    "majority": 0.4817,
+    "vs_majority": "高于多数类"
+   }
+  },
+  "mouse->human": {
+   "exact": {
+    "accuracy": 0.4084,
+    "macro_f1_union": 0.3499,
+    "n_q": 1528,
+    "majority": 0.2526,
+    "vs_majority": "高于多数类"
+   },
+   "fine": {
+    "accuracy": 0.4103,
+    "macro_f1_union": 0.3743,
+    "n_q": 1528,
+    "majority": 0.2526,
+    "vs_majority": "高于多数类"
+   },
+   "coarse": {
+    "accuracy": 0.7369,
+    "macro_f1_union": 0.6729,
+    "n_q": 1528,
+    "majority": 0.3115,
+    "vs_majority": "高于多数类"
+   }
+  },
+  "human->zebrafish": {
+   "exact": {
+    "accuracy": 0.1504,
+    "macro_f1_union": 0.0857,
+    "n_q": 1543,
+    "majority": 0.3863,
+    "vs_majority": "低于多数类"
+   },
+   "fine": {
+    "accuracy": 0.1613,
+    "macro_f1_union": 0.113,
+    "n_q": 1469,
+    "majority": 0.4057,
+    "vs_majority": "低于多数类"
+   },
+   "coarse": {
+    "accuracy": 0.1811,
+    "macro_f1_union": 0.1506,
+    "n_q": 1469,
+    "majority": 0.4057,
+    "vs_majority": "低于多数类"
+   }
+  },
+  "zebrafish->human": {
+   "exact": {
+    "accuracy": 0.1387,
+    "macro_f1_union": 0.0908,
+    "n_q": 1528,
+    "majority": 0.2526,
+    "vs_majority": "低于多数类"
+   },
+   "fine": {
+    "accuracy": 0.212,
+    "macro_f1_union": 0.172,
+    "n_q": 1528,
+    "majority": 0.2526,
+    "vs_majority": "低于多数类"
+   },
+   "coarse": {
+    "accuracy": 0.2788,
+    "macro_f1_union": 0.2131,
+    "n_q": 1528,
+    "majority": 0.3115,
+    "vs_majority": "低于多数类"
+   }
+  },
+  "mouse->zebrafish": {
+   "exact": {
+    "accuracy": 0.164,
+    "macro_f1_union": 0.1003,
+    "n_q": 1543,
+    "majority": 0.3863,
+    "vs_majority": "低于多数类"
+   },
+   "fine": {
+    "accuracy": 0.1756,
+    "macro_f1_union": 0.1442,
+    "n_q": 1469,
+    "majority": 0.4057,
+    "vs_majority": "低于多数类"
+   },
+   "coarse": {
+    "accuracy": 0.273,
+    "macro_f1_union": 0.2816,
+    "n_q": 1469,
+    "majority": 0.4057,
+    "vs_majority": "低于多数类"
+   }
+  },
+  "zebrafish->mouse": {
+   "exact": {
+    "accuracy": 0.471,
+    "macro_f1_union": 0.2061,
+    "n_q": 1535,
+    "majority": 0.4528,
+    "vs_majority": "高于多数类"
+   },
+   "fine": {
+    "accuracy": 0.5163,
+    "macro_f1_union": 0.2706,
+    "n_q": 1505,
+    "majority": 0.4618,
+    "vs_majority": "高于多数类"
+   },
+   "coarse": {
+    "accuracy": 0.5967,
+    "macro_f1_union": 0.4186,
+    "n_q": 1505,
+    "majority": 0.4817,
+    "vs_majority": "高于多数类"
+   }
+  }
+ },
+ "granularity_changes_verdict": []
+}

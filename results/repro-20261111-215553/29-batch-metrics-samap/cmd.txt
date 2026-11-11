@@ -1,0 +1,2 @@
+cwd: D:\projects\course5-prep
+D:\projects\course5-prep\.venv39\Scripts\python.exe D:\projects\course5-prep\scripts\compute_batch_metrics.py --embedding results/phase-20261026/samap-batch/samap_joint_embedding.npy --obs results/phase-20261026/samap-batch/samap_joint_obs.json --mapping config/heart-celltype-map-v1.tsv --out D:\projects\course5-prep\results\repro-20261111-215553\29-batch-metrics-samap\batch_metrics.json

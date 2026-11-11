@@ -1,0 +1,234 @@
+{
+ "date": "2026-11-11",
+ "purpose": "镜像内 6 值复现用的是 v1 映射；本表给出 v1/v2 两套口径下的 oPCA coarse 指标，用于给那条证据加口径标注，并判断是否需要重跑。",
+ "convention": "strict_cell；真值→目标物种词表，预测→源物种词表；仅 active 可映射；预测不可映射记 <not_in_coarse> 且保留细胞",
+ "sources": {
+  "predictions": "results/phase-20261010/opca-fixkey-recovered-20261015/predictions",
+  "map_v1": "config/heart-celltype-map-v1.tsv",
+  "map_v2": "config/heart-celltype-map-v2.tsv"
+ },
+ "frozen_in_image": {
+  "human->mouse": 0.8618,
+  "mouse->human": 0.7369,
+  "human->zebrafish": 0.1795,
+  "zebrafish->human": 0.1734,
+  "mouse->zebrafish": 0.2675,
+  "zebrafish->mouse": 0.5814
+ },
+ "species_vocabulary_check": {
+  "human->mouse": {
+   "truth_hits": {
+    "human": 1398,
+    "mouse": 1535,
+    "zebrafish": 1398
+   },
+   "pred_hits": {
+    "human": 1535,
+    "mouse": 1472,
+    "zebrafish": 1469
+   },
+   "expected_truth_species": "mouse",
+   "expected_pred_species": "human"
+  },
+  "mouse->human": {
+   "truth_hits": {
+    "human": 1528,
+    "mouse": 992,
+    "zebrafish": 1378
+   },
+   "pred_hits": {
+    "human": 1049,
+    "mouse": 1528,
+    "zebrafish": 1014
+   },
+   "expected_truth_species": "human",
+   "expected_pred_species": "mouse"
+  },
+  "human->zebrafish": {
+   "truth_hits": {
+    "human": 1047,
+    "mouse": 1002,
+    "zebrafish": 1543
+   },
+   "pred_hits": {
+    "human": 1543,
+    "mouse": 1295,
+    "zebrafish": 1275
+   },
+   "expected_truth_species": "zebrafish",
+   "expected_pred_species": "human"
+  },
+  "zebrafish->human": {
+   "truth_hits": {
+    "human": 1528,
+    "mouse": 992,
+    "zebrafish": 1378
+   },
+   "pred_hits": {
+    "human": 296,
+    "mouse": 282,
+    "zebrafish": 1528
+   },
+   "expected_truth_species": "human",
+   "expected_pred_species": "zebrafish"
+  },
+  "mouse->zebrafish": {
+   "truth_hits": {
+    "human": 1047,
+    "mouse": 1002,
+    "zebrafish": 1543
+   },
+   "pred_hits": {
+    "human": 1393,
+    "mouse": 1543,
+    "zebrafish": 1395
+   },
+   "expected_truth_species": "zebrafish",
+   "expected_pred_species": "mouse"
+  },
+  "zebrafish->mouse": {
+   "truth_hits": {
+    "human": 1398,
+    "mouse": 1535,
+    "zebrafish": 1398
+   },
+   "pred_hits": {
+    "human": 979,
+    "mouse": 970,
+    "zebrafish": 1535
+   },
+   "expected_truth_species": "mouse",
+   "expected_pred_species": "zebrafish"
+  }
+ },
+ "directions": {
+  "human->mouse": {
+   "dir_cn": "人→鼠",
+   "v1": {
+    "n_cells_file": 1535,
+    "n_cell_eval": 1505,
+    "n_truth_unmapped": 30,
+    "acc": 0.8571,
+    "mf1": 0.615
+   },
+   "v2": {
+    "n_cells_file": 1535,
+    "n_cell_eval": 1505,
+    "n_truth_unmapped": 30,
+    "acc": 0.8571,
+    "mf1": 0.615
+   },
+   "frozen": 0.8618,
+   "v1_matches_frozen": false,
+   "acc_diff_v2_minus_v1": 0.0,
+   "mf1_frozen_reference": 0.6435
+  },
+  "mouse->human": {
+   "dir_cn": "鼠→人",
+   "v1": {
+    "n_cells_file": 1528,
+    "n_cell_eval": 1528,
+    "n_truth_unmapped": 0,
+    "acc": 0.7297,
+    "mf1": 0.5967
+   },
+   "v2": {
+    "n_cells_file": 1528,
+    "n_cell_eval": 1528,
+    "n_truth_unmapped": 0,
+    "acc": 0.7297,
+    "mf1": 0.5967
+   },
+   "frozen": 0.7369,
+   "v1_matches_frozen": false,
+   "acc_diff_v2_minus_v1": 0.0,
+   "mf1_frozen_reference": 0.6729
+  },
+  "human->zebrafish": {
+   "dir_cn": "人→斑马鱼",
+   "v1": {
+    "n_cells_file": 1543,
+    "n_cell_eval": 1499,
+    "n_truth_unmapped": 44,
+    "acc": 0.1901,
+    "mf1": 0.1694
+   },
+   "v2": {
+    "n_cells_file": 1543,
+    "n_cell_eval": 1469,
+    "n_truth_unmapped": 74,
+    "acc": 0.1913,
+    "mf1": 0.152
+   },
+   "frozen": 0.1795,
+   "v1_matches_frozen": false,
+   "acc_diff_v2_minus_v1": 0.0012,
+   "mf1_frozen_reference": 0.1654
+  },
+  "zebrafish->human": {
+   "dir_cn": "斑马鱼→人",
+   "v1": {
+    "n_cells_file": 1528,
+    "n_cell_eval": 1528,
+    "n_truth_unmapped": 0,
+    "acc": 0.1702,
+    "mf1": 0.1327
+   },
+   "v2": {
+    "n_cells_file": 1528,
+    "n_cell_eval": 1528,
+    "n_truth_unmapped": 0,
+    "acc": 0.1525,
+    "mf1": 0.1282
+   },
+   "frozen": 0.1734,
+   "v1_matches_frozen": false,
+   "acc_diff_v2_minus_v1": -0.0177,
+   "mf1_frozen_reference": 0.1512
+  },
+  "mouse->zebrafish": {
+   "dir_cn": "鼠→斑马鱼",
+   "v1": {
+    "n_cells_file": 1543,
+    "n_cell_eval": 1499,
+    "n_truth_unmapped": 44,
+    "acc": 0.2695,
+    "mf1": 0.1963
+   },
+   "v2": {
+    "n_cells_file": 1543,
+    "n_cell_eval": 1469,
+    "n_truth_unmapped": 74,
+    "acc": 0.275,
+    "mf1": 0.2469
+   },
+   "frozen": 0.2675,
+   "v1_matches_frozen": false,
+   "acc_diff_v2_minus_v1": 0.0055,
+   "mf1_frozen_reference": 0.2177
+  },
+  "zebrafish->mouse": {
+   "dir_cn": "斑马鱼→鼠",
+   "v1": {
+    "n_cells_file": 1535,
+    "n_cell_eval": 1505,
+    "n_truth_unmapped": 30,
+    "acc": 0.5701,
+    "mf1": 0.3936
+   },
+   "v2": {
+    "n_cells_file": 1535,
+    "n_cell_eval": 1505,
+    "n_truth_unmapped": 30,
+    "acc": 0.5522,
+    "mf1": 0.3795
+   },
+   "frozen": 0.5814,
+   "v1_matches_frozen": false,
+   "acc_diff_v2_minus_v1": -0.0179,
+   "mf1_frozen_reference": 0.4405
+  }
+ },
+ "v1_reproduces_frozen_count": "0/6",
+ "verdict": "复算链与冻结值不符，先别下结论"
+}

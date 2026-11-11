@@ -1,0 +1,218 @@
+{
+ "date": "2026-11-11",
+ "resamples": 2000,
+ "unit": "个体级整群重抽样",
+ "why": "细胞级 SE 被证明低估 1.47–3.88 倍，显著性判断必须复检",
+ "comparisons": {
+  "human->mouse": {
+   "opca_vs_scVI": {
+    "n": 1505,
+    "n_clusters": 4,
+    "delta": -0.0247,
+    "se": 0.0252,
+    "ci95": [
+     -0.0686,
+     0.0289
+    ],
+    "significant_at_95": false
+   },
+   "saturn_vs_scVI": {
+    "n": 1505,
+    "n_clusters": 4,
+    "delta": -0.3161,
+    "se": 0.0414,
+    "ci95": [
+     -0.4025,
+     -0.2409
+    ],
+    "significant_at_95": true
+   },
+   "opca_vs_saturn": {
+    "n": 1505,
+    "n_clusters": 4,
+    "delta": 0.2914,
+    "se": 0.0291,
+    "ci95": [
+     0.2379,
+     0.344
+    ],
+    "significant_at_95": true
+   }
+  },
+  "mouse->human": {
+   "opca_vs_scVI": {
+    "n": 1528,
+    "n_clusters": 22,
+    "delta": 0.0833,
+    "se": 0.0494,
+    "ci95": [
+     -0.0182,
+     0.1723
+    ],
+    "significant_at_95": false
+   },
+   "saturn_vs_scVI": {
+    "n": 1528,
+    "n_clusters": 22,
+    "delta": -0.3748,
+    "se": 0.0239,
+    "ci95": [
+     -0.4157,
+     -0.321
+    ],
+    "significant_at_95": true
+   },
+   "opca_vs_saturn": {
+    "n": 1528,
+    "n_clusters": 22,
+    "delta": 0.4582,
+    "se": 0.0616,
+    "ci95": [
+     0.3246,
+     0.5643
+    ],
+    "significant_at_95": true
+   }
+  },
+  "human->zebrafish": {
+   "opca_vs_scVI": {
+    "n": 1469,
+    "n_clusters": 15,
+    "delta": -0.2454,
+    "se": 0.0307,
+    "ci95": [
+     -0.3113,
+     -0.1921
+    ],
+    "significant_at_95": true
+   },
+   "saturn_vs_scVI": {
+    "n": 1469,
+    "n_clusters": 15,
+    "delta": -0.2678,
+    "se": 0.0149,
+    "ci95": [
+     -0.2969,
+     -0.2381
+    ],
+    "significant_at_95": true
+   },
+   "opca_vs_saturn": {
+    "n": 1469,
+    "n_clusters": 15,
+    "delta": 0.0224,
+    "se": 0.0329,
+    "ci95": [
+     -0.0534,
+     0.0784
+    ],
+    "significant_at_95": false
+   }
+  },
+  "zebrafish->human": {
+   "opca_vs_scVI": {
+    "n": 1528,
+    "n_clusters": 22,
+    "delta": -0.2159,
+    "se": 0.0183,
+    "ci95": [
+     -0.253,
+     -0.1826
+    ],
+    "significant_at_95": true
+   },
+   "saturn_vs_scVI": {
+    "n": 1528,
+    "n_clusters": 22,
+    "delta": -0.2904,
+    "se": 0.019,
+    "ci95": [
+     -0.3249,
+     -0.2524
+    ],
+    "significant_at_95": true
+   },
+   "opca_vs_saturn": {
+    "n": 1528,
+    "n_clusters": 22,
+    "delta": 0.0745,
+    "se": 0.0199,
+    "ci95": [
+     0.0249,
+     0.1054
+    ],
+    "significant_at_95": true
+   }
+  },
+  "mouse->zebrafish": {
+   "opca_vs_scVI": {
+    "n": 1469,
+    "n_clusters": 15,
+    "delta": -0.1342,
+    "se": 0.0421,
+    "ci95": [
+     -0.2444,
+     -0.0788
+    ],
+    "significant_at_95": true
+   },
+   "saturn_vs_scVI": {
+    "n": 1469,
+    "n_clusters": 15,
+    "delta": -0.0557,
+    "se": 0.0421,
+    "ci95": [
+     -0.167,
+     0.0001
+    ],
+    "significant_at_95": false
+   },
+   "opca_vs_saturn": {
+    "n": 1469,
+    "n_clusters": 15,
+    "delta": -0.0785,
+    "se": 0.0122,
+    "ci95": [
+     -0.1038,
+     -0.0537
+    ],
+    "significant_at_95": true
+   }
+  },
+  "zebrafish->mouse": {
+   "opca_vs_scVI": {
+    "n": 1505,
+    "n_clusters": 4,
+    "delta": -0.06,
+    "se": 0.0142,
+    "ci95": [
+     -0.0948,
+     -0.0464
+    ],
+    "significant_at_95": true
+   },
+   "saturn_vs_scVI": {
+    "n": 1505,
+    "n_clusters": 4,
+    "delta": -0.1827,
+    "se": 0.0214,
+    "ci95": [
+     -0.2225,
+     -0.1412
+    ],
+    "significant_at_95": true
+   },
+   "opca_vs_saturn": {
+    "n": 1505,
+    "n_clusters": 4,
+    "delta": 0.1227,
+    "se": 0.0278,
+    "ci95": [
+     0.0601,
+     0.1694
+    ],
+    "significant_at_95": true
+   }
+  }
+ }
+}

@@ -1,0 +1,200 @@
+{
+ "date": "2026-11-11",
+ "purpose": "scVI 的 coarse 指标在 v1/v2 映射下分别是多少（映射换代后哪些方向需要改数）",
+ "premise_check": "先验证 coarse 预测是否等于「map(exact 预测)」",
+ "directions": {
+  "hu_to_mo": {
+   "dir_cn": "人→鼠",
+   "src": "human",
+   "tgt": "mouse",
+   "premise_coarse_equals_map_exact": "1497/1505",
+   "premise_holds": false,
+   "v1": {
+    "acc": 0.9183,
+    "n": 1505,
+    "n_truth_dropped": 30,
+    "dropped_labels": {
+     "Proliferating cell": 30
+    }
+   },
+   "v2": {
+    "acc": 0.9183,
+    "n": 1505,
+    "n_truth_dropped": 30,
+    "dropped_labels": {
+     "Proliferating cell": 30
+    }
+   },
+   "delta_acc": 0.0,
+   "delta_n": 0
+  },
+  "mo_to_hu": {
+   "dir_cn": "鼠→人",
+   "src": "mouse",
+   "tgt": "human",
+   "premise_coarse_equals_map_exact": "1504/1528",
+   "premise_holds": false,
+   "v1": {
+    "acc": 0.7781,
+    "n": 1528,
+    "n_truth_dropped": 0,
+    "dropped_labels": {}
+   },
+   "v2": {
+    "acc": 0.7781,
+    "n": 1528,
+    "n_truth_dropped": 0,
+    "dropped_labels": {}
+   },
+   "delta_acc": 0.0,
+   "delta_n": 0
+  },
+  "hu_to_zf": {
+   "dir_cn": "人→斑马鱼",
+   "src": "human",
+   "tgt": "zebrafish",
+   "premise_coarse_equals_map_exact": "1441/1499",
+   "premise_holds": false,
+   "v1": {
+    "acc": 0.6084,
+    "n": 1499,
+    "n_truth_dropped": 44,
+    "dropped_labels": {
+     "Proliferating cell": 14,
+     "mt": 30
+    }
+   },
+   "v2": {
+    "acc": 0.6195,
+    "n": 1469,
+    "n_truth_dropped": 74,
+    "dropped_labels": {
+     "Orthers": 30,
+     "Proliferating cell": 14,
+     "mt": 30
+    }
+   },
+   "delta_acc": 0.0111,
+   "delta_n": -30
+  },
+  "zf_to_hu": {
+   "dir_cn": "斑马鱼→人",
+   "src": "zebrafish",
+   "tgt": "human",
+   "premise_coarse_equals_map_exact": "1406/1528",
+   "premise_holds": false,
+   "v1": {
+    "acc": 0.5825,
+    "n": 1528,
+    "n_truth_dropped": 0,
+    "dropped_labels": {}
+   },
+   "v2": {
+    "acc": 0.5753,
+    "n": 1528,
+    "n_truth_dropped": 0,
+    "dropped_labels": {}
+   },
+   "delta_acc": -0.0072,
+   "delta_n": 0
+  },
+  "mo_to_zf": {
+   "dir_cn": "鼠→斑马鱼",
+   "src": "mouse",
+   "tgt": "zebrafish",
+   "premise_coarse_equals_map_exact": "1417/1499",
+   "premise_holds": false,
+   "v1": {
+    "acc": 0.6124,
+    "n": 1499,
+    "n_truth_dropped": 44,
+    "dropped_labels": {
+     "Proliferating cell": 14,
+     "mt": 30
+    }
+   },
+   "v2": {
+    "acc": 0.6229,
+    "n": 1469,
+    "n_truth_dropped": 74,
+    "dropped_labels": {
+     "Orthers": 30,
+     "Proliferating cell": 14,
+     "mt": 30
+    }
+   },
+   "delta_acc": 0.0105,
+   "delta_n": -30
+  },
+  "zf_to_mo": {
+   "dir_cn": "斑马鱼→鼠",
+   "src": "zebrafish",
+   "tgt": "mouse",
+   "premise_coarse_equals_map_exact": "1429/1505",
+   "premise_holds": false,
+   "v1": {
+    "acc": 0.7575,
+    "n": 1505,
+    "n_truth_dropped": 30,
+    "dropped_labels": {
+     "Proliferating cell": 30
+    }
+   },
+   "v2": {
+    "acc": 0.7561,
+    "n": 1505,
+    "n_truth_dropped": 30,
+    "dropped_labels": {
+     "Proliferating cell": 30
+    }
+   },
+   "delta_acc": -0.0014,
+   "delta_n": 0
+  }
+ },
+ "cross_check_vs_recomputed_union": {
+  "hu_to_mo": {
+   "frozen_acc": 0.9189,
+   "frozen_n": 1505,
+   "my_v1_acc": 0.9183,
+   "my_v1_n": 1505,
+   "match": false
+  },
+  "mo_to_hu": {
+   "frozen_acc": 0.7781,
+   "frozen_n": 1528,
+   "my_v1_acc": 0.7781,
+   "my_v1_n": 1528,
+   "match": true
+  },
+  "hu_to_zf": {
+   "frozen_acc": 0.6217,
+   "frozen_n": 1499,
+   "my_v1_acc": 0.6084,
+   "my_v1_n": 1499,
+   "match": false
+  },
+  "zf_to_hu": {
+   "frozen_acc": 0.6479,
+   "frozen_n": 1528,
+   "my_v1_acc": 0.5825,
+   "my_v1_n": 1528,
+   "match": false
+  },
+  "mo_to_zf": {
+   "frozen_acc": 0.6338,
+   "frozen_n": 1499,
+   "my_v1_acc": 0.6124,
+   "my_v1_n": 1499,
+   "match": false
+  },
+  "zf_to_mo": {
+   "frozen_acc": 0.802,
+   "frozen_n": 1505,
+   "my_v1_acc": 0.7575,
+   "my_v1_n": 1505,
+   "match": false
+  }
+ },
+ "cross_check_result": "1/6"
+}

@@ -1,0 +1,2 @@
+cwd: D:\projects\course5-prep
+D:\projects\course5-prep\.venv39\Scripts\python.exe D:\projects\course5-prep\scripts\heart_h5ad_inspect.py local_human_s.h5ad local_mouse_s.h5ad local_zebrafish_s.h5ad --output D:\projects\course5-prep\results\repro-20261111-215553\30-h5ad-inspect\h5ad-inspect.json

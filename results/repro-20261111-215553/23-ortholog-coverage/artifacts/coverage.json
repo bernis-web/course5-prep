@@ -1,0 +1,32 @@
+{
+ "date": "2026-11-11",
+ "purpose": "量化我们的 1:1 同源图覆盖率（目标③输入维度的基础数字）",
+ "note": "覆盖率 = 该物种基因中「在同源记录里出现过」的比例",
+ "species": {
+  "human": {
+   "total_genes": 32732,
+   "mapped_genes": 17898,
+   "unmapped_genes": 14834,
+   "coverage": 0.5468
+  },
+  "mouse": {
+   "total_genes": 32379,
+   "mapped_genes": 11613,
+   "unmapped_genes": 20766,
+   "coverage": 0.3587
+  },
+  "zebrafish": {
+   "total_genes": 27661,
+   "mapped_genes": 15419,
+   "unmapped_genes": 12242,
+   "coverage": 0.5574
+  }
+ },
+ "graphs": {
+  "mgi_human_symbols": 19366,
+  "human_orthos_human": 17174,
+  "human_orthos_other": 95217,
+  "mouse_orthos_human": 14697,
+  "mouse_orthos_other": 74268
+ }
+}

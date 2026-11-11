@@ -1,0 +1,69 @@
+{
+ "method": "saturn_v99",
+ "protocol": "bootstrap over query cells, 1000 resamples, RandomState(20261030)",
+ "label_space": "coarse / union, 不可映射预测按错误计 (strict_cell)",
+ "mapping": "config/heart-celltype-map-v1.tsv",
+ "orientation_fix": "truth -> 目标物种词表; pred -> 源物种词表（修正 bootstrap_ci.py 的对调）",
+ "directions": {
+  "human->mouse": {
+   "n_q": 1505,
+   "acc": 0.5887,
+   "mf1": 0.3522,
+   "mf1_se": 0.0127,
+   "mf1_ci95": [
+    0.3274,
+    0.3763
+   ]
+  },
+  "mouse->human": {
+   "n_q": 1528,
+   "acc": 0.2271,
+   "mf1": 0.2566,
+   "mf1_se": 0.014,
+   "mf1_ci95": [
+    0.2278,
+    0.2809
+   ]
+  },
+  "human->zebrafish": {
+   "n_q": 1499,
+   "acc": 0.1775,
+   "mf1": 0.1269,
+   "mf1_se": 0.0069,
+   "mf1_ci95": [
+    0.1122,
+    0.1399
+   ]
+  },
+  "zebrafish->human": {
+   "n_q": 1528,
+   "acc": 0.2336,
+   "mf1": 0.164,
+   "mf1_se": 0.0069,
+   "mf1_ci95": [
+    0.1506,
+    0.177
+   ]
+  },
+  "mouse->zebrafish": {
+   "n_q": 1499,
+   "acc": 0.2982,
+   "mf1": 0.3658,
+   "mf1_se": 0.0143,
+   "mf1_ci95": [
+    0.3373,
+    0.3935
+   ]
+  },
+  "zebrafish->mouse": {
+   "n_q": 1505,
+   "acc": 0.4671,
+   "mf1": 0.3563,
+   "mf1_se": 0.014,
+   "mf1_ci95": [
+    0.3265,
+    0.3814
+   ]
+  }
+ }
+}

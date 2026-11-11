@@ -1,0 +1,267 @@
+{
+ "date": "2026-11-11",
+ "purpose": "重跑配对检验：修正物种词表方向 + 换 v2 映射",
+ "supersedes": "results/bootstrap-20261030/pairwise.json（涉 saturn_v99 的 10 条比较作废）",
+ "convention": {
+  "truth_side": "目标物种词表（修正前写成了源物种）",
+  "pred_side": "源物种词表（修正前写成了目标物种）",
+  "macro_f1": "union（真实∪预测，多预测类 F1=0）",
+  "pairing": "saturn 涉及项为独立重抽样（confusion 还原、无 barcode）；scVI vs oPCA 为同批细胞配对",
+  "saturn_source": "confusion/（payloads/ 6 向中 2 向与权威不符，已由 scripts/pairwise_audit_gate.py 判定弃用）",
+  "mapping": "config/heart-celltype-map-v2.tsv"
+ },
+ "comparisons": {
+  "human->mouse": {
+   "saturn_v99_vs_scVI": {
+    "n_a": 1505,
+    "n_b": 1505,
+    "saturn_v99_mf1": 0.3522,
+    "scVI_mf1": 0.6683,
+    "delta": -0.3161,
+    "delta_se": 0.0234,
+    "delta_ci95": [
+     -0.3579,
+     -0.2667
+    ],
+    "significant_at_95": true,
+    "pairing": "independent（非同批细胞）"
+   },
+   "saturn_v99_vs_opca": {
+    "n_a": 1505,
+    "n_b": 1505,
+    "saturn_v99_mf1": 0.3522,
+    "opca_mf1": 0.615,
+    "delta": -0.2629,
+    "delta_se": 0.0228,
+    "delta_ci95": [
+     -0.306,
+     -0.2148
+    ],
+    "significant_at_95": true,
+    "pairing": "independent（非同批细胞）"
+   },
+   "opca_vs_scVI": {
+    "n": 1505,
+    "opca_mf1": 0.6683,
+    "scVI_mf1": 0.615,
+    "delta": 0.0532,
+    "delta_se": 0.0212,
+    "delta_ci95": [
+     0.012,
+     0.0966
+    ],
+    "significant_at_95": true
+   }
+  },
+  "mouse->human": {
+   "saturn_v99_vs_scVI": {
+    "n_a": 1528,
+    "n_b": 1528,
+    "saturn_v99_mf1": 0.2566,
+    "scVI_mf1": 0.5895,
+    "delta": -0.333,
+    "delta_se": 0.02,
+    "delta_ci95": [
+     -0.3724,
+     -0.2944
+    ],
+    "significant_at_95": true,
+    "pairing": "independent（非同批细胞）"
+   },
+   "saturn_v99_vs_opca": {
+    "n_a": 1528,
+    "n_b": 1528,
+    "saturn_v99_mf1": 0.2566,
+    "opca_mf1": 0.5967,
+    "delta": -0.3401,
+    "delta_se": 0.0278,
+    "delta_ci95": [
+     -0.4028,
+     -0.2929
+    ],
+    "significant_at_95": true,
+    "pairing": "independent（非同批细胞）"
+   },
+   "opca_vs_scVI": {
+    "n": 1528,
+    "opca_mf1": 0.5895,
+    "scVI_mf1": 0.5967,
+    "delta": -0.0071,
+    "delta_se": 0.0271,
+    "delta_ci95": [
+     -0.0877,
+     0.0337
+    ],
+    "significant_at_95": false
+   }
+  },
+  "human->zebrafish": {
+   "saturn_v99_vs_scVI": {
+    "n_a": 1469,
+    "n_b": 1499,
+    "saturn_v99_mf1": 0.1282,
+    "scVI_mf1": 0.4014,
+    "delta": -0.2732,
+    "delta_se": 0.0155,
+    "delta_ci95": [
+     -0.3003,
+     -0.239
+    ],
+    "significant_at_95": true,
+    "pairing": "independent（非同批细胞）"
+   },
+   "saturn_v99_vs_opca": {
+    "n_a": 1469,
+    "n_b": 1469,
+    "saturn_v99_mf1": 0.1282,
+    "opca_mf1": 0.152,
+    "delta": -0.0238,
+    "delta_se": 0.0155,
+    "delta_ci95": [
+     -0.0513,
+     0.0111
+    ],
+    "significant_at_95": false,
+    "pairing": "independent（非同批细胞）"
+   },
+   "opca_vs_scVI": {
+    "n": 1469,
+    "opca_mf1": 0.396,
+    "scVI_mf1": 0.152,
+    "delta": 0.2439,
+    "delta_se": 0.015,
+    "delta_ci95": [
+     0.2139,
+     0.2723
+    ],
+    "significant_at_95": true
+   }
+  },
+  "zebrafish->human": {
+   "saturn_v99_vs_scVI": {
+    "n_a": 1528,
+    "n_b": 1528,
+    "saturn_v99_mf1": 0.1386,
+    "scVI_mf1": 0.429,
+    "delta": -0.2904,
+    "delta_se": 0.0129,
+    "delta_ci95": [
+     -0.3153,
+     -0.2642
+    ],
+    "significant_at_95": true,
+    "pairing": "independent（非同批细胞）"
+   },
+   "saturn_v99_vs_opca": {
+    "n_a": 1528,
+    "n_b": 1528,
+    "saturn_v99_mf1": 0.1386,
+    "opca_mf1": 0.1282,
+    "delta": 0.0104,
+    "delta_se": 0.0085,
+    "delta_ci95": [
+     -0.0061,
+     0.027
+    ],
+    "significant_at_95": false,
+    "pairing": "independent（非同批细胞）"
+   },
+   "opca_vs_scVI": {
+    "n": 1528,
+    "opca_mf1": 0.429,
+    "scVI_mf1": 0.1282,
+    "delta": 0.3008,
+    "delta_se": 0.0121,
+    "delta_ci95": [
+     0.2777,
+     0.3253
+    ],
+    "significant_at_95": true
+   }
+  },
+  "mouse->zebrafish": {
+   "saturn_v99_vs_scVI": {
+    "n_a": 1469,
+    "n_b": 1499,
+    "saturn_v99_mf1": 0.4076,
+    "scVI_mf1": 0.4248,
+    "delta": -0.0172,
+    "delta_se": 0.0207,
+    "delta_ci95": [
+     -0.058,
+     0.023
+    ],
+    "significant_at_95": false,
+    "pairing": "independent（非同批细胞）"
+   },
+   "saturn_v99_vs_opca": {
+    "n_a": 1469,
+    "n_b": 1469,
+    "saturn_v99_mf1": 0.4076,
+    "opca_mf1": 0.2469,
+    "delta": 0.1607,
+    "delta_se": 0.0196,
+    "delta_ci95": [
+     0.1154,
+     0.1951
+    ],
+    "significant_at_95": true,
+    "pairing": "independent（非同批细胞）"
+   },
+   "opca_vs_scVI": {
+    "n": 1469,
+    "opca_mf1": 0.4157,
+    "scVI_mf1": 0.2469,
+    "delta": 0.1689,
+    "delta_se": 0.0267,
+    "delta_ci95": [
+     0.1297,
+     0.2377
+    ],
+    "significant_at_95": true
+   }
+  },
+  "zebrafish->mouse": {
+   "saturn_v99_vs_scVI": {
+    "n_a": 1505,
+    "n_b": 1505,
+    "saturn_v99_mf1": 0.2961,
+    "scVI_mf1": 0.4786,
+    "delta": -0.1825,
+    "delta_se": 0.0161,
+    "delta_ci95": [
+     -0.2147,
+     -0.1518
+    ],
+    "significant_at_95": true,
+    "pairing": "independent（非同批细胞）"
+   },
+   "saturn_v99_vs_opca": {
+    "n_a": 1505,
+    "n_b": 1505,
+    "saturn_v99_mf1": 0.2961,
+    "opca_mf1": 0.3795,
+    "delta": -0.0835,
+    "delta_se": 0.0168,
+    "delta_ci95": [
+     -0.1164,
+     -0.05
+    ],
+    "significant_at_95": true,
+    "pairing": "independent（非同批细胞）"
+   },
+   "opca_vs_scVI": {
+    "n": 1505,
+    "opca_mf1": 0.4786,
+    "scVI_mf1": 0.3795,
+    "delta": 0.0991,
+    "delta_se": 0.014,
+    "delta_ci95": [
+     0.0724,
+     0.1273
+    ],
+    "significant_at_95": true
+   }
+  }
+ }
+}

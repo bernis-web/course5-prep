@@ -1,0 +1,62 @@
+{
+  "scope": "local_runtime",
+  "python": {
+    "version": "3.9.6",
+    "executable": "D:\\projects\\course5-prep\\.venv39\\Scripts\\python.exe"
+  },
+  "hardware": {
+    "cpu_count": 16,
+    "ram_gb": null,
+    "gpu": {
+      "available": true,
+      "executable": "C:\\Windows\\system32\\nvidia-smi.EXE",
+      "devices": [
+        "NVIDIA GeForce RTX 4060 Laptop GPU, 8188 MiB, 595.79"
+      ],
+      "error": null
+    }
+  },
+  "packages": {
+    "anndata": {
+      "available": true,
+      "version": null
+    },
+    "scanpy": {
+      "available": true,
+      "version": null
+    },
+    "scvi": {
+      "available": false,
+      "version": null
+    },
+    "harmonypy": {
+      "available": true,
+      "version": null
+    },
+    "saturn": {
+      "available": false,
+      "version": null
+    },
+    "samap": {
+      "available": true,
+      "version": null
+    },
+    "torch": {
+      "available": true,
+      "version": null
+    },
+    "sklearn": {
+      "available": true,
+      "version": null
+    }
+  },
+  "executables": {
+    "nvidia-smi": "C:\\Windows\\system32\\nvidia-smi.EXE",
+    "conda": null,
+    "mamba": null,
+    "micromamba": null,
+    "docker": "C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.EXE",
+    "podman": null
+  },
+  "side_effects": []
+}

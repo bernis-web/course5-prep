@@ -1,0 +1,100 @@
+{
+ "date": "2026-11-11",
+ "purpose": "同一批预测在多种评测口径下的数值与结论差异",
+ "opca_source": "results/mapping-v2-20261111/rerun-v2/metrics.json",
+ "saturn_source": "results/bootstrap-20261030/saturn_convention_mapv2.json",
+ "directions": {
+  "human->mouse": {
+   "n": 1505,
+   "accuracy": 0.8618,
+   "macro_f1_union": 0.6435,
+   "macro_f1_truth_only": 0.6435,
+   "balanced_accuracy": 0.6484,
+   "n_without_species_specific": 1505,
+   "macro_f1_union_without_species_specific": 0.6435,
+   "delta_union_minus_truthonly": 0.0
+  },
+  "mouse->human": {
+   "n": 1528,
+   "accuracy": 0.7369,
+   "macro_f1_union": 0.6729,
+   "macro_f1_truth_only": 0.6729,
+   "balanced_accuracy": 0.6053,
+   "n_without_species_specific": 1528,
+   "macro_f1_union_without_species_specific": 0.6729,
+   "delta_union_minus_truthonly": 0.0
+  },
+  "human->zebrafish": {
+   "n": 1469,
+   "accuracy": 0.1811,
+   "macro_f1_union": 0.1506,
+   "macro_f1_truth_only": 0.1721,
+   "balanced_accuracy": 0.2486,
+   "n_without_species_specific": 1137,
+   "macro_f1_union_without_species_specific": 0.2099,
+   "delta_union_minus_truthonly": -0.0215
+  },
+  "zebrafish->human": {
+   "n": 1528,
+   "accuracy": 0.2788,
+   "macro_f1_union": 0.2131,
+   "macro_f1_truth_only": 0.2398,
+   "balanced_accuracy": 0.1768,
+   "n_without_species_specific": 1528,
+   "macro_f1_union_without_species_specific": 0.2131,
+   "delta_union_minus_truthonly": -0.0267
+  },
+  "mouse->zebrafish": {
+   "n": 1469,
+   "accuracy": 0.273,
+   "macro_f1_union": 0.2816,
+   "macro_f1_truth_only": 0.2816,
+   "balanced_accuracy": 0.3543,
+   "n_without_species_specific": 1137,
+   "macro_f1_union_without_species_specific": 0.3462,
+   "delta_union_minus_truthonly": 0.0
+  },
+  "zebrafish->mouse": {
+   "n": 1505,
+   "accuracy": 0.5967,
+   "macro_f1_union": 0.4186,
+   "macro_f1_truth_only": 0.4709,
+   "balanced_accuracy": 0.4842,
+   "n_without_species_specific": 1505,
+   "macro_f1_union_without_species_specific": 0.4186,
+   "delta_union_minus_truthonly": -0.0523
+  }
+ },
+ "saturn": {
+  "human->mouse": {
+   "published_mf1": 0.3522,
+   "strict_cell_mf1": 0.3522,
+   "inflation": 0.0
+  },
+  "mouse->human": {
+   "published_mf1": 0.2566,
+   "strict_cell_mf1": 0.2566,
+   "inflation": 0.0
+  },
+  "human->zebrafish": {
+   "published_mf1": 0.1282,
+   "strict_cell_mf1": 0.1282,
+   "inflation": 0.0
+  },
+  "zebrafish->human": {
+   "published_mf1": 0.2501,
+   "strict_cell_mf1": 0.1386,
+   "inflation": 0.1115
+  },
+  "mouse->zebrafish": {
+   "published_mf1": 0.4076,
+   "strict_cell_mf1": 0.4076,
+   "inflation": 0.0
+  },
+  "zebrafish->mouse": {
+   "published_mf1": 0.3358,
+   "strict_cell_mf1": 0.2961,
+   "inflation": 0.0397
+  }
+ }
+}

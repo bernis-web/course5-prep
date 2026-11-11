@@ -16,7 +16,7 @@
 | 统计 | `audit-stats-20261111.md` | A 级 6 条：置信区间免责语过期、「六行都是 scVI 最高」与自己表格矛盾、accuracy 与 macro-F1 混比、「分母拉齐」不成立、「300 倍」应为 104 倍 |
 | 规模 | `audit-scale-20261111.md` | 子集 4,606 细胞 vs 全量 140,471＝**30.50×**；全量单 seed ¥180–320，GPU 占 85% |
 | 一致性 | `audit-consistency-20261111.md` | 「第 2.5 代」值（0.1269/0.1640/0.3658/0.3563）被当成现行；更正索引谎称老师回应稿已重出 |
-| 可复现 | `20261111-repro-manifest.md` | 修前 20/22，两个沙箱缺陷；修后 **22/22、退出码 0** |
+| 可复现 | `audit-repro-20261111.md` + `20261111-repro-manifest.md` | 118 脚本逐个判定 → 30 个进一键流程，**全量 30/30、退出码 0、278.5 s**，产物逐字节一致；另有 10 条不可复现断点（`/Files`、`/data/work` 两处平台根最狠） |
 | 发表 | `audit-publish-20261111.md` | 主 claim 必须换成「排名是口径×映射×重抽样单位×评估器×粒度的函数 + 跨门失败边界」 |
 
 ---
@@ -87,8 +87,32 @@ JSON 里显式写 `"pairing": "independent（非同批细胞）"`。
 
 ### 3.3 复现链
 
-`scripts/reproduce_all.py --fast`：修前 20/22，修后 **22/22、退出码 0、55.8 s**。
-逐步骤 SHA 见 `docs/execution/20261111-repro-manifest.md`。
+两轮，两个口径都跑通了：
+
+| 口径 | 结果 | 耗时 | 证据 |
+|---|---|---|---|
+| `--fast`（跳 heavy） | **22/22、退出码 0** | 55.8 s | `tmp/repro-run2/manifest.json` |
+| **全量 30 步** | **30/30、退出码 0**，产物与仓库同名文件**逐字节一致** | 278.5 s | `results/repro-20261111-215553/manifest.json`（163 文件 / 332.5 KB） |
+
+过程中修掉两个沙箱缺陷（`MAP_TSV` 相对路径 `ValueError`、env 相对路径 `FileNotFoundError`），
+修前 `完成 20/22`。脚本 sha256 `9DE4A1C4…A274D306`——实跑用的就是这一份。
+
+**118 个脚本的清点结论**：30 个进一键流程（全绿）、约 40 个「部分」（缺库/缺参数）、
+约 45 个「否」（吃平台 `/Files`、`/data/work`、DCS 产物或 GPU）。
+
+**10 条不可复现断点**（完整表在 `audit-repro-20261111.md` C 段），按影响面：
+
+1. `/Files` 与 `/Files/wheelhouse` 平台数据缺失 → **oPCA / SAMap / scVI 三臂无法从源头重算**（最狠）
+2. `/data/work` 缺失 → v99 来源链、DCS 账单不可重建
+3. SATURN 输出 `*.h5ad` 缺失（`results/` 下 `.h5ad` = 0）→ 逐类得分只能读 confusion 汇总
+4. `scvi-cross-species` 缺 `obs.json` → scVI 臂 batch-mixing 三指标本机不可复算
+5. `stability-20261030` 的 `*.json.gz` 被裁成 `.json` → 配对检验 `FileNotFoundError`
+6. 学校模板 pptx 与 `render/v2/raw-*.png` 被删 → 汇报 PPT 与交接包不可从源重建
+7. `g5-opca-container` 镜像（本机无 docker/WSL）→ 镜像内 6 值复现只能引用历史回显
+
+工程断点两条：`requirements.txt`（numpy 2.4.3 / scipy 1.17.0 / sklearn 1.8.0）与实跑的
+`.venv39`（1.23.5 / 1.12.0 / 1.6.1）不一致，且 wheelhouse 全是 manylinux 轮子（Windows 装不出干净环境）；
+38 个脚本硬编码 `D:\projects\course5-prep`，靠运行期 shim 重定向才跑通。
 
 ---
 
@@ -103,6 +127,9 @@ JSON 里显式写 `"pairing": "independent（非同批细胞）"`。
    要么补一段溯源，要么从文件里删掉存值只留重算值。
 5. **19 篇 pptx 里的图表 XML 缓存**（一致性审计抓到的第二片盲区）还没做全仓扫描——
    本轮只修了 v5，其余历史幻灯没动。
+6. **三条臂的源头重算跑不了**（复现审计断点 1–2）：oPCA / SAMap / scVI 的原始数据在平台
+   `/Files` 与 `/data/work`，本机只有成品 `metrics.json`。要真正「从源头验证」，
+   得把这两处数据拉回来，或接受「只验证到混淆矩阵这一层」。
 
 ---
 
@@ -112,6 +139,7 @@ JSON 里显式写 `"pairing": "independent（非同批细胞）"`。
 P0-1  老师回应稿 docx 22 处旧值        （半天，唯一的「说修了没修」）
 P0-2  正对照 oracle：1 天            （不先做，跨门负结果会被当成又一个 bug）
 P0-3  saturn_convention_v2 加 SUPERSEDED 标牌 + 58 行历史件文件头声明（半天，机械活）
+P0-4  把平台 /Files 与 /data/work 的原始数据拉回（否则三条臂永远只验证到混淆矩阵）
 P1-1  主表重建：分母进表 + BH 校正 + 第二实现复算（5–7 天）
 P1-2  inductive CPU 臂（oPCA + SAMap，18 格）  （4–6 天）
 P2-1  全量重跑 T0→T5（¥180–320，GPU 占 85%）    （按 scale 审计的任务清单）
@@ -128,7 +156,7 @@ cd D:\projects\course5-prep
 # 1. SATURN payload 闸门（应 6/6 PASS 于 confusion 列，payload 列 2 FAIL）
 .\.venv39\Scripts\python.exe scripts\pairwise_audit_gate.py
 
-# 2. 复现链（应 22/22、退出码 0）
+# 2. 复现链（全量应 30/30、退出码 0，约 280 s）
 .\.venv39\Scripts\python.exe scripts\reproduce_all.py --fast
 
 # 3. 演示稿设计指标（应 2.55×、3 档、留白均值 ≥24%）

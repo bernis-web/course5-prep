@@ -1,0 +1,60 @@
+{
+ "date": "2026-11-11",
+ "purpose": "strict-cell vs drop-unmapped 口径对四个方法是否公平",
+ "hypothesis": "oPCA/scVI 的预测只能落在自己训练用的标签集内，drop-unmapped 与 strict-cell 对它们等价；只有 SATURN 受影响",
+ "saturn": {
+  "human->mouse": {
+   "published_mf1": 0.3522,
+   "strict_cell_mf1": 0.3522,
+   "inflation": 0.0,
+   "n_dropped": 0
+  },
+  "mouse->human": {
+   "published_mf1": 0.2566,
+   "strict_cell_mf1": 0.2566,
+   "inflation": 0.0,
+   "n_dropped": 0
+  },
+  "human->zebrafish": {
+   "published_mf1": 0.1282,
+   "strict_cell_mf1": 0.1282,
+   "inflation": 0.0,
+   "n_dropped": 0
+  },
+  "zebrafish->human": {
+   "published_mf1": 0.2501,
+   "strict_cell_mf1": 0.1386,
+   "inflation": 0.1115,
+   "n_dropped": 865
+  },
+  "mouse->zebrafish": {
+   "published_mf1": 0.4076,
+   "strict_cell_mf1": 0.4076,
+   "inflation": 0.0,
+   "n_dropped": 0
+  },
+  "zebrafish->mouse": {
+   "published_mf1": 0.3358,
+   "strict_cell_mf1": 0.2961,
+   "inflation": 0.0397,
+   "n_dropped": 100
+  }
+ },
+ "opca_outside_count": {
+  "human->mouse": 0,
+  "mouse->human": 0,
+  "human->zebrafish": 0,
+  "zebrafish->human": 0,
+  "mouse->zebrafish": 0,
+  "zebrafish->mouse": 0
+ },
+ "scvi_outside_count": {
+  "human->mouse": 0,
+  "mouse->human": 0,
+  "human->zebrafish": 0,
+  "zebrafish->human": 0,
+  "mouse->zebrafish": 0,
+  "zebrafish->mouse": 0
+ },
+ "verdict": "论点成立：只有 SATURN 会被 drop-unmapped 抬高，oPCA/scVI 不受影响 → 该口径对四方法不公平"
+}
