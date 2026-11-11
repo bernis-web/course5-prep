@@ -1,0 +1,306 @@
+{
+ "date": "2026-11-11",
+ "resamples": 2000,
+ "purpose": "换评估器（KNN-15 → LR）后，配对结论是否改变",
+ "opca_source_lr": "results/evaluator-20261111/lr-variant/predictions",
+ "opca_source_knn": "results/mapping-v2-20261111/rerun-v2/predictions",
+ "unit": "个体级整群重抽样",
+ "comparisons": {
+  "human->mouse": {
+   "knn|opca_vs_scVI": {
+    "n": 1505,
+    "n_clusters": 4,
+    "delta": -0.0247,
+    "se": 0.0252,
+    "ci95": [
+     -0.0686,
+     0.0289
+    ],
+    "significant_at_95": false
+   },
+   "knn|opca_vs_saturn": {
+    "n": 1505,
+    "n_clusters": 4,
+    "delta": 0.2914,
+    "se": 0.0292,
+    "ci95": [
+     0.2379,
+     0.344
+    ],
+    "significant_at_95": true
+   },
+   "lr|opca_vs_scVI": {
+    "n": 1505,
+    "n_clusters": 4,
+    "delta": 0.1426,
+    "se": 0.0479,
+    "ci95": [
+     0.0623,
+     0.2422
+    ],
+    "significant_at_95": true
+   },
+   "lr|opca_vs_saturn": {
+    "n": 1505,
+    "n_clusters": 4,
+    "delta": 0.4587,
+    "se": 0.0149,
+    "ci95": [
+     0.4429,
+     0.4994
+    ],
+    "significant_at_95": true
+   }
+  },
+  "mouse->human": {
+   "knn|opca_vs_scVI": {
+    "n": 1528,
+    "n_clusters": 22,
+    "delta": 0.0833,
+    "se": 0.0487,
+    "ci95": [
+     -0.0215,
+     0.1715
+    ],
+    "significant_at_95": false
+   },
+   "knn|opca_vs_saturn": {
+    "n": 1528,
+    "n_clusters": 22,
+    "delta": 0.4582,
+    "se": 0.0631,
+    "ci95": [
+     0.3205,
+     0.5702
+    ],
+    "significant_at_95": true
+   },
+   "lr|opca_vs_scVI": {
+    "n": 1528,
+    "n_clusters": 22,
+    "delta": -0.0783,
+    "se": 0.0392,
+    "ci95": [
+     -0.1636,
+     -0.0106
+    ],
+    "significant_at_95": true
+   },
+   "lr|opca_vs_saturn": {
+    "n": 1528,
+    "n_clusters": 22,
+    "delta": 0.2966,
+    "se": 0.0583,
+    "ci95": [
+     0.1724,
+     0.3956
+    ],
+    "significant_at_95": true
+   }
+  },
+  "human->zebrafish": {
+   "knn|opca_vs_scVI": {
+    "n": 1469,
+    "n_clusters": 15,
+    "delta": -0.2454,
+    "se": 0.0301,
+    "ci95": [
+     -0.3077,
+     -0.1898
+    ],
+    "significant_at_95": true
+   },
+   "knn|opca_vs_saturn": {
+    "n": 1469,
+    "n_clusters": 15,
+    "delta": 0.0224,
+    "se": 0.0332,
+    "ci95": [
+     -0.051,
+     0.0812
+    ],
+    "significant_at_95": false
+   },
+   "lr|opca_vs_scVI": {
+    "n": 1469,
+    "n_clusters": 15,
+    "delta": -0.1408,
+    "se": 0.0198,
+    "ci95": [
+     -0.178,
+     -0.1028
+    ],
+    "significant_at_95": true
+   },
+   "lr|opca_vs_saturn": {
+    "n": 1469,
+    "n_clusters": 15,
+    "delta": 0.127,
+    "se": 0.0177,
+    "ci95": [
+     0.089,
+     0.1577
+    ],
+    "significant_at_95": true
+   }
+  },
+  "zebrafish->human": {
+   "knn|opca_vs_scVI": {
+    "n": 1528,
+    "n_clusters": 22,
+    "delta": -0.2159,
+    "se": 0.0188,
+    "ci95": [
+     -0.2543,
+     -0.1822
+    ],
+    "significant_at_95": true
+   },
+   "knn|opca_vs_saturn": {
+    "n": 1528,
+    "n_clusters": 22,
+    "delta": 0.0745,
+    "se": 0.0198,
+    "ci95": [
+     0.0271,
+     0.1041
+    ],
+    "significant_at_95": true
+   },
+   "lr|opca_vs_scVI": {
+    "n": 1528,
+    "n_clusters": 22,
+    "delta": -0.1684,
+    "se": 0.0165,
+    "ci95": [
+     -0.2011,
+     -0.1381
+    ],
+    "significant_at_95": true
+   },
+   "lr|opca_vs_saturn": {
+    "n": 1528,
+    "n_clusters": 22,
+    "delta": 0.122,
+    "se": 0.0156,
+    "ci95": [
+     0.0881,
+     0.1484
+    ],
+    "significant_at_95": true
+   }
+  },
+  "mouse->zebrafish": {
+   "knn|opca_vs_scVI": {
+    "n": 1469,
+    "n_clusters": 15,
+    "delta": -0.1342,
+    "se": 0.042,
+    "ci95": [
+     -0.2408,
+     -0.0792
+    ],
+    "significant_at_95": true
+   },
+   "knn|opca_vs_saturn": {
+    "n": 1469,
+    "n_clusters": 15,
+    "delta": -0.0785,
+    "se": 0.0119,
+    "ci95": [
+     -0.1018,
+     -0.0547
+    ],
+    "significant_at_95": true
+   },
+   "lr|opca_vs_scVI": {
+    "n": 1469,
+    "n_clusters": 15,
+    "delta": -0.173,
+    "se": 0.0351,
+    "ci95": [
+     -0.2581,
+     -0.1222
+    ],
+    "significant_at_95": true
+   },
+   "lr|opca_vs_saturn": {
+    "n": 1469,
+    "n_clusters": 15,
+    "delta": -0.1173,
+    "se": 0.0228,
+    "ci95": [
+     -0.1504,
+     -0.0623
+    ],
+    "significant_at_95": true
+   }
+  },
+  "zebrafish->mouse": {
+   "knn|opca_vs_scVI": {
+    "n": 1505,
+    "n_clusters": 4,
+    "delta": -0.06,
+    "se": 0.0143,
+    "ci95": [
+     -0.0979,
+     -0.0464
+    ],
+    "significant_at_95": true
+   },
+   "knn|opca_vs_saturn": {
+    "n": 1505,
+    "n_clusters": 4,
+    "delta": 0.1227,
+    "se": 0.0288,
+    "ci95": [
+     0.0601,
+     0.1694
+    ],
+    "significant_at_95": true
+   },
+   "lr|opca_vs_scVI": {
+    "n": 1505,
+    "n_clusters": 4,
+    "delta": -0.2259,
+    "se": 0.0121,
+    "ci95": [
+     -0.2517,
+     -0.2103
+    ],
+    "significant_at_95": true
+   },
+   "lr|opca_vs_saturn": {
+    "n": 1505,
+    "n_clusters": 4,
+    "delta": -0.0431,
+    "se": 0.0132,
+    "ci95": [
+     -0.0722,
+     -0.0249
+    ],
+    "significant_at_95": true
+   }
+  }
+ },
+ "flips": [
+  {
+   "direction": "人→鼠",
+   "vs": "scVI",
+   "knn_sig": false,
+   "lr_sig": true
+  },
+  {
+   "direction": "鼠→人",
+   "vs": "scVI",
+   "knn_sig": false,
+   "lr_sig": true
+  },
+  {
+   "direction": "人→斑马鱼",
+   "vs": "saturn",
+   "knn_sig": false,
+   "lr_sig": true
+  }
+ ]
+}

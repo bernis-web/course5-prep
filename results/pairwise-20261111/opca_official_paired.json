@@ -1,0 +1,164 @@
+{
+ "date": "2026-11-11",
+ "purpose": "oPCA 正式配对检验（用粗类 KNN 真实产物，非重映射）",
+ "opca_source": "results/mapping-v2-20261111/rerun-v2/predictions/coarse_*.json",
+ "mapping": "config/heart-celltype-map-v2.tsv",
+ "comparisons": {
+  "human->mouse": {
+   "opca_vs_scVI": {
+    "n": 1505,
+    "mf1_a": 0.6435,
+    "mf1_b": 0.6683,
+    "delta": -0.0247,
+    "delta_se": 0.0199,
+    "ci95": [
+     -0.0652,
+     0.0131
+    ],
+    "significant_at_95": false
+   },
+   "opca_vs_saturn_v99": {
+    "n": 1505,
+    "mf1_a": 0.6435,
+    "mf1_b": 0.3522,
+    "delta": 0.2914,
+    "delta_se": 0.0216,
+    "ci95": [
+     0.2475,
+     0.3317
+    ],
+    "significant_at_95": true
+   }
+  },
+  "mouse->human": {
+   "opca_vs_scVI": {
+    "n": 1528,
+    "mf1_a": 0.6729,
+    "mf1_b": 0.5895,
+    "delta": 0.0833,
+    "delta_se": 0.0219,
+    "ci95": [
+     0.039,
+     0.1239
+    ],
+    "significant_at_95": true
+   },
+   "opca_vs_saturn_v99": {
+    "n": 1528,
+    "mf1_a": 0.6729,
+    "mf1_b": 0.2147,
+    "delta": 0.4582,
+    "delta_se": 0.0264,
+    "ci95": [
+     0.4045,
+     0.5068
+    ],
+    "significant_at_95": true
+   }
+  },
+  "human->zebrafish": {
+   "opca_vs_scVI": {
+    "n": 1469,
+    "mf1_a": 0.1506,
+    "mf1_b": 0.396,
+    "delta": -0.2454,
+    "delta_se": 0.0153,
+    "ci95": [
+     -0.2755,
+     -0.2152
+    ],
+    "significant_at_95": true
+   },
+   "opca_vs_saturn_v99": {
+    "n": 1469,
+    "mf1_a": 0.1506,
+    "mf1_b": 0.1282,
+    "delta": 0.0224,
+    "delta_se": 0.0155,
+    "ci95": [
+     -0.0109,
+     0.0508
+    ],
+    "significant_at_95": false
+   }
+  },
+  "zebrafish->human": {
+   "opca_vs_scVI": {
+    "n": 1528,
+    "mf1_a": 0.2131,
+    "mf1_b": 0.429,
+    "delta": -0.2159,
+    "delta_se": 0.0126,
+    "ci95": [
+     -0.2401,
+     -0.1912
+    ],
+    "significant_at_95": true
+   },
+   "opca_vs_saturn_v99": {
+    "n": 1528,
+    "mf1_a": 0.2131,
+    "mf1_b": 0.1386,
+    "delta": 0.0745,
+    "delta_se": 0.0089,
+    "ci95": [
+     0.057,
+     0.0919
+    ],
+    "significant_at_95": true
+   }
+  },
+  "mouse->zebrafish": {
+   "opca_vs_scVI": {
+    "n": 1469,
+    "mf1_a": 0.2816,
+    "mf1_b": 0.4157,
+    "delta": -0.1342,
+    "delta_se": 0.0254,
+    "ci95": [
+     -0.2057,
+     -0.1009
+    ],
+    "significant_at_95": true
+   },
+   "opca_vs_saturn_v99": {
+    "n": 1469,
+    "mf1_a": 0.2816,
+    "mf1_b": 0.36,
+    "delta": -0.0785,
+    "delta_se": 0.0153,
+    "ci95": [
+     -0.1073,
+     -0.0477
+    ],
+    "significant_at_95": true
+   }
+  },
+  "zebrafish->mouse": {
+   "opca_vs_scVI": {
+    "n": 1505,
+    "mf1_a": 0.4186,
+    "mf1_b": 0.4786,
+    "delta": -0.06,
+    "delta_se": 0.0168,
+    "ci95": [
+     -0.0937,
+     -0.0277
+    ],
+    "significant_at_95": true
+   },
+   "opca_vs_saturn_v99": {
+    "n": 1505,
+    "mf1_a": 0.4186,
+    "mf1_b": 0.2959,
+    "delta": 0.1227,
+    "delta_se": 0.0178,
+    "ci95": [
+     0.0874,
+     0.1577
+    ],
+    "significant_at_95": true
+   }
+  }
+ }
+}

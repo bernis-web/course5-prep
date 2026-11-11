@@ -98,11 +98,15 @@ def boot(truth, pred, nb=NB, seed=SEED):
 
 def main() -> int:
     mapping = load_mapping()
+    try:
+        _map_label = str(MAP_TSV.resolve().relative_to(ROOT.resolve())).replace("\\", "/")
+    except ValueError:      # MAP_TSV 在沙箱/外部目录，或本身是相对路径
+        _map_label = MAP_TSV.name
     res = {
         "method": "saturn_v99",
         "protocol": f"bootstrap over query cells, {NB} resamples, RandomState({SEED})",
         "label_space": "coarse / union, 不可映射预测按错误计 (strict_cell)",
-        "mapping": str(MAP_TSV.relative_to(ROOT)).replace("\\", "/"),
+        "mapping": _map_label,
         "orientation_fix": "truth -> 目标物种词表; pred -> 源物种词表（修正 bootstrap_ci.py 的对调）",
         "directions": {},
     }

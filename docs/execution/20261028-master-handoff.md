@@ -96,9 +96,9 @@
 
 **每个分数都带 ±SE**：完整 22 行「分数 ± bootstrap SE ± 95% CI」见 `results/bootstrap-20261030/bootstrap.json`（已与冻结值逐格对齐，0 mismatch）。
 
-**读法**：每行最高值加粗。**六行都是 scVI 最高**——更正后鼠↔鱼两行也正常加粗，不再存在「胜负取决于口径」的分歧。
+**读法**：每行最高值加粗。**六行里五行是 scVI 最高**；鼠→人一行 oPCA 0.6729 > scVI 0.5895，同批配对 Δ=+0.0833、CI[0.0386, 0.1238] 显著。
 
-**为什么不能靠这张表定冠军**：更正后 oPCA / scVI / SATURN 三家分母已基本一致（1499–1528），差异只来自真值侧 unmapped 类（小鼠 Proliferating 30、斑马鱼 mt 30 + Proliferating 14）；**SAMap 仍是 307–1368**，覆盖率 0–91%。跨方法比大小 ≠ 公平比较，真正的比较要落在同一批细胞上，见 `results/bootstrap-20261030/pairwise.json`（13 组配对检验）。
+**为什么不能靠这张表定冠军**：更正后 oPCA / scVI / SATURN 三家分母基本一致（1499–1528），但**鱼向 SATURN 为 1469**（覆盖率 95.7%），跨方法比较仍需按同批细胞配对口径，差异只来自真值侧 unmapped 类（小鼠 Proliferating 30、斑马鱼 mt 30 + Proliferating 14）；**SAMap 仍是 307–1368**，覆盖率 0–91%。跨方法比大小 ≠ 公平比较，真正的比较要落在同一批细胞上，见 `results/bootstrap-20261030/pairwise.json`（13 组配对检验）。
 
 ### 2.1 为什么 macro-F1 而不是 accuracy
 
@@ -432,6 +432,26 @@ scvi-tools 1.1.6.post2 / torch 2.6.0+cu124
 2. 平台版要的映射文件是 **`/Files/wheelhouse/v99_mapping_embedded.json`**（dict，38 条，value 形如 `["cardiomyocyte","ventricular cardiomyocyte","active"]`），不是 `heart-celltype-map-v1.tsv`。
 
 证据：`results/phase-20261030/image-build-evidence/selfcheck-fixkey-reproduced.json`
+
+#### ⚠️ 口径标注（2026-11-11 补，必读）
+
+**上面这 6 个数是 v1 映射口径。** 镜像里嵌的映射 = `scripts/v99_mapping_embedded.json`
+（sha256 `d92e32aa…`，与产物 manifest 的 `mapping_sha256` 逐位一致），
+其内容与 `config/heart-celltype-map-v1.tsv` **差异 0 条**；而项目现行口径是 **v2 签认表**
+（`config/heart-celltype-map-v2.tsv`，只改了一行：`zebrafish|Orthers` 由 `active` 改为 `unresolved`）。
+
+含义与处置：
+
+- 本条证据（镜像内 6/6 复现）**证明的是「镜像与 v1 口径自洽」**，不是「与现行 v2 口径一致」；
+- v2 下本地重跑（输入与 manifest 逐位一致、各 30.8 s）得到：
+  人→鼠 0.8618 / 鼠→人 0.7369 / 人→斑马鱼 **0.1811** / 斑马鱼→人 **0.2788** /
+  鼠→斑马鱼 **0.2730** / 斑马鱼→鼠 **0.5967**（详见 report-14 §四）；
+- **不要**把镜像证据的数字直接改成 v2——那会造成「证据与镜像内容不符」。
+  正确做法二选一：①在镜像里补跑一次 v2；②保留 v1 数字并保留本标注。
+
+另：本条只覆盖 **oPCA**。`scVI` 的 `人→斑马鱼` / `鼠→斑马鱼` 两向分母仍是 v1 的 1499，
+且 scVI 的 coarse 层无法由逐细胞预测事后换算（前提检验仅 1441/1499、1417/1499 吻合），
+需重跑原流程。详见 `docs/reports/report-14-mapping-v1-v2-impact-20261111.md`。
 
 ---
 
