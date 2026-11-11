@@ -50,6 +50,8 @@ FONT = "微软雅黑"
 M = 1.00          # G1 版心左界
 RIGHT = 12.333    # G7 版心右界
 CW = 11.333       # 版心宽
+PAD = 0.36         # 卡片内边距（全篇唯一值；2026-11-11 对齐统一）
+COL2 = 4.60        # 第二栏起点（相对版心左缘）
 FOOTER = "课题5 · XenoTransfer v1.0 · 第三次汇报 · 2026-11-11"
 
 # 字号四档（G10）
@@ -264,7 +266,7 @@ s = page(2, "任务：把细胞类型从一个物种搬到另一个物种",
 """)
 chip(s, "研究设计")
 rect(s, M, 2.05, CW, 0.92, BG1)
-tb(s, M + 0.35, 2.28, 3.6, 0.45, ["参考物种（已有细胞类型）"], 16, True, INK)
+tb(s, M + PAD, 2.28, 3.6, 0.45, ["参考物种（已有细胞类型）"], 16, True, INK)
 rect(s, M + 4.15, 2.47, 2.30, 0.025, BLUE)          # 箭头线（语义：迁移路径）
 tb(s, M + 4.15, 2.14, 2.30, 0.30, ["标签迁移"], T_BODY, False, BLUE, align=PP_ALIGN.CENTER)
 tri = s.shapes.add_shape(MSO_SHAPE.ISOSCELES_TRIANGLE, Inches(M + 6.42), Inches(2.38),
@@ -292,9 +294,9 @@ for i, (nm, meta, cost, col, bgc) in enumerate(cards):
     cx = M + i * (cwid + gap)
     rect(s, cx, 4.02, cwid, 1.85, bgc, line=BG2)     # P06：h 1.72→1.85
     rect(s, cx, 4.02, cwid, 0.055, col)
-    tb(s, cx + 0.30, 4.24, cwid - 0.60, 0.34, [nm], T_CARD, True, INK)
-    tb(s, cx + 0.30, 4.66, cwid - 0.60, 0.62, [meta], T_BODY, False, GREY, spacing=1.4)
-    tb(s, cx + 0.30, 5.40, cwid - 0.60, 0.30, [cost], T_BODY, False, GREY)
+    tb(s, cx + PAD, 4.24, cwid - 0.60, 0.34, [nm], T_CARD, True, INK)
+    tb(s, cx + PAD, 4.66, cwid - 0.60, 0.62, [meta], T_BODY, False, GREY, spacing=1.4)
+    tb(s, cx + PAD, 5.40, cwid - 0.60, 0.30, [cost], T_BODY, False, GREY)
 
 # ═══ P3 三个场景（P07 卡宽 10.80 / 高 1.22 / 间距 0.16；P08 色条 0.04）═══
 s = page(3, "三个场景，三种答案", "难度不同，推荐不同",
@@ -315,10 +317,10 @@ y = 2.08
 for tag, pair, pick, why, col, bgc in rows:
     rect(s, M, y, 10.20, 1.20, bgc, line=BG2)
     rect(s, M, y, 0.04, 1.20, col)
-    tb(s, M + 0.36, y + 0.18, 1.10, 0.32, [tag], T_CARD, True, col)
-    tb(s, M + 0.36, y + 0.70, 3.90, 0.35, [pair], T_BODY, False, GREY)
-    tb(s, M + 4.35, y + 0.24, 3.70, 0.42, [pick], T_CARD, True, INK)
-    tb(s, M + 4.35, y + 0.74, 5.60, 0.36, [why], T_BODY, False, GREY)
+    tb(s, M + PAD, y + 0.18, 1.10, 0.32, [tag], T_CARD, True, col)
+    tb(s, M + PAD, y + 0.70, 3.90, 0.35, [pair], T_BODY, False, GREY)
+    tb(s, M + COL2, y + 0.24, 3.70, 0.42, [pick], T_CARD, True, INK)
+    tb(s, M + COL2, y + 0.74, 5.60, 0.36, [why], T_BODY, False, GREY)
     y += 1.38
 
 # ═══ P4 主结果图（P09 图表并入 1.00 基线；P10 图例补金色语义；P11 脚注断行）═══
@@ -396,7 +398,7 @@ s = page(6, "我们算错过一次：查表查反了语种", "真值与预测分
 """)
 chip(s, "过程与校验", BRICK, RGBColor(0xF9, 0xEE, 0xED))
 rect(s, M, 2.02, CW, 0.56, INK)
-tb(s, M + 0.30, 2.16, 11.0, 0.32, ["两边各丢一批细胞 —— 真值侧丢得更多"], T_CARD, True, WHITE)
+tb(s, M + PAD, 2.16, 11.0, 0.32, ["两边各丢一批细胞 —— 真值侧丢得更多"], T_CARD, True, WHITE)
 tb(s, M, 2.78, 4.60, 0.28, ["正确的查法"], T_BODY, False, GREY)
 tb(s, M, 3.08, 5.20, 0.34, ["真值 → 被预测方词表　　预测 → 参考书方词表"], T_BODY, False, INK)
 tb(s, M, 3.58, 4.60, 0.28, ["我们写成了"], T_BODY, False, GREY)
@@ -405,8 +407,8 @@ tb(s, M, 4.42, 5.40, 1.00,
    ["小鼠的「心肌细胞」在人词表里不存在，", "这些细胞静默消失：分母从 1,535 掉到 1,309。"],
    T_BODY, False, GREY, spacing=1.45)
 rect(s, M + 6.10, 2.78, 4.90, 2.55, BG5, line=RGBColor(0xE8, 0xD2, 0x96))
-tb(s, M + 6.40, 2.96, 4.30, 0.30, ["怎么证明不是事后找借口"], T_BODY, True, GOLD_T)
-tb(s, M + 6.40, 3.36, 4.30, 1.42,
+tb(s, M + 6.46, 2.96, 4.30, 0.30, ["怎么证明不是事后找借口"], T_BODY, True, GOLD_T)
+tb(s, M + 6.46, 3.36, 4.30, 1.42,
    ["同一份结果，按四种查表方式各算一遍。",
     "只有「查错的那种」能一字不差复现全部旧数字：",
     "· 六个方向 6/6 吻合",
@@ -430,8 +432,8 @@ gf7 = s.shapes.add_chart(XL_CHART_TYPE.BAR_CLUSTERED, Inches(M), Inches(2.02),
                          Inches(7.33), Inches(3.55), cd7)
 style_chart(gf7.chart, 0.75, [BG2, BLUE], label_size=9, cat_size=11)
 rect(s, 8.80, 2.02, 3.53, 3.55, BG3, line=BG2)
-tb(s, 9.10, 2.22, 3.00, 0.30, ["变化要点"], T_BODY, True, INK)
-tb(s, 9.10, 2.66, 3.00, 2.60,
+tb(s, 8.80 + PAD, 2.22, 3.00, 0.30, ["变化要点"], T_BODY, True, INK)
+tb(s, 8.80 + PAD, 2.66, 3.00, 2.60,
    ["· 最大虚高 +0.3549", "　（斑马鱼→鼠）", "· 六向全部下降",
     "· 鱼向 n=1469（覆盖 95.7%）", "· Orthers 退出评估"], T_BODY, False, GREY, spacing=1.6)
 
@@ -451,9 +453,9 @@ for i, (big, lab, sub, col) in enumerate(nums):
     cx = M + i * 3.92
     rect(s, cx, 2.08, 3.51, 3.40, BG3, line=BG2)
     rect(s, cx, 2.08, 3.51, 0.055, col)
-    tb(s, cx + 0.30, 2.28, 3.00, 1.22, [big], 40, True, col if col != GREY else INK)
-    tb(s, cx + 0.30, 3.40, 3.00, 0.32, [lab], T_CARD, True, INK)
-    tb(s, cx + 0.30, 3.92, 3.00, 0.60, [sub], T_BODY, False, GREY, spacing=1.4)
+    tb(s, cx + PAD, 2.28, 3.00, 1.22, [big], 40, True, col if col != GREY else INK)
+    tb(s, cx + PAD, 3.40, 3.00, 0.32, [lab], T_CARD, True, INK)
+    tb(s, cx + PAD, 3.92, 3.00, 0.60, [sub], T_BODY, False, GREY, spacing=1.4)
 
 # ═══ P9 与原文对照（P21 卡宽 10.60/高 1.30/间距 0.16；P22 色条中性；P23 删竖线）═══
 s = page(9, "和原论文一致吗", "三篇原文的主张 vs 我们复现到的位置",
@@ -471,8 +473,8 @@ y = 2.06
 for nm, claim, ours in rows9:
     rect(s, M, y, 10.20, 1.24, BG3, line=BG2)
     rect(s, M, y, 0.04, 1.24, GREY)
-    tb(s, M + 0.36, y + 0.14, 4.10, 0.36, [nm], T_CARD, True, INK)
-    tb(s, M + 0.36, y + 0.60, 4.10, 0.54, [claim], T_BODY, False, GREY)
+    tb(s, M + PAD, y + 0.14, 4.10, 0.36, [nm], T_CARD, True, INK)
+    tb(s, M + PAD, y + 0.60, 4.10, 0.54, [claim], T_BODY, False, GREY)
     tb(s, M + 4.60, y + 0.44, 5.40, 0.46, [ours], T_BODY, False, INK)
     y += 1.42
 
@@ -499,9 +501,9 @@ tb(s, M, 4.30, CW, 0.34,
    T_BODY, False, GREY)
 # 末页补「下一步」：排序依据来自 scale 审计（评测可信 > 排名公平 > 规模）
 rect(s, M, 4.86, CW, 1.16, BG3, line=BG2)
-tb(s, M + 0.30, 5.00, 8.60, 0.30,
+tb(s, M + PAD, 5.00, 8.60, 0.30,
    ["下一步（按「评测可信 > 排名公平 > 规模」排序）"], T_BODY, True, INK)
-tb(s, M + 0.30, 5.38, 10.70, 0.58,
+tb(s, M + PAD, 5.38, 10.70, 0.58,
    ["T0 挂载探测 2 分钟 / ¥0.02  →  T1 全量 oPCA（32c128g，≈7.3 h）  →  T2 全量 scVI（≈6.5 h）",
     "T4 SATURN 需 GPU（无实测时长）；正对照 oracle 先做，1 天，否则负结果会被当成又一个 bug"],
    T_BODY, False, GREY, spacing=1.35)
