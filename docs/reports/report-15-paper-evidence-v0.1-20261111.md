@@ -264,17 +264,111 @@ Z = PCA(n_components=NPCS, random_state=SEED).fit_transform(X_joint)
 
 **→ 直接回答了「什么结论值得写」：远缘可以写，近缘不能。**
 
+### 2.10 【2026-11-11 晚·决定性】SATURN 的 representation 取错，§2.9 的 SATURN 半边必须重算
+
+前面所有涉及 SATURN 的数字，底层取的都不是 SATURN 的嵌入，而是 `obsm/macrogenes`（macrogene 表达矩阵，
+旧载荷 manifest 写着 `shape: [4606, 1000]`、`representation: obsm/macrogenes`）。
+
+**源码级证据表明这是错的：**
+
+`train-saturn.py:377`（构造输出 AnnData）：
+
+```python
+adata = AnnData(train_emb)                 # X == train_emb == 256 维嵌入
+adata.obsm["macrogenes"] = train_macrogenes
+```
+
+`score_adata.py:80`（`space` 的**默认值就是 `raw`**）：
+
+```python
+metric='cosine', medoid=False, space='raw'
+```
+
+`score_adata.py:116-120`：
+
+```python
+if self.space != 'raw':
+    subset_data = subset.obsm[key]         # umap / samap / scanorama / harmony
+else:
+    subset_data = subset.X.toarray()       # ← 官方默认走这里，X 就是 256 维嵌入
+```
+
+→ **SATURN 官方 KNN 评测用 256 维嵌入。用 `obsm/macrogenes` 不是官方口径。**
+
+**两种 representation 在同一协议下的实测**（协议完全复刻 scVI 臂：KNN k=15 cosine distance
++ 手写 macro-F1 union + `heart-celltype-map-v1.tsv`（sha256 实测匹配）+ 配对 bootstrap 2000 次）：
+
+A. `X`（256 维嵌入，官方口径）—— 新训练模型（pretrain 200 + metric 50，seed 0）：
+
+| 方向 | KNN macro-F1 | KNN acc | 配对 n | Δ vs scVI | 95% CI | 显著 |
+|---|---|---|---|---|---|---|
+| 人→鼠 | **0.9442** | 0.9734 | 1505 | **+0.2759** | [0.2335, 0.3168] | SIG |
+| 鼠→人 | **0.9276** | 0.9627 | 1528 | **+0.3380** | [0.3049, 0.3695] | SIG |
+| 人→斑马鱼 | **0.6370** | 0.7378 | 1499 | **+0.2356** | [0.2112, 0.3397] | SIG |
+| 斑马鱼→人 | **0.7016** | 0.9391 | 1528 | **+0.2727** | [0.2453, 0.2990] | SIG |
+| 鼠→斑马鱼 | **0.6912** | 0.7478 | 1499 | **+0.2664** | [0.2315, 0.3008] | SIG |
+| 斑马鱼→鼠 | **0.7116** | 0.9548 | 1505 | **+0.2330** | [0.2094, 0.2557] | SIG |
+
+B. `obsm/macrogenes`（2000 维，历史用法）—— 同一个模型：
+
+| 方向 | KNN macro-F1 | Δ vs scVI | 95% CI | 显著 |
+|---|---|---|---|---|
+| 人→鼠 | 0.3194 | −0.3489 | [−0.3884, −0.3096] | SIG |
+| 鼠→人 | 0.1693 | −0.4203 | [−0.4507, −0.3914] | SIG |
+| 人→斑马鱼 | 0.1393 | −0.2621 | [−0.2822, −0.2255] | SIG |
+| 斑马鱼→人 | 0.2380 | −0.1909 | [−0.2176, −0.1645] | SIG |
+| 鼠→斑马鱼 | 0.4196 | −0.0053 | [−0.0375, 0.0270] | ns |
+| 斑马鱼→鼠 | 0.1836 | −0.2950 | [−0.3213, −0.2678] | SIG |
+
+→ **同一个模型，换 representation 就把「六向全输」变成「六向全赢」。**
+
+**机制（为什么 macrogenes 一定更差）**——直接量了方差分解：
+
+| 表示 | 总方差 | 物种内方差 | **物种间方差占比** | 零占比 | 取值上界 |
+|---|---|---|---|---|---|
+| `X`（256 维嵌入） | 0.4657 | 0.4377 | **6.03%** | 62.9% | 5.57 |
+| `obsm/macrogenes`（2000 维） | 0.5106 | 0.3625 | **29.01%** | 80.7% | 31.71 |
+
+macrogenes 的物种间方差占比是嵌入的 **4.8 倍**——它把物种身份当成了最大的变异轴，
+而 KNN 跨物种检索恰恰最怕这个：查询细胞会优先命中同物种邻居。
+SATURN 的编码器（`X`）就是把这个轴压掉的地方，**用 macrogenes 评测等于绕过 SATURN 唯一在做事的那一层**。
+这解释了为何同一个模型在两个矩阵上结论符号相反，也是本项目最干净的一条机制性证据。
+
+**旧数字可复现（证明评测实现无错）**：用旧载荷重算与 `results/bootstrap-20261030/saturn_vs_scvi.json`
+一字不差（mouse→zebrafish published 0.6491/0.6206/+0.0285；zebrafish→mouse 0.6508/0.6168/+0.0340）。
+同时暴露 `published` 口径的病：**丢弃率最高达 54.9%**（mouse→zebrafish 988→446）、
+53.4%（zebrafish→human 1378→642）——它只在 SATURN 给得出粗类预测的细胞上比。
+
+**对 §2.9 的影响（必须写进论文的限制）：**
+
+- §2.9 的「远缘 scVI 更优、四种设置都稳健」这个结论，**其 SATURN 半边建立在错误 representation 上**，
+  在新结果里不成立（官方口径下 SATURN 六向全 SIG 为正）。
+- **不能**因此就说「SATURN 全胜」——还有三件事没排除：
+  1. 只有 seed=0，多 seed 稳定性未验（已启动 seed=1,2）；
+  2. 只有 1.5k×3 子样本，全量 30000/60471/50000 未跑；
+  3. 「重抽样单位」「评估器」「拟合方式」这三个轴对 SATURN 的影响尚未重算。
+- 因此 §2.9 的那句「最硬结论」应改写为：
+  > **在官方 representation（256 维嵌入）下，SATURN 在近缘与远缘都显著优于 scVI（Δ +0.23~+0.34）；
+  > 此前「远缘 scVI 更优」的结论源于评测取了 macrogene 表达而非嵌入，属口径错误，不再引用。**
+- 方法论警示（应升格为独立发现）：**跨方法比较时，「取哪个 representation」是第一位的口径，
+  比 macro-F1 的 union/truth-only、比重抽样单位都更靠前**——因为它能把结论符号翻转。
+
 ---
 
 ## 三、还没做的（如实列出，不混进结论）
 
-1. **SATURN 官方配置消融**（任务 `2120420983594635266` 排队中）——这是老师第一条要求的核心；
+1. ~~**SATURN 官方配置消融**（任务 `2120420983594635266` 排队中）~~ —— **已在本地 CPU 跑通**（pretrain 200 + metric 50，seed 0，exit 0），
+   产物 `local_run_full/saturn_results/test256_..._seed_0.h5ad`，`X` 为 256 维嵌入；结果见 §2.10。
+   **仍缺**：多 seed（seed 1,2 训练中）、全量规模、以及「重抽样单位 / 评估器 / 拟合方式」三轴对 SATURN 的重算；
 2. **SAMap BLAST 全同源图**复现（我们目前只用了 1:1）；
 3. **scVI 两向按 v2 重跑**（分母 1499→1469）；
 4. **规模维度消融**（1.5k/3k/6k/12k/30k，全量数据在 DCS）；
 5. **held-out / inductive 评测**（现有全部是 transductive）；
-6. **SATURN 的配对检验**（`pairwise_donor_level.json` 里已算，但 SATURN 用的是 v2 修正口径，需与重跑后的官方配置结果对齐）；
-7. **跨门正对照 + 机制分解**（在拿到正对照前，跨门负结果不得当生物学结论）。
+6. **SATURN 的配对检验**——§2.10 已按官方口径重算（配对 bootstrap 2000 次），
+   但仍需在 v2 映射与多 seed 下复核；
+7. **跨门正对照 + 机制分解**（在拿到正对照前，跨门负结果不得当生物学结论）；
+8. **oPCA 臂与 SATURN 的 representation 一致性**：oPCA 的 `latent` 口径要单独核一次，
+   避免再犯 §2.10 这类「取错 representation」的错。
 
 ---
 
@@ -286,5 +380,10 @@ Z = PCA(n_components=NPCS, random_state=SEED).fit_transform(X_joint)
 3. **不混指标**：accuracy 与 macro-F1 分列（本项目已犯过两次）；
 4. **重抽样单位必须是个体**，不是细胞；
 5. 跨门负结果在拿到正对照前**不得当生物学结论**；
-6. 不把 transductive 写成 held-out / inductive；不按总分排冠军。
+6. 不把 transductive 写成 held-out / inductive；不按总分排冠军；
+7. **（2026-11-11 新增，最高优先级）任何 SATURN 数字必须标注 representation**：
+   `X`（256 维嵌入，官方口径）与 `obsm/macrogenes`（macrogene 表达，历史误用）不可混用——
+   §2.10 实测同一个模型换 representation 会让六向结论**符号翻转**。
+8. **（2026-11-11 新增）`published` 口径必须同时报丢弃率**：
+   历史 `published` 口径丢弃率最高 54.9%，属选择性样本，单报 SATURN 分数会误导。
 

@@ -84,7 +84,11 @@ workshop 短文（4–6 页）/ methods note（2–4 页）/ 完整 benchmark（
 | `deliverables/课题5-组员交接总纲-20261104.docx` / `.pdf` | 表 2 oPCA 四值 |
 | `deliverables/课题5-组员入门手册-20261104.docx` / `.pdf` | T11 / T14 全表重算，T13 加口径注 |
 | `deliverables/课题5-组员汇报说明-小白版-20261110.docx` / `.pdf` | 表 4 oPCA 四值 |
-| `deliverables/场景化选型指南-v8-20261109.md` | 现行版，13 处已改 |
+| `deliverables/场景化选型指南-v8-20261109.md` | 现行版；本轮再改 13 处（oPCA 四向 + SATURN 六向 + 倍数） |
+| `deliverables/课题5-组员入门手册-20261104.docx` | 本轮改 10 处 + 定向 4 处（0.1654→0.1506、2.4→2.7 倍），表头标「原口径 · 错」 |
+| `deliverables/课题5-老师七条意见回应-20261030.docx` | 三张旧口径表头补标「（旧口径，见附录 A）」 |
+| `docs/execution/20261028-master-handoff.md` | 本轮改 20 处（含「修正后六向」错列、2.4→2.7 倍、1499→1469） |
+| `deliverables/PPT交接包/02_逐页brief.md` + PPT制作交接包 docx | 300 倍 → 约 104 倍，0.4147 → 0.3522 |
 | `results/bootstrap-20261030/_SUPERSEDED-saturn_convention_v2.md` | 命名撞车隔离（v2 指约定不指映射） |
 
 ## 验证（一次性复核全部战线）
@@ -119,3 +123,23 @@ Select-String -Path docs\reports\number-index-20261111.md -Pattern '0.3522'
 3. **P0-2 CPU 臂 in-sample 判定**（18 细胞）：4–6 天
 4. 全量重跑（¥180–320，GPU 85%）——用来说服审稿人「不是子集运气」
 5. 发表路线二选一：先 methods note（2–4 页，缺项最少），再扩展成 benchmark
+
+## 证据索引（每条结论对应一条命令）
+
+| 结论 | 命令 | 期望回显 |
+|---|---|---|
+| v5 十页设计全达标 | `.venv39\Scripts\python.exe scripts\check_design_v5.py` | `全部达标: True`，留白 44.4–78.4%，对齐极差 ≤0.040" |
+| v4 底数与 v4→v5 差异 | `python scripts\measure_v4_v5.py` | v4 每页低对比 2–6 处、字号层 4–8 → v5 全 0、3 层 |
+| 每个数字有出处 | `python scripts\verify_numbers.py` | `28/28 PASS`（SATURN strict_cell 与 oPCA/scVI 混淆矩阵均重算） |
+| 干净解释器 30/30 | `Python313\python.exe scripts\reproduce_all.py --out results\repro-clean2-20261111-2344` | `30/30、678.3s`，`[results/repro-clean2-20261111-2344/](results/repro-clean2-20261111-2344/)` |
+| 一键入口可用 | `powershell -File scripts\reproduce_oneclick.ps1 -Fast` | 打印解释器/依赖/退出码 |
+| 现行件无作废数字 | `python scripts\scan_all_stale.py` | CURRENT 仅剩叙述型引用，逐条在 `scan-current-context-20261111.md` |
+| 历史件已加声明 | 同上（带 `--stamp`） | 27 个 HISTORY 文件顶部/末页有声明 |
+| 环境清单可查 | `python scripts\env_manifest.py` | `docs\execution\env-manifest-20261111.md` |
+
+### 复现依赖的坑（已修）
+
+`requirements.txt` 原来只有 5 个包，干净解释器跑第一步就崩：
+`ModuleNotFoundError: No module named 'h5py'` → 25/30。
+补 `h5py==3.16.0` 与 `pandas==2.2.3` 后单次全量 30/30。
+这条只能靠**换解释器真跑**才会暴露——在 `.venv39` 里跑永远是 30/30。
